@@ -1,0 +1,916 @@
+@import "icon/icon.less";
+@import "mixins/mixins.less";
+@import "ui/accordian.less";
+@import "ui/button.less";
+@import "ui/form.less";
+@import "ui/grid.less";
+@import "ui/header.less";
+@import "ui/info.less";
+@import "ui/input.less";
+@import "ui/issue.less";
+@import "ui/label.less";
+@import "ui/list.less";
+@import "ui/loader.less";
+@import "ui/segment-button.less";
+@import "ui/switch.less";
+@import "ui/table.less";
+@import "ui/tabs.less";
+@import "settings/default.less";
+
+/**
+ * UI Elements
+ */
+
+.accordian();
+.button();
+.form();
+.grid();
+.header();
+.info();
+.input();
+.issue();
+.label();
+.list();
+.loader();
+.segmented-buttons();
+.switch();
+.table();
+.tabs();
+
+/**
+ * Common
+ */
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
+body {
+	.display(flex);
+	.flexFlow(column);
+	flex: 1;
+	padding: 0;
+	font-family: "Helvetica Neue", "HelveticaNeue";
+	font-weight: 600;
+}
+
+a:link {
+	-webkit-tap-highlight-color: transparent;
+}
+
+h3, .h3 {
+	margin: 0 0 0.5rem;
+	padding: 0;
+	font-weight: 100;
+	font-size: 1.3rem;
+	font-family: "HelveticaNeue-Light", "Helvetica Neue";
+	color: @green;
+}
+
+hr {
+	margin: 1.5rem 0;
+	border-color: @shade-pos-4;
+}
+
+.addable {
+	input, select {
+		width: 100%;
+	}
+
+	.price {
+		width: 5rem;
+		line-height: 1.6rem;
+		text-align: right;
+	}
+
+	.total {
+		padding: 0.3rem;
+		text-align: right;
+
+		.label {
+			margin-right: 0.4rem;
+			font-weight: 200;
+			color: @shade-pos-3;
+		}
+	}
+}
+
+.small {
+	display: inline-block;
+	margin-left: 0.5rem;
+	color: @shade-pos-1;
+	font-weight: 300;
+	font-size: 0.8rem;
+}
+
+.checklist {
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.checkbox label {
+		font-size: 0.7rem;
+	}
+}
+
+.toggle-menu-content {
+	.display(flex);
+	.flexFlow(column);
+	flex: 1;
+
+	> div {
+		.display(flex);
+		.flexFlow(column);
+		flex: 1;
+	}
+}
+
+.overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+}
+
+.columns {
+	.display(flex);
+	.flexFlow(row);
+	.justifyContent(space-between);
+	.flex(1);
+	width: 100%;
+
+	.col {
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+		margin-right: 2em;
+
+		&:last-of-type {
+			margin-right: 0;
+		}
+
+		input:not([type="checkbox"]):not([type="radio"]), select, textarea {
+			width: 100%;
+		}
+	}
+}
+
+.remove {
+	width: 1rem;
+
+	a {
+		display: block;
+		position: relative;
+		margin-left: 0.4rem;
+		width: 1rem;
+		text-indent: 100%;
+		white-space: nowrap;
+		overflow: hidden;
+
+		&:before {
+			position: absolute;
+			left: 0;
+			color: @negative;
+			font-size: 1.2rem;
+			line-height: 1.8rem;
+			text-indent: 0;
+		}
+	}
+}
+
+.box {
+	padding: 0.5rem 0.8rem;
+	background-color: @shade-pos-5;
+}
+
+.table th {
+	font-size: 0.6rem;
+	text-align: center;
+}
+
+/**
+ * App
+ */
+
+.app {
+	.display(flex);
+	.flexFlow(column);
+	flex: 1;
+	background-color: @app-bg-color;
+	background-image: @app-bg-image;
+}
+
+.app-wrap {
+	.display(flex);
+	.flexFlow(column);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: -12rem;
+	transition: all 0.3s ease-out;
+
+	&.active {
+		right: -12rem;
+		left: 0;
+	}
+}
+
+.app-header {
+	.display(flex);
+	.flexFlow(row);
+	height: 3rem;
+	background-color: @header-bg-color;
+
+	.menu-toggle, .logout {
+		padding: 0.5rem 0.8rem;
+		height: 100%;
+		color: @header-button-color;
+		line-height: 1;
+		text-decoration: none;
+		background-color: @header-button-bg-color;
+		border: 0;
+	}
+
+	.menu-toggle {
+		display: inline-block;
+		font-size: 1.5rem;
+		line-height: 1.4;
+
+		span {
+			display: none;
+		}
+	}
+
+	.title {
+		flex: 1;
+		margin: 0;
+		padding-left: 3.5rem;
+		color: @header-title-color;
+		font-weight: 100;
+		font-family: "HelveticaNeue-Light", "Helvetica Neue";
+		font-size: 1.4rem;
+		line-height: 2;
+		text-align: center;
+	}
+}
+
+.app-container {
+	.display(flex);
+	.flexFlow(column);
+	flex: 1;
+	padding-left: 12rem;
+}
+
+.app-content {
+	.display(flex);
+	flex: 1;
+	background-color: @content-bg-color;
+}
+
+.app-menu {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	padding: 0.5rem;
+	width: 12rem;
+	font-size: 0.9rem;
+	box-shadow: inset -5px 0 10px -5px @menu-shadow-color;
+	z-index: 1;
+
+	li {
+		margin-bottom: 0.5em;
+		padding: 0.5rem 0.6rem 1rem;
+		border-bottom: 1px solid @menu-border-color;
+
+		&:last-of-type {
+			border: 0;
+		}
+	}
+
+	a {
+		display: block;
+		color: @menu-color;
+		text-align: center;
+		text-decoration: none;
+
+		&:before {
+			display: block;
+			font-weight: normal;
+			font-size: 2rem;
+			line-height: 1.2;
+		}
+	}
+
+	.selected a {
+		color: @menu-color-hover;
+	}
+
+	a:hover {
+		color: @menu-color-selected;
+	}
+}
+
+/**
+ * Login
+ */
+
+.login-container {
+	.display(flex);
+	.flexFlow(column);
+	.justifyContent(center);
+	.alignItems(center);
+	flex: 1;
+	-webkit-transform: translateZ(0.00001px); /* Hack: (Chrome) force redraw of background on hidden elements */
+
+	label {
+		display: none;
+	}
+
+	input {
+		padding: 0.6rem;
+		width: 100%;
+		font-weight: 300;
+		background-color: @login-input-bg-color;
+
+		&:focus {
+			background-color: @login-input-bg-color;
+			border-color: @input-border-color;
+		}
+	}
+
+	.tab-container {
+		width: 17rem;
+	}
+
+	.tabs li.active {
+		box-shadow: -5px 10px 5px -5px @login-shadow-color;
+	}
+
+	.tab-content {
+		min-height: 11rem;
+		box-shadow: 0 5px 5px 0 @login-shadow-color;
+	}
+
+	.issue-error {
+		margin-top: 1.3rem;
+	}
+
+	.issue-success {
+		padding: 2.5rem;
+		text-align: center;
+
+		&:before {
+			font-size: 2rem;
+			line-height: 1;
+			text-align: center;
+		}
+	}
+
+	.button {
+		margin-top: 1.3rem;
+		padding: 0.5rem;
+		width: 100%;
+
+		.ladda-spinner {
+			left: 50% !important;
+		}
+	}
+}
+
+.login {
+
+	.username {
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+
+	.password {
+		position: relative;
+		top: -1px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+
+	button .ladda-spinner {
+		margin-left: -2rem !important;
+	}
+}
+
+.recover-login {
+
+	p {
+		margin: 0.58rem 0 0;
+		padding: 0;
+		font-weight: 300;
+		font-size: 0.6rem;
+	}
+
+	button .ladda-spinner {
+		margin-left: -4rem !important;
+	}
+}
+
+/**
+ * Work Orders
+ */
+
+.workorders {
+	.display(flex);
+	.flexFlow(column);
+	flex: 1;
+
+	.grid {
+		.display(flex);
+		.flexFlow(column);
+		flex: 1;
+		margin: 1.5rem;
+	}
+
+	.results {
+		.display(flex);
+		flex: 1;
+		.scrollable();
+	}
+}
+
+.filter {
+
+	.status, .status .button, .technician select, .add-new {
+		font-size: 0.8rem;
+	}
+
+	.status {
+		width: 20rem;
+	}
+
+	.technician select {
+		width: 7rem;
+	}
+
+	.date-to input, .date-from input {
+		width: 6.5rem;
+	}
+
+	.add-new-button {
+		position: relative;
+		margin-top: 1.35rem;
+		width: 5.5rem;
+	}
+}
+
+.add-new {
+	position: relative;
+	z-index: 3;
+
+	.dropdown {
+		position: absolute;
+		top: 4rem;
+		right: 0rem;
+		padding: 0.2rem 0.4rem;
+		width: 11rem;
+		background: @dropdown-bg-color;
+		border-radius: 0.356rem;
+		animation-duration: 0.5s;
+
+		&:before {
+			display: block;
+			content: '';
+			position: absolute;
+			top: -1.5rem;
+			right: 1rem;
+			width: 0;
+			height: 0;
+			border: solid 0.8rem transparent;
+			border-bottom-color: @dropdown-bg-color;
+		}
+
+		.button {
+			display: block;
+			position: relative;
+			padding: 0.4rem;
+			width: 100%;
+			color: @dropdown-color;
+			font-weight: 300;
+			font-size: 0.8rem;
+			text-align: left;
+			background: @dropdown-bg-color;
+			border-top: 1px solid darken(@dropdown-bg-color, 9);
+			border-radius: 0;
+
+			&:before {
+				position: absolute;
+				right: 0.5rem;
+				font-size: 1.2rem;
+				line-height: 1;
+			}
+
+			&:first-of-type {
+				border: 0;
+				border-radius: 0.25rem 0.25rem 0 0;
+			}
+
+			&:last-of-type {
+				border-radius: 0 0 0.3rem 0.25rem;
+			}
+		}
+	}
+}
+
+/**
+ * Work Order
+ */
+
+.workorder {
+	.display(flex);
+	.flexFlow(row);
+	.flex(1);
+
+	.menu {
+		.display(flex);
+		.flexFlow(column);
+		.scrollable();
+		width: 12rem;
+		border-width: 0 1px 0 0;
+	}
+
+	.container {
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+
+		> section {
+			.display(flex);
+			.flexFlow(column);
+			.scrollable();
+		}
+	}
+
+	.content {
+		padding: 1rem 1.5rem;
+	}
+
+	.toggle-menu-content > div {
+		display: none;
+	}
+
+	.action {
+		.display(flex);
+		.flexFlow(row);
+		.justifyContent(space-between);
+		padding: 0.6rem;
+		height: 3rem;
+		background-color: @shade-pos-5;
+		border-top: 1px solid @shade-pos-4;
+
+		button {
+			width: 6rem;
+		}
+
+		label {
+			font-size: 1rem;
+			line-height: 1;
+		}
+	}
+}
+
+.workorder-details {
+	.display(flex);
+	.flexFlow(column);
+	.flex(1);
+
+	.header {
+
+		.client {
+			width: 12rem;
+		}
+
+		.job {
+			width: 8rem;
+		}
+
+		.status {
+			width: 6rem;
+		}
+	}
+
+	.address {
+		margin-bottom: 1.8rem;
+		height: 5.8rem;
+	}
+
+	.contact {
+		margin-bottom: 1.4rem;
+	}
+
+	.list {
+		.scrollable();
+		margin-bottom: 1rem;
+		height: 6.7rem;
+		line-height: 0.5rem;
+		background: @shade-pos-5;
+
+		li {
+			background: @white;
+		}
+	}
+}
+
+.workorder-labour {
+
+	.header {
+		.justifyContent(flex-start);
+
+		> div {
+			width: 7rem;
+		}
+
+		select, input {
+			width: 4rem;
+		}
+	}
+
+	.content .col {
+		&:first-of-type {
+			width: 65%;
+		}
+		&:last-of-type {
+			width: 35%;
+		}
+	}
+
+	.critical-info {
+		height: 6.5rem;
+	}
+}
+
+.workorder-schedule {
+
+	select {
+		margin-bottom: 1rem;
+		width: 12rem;
+	}
+
+	.done span {
+		positon: relative;
+		color: darken(@green, 10);
+		background-color: lighten(@green, 55);
+
+		&:after {
+			position: absolute;
+			right: 1rem;
+			font-family: "icon";
+			content:"\f105";
+			font-size: 1rem;
+		}
+	}
+}
+
+.workorder-invoicing {
+
+	> .columns > .col:first-of-type {
+		width: 60%;
+	}
+
+	> .columns > .col:last-of-type {
+		width: 40%;
+	}
+
+	.invoice-details {
+		margin-bottom: 2rem;
+		width: 80%;
+	}
+
+	.invoicing-notes {
+		height: 8rem;
+	}
+}
+
+.workorder-images {
+
+	.header {
+		height: 3.8rem;
+	}
+}
+
+.workorder-land-access {
+
+	.header {
+
+		div:last-of-type {
+			margin-left: 1rem;
+			.flex(2);
+		}
+
+		.technician {
+			width: 12rem;
+		}
+
+		.land-access-date {
+			width: 7rem;
+		}
+	}
+
+	.questions {
+		font-size: 0.8rem;
+		font-weight: 400;
+		padding-top: 0.5rem;
+
+		td {
+			padding-bottom: 1rem;
+
+			&:first-of-type {
+				width: 4rem;
+				vertical-align: top;
+			}
+		}
+
+		.contact {
+			padding: 1rem 0;
+
+			.col {
+				margin-right: 1.5rem;
+			}
+
+			label {
+				margin-bottom: 0.2rem;
+				font-size: 0.6rem;
+			}
+		}
+	}
+
+	.notes {
+		margin-bottom: 1rem;
+	}
+}
+
+.workorder-daily-report {
+
+	.header div:nth-child(2) {
+		margin: 1.3rem 0 0 1rem;
+		flex: 2;
+	}
+
+	.technician {
+		width: 12rem;
+	}
+
+	.content > div {
+		display: none;
+	}
+
+	.incidents {
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		input {
+			display: inline-block;
+			float: left;
+			margin-top: 0.3rem;
+			margin-right: 0.5rem;
+		}
+
+		label {
+			display: inline-block;
+			margin-top: 0.3rem;
+
+			span {
+				display: block;
+				font-size: 0.6rem;
+			}
+		}
+
+		input:checked + textarea {
+			display: block;
+			margin-left: 1.8rem;
+			margin-bottom: 1rem;
+			width: 20rem;
+			height: 4rem;
+		}
+
+		textarea {
+			display: none;
+		}
+	}
+
+	.comments {
+		textarea {
+			width: 100%;
+			height: 4rem;
+			order: 3;
+		}
+	}
+}
+
+.workorder-completion {
+
+	.header div:nth-child(2) {
+		margin: 1.3rem 0 0 1rem;
+		flex: 2;
+	}
+
+	.technician {
+		width: 12rem;
+	}
+
+	.job-completion {
+
+		.list {
+			height: 6.2rem;
+			.scrollable();
+		}
+
+		textarea {
+			width: 100%;
+			height: 8rem;
+		}
+	}
+
+	.conditions-time {
+		margin: 1rem auto;
+		width: 21rem;
+
+		.table {
+			width: auto;
+		}
+
+		input {
+			width: 4rem;
+		}
+	}
+
+	.timesheets {
+
+		.columns .col {
+			&:first-of-type {
+				width: 70%;
+			}
+			&:last-of-type {
+				width: 30%;
+			}
+		}
+
+		td {
+			padding: 0.5rem;
+			font-size: 0.6rem;
+		}
+
+		tr td:first-of-type {
+			width: 3rem;
+		}
+
+		.total-hours {
+			text-align: center;
+
+			h3 {
+				font-size: 4rem;
+				line-height: 0.8;
+			}
+		}
+	}
+
+	.quality-standards textarea {
+		height: 4rem;
+	}
+}
+
+/**
+ * Document Repo
+ */
+
+.document-repository {
+	.display(flex);
+	.flexFlow(row);
+	flex: 1;
+
+	.menu {
+		.display(flex);
+		.flexFlow(column);
+		.scrollable();
+		width: 17rem;
+		border-width: 0 1px 0 0;
+	}
+
+	.document {
+		.display(flex);
+		.flexFlow(column);
+		.scrollable();
+		flex: 1;
+	}
+
+	.content {
+		padding: 3rem;
+		.scrollable();
+	}
+}

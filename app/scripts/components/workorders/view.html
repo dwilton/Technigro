@@ -1,0 +1,115 @@
+<section id="workorders" class="workorders">
+
+	<div class="overlay" data-bind="visible: menu(), click: toggleAddNewMenu"></div>
+
+	<div class="loader" data-bind="spin: isLoading(), visible: isLoading()"></div>
+
+	<!-- ko if: !isLoading() -->
+
+		<div class="header filter">
+
+			<div class="status">
+				<label>Status</label>
+				<div class="segmented-button" data-bind="foreach: statusTypes">
+					<input name="status" type="radio" data-bind="attr: { id: id }, value: id, checked: $parent.filter.status" />
+					<label class="button" data-bind="text: name, attr: { for: id }"></label>
+				</div>
+			</div>
+
+			<div class="archived">
+				<label for="archived">Archived</label>
+				<input id="archived" type="checkbox" class="switch" data-bind="checked: filter.archived" />
+			</div>
+
+			<div class="technician" data-bind="visible: user().isAdmin">
+				<label for="technician">Technician</label>
+				<select id="technician" data-bind="options: technicians, optionsText: 'name', value: 'id', selectedOptions: filter.technician"></select>
+			</div>
+
+			<div class="date-from">
+				<label for="date-from">Date From</label>
+				<input id="date-from" type="date" data-bind="value: filter.dateFrom" />
+			</div>
+
+			<div class="date-to">
+				<label for="date-to">Date To</label>
+				<input id="date-to" type="date" data-bind="value: filter.dateTo" />
+			</div>
+
+			<div class="add-new" data-bind="visible: user().isAdmin">
+				<button class="add-new-button button" data-bind="click: toggleAddNewMenu">Add New</button>
+				<div class="dropdown" data-bind="visible: menu()">
+					<button class="button icon icon_arrow" data-bind="route: '#workorder?type=gccc'">GCCC</button>
+					<button class="button icon icon_arrow" data-bind="route: '#workorder?type=major-project'">Major Projects</button>
+					<button class="button icon icon_arrow" data-bind="route: '#workorder?type=natural-areas-job'">Natural Areas Job</button>
+					<button class="button icon icon_arrow" data-bind="route: '#workorder?type=roads-and-landscapes'">Roads &amp; Landscapes</button>
+					<button class="button icon icon_arrow" data-bind="route: '#workorder?type=turf'">Turf</button>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="grid">
+
+			<div class="loader" data-bind="spin: isWorkOrdersLoading(), visible: isWorkOrdersLoading()"></div>
+
+			<!-- ko if: !isWorkOrdersLoading() -->
+
+			<table class="fixed-header table stripe">
+				<colgroup>
+					<col width="12%">
+					<col width="30%">
+					<col width="25%">
+					<col width="20%">
+					<col width="15%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Client</th>
+						<th>Job</th>
+						<th>Technician</th>
+						<th>Status</th>
+					</tr>
+				</thead>
+			</table>
+
+			<div class="results">
+
+				<table class="table stripe">
+					<colgroup>
+						<col width="12%">
+						<col width="30%">
+						<col width="25%">
+						<col width="20%">
+						<col width="15%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Client</th>
+							<th>Job</th>
+							<th>Technician</th>
+							<th>Status</th>
+						</tr>
+					</thead>
+					<tbody data-bind="foreach: workOrders">
+						<tr data-bind="route: '#workorder/' + id + '/'">
+							<td data-bind="text: date"></td>
+							<td data-bind="text: client"></td>
+							<td data-bind="text: job"></td>
+							<td data-bind="text: technician"></td>
+							<td data-bind="text: status"></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+			<!-- /ko -->
+
+		</div>
+
+	<!-- /ko -->
+
+</section>

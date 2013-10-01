@@ -1,0 +1,35 @@
+.tabs() {
+
+	.tabs {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+			display: inline-block;
+			background-color: @tabs-bg-color;
+			font-weight: 300;
+		}
+
+		li.active {
+			background-color: @tabs-bg-color-active;
+
+			a {
+				color: @tabs-color-active;
+			}
+		}
+
+		a {
+			display: inline-block;
+			padding: 0.6rem 1rem;
+			color: @tabs-color;
+			text-decoration: none;
+		}
+	}
+
+	.tab-content {
+		padding: 1.5rem;
+		background-color: @tabs-bg-color-active;
+	}
+
+}

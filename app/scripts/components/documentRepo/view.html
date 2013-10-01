@@ -1,0 +1,39 @@
+<section class="document-repository">
+
+	<div class="loader" data-bind="spin: isLoading(), visible: isLoading()"></div>
+
+	<!-- ko if: !isLoading() -->
+
+		<nav class="menu list">
+			<div class="results">
+				<ul data-bind="foreach: documentList">
+					<li>
+						<h2 data-bind="text: name"></h2>
+						<ul data-bind="foreach: documents">
+							<li data-bind="css: { selected: $data == $root.selected() }"><a href="" class="icon icon_arrow" data-bind="text: name, click: $root.selected.bind($data)"></a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<div class="document">
+
+			<div class="loader" data-bind="spin: isDocumentLoading(), visible: isDocumentLoading()"></div>
+
+			<!-- ko if: !isDocumentLoading() -->
+
+				<div class="info" data-bind="visible: !isDocumentLoaded()">
+					<span class="icon icon_info">Select a document</span>
+				</div>
+
+				<div class="content" data-bind="visible: isDocumentLoaded(), html: documentDetails()"></div>
+
+			<!-- /ko -->
+
+		</div>
+
+	<!-- /ko -->
+
+
+</section>

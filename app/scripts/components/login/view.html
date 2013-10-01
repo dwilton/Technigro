@@ -1,0 +1,16 @@
+<div id="login" class="login show">
+	<form name="user-login">
+		<div>
+			<label for="username">Username</label>
+			<input id="username" type="text" placeholder="User Name" class="username"  data-bind="value: username" autocorrect="off" autocapitalize="off" autofocus />
+		</div>
+		<div>
+			<label for="password">Password</label>
+			<input id="password" type="password" placeholder="Password" class="password" data-bind="value: password" />
+		</div>
+		<div class="issue issue-error icon icon_cross" data-bind="visible: isFailed()">Login failed, please try again.</div>
+		<div>
+			<button class="button positive" data-bind="click: authenticate, ladda: isLoading()">Login</button>
+		</div>
+	</form>
+</div>

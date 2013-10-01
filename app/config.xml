@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.phonegap.technigro" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+	<name>Technigro</name>
+	<description></description>
+	<author email="david@desingineer.me" href="http://www.desingineer.me">David Wilton</author>
+	<feature name="http://api.phonegap.com/1.0/device" />
+	<preference name="permissions" value="none" />
+	<preference name="orientation" value="landscape" />
+	<preference name="target-device" value="ipad" />
+	<preference name="fullscreen" value="true" />
+	<preference name="webviewbounce" value="false" />
+	<preference name="prerendered-icon" value="true" />
+	<preference name="stay-in-webview" value="false" />
+	<preference name="ios-statusbarstyle" value="black-translucent" />
+	<preference name="detect-data-types" value="true" />
+	<preference name="exit-on-suspend" value="false" />
+	<preference name="show-splash-screen-spinner" value="true" />
+	<preference name="auto-hide-splash-screen" value="true" />
+	<preference name="disable-cursor" value="false" />
+	<icon src="res/icon/ios/Icon.png" />
+	<icon gap:platform="ios" height="57" src="res/icon/ios/Icon.png" width="57" />
+	<icon gap:platform="ios" height="72" src="res/icon/ios/Icon-72.png" width="72" />
+	<icon gap:platform="ios" height="114" src="res/icon/ios/Icon@2x.png" width="114" />
+	<icon gap:platform="ios" height="144" src="res/icon/ios/Icon-72@2x.png" width="144" />
+	<access origin="http://127.0.0.1*" />
+</widget>

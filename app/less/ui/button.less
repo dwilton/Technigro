@@ -1,0 +1,38 @@
+.button() {
+
+	.button {
+		padding: 0.317rem 0.75rem;
+		color: @button-color;
+		font-weight: 600;
+		font-weight: 200;
+		font-size: 0.86rem;
+		background-color: @button-bg-color;
+		border-radius: 0.356rem;
+		transition: color .2s ease, background-color .2s ease;
+
+		&:hover {
+			color: @button-color;
+			background-color: lighten(@button-bg-color, 5%);
+		}
+
+		&[disabled] {
+			/* Yuck: Cardinal was using !important so I had too as well :( */
+			color: mix(@button-color, @button-disabled-bg-color, 80) !important;
+			background-color: @button-disabled-bg-color !important;
+		}
+	}
+
+	.button-small {
+		font-size: 0.7rem;
+		background-color: @shade-pos-1;
+	}
+
+	.positive {
+		background-color: @positive;
+
+		&:hover {
+			background-color: darken(@positive, 5);
+		}
+	}
+
+}

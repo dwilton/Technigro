@@ -1,0 +1,45 @@
+.scrollable() {
+	overflow: scroll;
+	-webkit-overflow-scrolling: touch;
+}
+
+/**
+ * Flexbox (Provide support for Mobile Webkit)
+ */
+
+.display(@display) when (@display = flex) {
+	display: -webkit-box;
+	display: flex;
+}
+
+.flexFlow(@flexFlow) when (@flexFlow = column) {
+	-webkit-box-orient: vertical;
+	flex-flow: column;
+}
+.flexFlow(@flexFlow) when (@flexFlow = row) {
+	-webkit-box-orient: horizontal;
+	flex-flow: row;
+}
+.flexFlow(@flexFlow) {
+	-webkit-box-orient: @flexFlow;
+	flex-flow: @flexFlow;
+}
+
+.flex(@flex) {
+	-webkit-box-flex: @flex;
+	flex: @flex;
+}
+
+.justifyContent(@justifyContent) when (@justifyContent = space-between) {
+	-webkit-box-pack: justify; /* Old value for 'space-between' */
+	justify-content: space-between;
+}
+.justifyContent(@justifyContent) {
+	-webkit-box-pack: @justifyContent;
+	justify-content: @justifyContent;
+}
+
+.alignItems(@alignItems) when (@alignItems = center) {
+	-webkit-box-align: center;
+	align-items: center;
+}

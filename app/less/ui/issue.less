@@ -1,0 +1,36 @@
+.issue() {
+
+	.issue {
+		display: block;
+		padding: 0.5rem;
+		font-weight: 300;
+		font-size: 0.8rem;
+		line-height: 1.2rem;
+
+		&:before {
+			margin-right: 0.4rem;
+			font-size: 1.2rem;
+			vertical-align: bottom;
+		}
+	}
+
+	.issue-error {
+		color: @issue-error-color;
+		background-color: lighten(@issue-error-base-color, 55);
+		border: 2px solid @issue-error-base-color;
+
+		&:before, a {
+			color: @issue-error-base-color;
+		}
+	}
+
+	.issue-success {
+		color: @issue-success-color;
+		background-color: lighten(@issue-success-base-color, 55);
+		border: 2px solid @issue-success-base-color;
+
+		&:before, a {
+			color: @issue-success-base-color;
+		}
+	}
+}

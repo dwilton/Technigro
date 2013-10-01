@@ -1,0 +1,25 @@
+{
+  "name": "backbone-amd",
+  "version": "0.1.1",
+  "dependencies": {
+    "almond": "*",
+    "animo.js": "*",
+    "cardinal": "git@github.com:cbracco/cardinal.git",
+    "hammerjs": "*",
+    "jquery": "*",
+    "knockout.js": "*",
+    "knockout-hammer": "git@github.com:sachmata/knockout-hammer.git",
+    "knockout-validation": "git@github.com:Knockout-Contrib/Knockout-Validation.git",
+    "ladda": "git@github.com:hakimel/Ladda.git",
+    "lawnchair": "*",
+    "pubsub": "git@github.com:federico-lox/pubsub.js.git",
+    "requirejs": "*",
+    "modernizr": "*",
+    "page": "*",
+    "text": "*"
+  },
+  "devDependencies": {
+    "jquery-mockjax": "~1.5.2",
+    "knockout-mapping": "~2.4.1"
+  }
+}

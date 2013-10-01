@@ -1,0 +1,851 @@
+<section class="workorder" data-bind="menu: true">
+
+	<div class="loader" data-bind="spin: isLoading(), visible: isLoading()"></div>
+
+	<!-- ko if: !isLoading() -->
+
+	<nav class="menu list">
+		<ul>
+			<li class="selected"><a href="#details" class="icon icon_arrow">Details</a></li>
+			<li><a href="#technicians" class="icon icon_arrow">Technicians</a></li>
+			<li><a href="#labour" class="icon icon_arrow">Labour</a></li>
+			<li><a href="#equipment" class="icon icon_arrow">Equipment</a></li>
+			<li><a href="#products" class="icon icon_arrow">Products</a></li>
+			<li><a href="#schedule" class="icon icon_arrow">Schedule</a></li>
+			<li><a href="#invoicing" class="icon icon_arrow">Invoicing</a></li>
+			<li><a href="#images" class="icon icon_arrow">Images</a></li>
+			<li><a href="#land-access" class="icon icon_arrow">Land Access</a></li>
+			<li><a href="#daily-report" class="icon icon_arrow">Daily Report</a></li>
+			<li><a href="#completion" class="icon icon_arrow">Completion</a></li>
+		</ul>
+	</nav>
+
+	<div class="container">
+
+		<section id="details" class="workorder-details">
+
+			<header class="header">
+				<div>
+					<label for="treatment-date">Treatment Date</label>
+					<input id="treatment-date" class="treatment-date" type="date" />
+				</div>
+				<div>
+					<label for="client">Client</label>
+					<select id="client" class="client"></select>
+				</div>
+				<div>
+					<label for="job">Job</label>
+					<input id="job" class="job" type="text" />
+				</div>
+				<div>
+					<label for="status">Status</label>
+					<select id="status" class="status"></select>
+				</div>
+			</header>
+
+			<div class="content columns">
+
+				<div class="col form">
+					<div>
+						<h3>Location</h3>
+						<label for="address">Address</label>
+						<textarea id="address" class="address"></textarea>
+					</div>
+					<div>
+						<div class="columns form">
+							<div class="col">
+								<label for="job-number">Job #</label>
+								<input id="job-number" type="text" />
+							</div>
+							<div class="col">
+								<label for="order-number">Order #</label>
+								<input id="order-number" type="text" />
+							</div>
+							<div class="col">
+								<label for="date">Date</label>
+								<input id="date" type="date" />
+							</div>
+						</div>
+						<div class="columns form">
+							<div class="col">
+								<label for="ubd-edition">UBD Edition</label>
+								<select id="ubd-edition"></select>
+							</div>
+							<div class="col">
+								<label for="map">Map</label>
+								<input id="map" type="text" />
+							</div>
+							<div class="col">
+								<label for="ref">Ref</label>
+								<input id="ref" type="text" />
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col form">
+
+					<div class="contact form">
+						<h3>Contact</h3>
+						<div>
+							<label for="contact-name">Name</label>
+							<input id="contact-name" type="text" />
+						</div>
+						<div class="columns">
+							<div class="col">
+								<label for="phone-one">Phone 1</label>
+								<input id="phone-one" type="text" />
+							</div>
+							<div class="col">
+								<label for="phone-one">Phone 2</label>
+								<input id="phone-one" type="text" />
+							</div>
+						</div>
+					</div>
+
+					<div class="maps">
+						<h3>Maps</h3>
+						<ul class="list">
+							<li><a href="#">Map 1</a></li>
+							<li><a href="#">Map 2</a></li>
+						</ul>
+						<button class="button button-small">Add New</button>
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+		<section id="technicians" class="workorder-technicians content" style="display: none">
+
+			<div class="technicians">
+				<h3>Technicians</h3>
+				<table class="table stripe addable">
+					<tbody>
+						<tr>
+							<td class="remove"><a href="#" class="icon icon_cross">Remove</a></td>
+							<td><select><select></td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="button button-small">Add New</button>
+			</div>
+
+		</section>
+
+		<section id="labour" class="workorder-labour" style="display: none">
+
+			<header class="header">
+				<div>
+					<label for="number-of-address-days">Address</label>
+					<select id="number-of-address-days"></select><span class="small">Days</span>
+				</div>
+				<div>
+					<label for="number-of-staff">Staff</label>
+					<select id="number-of-staff"></select>
+				</div>
+				<div>
+					<label for="area">Area</label>
+					<input id="area" type="text">
+				</div>
+			</header>
+
+			<div class="content">
+
+				<div class="form addable">
+					<h3>Job Instructions</h3>
+					<table class="job-instruction table stripe">
+						<tbody>
+							<tr>
+								<td class="remove"><a href="#" class="icon icon_cross">Remove</a></td>
+								<td width="90%"><select></select></td>
+								<td class="price">$0.00</td>
+							</tr>
+						</tbody>
+					</table>
+					<div class="columns">
+						<div class="col">
+							<button class="button button-small">Add New</button>
+						</div>
+						<div class="col total">
+							<span class="total">
+								<span class="label">Total</span> $0.00
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<hr />
+
+				<div class="columns">
+					<div class="col">
+						<h3>Work Checklist</h3>
+						<div class="work-checklist checklist box">
+							<ul>
+								<li>
+									<span class="checkbox">
+										<input id="take-5" type="checkbox" />
+										<label for="take-5">Have you filled out a take 5?</label>
+									</span>
+								</li>
+								<li>
+									<span class="checkbox">
+										<input id="task-confident" type="checkbox" />
+										<label for="task-confident">Are you confident that you know what you are doing?</label>
+									</span>
+								</li>
+								<li>
+									<span class="checkbox">
+										<input id="incident-report-guidelines" type="checkbox" />
+										<label for="incident-report-guidelines">Have you checked that you have the "incident report" guidelines?</label>
+									</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col">
+						<label for="critical-info" class="h3">Critial Information</label>
+						<textarea id="critical-info" class="critical-info"></textarea>
+					</div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<section id="equipment" class="workorder-equipment content" style="display: none">
+
+			<div class="equipment addable">
+				<h3>Equipment</h3>
+				<table class="table stripe">
+					<tr>
+						<td class="remove"><a href="#" class="icon icon_cross">Remove</a></td>
+						<td><select></select></td>
+					</tr>
+				</table>
+				<button class="button button-small">Add New</button>
+			</div>
+
+		</section>
+
+		<section id="products" class="workorder-products content" style="display: none">
+
+			<h3>Products</h3>
+			<div class="products addable">
+				<table class="table stripe">
+					<tbody>
+						<thead>
+							<tr>
+								 <th></th>
+								 <th>Name</th>
+								 <th>Actual</th>
+								 <th>Water</th>
+								 <th>Area</th>
+								 <th>Total Products (Ltrs)</th>
+							</tr>
+					 </thead>
+						<tr>
+							<td class="remove"><a href="#" class="icon icon_cross">Remove</a</td>
+							<td width="40%"><select></select></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td width="20%"><input type="text"></td>
+						</tr>
+					</tbody>
+				</table>
+				<button class="button button-small">Add New</button>
+			</div>
+
+		</section>
+
+		<section id="schedule" class="workorder-schedule content" style="display: none">
+
+			<div>
+				<select id="location">
+					<option value="">Gold Coast Central</option>
+				</select>
+			</div>
+
+			<div class="list">
+				<ul>
+					<li><span>Anne St, Southport</span></li>
+					<li class="done"><span>Nind St, Southport</span></li>
+					<li class="done"><span>North St, Southport</span></li>
+					<li class="done"><span>Scarborough St, Southport</span></li>
+				</ul>
+			</div>
+
+		</section>
+
+		<section id="invoicing" class="workorder-invoicing" style="display: none">
+
+			<div class="columns content">
+
+				<div class="col">
+
+						<div class="invoice-details form">
+
+							<h3>Invoicing</h3>
+							<div class="columns">
+								<div class="col">
+									<label for="invoice-number">Invoice #</label>
+									<input id="invoice-number" type="text" />
+								</div>
+								<div class="col">
+									<label for="invoice-date">Invoice Date</label>
+									<input id="invoice-date" type="date" />
+								</div>
+							</div>
+
+							<div class="columns">
+								<div class="col">
+									<label for="invoiced-by">Invoiced By</label>
+									<select id="invoiced-by"></select>
+								</div>
+								<div class="col">
+									<label for="invoice-total">Invoice Total</label>
+									<input id="invoice-total" type="text" />
+								</div>
+							</div>
+
+						</div>
+
+						<div>
+							<label for="invoicing-notes">Invoicing Notes</label>
+							<textarea id="invoicing-notes" class="invoicing-notes"></textarea>
+						</div>
+
+				</div>
+
+				<div class="col">
+
+					<div class="form">
+						<h3>Quote</h3>
+						<div>
+							<label for="quote-type">Quote Type</label>
+							<select id="quote-type"></select>
+						</div>
+						<div>
+							<label for="quote-number">Quote #</label>
+							<input id="quote-number" type="text">
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+		<section id="images" class="workorder-images" style="display: none">
+
+			<header class="header">
+
+				<div>
+					<button class="button button-small">New Image</button>
+				</div>
+
+			</header>
+
+			<div class="content">
+
+				<div>
+					<img src="" alt="" />
+					<span></span>
+				</div>
+
+			</div>
+
+		</section>
+
+		<section id="land-access" class="workorder-land-access" style="display: none">
+
+			<header class="header">
+				<div>
+					<label for="land-access-technician">Technician</label>
+					<select id="land-access-technician" class="technician"></select>
+				</div>
+				<div >
+					<label for="land-access-date">Date</label>
+					<input id="land-access-date" class="land-access-date" type="date" />
+				</div>
+			</header>
+
+			<div class="content columns">
+
+				<div class="col">
+
+					<h3>Questions</h3>
+					<div class="questions">
+						<table>
+							<tbody>
+								<tr>
+									<td><input id="llo-available" type="checkbox" class="switch" /></td>
+									<td>Will the LLO be available for contact throughout the days work?
+										<div class="contact columns">
+											<div class="col">
+												<label for="alt-contact-name">Alternate Name</label>
+												<input id="alt-contact-name" type="text" />
+											</div>
+											<div class="col">
+												<label for="alt-contact-number">Alternate Number</label>
+												<input id="alt-contact-number" type="text" />
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td><input id="site-issues" type="checkbox" class="switch" /></td>
+									<td>Have all site specific issues been discussed with the LLO?</td>
+								</tr>
+								<tr>
+									<td><input id="contacting-team-understand" type="checkbox" class="switch" /></td>
+									<td>Do all members of the contracting team understand the site specific issues for each land parcel?</td>
+								</tr>
+								<tr>
+									<td><input id="proceed-works-program" type="checkbox" class="switch" /></td>
+									<td>Has approval been granted from the LLO to proceed with the specific works program?</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+
+				<div class="col">
+
+					<div class="notes">
+						<h3>Notes</h3>
+						<ul class="accordian" data-bind="accordian: true">
+							<li class="active">
+								<a href="">Land Parcels scheduled for works</a>
+								<div>
+									<textarea placeholder="Enter Land Parcels"></textarea>
+								</div>
+							</li>
+							<li>
+								<a href="">Generic Site specific constraints identified</a>
+								<div>
+									<textarea placeholder="Enter constraints"></textarea>
+								</div>
+							</li>
+							<li>
+								<a href="">Additional site specific constraints</a>
+								<div>
+									<textarea placeholder="Enter constraints"></textarea>
+								</div>
+							</li>
+						</ul>
+					</div>
+
+					<h3>Authorisation</h3>
+					<div class="form">
+						<div>
+							<label for="llo-name">LLO Name</label>
+							<input id="llo-name" type="text" />
+						</div>
+						<div class="signature">
+							<label for="signature">Signature</label>
+							<textarea id="signature"></textarea>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</section>
+
+		<section id="daily-report" class="workorder-daily-report" style="display: none" data-bind="toggleMenu: true">
+
+			<header class="header">
+
+				<div>
+					<label for="daily-report-technician">Technician</label>
+					<select id="daily-report-technician" class="technician"></select>
+				</div>
+
+				<div class="daily-report-options">
+					<div class="segmented-button">
+						<input id="complete-work" name="report-options" type="radio" checked="checked" />
+						<label for="complete-work" class="button">Complete Work</label>
+						<input id="personnel" name="report-options" type="radio" />
+						<label for="personnel" class="button">Personnel</label>
+						<input id="comments" name="report-options" type="radio" />
+						<label for="comments" class="button">Comments</label>
+						<input id="incidents" name="report-options" type="radio" />
+						<label for="incidents" class="button">Incidents</label>
+					</div>
+				</div>
+
+			</header>
+
+			<div class="toggle-menu-content content">
+
+				<div id="complete-work-content" class="complete-work">
+
+					<div>
+						<h3>Complete Work</h3>
+						<label>Job Instructions - Complete</label>
+						<table class="table stripe addable">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Job</th>
+									<th>State</th>
+									<th>Area (m2)</th>
+									<th>Hours</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="remove"><a href="#" class="icon icon_cross">Remove</a></td>
+									<td width="40%"><select></select></td>
+									<td width="20%"><select></select></td>
+									<td><input type="text" /></td>
+									<td><input type="text" /></td>
+								</tr>
+							</tbody>
+						</table>
+						<button class="button button-small">Add New</button>
+					</div>
+
+				</div>
+
+				<div id="personnel-content" class="personnel">
+
+					<div>
+						<h3>Personnel</h3>
+						<label>Crew Personnel</label>
+						<table class="table stripe addable">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Role</th>
+									<th>Name</th>
+									<th>Worked Hours</th>
+									<th>Stand-By Hours</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="remove"><a href="#" class="icon icon_cross">Remove</a></td>
+									<td width="40%"><select></select></td>
+									<td width="20%"><input type="text" /></td>
+									<td><input type="text" /></td>
+									<td><input type="text" /></td>
+								</tr>
+							</tbody>
+						</table>
+						<button class="button button-small">Add New</button>
+					</div>
+
+				</div>
+
+				<div id="comments-content" class="comments">
+
+					<div>
+						<h3>Comments</h3>
+						<div class="form">
+							<div>
+								<label for="comments-on-previous">Comments on Previous</label>
+								<textarea id="comments-on-previous"></textarea>
+							</div>
+							<div>
+								<label for="native-fauna-notes">Native Fauna Notes</label>
+								<textarea id="native-fauna-notes"></textarea>
+							</div>
+							<div>
+								<label for="flora-notes">Flora Notes</label>
+								<textarea id="native-fauna-notes"></textarea>
+						</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div id="incidents-content" class="incidents">
+					<h3>Incidents</h3>
+					<ul>
+						<li>
+							<label for="environmental-issues">
+								Environmental Issues
+								<span>(Significant erosion, fires etc)</span>
+							</label>
+							<input id="environmental-issues" type="checkbox" />
+							<textarea id="environmental-issues-details"></textarea>
+						</li>
+						<li>
+							<label for="animal-management">
+								Animal Management
+								<span>cattle, pigs, foxes, dogs etc</span>
+							</label>
+							<input id="animal-management" type="checkbox" />
+							<textarea id="animal-management-details"></textarea>
+						</li>
+						<li>
+							<label for="illegal-dumping">
+								Illegal Dumping
+								<span>(garden waster, cars, rubblish etc)</span>
+							</label>
+							<input id="illegal-dumping" type="checkbox" />
+							<textarea id="illegal-dumping-details"></textarea>
+						</li>
+						<li>
+							<label for="illegal-access">
+								Illegal Access
+								<span>(motorbikes, cars, mtn bikes, camping)</span>
+							</label>
+							<input id="illegal-access" type="checkbox" />
+							<textarea id="illegal-access-details"></textarea>
+						</li>
+						<li>
+							<label for="whs">
+								WH&amp;S
+								<span>(accidents, near misses, safety issues)</span>
+							</label>
+							<input id="whs" type="checkbox" />
+							<textarea id="whs-details"></textarea>
+						</li>
+						<li>
+							<label for="other">Other</label>
+							<input id="other" type="checkbox" />
+							<textarea id="other-details"></textarea>
+						</li>
+					</ul>
+
+				</div>
+
+			</div>
+
+		</section>
+
+		<section id="completion" class="workorder-completion toggle-menu" style="display: none" data-bind="toggleMenu: true">
+
+			<header class="header">
+				<div>
+					<label for="completion-technician">Technician</label>
+					<select id="completion-technician" class="technician"></select>
+				</div>
+				<div>
+					<div class="segmented-button">
+						<input id="job-completion" name="completion" type="radio" checked="checked" />
+						<label for="job-completion" class="button">Job Completion</label>
+						<input id="conditions" name="completion" type="radio" />
+						<label for="conditions" class="button">Conditions</label>
+						<input id="timesheets" name="completion" type="radio" />
+						<label for="timesheets" class="button">Timesheets</label>
+						<input id="quality-standards" name="completion" type="radio" />
+						<label for="quality-standards" class="button">Quality</label>
+					</div>
+				</div>
+			</header>
+
+			<div class="toggle-menu-content">
+
+				<div id="job-completion-content" class="job-completion content">
+					<h3>Job Completion</h3>
+					<div class="form">
+						<div>
+							<label>Job Instructions</label>
+							<div class="list">
+								<ul>
+									<li>
+										<span class="checkbox">
+											<input id="40400" type="checkbox" />
+											<label for="40400">Hand Mowing - 40400</label>
+										</span>
+									</li>
+									<li>
+										<span class="checkbox">
+											<input id="40401" type="checkbox" />
+											<label for="40401">Clearing (on rotation)</label>
+										</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div>
+							<label for="completion-notes">Completion Notes</label>
+							<textarea id="completion-notes"></textarea>
+						</div>
+					</div>
+				</div>
+
+				<div id="conditions-content" class="conditions content">
+					<h3>Conditions</h3>
+					<div class="content box">
+						<div class="columns">
+							<div class="col">
+								<label for="soil">Soil</label>
+								<select id="soil"></select>
+							</div>
+							<div class="col">
+								<label for="dew">Dew</label>
+								<select id="dew"></select>
+							</div>
+							<div class="col">
+								<label for="weather">Weather</label>
+								<select id="weather"></select>
+							</div>
+							<div class="col">
+								<label for="growth-stage">Growth State</label>
+								<select id="growth-stage"></select>
+							</div>
+						</div>
+						<div class="conditions-time">
+							<table class="table">
+								<tbody>
+									<tr>
+										<th></th>
+										<th>AM</th>
+										<th>PM</th>
+									</tr>
+									<tr>
+										<td><label>Wind Speed</label></td>
+										<td><input type="text"></td>
+										<td><input type="text"></td>
+									</tr>
+									<tr>
+										<td><label>Direction</label></td>
+										<td><input type="text"></td>
+										<td><input type="text"></td>
+									</tr>
+									<tr>
+										<td><label>Temp</label></td>
+										<td><input type="text"></td>
+										<td><input type="text"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div id="timesheets-content" class="timesheets content">
+					<h3>Timesheets</h3>
+					<div class="columns">
+						<div class="col box">
+							<table class="table">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Start Time</th>
+										<th>End Time</th>
+										<th>Hours</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Day 1</td>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+									</tr>
+									<tr>
+										<td>Day 2</td>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+									</tr>
+									<tr>
+										<td>Day 3</td>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+									</tr>
+									<tr>
+										<td>Day 4</td>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+									</tr>
+									<tr>
+										<td>Day 5</td>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+										<td><input type="text" /></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="col">
+							<div class="total-hours">
+								<h3>24.6</h3>
+								<span>Total Hours</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div id="quality-standards-content" class="quality-standards content">
+					<h3>Quality</h3>
+					<div class="columns">
+						<div class="col form">
+							<div>
+								<label for="comments-on-work-order">Comments on Work Order</label>
+								<textarea id="comments-on-work-order"></textarea>
+							</div>
+							<div>
+								<label for="remedy-if-required">Remedy if Required</label>
+								<textarea id="remedy-if-required"></textarea>
+							</div>
+							<div>
+								<label for="actions-recommended-to-top-reoccurrence">Actions Recommended to Stop Reoccurrence</label>
+								<textarea id="actions-recommended-to-top-reoccurrence"></textarea>
+							</div>
+						</div>
+						<div class="col form">
+							<label>QA Questions</label>
+							<div class="checklist box">
+								<ul>
+									<li>
+										<span class="checkbox">
+											<input id="customer-satisfied" type="checkbox" />
+											<label for="customer-satisfied">Would the customer be totally satisfied?</label>
+										</span>
+									</li>
+									<li>
+										<span class="checkbox">
+											<input id="on-site-meeting" type="checkbox" />
+											<label for="on-site-meeting">On site meeting with staff required?</label>
+										</span>
+									</li>
+									<li>
+										<span class="checkbox">
+											<input id="results-relayed" type="checkbox" />
+											<label for="results-relayed">Results relayed to customer?</label>
+										</span>
+									</li>
+								</ul>
+							</div>
+							<button class="button button-small">Print QA Report</button>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+		</section>
+
+		<div class="action">
+
+			<div class="checkbox">
+				<input id="archived" type="checkbox" />
+				<label for="archived">Archived</label>
+			</div>
+
+			<div>
+					<button class="button positive">Save</button>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- /ko -->
+
+</section>
