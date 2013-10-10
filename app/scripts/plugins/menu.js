@@ -18,7 +18,7 @@ define(['jquery'], function (jQuery) {
 				var menu = $(this.element);
 
 				// Create observer
-				menu.find('> .menu').on('click', 'li a', function (e) {
+				menu.find('.menu').on('click', 'li a', function (e) {
 
 					e.preventDefault();
 
@@ -27,13 +27,13 @@ define(['jquery'], function (jQuery) {
 							content = item.attr('href');
 
 					// Remove 'active' CSS class from all 'li' elements
-					menu.find('> .menu > ul > .selected').removeClass('selected');
+					menu.find('.menu > ul > .selected').removeClass('selected');
 
 					// Add 'active' CSS class to the select item 'li' element
 					li.addClass('selected');
 
 					// Hide all item content
-					menu.find('.container > section').hide();
+					menu.find('.menu-content > section').hide();
 
 					// Show content, target DOM elements using the anchor name
 					$(content).fadeIn(200);

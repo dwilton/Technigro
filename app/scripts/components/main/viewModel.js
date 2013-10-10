@@ -1,8 +1,10 @@
-define(['pubsub', 'ko'], function (p, ko) {
+define(['ko', 'pubsub', 'models/login'], function (ko, p, Login) {
 
 	'use strict';
 
 	return function () {
+
+		var _login = new Login();
 
 		var title = ko.observable();
 		var content = ko.observable();
@@ -21,7 +23,8 @@ define(['pubsub', 'ko'], function (p, ko) {
 		};
 
 		var logout = function () {
-			p.publish('user.deleteUser');
+			_login.logout();
+			p.publish('app.authenticate');
 		};
 
 		var menuToggle = function () {

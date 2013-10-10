@@ -1,0 +1,34 @@
+.checklist() {
+
+	.checklist {
+		margin-bottom: 1rem;
+
+		ul {
+			margin: 0;
+			padding: 0;
+		}
+
+		> ul > li {
+			display: block;
+			margin-bottom: 0.5rem;
+
+			&:last-of-type {
+				margin: 0;
+			}
+		}
+
+		li li {
+			display: inline-block;
+
+			&:first-of-type {
+				margin-right: 0.3rem;
+			}
+		}
+
+		label {
+			display: inline-block;
+		}
+
+	}
+
+}

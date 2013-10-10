@@ -188,10 +188,10 @@ module.exports = function(grunt) {
 
 		// Watch tasks
 		regarde: {
-			scripts: {
+			/*scripts: {
 				files: '<%= jshint.files %>',
 				tasks: ['jshint', 'karma:unit']
-			},
+			},*/
 			html: {
 				files: [
 					'<%= config.app %>/*.html',

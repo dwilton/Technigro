@@ -1,10 +1,16 @@
 @import "icon/icon.less";
 @import "mixins/mixins.less";
+@import "ui/addable.less";
 @import "ui/accordian.less";
 @import "ui/button.less";
+@import "ui/checklist.less";
+@import "ui/datagrid.less";
+@import "ui/dropdown-menu.less";
 @import "ui/form.less";
 @import "ui/grid.less";
 @import "ui/header.less";
+@import "ui/heading.less";
+@import "ui/hr.less";
 @import "ui/info.less";
 @import "ui/input.less";
 @import "ui/issue.less";
@@ -13,19 +19,25 @@
 @import "ui/loader.less";
 @import "ui/segment-button.less";
 @import "ui/switch.less";
-@import "ui/table.less";
 @import "ui/tabs.less";
+@import "ui/toggle-menu.less";
 @import "settings/default.less";
 
 /**
  * UI Elements
  */
 
+.addable();
 .accordian();
 .button();
+.datagrid();
+.dropdown-menu();
+.checklist();
 .form();
 .grid();
 .header();
+.heading();
+.hr();
 .info();
 .input();
 .issue();
@@ -34,8 +46,8 @@
 .loader();
 .segmented-buttons();
 .switch();
-.table();
 .tabs();
+.toggle-menu();
 
 /**
  * Common
@@ -49,7 +61,7 @@ html, body {
 body {
 	.display(flex);
 	.flexFlow(column);
-	flex: 1;
+	.flex(1);
 	padding: 0;
 	font-family: "Helvetica Neue", "HelveticaNeue";
 	font-weight: 600;
@@ -59,154 +71,22 @@ a:link {
 	-webkit-tap-highlight-color: transparent;
 }
 
-h3, .h3 {
-	margin: 0 0 0.5rem;
-	padding: 0;
-	font-weight: 100;
-	font-size: 1.3rem;
-	font-family: "HelveticaNeue-Light", "Helvetica Neue";
-	color: @green;
-}
-
-hr {
-	margin: 1.5rem 0;
-	border-color: @shade-pos-4;
-}
-
-.addable {
-	input, select {
-		width: 100%;
-	}
-
-	.price {
-		width: 5rem;
-		line-height: 1.6rem;
-		text-align: right;
-	}
-
-	.total {
-		padding: 0.3rem;
-		text-align: right;
-
-		.label {
-			margin-right: 0.4rem;
-			font-weight: 200;
-			color: @shade-pos-3;
-		}
-	}
-}
-
-.small {
-	display: inline-block;
-	margin-left: 0.5rem;
-	color: @shade-pos-1;
-	font-weight: 300;
-	font-size: 0.8rem;
-}
-
-.checklist {
-
-	ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-
-	.checkbox label {
-		font-size: 0.7rem;
-	}
-}
-
-.toggle-menu-content {
-	.display(flex);
-	.flexFlow(column);
-	flex: 1;
-
-	> div {
-		.display(flex);
-		.flexFlow(column);
-		flex: 1;
-	}
-}
-
-.overlay {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 2;
-}
-
-.columns {
-	.display(flex);
-	.flexFlow(row);
-	.justifyContent(space-between);
-	.flex(1);
-	width: 100%;
-
-	.col {
-		.display(flex);
-		.flexFlow(column);
-		.flex(1);
-		margin-right: 2em;
-
-		&:last-of-type {
-			margin-right: 0;
-		}
-
-		input:not([type="checkbox"]):not([type="radio"]), select, textarea {
-			width: 100%;
-		}
-	}
-}
-
-.remove {
-	width: 1rem;
-
-	a {
-		display: block;
-		position: relative;
-		margin-left: 0.4rem;
-		width: 1rem;
-		text-indent: 100%;
-		white-space: nowrap;
-		overflow: hidden;
-
-		&:before {
-			position: absolute;
-			left: 0;
-			color: @negative;
-			font-size: 1.2rem;
-			line-height: 1.8rem;
-			text-indent: 0;
-		}
-	}
-}
-
-.box {
-	padding: 0.5rem 0.8rem;
-	background-color: @shade-pos-5;
-}
-
-.table th {
-	font-size: 0.6rem;
-	text-align: center;
-}
-
 /**
  * App
  */
 
-.app {
+.wrapper {
 	.display(flex);
 	.flexFlow(column);
-	flex: 1;
+	.flex(1);
+	max-width: 100%;
+	width: 100%;
+	margin: 0;
 	background-color: @app-bg-color;
 	background-image: @app-bg-image;
 }
 
-.app-wrap {
+.app {
 	.display(flex);
 	.flexFlow(column);
 	position: absolute;
@@ -220,58 +100,68 @@ hr {
 		right: -12rem;
 		left: 0;
 	}
+
+	> .container {
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+		padding-left: 12rem;
+
+		> .content {
+			.display(flex);
+			.flex(1);
+			background-color: @content-bg-color;
+		}
+	}
 }
 
-.app-header {
+.app-bar {
 	.display(flex);
 	.flexFlow(row);
 	height: 3rem;
-	background-color: @header-bg-color;
+	background-color: @app-bar-bg-color;
 
-	.menu-toggle, .logout {
+	.menu-back {
+		margin-left: 1px;
+	}
+
+	.menu-toggle, .menu-back, .logout {
 		padding: 0.5rem 0.8rem;
 		height: 100%;
-		color: @header-button-color;
+		color: @app-bar-button-color;
 		line-height: 1;
 		text-decoration: none;
-		background-color: @header-button-bg-color;
+		background-color: @app-bar-button-bg-color;
 		border: 0;
 	}
 
-	.menu-toggle {
+	.menu-toggle, .menu-back {
 		display: inline-block;
+		width: 3rem;
 		font-size: 1.5rem;
 		line-height: 1.4;
+		text-align: center;
 
 		span {
 			display: none;
 		}
 	}
 
+	.menu-back ~ .title {
+		padding-left: 0;
+	}
+
 	.title {
-		flex: 1;
+		.flex(1);
 		margin: 0;
 		padding-left: 3.5rem;
-		color: @header-title-color;
+		color: @app-bar-title-color;
 		font-weight: 100;
 		font-family: "HelveticaNeue-Light", "Helvetica Neue";
 		font-size: 1.4rem;
 		line-height: 2;
 		text-align: center;
 	}
-}
-
-.app-container {
-	.display(flex);
-	.flexFlow(column);
-	flex: 1;
-	padding-left: 12rem;
-}
-
-.app-content {
-	.display(flex);
-	flex: 1;
-	background-color: @content-bg-color;
 }
 
 .app-menu {
@@ -318,6 +208,15 @@ hr {
 	}
 }
 
+.overlay {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+}
+
 /**
  * Login
  */
@@ -327,7 +226,7 @@ hr {
 	.flexFlow(column);
 	.justifyContent(center);
 	.alignItems(center);
-	flex: 1;
+	.flex(1);
 	-webkit-transform: translateZ(0.00001px); /* Hack: (Chrome) force redraw of background on hidden elements */
 
 	label {
@@ -375,8 +274,8 @@ hr {
 	}
 
 	.button {
-		margin-top: 1.3rem;
-		padding: 0.5rem;
+		margin-top: 1.5rem;
+		padding: 0.7em 0.5em;
 		width: 100%;
 
 		.ladda-spinner {
@@ -425,102 +324,43 @@ hr {
 .workorders {
 	.display(flex);
 	.flexFlow(column);
-	flex: 1;
+	.flex(1);
 
-	.grid {
+	.filter {
+		.display(flex);
+		.flexFlow(row);
+		.justifyContent(space-between);
+
+		.status {
+			width: 20rem;
+		}
+
+		.technician {
+			width: 7rem;
+		}
+
+		.date-to, .date-from {
+			width: 6.5rem;
+		}
+
+		.add-new-button {
+			position: relative;
+			margin-top: 1.35rem;
+			width: 5.5rem;
+		}
+	}
+
+	.datagrid {
 		.display(flex);
 		.flexFlow(column);
-		flex: 1;
+		.flex(1);
 		margin: 1.5rem;
 	}
 
 	.results {
 		.display(flex);
-		flex: 1;
+		.flex(1);
 		.scrollable();
-	}
-}
-
-.filter {
-
-	.status, .status .button, .technician select, .add-new {
-		font-size: 0.8rem;
-	}
-
-	.status {
-		width: 20rem;
-	}
-
-	.technician select {
-		width: 7rem;
-	}
-
-	.date-to input, .date-from input {
-		width: 6.5rem;
-	}
-
-	.add-new-button {
-		position: relative;
-		margin-top: 1.35rem;
-		width: 5.5rem;
-	}
-}
-
-.add-new {
-	position: relative;
-	z-index: 3;
-
-	.dropdown {
-		position: absolute;
-		top: 4rem;
-		right: 0rem;
-		padding: 0.2rem 0.4rem;
-		width: 11rem;
-		background: @dropdown-bg-color;
-		border-radius: 0.356rem;
-		animation-duration: 0.5s;
-
-		&:before {
-			display: block;
-			content: '';
-			position: absolute;
-			top: -1.5rem;
-			right: 1rem;
-			width: 0;
-			height: 0;
-			border: solid 0.8rem transparent;
-			border-bottom-color: @dropdown-bg-color;
-		}
-
-		.button {
-			display: block;
-			position: relative;
-			padding: 0.4rem;
-			width: 100%;
-			color: @dropdown-color;
-			font-weight: 300;
-			font-size: 0.8rem;
-			text-align: left;
-			background: @dropdown-bg-color;
-			border-top: 1px solid darken(@dropdown-bg-color, 9);
-			border-radius: 0;
-
-			&:before {
-				position: absolute;
-				right: 0.5rem;
-				font-size: 1.2rem;
-				line-height: 1;
-			}
-
-			&:first-of-type {
-				border: 0;
-				border-radius: 0.25rem 0.25rem 0 0;
-			}
-
-			&:last-of-type {
-				border-radius: 0 0 0.3rem 0.25rem;
-			}
-		}
 	}
 }
 
@@ -530,8 +370,14 @@ hr {
 
 .workorder {
 	.display(flex);
-	.flexFlow(row);
+	.flexFlow(column);
 	.flex(1);
+
+	.container {
+		.display(flex);
+		.flexFlow(row);
+		.flex(1);
+	}
 
 	.menu {
 		.display(flex);
@@ -541,7 +387,19 @@ hr {
 		border-width: 0 1px 0 0;
 	}
 
-	.container {
+	.header {
+
+		.toggle-menu {
+			width: 30rem;
+			vertical-align: bottom;
+		}
+
+		.technician {
+			width: 12rem;
+		}
+	}
+
+	.menu-content {
 		.display(flex);
 		.flexFlow(column);
 		.flex(1);
@@ -555,29 +413,30 @@ hr {
 
 	.content {
 		padding: 1rem 1.5rem;
-	}
-
-	.toggle-menu-content > div {
-		display: none;
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+		.scrollable();
 	}
 
 	.action {
 		.display(flex);
 		.flexFlow(row);
 		.justifyContent(space-between);
-		padding: 0.6rem;
-		height: 3rem;
+		padding: 1rem;
+		height: 4rem;
+		font-size: 1rem;
 		background-color: @shade-pos-5;
 		border-top: 1px solid @shade-pos-4;
 
-		button {
+		.button {
 			width: 6rem;
 		}
+	}
 
-		label {
-			font-size: 1rem;
-			line-height: 1;
-		}
+	.box {
+		padding: 0.8rem;
+		background-color: @shade-pos-5;
 	}
 }
 
@@ -587,108 +446,114 @@ hr {
 	.flex(1);
 
 	.header {
+		.display(flex);
+		.flexFlow(row);
+		.justifyContent(space-between);
+
+		.treatment-date {
+			width: 20%;
+		}
 
 		.client {
-			width: 12rem;
+			width: 40%;
 		}
 
 		.job {
-			width: 8rem;
+			width: 30%;
 		}
 
 		.status {
-			width: 6rem;
+			width: 20%;
 		}
 	}
 
-	.address {
+	.address textarea {
 		margin-bottom: 1.8rem;
-		height: 5.8rem;
+		height: 6.4rem;
 	}
 
 	.contact {
 		margin-bottom: 1.4rem;
 	}
 
-	.list {
+	.maps .list {
 		.scrollable();
 		margin-bottom: 1rem;
 		height: 6.7rem;
 		line-height: 0.5rem;
 		background: @shade-pos-5;
-
-		li {
-			background: @white;
-		}
 	}
 }
 
 .workorder-labour {
 
-	.header {
-		.justifyContent(flex-start);
-
-		> div {
-			width: 7rem;
-		}
+	.header > div {
+		display: inline-block;
+		width: 8.5rem;
 
 		select, input {
-			width: 4rem;
+			width: 6rem;
 		}
 	}
 
-	.content .col {
-		&:first-of-type {
-			width: 65%;
-		}
-		&:last-of-type {
-			width: 35%;
-		}
+	.work-checklist {
+		width: 65%;
 	}
 
 	.critical-info {
-		height: 6.5rem;
+		width: 35%;
+
+		textarea {
+			height: 8.5rem;
+		}
 	}
 }
 
 .workorder-schedule {
 
-	select {
+	.location select {
 		margin-bottom: 1rem;
 		width: 12rem;
 	}
 
-	.done span {
-		positon: relative;
-		color: darken(@green, 10);
-		background-color: lighten(@green, 55);
+	.schedule-roads {
 
-		&:after {
-			position: absolute;
-			right: 1rem;
-			font-family: "icon";
-			content:"\f105";
-			font-size: 1rem;
+		.list li:last-of-type span {
+			border-bottom: 0;
+		}
+
+		.done span {
+			positon: relative;
+			color: darken(@green, 10);
+			background-color: lighten(@green, 55);
+
+			&:after {
+				position: absolute;
+				right: 1rem;
+				font-family: "icon";
+				content: "\f105";
+				font-size: 1rem;
+			}
 		}
 	}
 }
 
 .workorder-invoicing {
 
-	> .columns > .col:first-of-type {
-		width: 60%;
+	.invoicing {
+		width: 65%;
 	}
 
-	> .columns > .col:last-of-type {
-		width: 40%;
+	.quote {
+		width: 35%;
 	}
 
-	.invoice-details {
+	.invoicing-details {
 		margin-bottom: 2rem;
-		width: 80%;
+		width: 70%;
 	}
 
-	.invoicing-notes {
+	.invoicing-notes textarea {
 		height: 8rem;
 	}
 }
@@ -704,16 +569,11 @@ hr {
 
 	.header {
 
-		div:last-of-type {
-			margin-left: 1rem;
-			.flex(2);
-		}
-
-		.technician {
+		.technician select {
 			width: 12rem;
 		}
 
-		.land-access-date {
+		.land-access-date input {
 			width: 7rem;
 		}
 	}
@@ -721,49 +581,35 @@ hr {
 	.questions {
 		font-size: 0.8rem;
 		font-weight: 400;
-		padding-top: 0.5rem;
+		width: 50%;
 
 		td {
-			padding-bottom: 1rem;
-
-			&:first-of-type {
-				width: 4rem;
-				vertical-align: top;
-			}
-		}
-
-		.contact {
-			padding: 1rem 0;
-
-			.col {
-				margin-right: 1.5rem;
-			}
-
-			label {
-				margin-bottom: 0.2rem;
-				font-size: 0.6rem;
-			}
+			padding: 0.5rem;
+			vertical-align: top;
 		}
 	}
 
-	.notes {
-		margin-bottom: 1rem;
+	.contact {
+		margin-top: 1rem;
+
+		input {
+			width: 80%;
+		}
+	}
+
+	.details {
+		width: 50%;
+	}
+
+	.authorisation {
+		margin-top: 2.5rem;
 	}
 }
 
 .workorder-daily-report {
 
-	.header div:nth-child(2) {
-		margin: 1.3rem 0 0 1rem;
-		flex: 2;
-	}
-
-	.technician {
-		width: 12rem;
-	}
-
-	.content > div {
-		display: none;
+	.comments textarea {
+		height: 4rem;
 	}
 
 	.incidents {
@@ -774,21 +620,26 @@ hr {
 			list-style: none;
 		}
 
+		li {
+			margin-bottom: 0.5rem;
+		}
+
 		input {
-			display: inline-block;
 			float: left;
-			margin-top: 0.3rem;
 			margin-right: 0.5rem;
 		}
 
 		label {
 			display: inline-block;
-			margin-top: 0.3rem;
 
 			span {
 				display: block;
 				font-size: 0.6rem;
 			}
+		}
+
+		textarea {
+			display: none;
 		}
 
 		input:checked + textarea {
@@ -798,79 +649,52 @@ hr {
 			width: 20rem;
 			height: 4rem;
 		}
-
-		textarea {
-			display: none;
-		}
-	}
-
-	.comments {
-		textarea {
-			width: 100%;
-			height: 4rem;
-			order: 3;
-		}
 	}
 }
 
 .workorder-completion {
 
-	.header div:nth-child(2) {
-		margin: 1.3rem 0 0 1rem;
-		flex: 2;
-	}
-
-	.technician {
-		width: 12rem;
-	}
-
 	.job-completion {
 
-		.list {
-			height: 6.2rem;
-			.scrollable();
+		.list li:last-of-type span {
+			border-bottom: 0;
 		}
 
-		textarea {
-			width: 100%;
+		.completion-notes textarea {
 			height: 8rem;
 		}
 	}
 
-	.conditions-time {
-		margin: 1rem auto;
-		width: 21rem;
+	.conditions {
 
-		.table {
-			width: auto;
-		}
+		.condition-time {
+			margin: 2rem auto 0;
+			padding-right: 5rem;
+			width: 24rem;
 
-		input {
-			width: 4rem;
+			table {
+				white-space: nowrap;
+			}
 		}
 	}
 
 	.timesheets {
 
-		.columns .col {
-			&:first-of-type {
-				width: 70%;
+		.days {
+			width: 70%;
+
+			tr td:first-of-type {
+				white-space: nowrap;
 			}
-			&:last-of-type {
-				width: 30%;
+
+			td {
+				padding: 0.5rem;
+				font-size: 0.6rem;
 			}
 		}
 
-		td {
-			padding: 0.5rem;
-			font-size: 0.6rem;
-		}
-
-		tr td:first-of-type {
-			width: 3rem;
-		}
-
-		.total-hours {
+		.total {
+			width: 30%;
 			text-align: center;
 
 			h3 {
@@ -880,8 +704,15 @@ hr {
 		}
 	}
 
-	.quality-standards textarea {
-		height: 4rem;
+	.quality {
+
+		.columns .col {
+			width: 50%;
+		}
+
+		textarea {
+			height: 4rem;
+		}
 	}
 }
 
@@ -892,7 +723,7 @@ hr {
 .document-repository {
 	.display(flex);
 	.flexFlow(row);
-	flex: 1;
+	.flex(1);
 
 	.menu {
 		.display(flex);
@@ -906,7 +737,7 @@ hr {
 		.display(flex);
 		.flexFlow(column);
 		.scrollable();
-		flex: 1;
+		.flex(1);
 	}
 
 	.content {

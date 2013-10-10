@@ -1,32 +1,28 @@
-define(['pubsub', 'jquery', 'mocks/documentRepo'], function (p, $) {
+define(['jquery', 'mocks/documentRepo'], function ($) {
 
 	'use strict';
 
-	// Methods
-	var init = function () {
-		p.subscribe('documentRepo.getDocumentList', getDocumentList);
-		p.subscribe('documentRepo.getDocumentById', getDocumentById);
-		return this;
-	};
+	return function () {
 
-	var getDocumentList = function () {
-		$.getJSON('/api/documentRepo/')
-			.done(function (data) {
-				p.publish('documentRepo.getDocumentList.result', data.result);
-			});
-	};
+		var getDocumentList = function (callback) {
+			$.getJSON('/api/documentRepo/')
+				.done(function (data) {
+					callback(data.result);
+				});
+		};
 
-	var getDocumentById = function () {
-		$.getJSON('/api/documentRepo/1')
-			.done(function (data) {
-				p.publish('documentRepo.getDocumentById.result', data.result);
-			});
-	};
+		var getDocument = function (data, callback) {
+			$.getJSON('/api/documentRepo/' + data.id)
+				.done(function (data) {
+					callback(data.result);
+				});
+		};
 
-	var Model = {
-		init: init
-	};
+		return {
+			getDocumentList: getDocumentList,
+			getDocument: getDocument
+		};
 
-	return Model.init();
+	};
 
 });

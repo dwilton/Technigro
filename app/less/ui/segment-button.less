@@ -15,27 +15,27 @@
 			padding-right: 0;
 			font-weight: 200;
 			font-size: 0.86rem;
-			color: @green;
-			background-color: @white;
+			color: @segmented-button-color;
+			background-color: @segmented-button-bg-color;
 			cursor: pointer;
 			border-radius: 0;
 			border: 1px solid;
 			border-right: 0;
-			border-color: @green;
+			border-color: @segmented-button-color;
 
 			&:first-of-type {
 				border-radius: 0.356rem 0 0 0.356rem;
 			}
 
 			&:last-child {
-				border: 1px solid @green;
+				border: 1px solid @segmented-button-color;
 				border-radius: 0 0.356rem 0.356rem 0;
 			}
 		}
 
 		input:checked + label, input:checked + label:last-child {
-			color: @white;
-			background: @green;
+			color: @segmented-button-bg-color;
+			background: @segmented-button-color;
 		}
 	}
 

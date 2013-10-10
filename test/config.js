@@ -18,22 +18,24 @@ require.config({
 		'chai': '../../node_modules/chai/chai',
 
 		// Components
-		'jquery': '../vendor/jquery/jquery.min',
+		'animo': '../vendor/animo.js/animo',
+		'jquery': '../vendor/jquery/jquery',
 		'ko': '../vendor/knockout.js/knockout',
-		'page': '../vendor/page/index',
-		'text': '../vendor/text/text',
-		'pubsub': '../vendor/pubsub/src/pubsub',
 		'ladda': '../vendor/ladda/js/ladda',
+		'mockjax': '../vendor/jquery-mockjax/jquery.mockjax',
+		'page': '../vendor/page/index',
+		'pubsub': '../vendor/pubsub/src/pubsub',
 		'spin': '../vendor/spin.js/spin',
+		'text': '../vendor/text/text',
 
 		// Libraries
-		'buttonLoader': 'lib/buttonLoader',
+		'bindings': 'lib/bindings',
 		'component': 'lib/component',
-		'customBindings': 'lib/customBindings',
-		'cssAnimated': 'lib/cssAnimated',
 		'modernizr': 'lib/modernizr',
-		'tabs': 'lib/tabs',
-		'touch': 'lib/touch'
+		'querystring': 'lib/querystring',
+		'url': 'lib/url',
+		'router': 'lib/router',
+		'store': 'lib/store'
 
 	},
 

@@ -1,0 +1,57 @@
+.datagrid() {
+
+	.datagrid {
+		border: 1px solid @datagrid-border-color;
+		user-select: none;
+
+		table {
+			margin: 0;
+			font-weight: normal;
+			font-size: 0.7rem;
+			hyphens: auto;
+			border: 0;
+		}
+
+		td {
+			color: @datagrid-color;
+			background-color: @datagrid-bg-color;
+		}
+
+		tr:hover td, tr.selected td {
+			color: @hover-color;
+			background-color: @hover-bg-color !important;
+			cursor: pointer;
+		}
+
+		th {
+			color: @datagrid-header-color;
+			background-color: @datagrid-header-bg-color;
+		}
+
+		.table th {
+			text-align: left;
+		}
+
+		.fixed-header {
+			position: relative;
+
+			&:after {
+				content: '';
+				display: block;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				width: 100%;
+				height: 2rem;
+				box-shadow: @datagrid-header-shadow;
+				z-index: 1;
+			}
+		}
+
+		.results thead {
+			display: none;
+		}
+	}
+
+}

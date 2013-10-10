@@ -1,16 +1,22 @@
-define(['pubsub', 'ko', 'models/user', 'models/workOrders'], function (p, ko) {
+define(['ko', 'pubsub', 'models/user', 'models/workOrders'], function (ko, p, User, WorkOrders) {
 
 	'use strict';
 
 	return function () {
 
+		var _user = new User();
+		var _workOrders = new WorkOrders();
+
 		var isLoading = ko.observable(false);
 		var isWorkOrdersLoading = ko.observable(false);
-		var user = ko.observable();
-		var menu = ko.observable(false);
-		var statusTypes = ko.observableArray();
-		var technicians = ko.observableArray();
+		var isAdmin = ko.observable(false);
+		var addNewMenu = ko.observable(false);
 		var workOrders = ko.observableArray();
+
+		var refData = {
+			statuses: ko.observableArray(),
+			technicians: ko.observableArray()
+		};
 
 		var filter = {
 			status: ko.observable(0),
@@ -20,22 +26,39 @@ define(['pubsub', 'ko', 'models/user', 'models/workOrders'], function (p, ko) {
 			dateTo: ko.observable('')
 		};
 
-		var init = function () {
+		var activate = function () {
+			_user.getUser(function (user) {
+				isAdmin(user.isAdmin);
+			});
+			getRefData();
+		};
 
-			p.subscribe('user.getUser.result', user);
-			p.subscribe('workOrders.getFilterOptions.result', getFilterOptionsResult);
-			p.subscribe('workOrders.getWorkOrders.result', getWorkOrdersResult);
-			p.subscribe('workOrders.menu', menu);
+		var toggleAddNewMenu = function () {
+			addNewMenu(addNewMenu() ? false : true);
+		};
 
-			getFilterOptions();
+		var filterSubscribers = function () {
+			for(var prop in filter){
+				filter[prop].subscribe(getWorkOrders);
+			}
+		};
 
-			return this;
+		var getRefData = function () {
+			isLoading(true);
+			_workOrders.getRefData(getRefDataResult);
+		};
 
+		var getRefDataResult = function (data) {
+			isLoading(false);
+			refData.technicians(data.technicians);
+			refData.statuses(data.statuses);
+			filterSubscribers();
+			getWorkOrders();
 		};
 
 		var getWorkOrders = function () {
 			isWorkOrdersLoading(true);
-			p.publish('workOrders.getWorkOrders', ko.toJSON(filter));
+			_workOrders.getWorkOrders(ko.toJSON(filter), getWorkOrdersResult);
 		};
 
 		var getWorkOrdersResult = function (data) {
@@ -43,45 +66,19 @@ define(['pubsub', 'ko', 'models/user', 'models/workOrders'], function (p, ko) {
 			workOrders(data);
 		};
 
-		var getFilterOptions = function () {
-			isLoading(true);
-			p.publish('workOrders.getFilterOptions');
-		};
-
-		var getFilterOptionsResult = function (data) {
-
-			isLoading(false);
-
-			technicians(data.technicians);
-			statusTypes(data.statusTypes);
-
-			// Attach subscribers
-			for(var prop in filter){
-				filter[prop].subscribe(getWorkOrders);
-			}
-
-			getWorkOrders();
-
-		};
-
-		var toggleAddNewMenu = function () {
-			menu(menu() ? false : true);
-		};
-
 		var ViewModel = {
-			init: init,
-			isLoading: isLoading,
-			isWorkOrdersLoading: isWorkOrdersLoading,
-			user: user,
-			menu: menu,
+			activate: activate,
+			isAdmin: isAdmin,
+			addNewMenu: addNewMenu,
 			toggleAddNewMenu: toggleAddNewMenu,
+			isLoading: isLoading,
 			filter: filter,
-			technicians: technicians,
-			statusTypes: statusTypes,
+			isWorkOrdersLoading: isWorkOrdersLoading,
+			refData: refData,
 			workOrders: workOrders
 		};
 
-		return ViewModel.init();
+		return ViewModel;
 
 	};
 

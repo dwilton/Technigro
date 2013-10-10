@@ -24,29 +24,29 @@
 			right: 0.5rem;
 			color: @switch-color;
 			font-family: "icon";
-			content: "\f101";
+			content: "\f102";
 		}
-	}
 
-	input[type=checkbox].switch:checked {
-		padding-left: 1.65rem;
-		background: @switch-on-bg-color;
-
-		&:before {
-			left: -0.7rem;
-			color: @switch-on-color;
-			content: "\f105";
+		&:after {
+			content: "";
+			display: block;
+			position: relative;
+			width: 1.2rem;
+			height: 1.2rem;
+			background: @switch-thumb-bg-color;
+			border-radius: 1.5rem;
 		}
-	}
 
-	input[type=checkbox].switch:after {
-		content: "";
-		display: block;
-		position: relative;
-		width: 1.2rem;
-		height: 1.2rem;
-		background: @switch-thumb-bg-color;
-		border-radius: 1.5rem;
+		&:checked {
+			padding-left: 1.65rem;
+			background: @switch-on-bg-color;
+
+			&:before {
+				left: -0.7rem;
+				color: @switch-on-color;
+				content: "\f106";
+			}
+		}
 	}
 
 }

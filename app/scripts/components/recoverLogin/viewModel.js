@@ -1,8 +1,10 @@
-define(['pubsub', 'ko', 'models/recoverLogin'], function (p, ko) {
+define(['ko', 'pubsub', 'models/recoverLogin'], function (ko, p, RecoverLogin) {
 
 	'use strict';
 
 	return function () {
+
+		var _recoverLogin = new RecoverLogin();
 
 		var email = ko.observable('');
 		var isLoading = ko.observable(false);
@@ -11,11 +13,6 @@ define(['pubsub', 'ko', 'models/recoverLogin'], function (p, ko) {
 		var animation = ko.computed(function () {
 			p.publish('loginContainer.animation', isFailed() ? 'shake' : '');
 		});
-
-		var init = function () {
-			p.subscribe('recoverLogin.recover.result', recoverResult);
-			return this;
-		};
 
 		var refresh = function () {
 			email('');
@@ -26,7 +23,7 @@ define(['pubsub', 'ko', 'models/recoverLogin'], function (p, ko) {
 		var recover = function () {
 			isLoading(true);
 			isFailed(false);
-			p.publish('recoverLogin.recover', { email: email() });
+			_recoverLogin.recover({ email: email() }, recoverResult);
 		};
 
 		var recoverResult = function (data) {
@@ -39,7 +36,6 @@ define(['pubsub', 'ko', 'models/recoverLogin'], function (p, ko) {
 		};
 
 		var ViewModel = {
-			init: init,
 			refresh: refresh,
 			email: email,
 			isLoading: isLoading,
@@ -48,7 +44,7 @@ define(['pubsub', 'ko', 'models/recoverLogin'], function (p, ko) {
 			recover: recover
 		};
 
-		return ViewModel.init();
+		return ViewModel;
 
 	};
 

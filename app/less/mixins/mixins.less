@@ -39,7 +39,7 @@
 	justify-content: @justifyContent;
 }
 
-.alignItems(@alignItems) when (@alignItems = center) {
-	-webkit-box-align: center;
-	align-items: center;
+.alignItems(@alignItems) {
+	-webkit-box-align: @alignItems;
+	align-items: @alignItems;
 }

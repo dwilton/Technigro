@@ -1,8 +1,10 @@
-define(['pubsub', 'ko', 'models/documentRepo'], function (p, ko) {
+define(['ko', 'models/documentRepo'], function (ko, DocumentRepo) {
 
 	'use strict';
 
 	return function () {
+
+		var _documentRepo = new DocumentRepo();
 
 		var isLoading = ko.observable(true);
 		var documentList = ko.observableArray();
@@ -13,15 +15,9 @@ define(['pubsub', 'ko', 'models/documentRepo'], function (p, ko) {
 
 		selected.subscribe(function (value) {
 			if(value !== null) {
-				getDocumentById(selected().id);
+				getDocument(selected().id);
 			}
 		});
-
-		var init = function () {
-			p.subscribe('documentRepo.getDocumentList.result', getDocumentListResult);
-			p.subscribe('documentRepo.getDocumentById.result', getDocumentByIdResult);
-			return this;
-		};
 
 		var refresh = function () {
 			getDocumentList();
@@ -31,7 +27,7 @@ define(['pubsub', 'ko', 'models/documentRepo'], function (p, ko) {
 
 		var getDocumentList = function () {
 			isLoading(true);
-			p.publish('documentRepo.getDocumentList');
+			_documentRepo.getDocumentList(getDocumentListResult);
 		};
 
 		var getDocumentListResult = function (data) {
@@ -39,19 +35,18 @@ define(['pubsub', 'ko', 'models/documentRepo'], function (p, ko) {
 			documentList(data);
 		};
 
-		var getDocumentById = function () {
+		var getDocument = function () {
 			isDocumentLoading(true);
-			p.publish('documentRepo.getDocumentById', { documentId: selected().id });
+			_documentRepo.getDocument({ documentId: selected().id }, getDocumentResult);
 		};
 
-		var getDocumentByIdResult = function (data) {
+		var getDocumentResult = function (data) {
 			isDocumentLoading(false);
 			isDocumentLoaded(true);
 			documentDetails(data);
 		};
 
 		var ViewModel = {
-			init: init,
 			refresh: refresh,
 			documentList: documentList,
 			documentDetails: documentDetails,
@@ -61,7 +56,7 @@ define(['pubsub', 'ko', 'models/documentRepo'], function (p, ko) {
 			selected: selected
 		};
 
-		return ViewModel.init();
+		return ViewModel;
 
 	};
 

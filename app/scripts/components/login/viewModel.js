@@ -1,8 +1,10 @@
-define(['pubsub', 'ko', 'models/login'], function (p, ko) {
+define(['ko', 'pubsub', 'models/login'], function (ko, p, Login) {
 
 	'use strict';
 
 	return function () {
+
+		var _login = new Login();
 
 		var username = ko.observable('');
 		var password = ko.observable('');
@@ -11,11 +13,6 @@ define(['pubsub', 'ko', 'models/login'], function (p, ko) {
 		var animation = ko.computed(function () {
 			p.publish('loginContainer.animation', isFailed() ? 'shake' : '');
 		});
-
-		var init = function () {
-			p.subscribe('login.authenticate.result', authenticateResult);
-			return this;
-		};
 
 		var refresh = function () {
 			username('');
@@ -27,20 +24,21 @@ define(['pubsub', 'ko', 'models/login'], function (p, ko) {
 		var authenticate = function () {
 			isLoading(true);
 			isFailed(false);
-			p.publish('login.authenticate', { username: username(), password: password() });
+			_login.authenticate({ username: username(), password: password() }, authenticateResult);
 		};
 
 		var authenticateResult = function (data) {
 			isLoading(false);
-			if (data) {
+			if(data) {
 				refresh();
-			} else {
+				p.publish('app.authenticate');
+			}
+			else {
 				isFailed(true);
 			}
 		};
 
 		var ViewModel = {
-			init: init,
 			refresh: refresh,
 			username: username,
 			password: password,
@@ -49,7 +47,7 @@ define(['pubsub', 'ko', 'models/login'], function (p, ko) {
 			authenticate: authenticate
 		};
 
-		return ViewModel.init();
+		return ViewModel;
 
 	};
 

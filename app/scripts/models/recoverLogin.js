@@ -1,23 +1,20 @@
-define(['pubsub', 'jquery', 'mocks/recoverLogin'], function (p, $) {
+define(['jquery', 'mocks/recoverLogin'], function ($) {
 
 	'use strict';
 
-	var init = function () {
-		p.subscribe('recoverLogin.recover', recover);
-		return this;
-	};
+	return function () {
 
-	var recover = function (data) {
-		$.getJSON('/api/recover-password/', data)
-			.done(function (data) {
-				p.publish('recoverLogin.recover.result', data.result);
-			});
-	};
+		var recover = function (data, callback) {
+			$.getJSON('/api/recover-password/', data)
+				.done(function (data) {
+					callback(data.result);
+				});
+		};
 
-	var Model = {
-		init: init
-	};
+		return {
+			recover: recover
+		};
 
-	return Model.init();
+	}
 
 });

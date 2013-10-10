@@ -1,44 +1,41 @@
-define(['pubsub', 'jquery', 'mocks/workOrders'], function (p, $) {
+define(['jquery', 'mocks/workOrders'], function ($) {
 
 	'use strict';
 
-	var init = function () {
-		p.subscribe('workOrders.getFilterOptions', getFilterOptions);
-		p.subscribe('workOrders.getWorkOrders', getWorkOrders);
-		return this;
-	};
+	return function () {
 
-	var getFilterOptions = function () {
+		var getRefData = function (callback) {
 
-		var result = {};
+			var result = {};
 
-		var statusTypes = $.getJSON('/api/statusTypes/')
-			.done(function (data) {
-				result.statusTypes = data.result;
+			var statuses = $.getJSON('/api/statuses/')
+				.done(function (data) {
+					result.statuses = data.result;
+				});
+
+			var technicians = $.getJSON('/api/technicians/')
+				.done(function (data) {
+					result.technicians = data.result;
+				});
+
+			$.when(statuses, technicians).done(function () {
+				callback(result);
 			});
 
-		var technicians = $.getJSON('/api/technicians/')
-			.done(function (data) {
-				result.technicians = data.result;
-			});
+		};
 
-		$.when(statusTypes, technicians).done(function () {
-			p.publish('workOrders.getFilterOptions.result', result);
-		});
+		var getWorkOrders = function (data, callback) {
+			$.getJSON('/api/workOrders/', data)
+				.done(function (data) {
+					callback(data.result);
+				});
+		};
 
-	};
+		return {
+			getRefData: getRefData,
+			getWorkOrders: getWorkOrders
+		};
 
-	var getWorkOrders = function (data) {
-		$.getJSON('/api/workOrders/', data)
-			.done(function (data) {
-				p.publish('workOrders.getWorkOrders.result', data.result);
-			});
-	};
-
-	var Model = {
-		init: init
-	};
-
-	return Model.init();
+	}
 
 });

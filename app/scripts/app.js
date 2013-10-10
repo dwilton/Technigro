@@ -9,12 +9,13 @@ define([
 	'components/workorder/component',
 	'components/workorders/component',
 	'components/documentRepo/component'
-], function (p, ko) {
+], function (p, ko, User) {
 
 	'use strict';
 
 	return function () {
 
+		var user = new User();
 		var content = ko.observable();
 
 		var init = function () {
@@ -26,20 +27,22 @@ define([
 			p.publish('route.set', { name: '#workorders', callback: workOrders });
 			p.publish('route.set', { name: '#document-repository', callback: documentRepo });
 
-			// Redirect if user login isn't present
-			p.subscribe('user.getUser.result', function (user) {
+			p.subscribe('app.authenticate', authenticate);
+
+			authenticate();
+
+			return this;
+
+		};
+
+		var authenticate = function () {
+			user.getUser(function (user) {
 				if (user.isLoggedIn) {
 					p.publish('route', window.location.hash);
 				} else {
 					content('loginContainer');
 				}
 			});
-
-			// Get user
-			p.publish('user.getUser');
-
-			return this;
-
 		};
 
 		var workOrders = function () {

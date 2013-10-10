@@ -1,30 +1,26 @@
 .header() {
 
 	.header {
-		.display(flex);
-		.flexFlow(row);
-		.justifyContent(space-between);
-		height: 5.5rem;
 		padding: 1rem 1.5rem;
-		height: 5.5rem;
-		background-color: @shade-pos-5;
-		border-bottom: 1px solid @shade-pos-4;
-
-		input:not([type="submit"]), select {
-			background-color: @white;
-		}
+		background-color: @header-bg-color;
+		border-bottom: 1px solid @header-border-color;
 
 		label {
 			margin-bottom: 0.2rem;
-			color: @shade-pos-2;
-			font-size: 0.8rem;
+		}
+
+		.small {
+			margin-left: 0.5rem;
+			font-weight: 200;
+			font-size: 0.7rem;
 		}
 
 		> div {
-			margin-left: 0.5rem;
+			display: inline-block;
+			margin-right: 1.5rem;
 
-			&:first-of-type {
-				margin-left: 0;
+			&:last-of-type {
+				margin-right: 0;
 			}
 		}
 	}

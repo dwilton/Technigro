@@ -1,15 +1,16 @@
-define(['pubsub', 'ko'], function (p, ko) {
+define(['pubsub', 'ko', 'models/user', 'models/workOrder'], function (p, ko, User, WorkOrder) {
 
 	'use strict';
 
 	return function () {
 
+		var _user = new User();
+		var _workOrder = new WorkOrder();
+
 		var isLoading = ko.observable(false);
 		var menu = ko.observableArray();
-		var type = ko.observable();
 
 		var workOrder = {
-
 			type: ko.observable(),
 			archived: ko.observable(),
 
@@ -20,6 +21,7 @@ define(['pubsub', 'ko'], function (p, ko) {
 			jobId: ko.observable(),
 			status: ko.observable(),
 			statusId: ko.observable(),
+			jobInstructions: ko.observableArray(),
 
 			/* Details */
 			address: ko.observable(),
@@ -46,42 +48,29 @@ define(['pubsub', 'ko'], function (p, ko) {
 			equipment: ko.observableArray(),
 
 			/* Products */
-			products: ko.observableArray()
+			products: ko.observableArray(),
+
+			invoicedTypeId: ko.observable(),
+			quoteTypeId: ko.observable()
 
 		};
 
 		var refData = {
-
-			/* Common */
-			menuOptions: ko.observableArray(),
-			equipment: ko.observableArray(),
-			technicians: ko.observableArray(),
-			jobInstruction: ko.observableArray(),
-
-			/* Details */
-			documents: ko.observableArray(),
 			clients: ko.observableArray(),
-			status: ko.observableArray(),
-			ubdEditions: ko.observableArray(),
-			maps: ko.observableArray(),
-
-			/* Labour */
-			numberOfAddressDays: ko.observable(),
-			numberOfStaff: ko.observable(),
-
-			/* Products */
-			products: ko.observableArray(),
-
-			/* Invoicing */
-			invoicedBy: ko.observableArray(),
-			quote: ko.observableArray(),
-
-			/* Daily Report */
+			statuses: ko.observableArray(),
+			technicians: ko.observableArray(),
 			jobInstructions: ko.observableArray(),
+			equipment: ko.observableArray(),
+			products: ko.observableArray(),
+			invoiceTypes: ko.observableArray(),
+			quoteTypes: ko.observableArray(),
+			ubdEditions: ko.observableArray(),
+			documents: ko.observableArray(),
+			timeAllocated: ko.observable(),
+			staff: ko.observable(),
 			conditions: ko.observableArray(),
 			growthStages: ko.observableArray(),
 			personal: ko.observableArray()
-
 		};
 
 		var init = function () {
@@ -90,39 +79,78 @@ define(['pubsub', 'ko'], function (p, ko) {
 			return this;
 		};
 
-		var refresh = function () {
-			p.publish('workOrders.menu', false);
-		};
-
 		var create = function (workOrderType) {
-			type(workOrderType);
-			console.log('create - ' + workOrderType);
+			_workOrder.getRefData({}, getRefDataResult);
 		};
 
 		var edit = function (id) {
-			p.publish('workOrder.getWorkOrderById', id);
-			console.log('edit - ' + id);
+			_workOrder.getRefData({}, getRefDataResult);
+			_workOrder.getWorkOrder({ id: id }, getWorkOrderResult);
 		};
 
-		var getWorkOrder = function (id) {
-
+		var getRefDataResult = function (data) {
+			refData.clients(data.clients);
+			refData.statuses(data.statuses);
+			refData.technicians(data.technicians);
+			refData.jobInstructions(data.jobInstructions);
+			refData.equipment(data.equipment);
+			refData.products(data.products);
+			refData.invoiceTypes(data.invoiceTypes);
+			refData.quoteTypes(data.quoteTypes);
 		};
 
 		var getWorkOrderResult = function (data) {
+		};
 
+		var addTechnician = function () {
+			workOrder.technicians.push({ id: 0 });
+		};
+
+		var removeTechnician = function (item) {
+			workOrder.technicians.remove(item);
+		};
+
+		var addJobInstruction = function () {
+			workOrder.jobInstructions.push({ id: 0 });
+		};
+
+		var removeJobInstruction = function (item) {
+			workOrder.jobInstructions.remove(item);
+		};
+
+		var addEquipment = function () {
+			workOrder.equipment.push({ id: 0 });
+		};
+
+		var removeEquipment = function (item) {
+			workOrder.equipment.remove(item);
+		};
+
+		var addProduct = function () {
+			workOrder.products.push({ productId: 0, actual: 0, water: 0, area: 0, total: 0 });
+		};
+
+		var removeProduct = function (item) {
+			workOrder.products.remove(item);
 		};
 
 		var save = function () {
-
+			console.log(ko.toJSON(workOrder));
 		};
 
 		var ViewModel = {
 			init: init,
 			isLoading: isLoading,
-			refresh: refresh,
-			type: type,
 			refData: refData,
 			workOrder: workOrder,
+			addTechnician: addTechnician,
+			removeTechnician: removeTechnician,
+			addJobInstruction: addJobInstruction,
+			removeJobInstruction: removeJobInstruction,
+			addEquipment: addEquipment,
+			removeEquipment: removeEquipment,
+			addProduct: addProduct,
+			removeProduct: removeProduct,
 			save: save
 		};
 

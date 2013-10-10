@@ -1,23 +1,23 @@
-<div id="main">
+<div class="app" data-bind="css: { active: menuVisibility }">
+	<nav class="app-menu">
+		<ul>
+			<li data-bind="css: { selected: menu() == 'workOrders' }"><a href="#" class="icon icon_workorders" data-bind="route: '#workorders'">Work Orders</a></li>
+			<li data-bind="css: { selected: menu() == 'documentRepo' }"><a href="#" class="icon icon_document-repo" data-bind="route: '#document-repository'">Document Repository</a></li>
+		</ul>
+	</nav>
+	<div class="container">
+		<header class="app-bar">
 
-	<div class="app-wrap" data-bind="css: { active: menuVisibility }">
+			<a href="#" class="menu-toggle icon icon_menu" data-bind="click: menuToggle"><span>Menu</span></a>
 
-		<nav class="app-menu">
-			<ul>
-				<li data-bind="css: { selected: menu() == 'workOrders' }"><a href="#" class="icon icon_workorders" data-bind="route: '#workorders'">Work Orders</a></li>
-				<li data-bind="css: { selected: menu() == 'documentRepo' }"><a href="#" class="icon icon_document-repo" data-bind="route: '#document-repository'">Document Repository</a></li>
-			</ul>
-		</nav>
+			<!-- ko if: content() == 'workOrder' -->
+			<a href="#" class="menu-back icon icon_back" data-bind="route: '#workorders'"><span>Back</span></a>
+			<!-- /ko -->
 
-		<div class="app-container">
-			<header class="app-header">
-				<a href="#" class="menu-toggle icon icon_menu" data-bind="click: menuToggle"><span>Menu</span></a>
-				<h1 class="title" data-bind="text: title"></h1>
-				<button class="logout" data-bind="click: logout">Logout</button>
-			</header>
-			<div class="app-content" data-bind="component: content()"></div>
-		</div>
+			<h1 class="title" data-bind="text: title"></h1>
+			<button class="logout" data-bind="click: logout">Logout</button>
 
+		</header>
+		<div class="content" data-bind="component: content()"></div>
 	</div>
-
 </div>

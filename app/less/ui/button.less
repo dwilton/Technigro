@@ -1,13 +1,14 @@
 .button() {
 
 	.button {
-		padding: 0.317rem 0.75rem;
+		padding: 0.58em 0.75em;
 		color: @button-color;
 		font-weight: 600;
 		font-weight: 200;
 		font-size: 0.86rem;
+		line-height: 1;
 		background-color: @button-bg-color;
-		border-radius: 0.356rem;
+		border-radius: 0.356em;
 		transition: color .2s ease, background-color .2s ease;
 
 		&:hover {
@@ -22,8 +23,15 @@
 		}
 	}
 
+	.button-large {
+		font-size: 1rem;
+	}
+
 	.button-small {
 		font-size: 0.7rem;
+	}
+
+	.button-additional {
 		background-color: @shade-pos-1;
 	}
 
@@ -32,6 +40,14 @@
 
 		&:hover {
 			background-color: darken(@positive, 5);
+		}
+	}
+
+	.negative {
+		background-color: @negative;
+
+		&:hover {
+			background-color: darken(@negative, 5);
 		}
 	}
 

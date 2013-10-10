@@ -6,7 +6,7 @@
 		padding: 0.35rem 0.5rem;
 		font-size: 0.8rem;
 		color: @input-color;
-		background: @white;
+		background: @input-bg-color;
 		border: 1px solid rgba(0,0,0,0.2);
 		border-radius: 0.356em;
 		box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
@@ -14,7 +14,7 @@
 
 		&:focus, &:active {
 			background-color: @input-bg-color-focus;
-			border: 1px solid @green;
+			border: 1px solid @input-border-color-focus;
 			outline: none;
 		}
 	}
@@ -66,6 +66,10 @@
 		font-family:"icon";
 		content:"\f105";
 		line-height: 1.2em;
+	}
+
+	.input-stretch {
+		width: 100%;
 	}
 
 	.checkbox {

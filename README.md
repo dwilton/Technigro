@@ -59,12 +59,11 @@ Please run `$ grunt` before contributing.
 
 # Contributing
 
-- This project is managed via [Huboard](http://huboard.com/username/repo).
 - Use the [EditorConfig](http://editorconfig.org/) to maintain consistent coding styles.
 - Testing, Testing, Testing!
 
 -----------------
 
-# Want to use PhoneGap?
+# PhoneGap
 
 Follow the instructions on the [PhoneGap Website](http://phonegap.com/install/).

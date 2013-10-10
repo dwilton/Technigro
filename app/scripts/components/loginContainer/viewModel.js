@@ -1,4 +1,4 @@
-define(['pubsub', 'ko'], function (p, ko) {
+define(['ko', 'pubsub'], function (ko, p) {
 
 	'use strict';
 

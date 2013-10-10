@@ -18,18 +18,16 @@ define(['jquery'], function (jQuery) {
 				var toggleMenu = $(this.element);
 
 				// Set initial state
-				var item = toggleMenu.find('header .segmented-button input:checked'),
+				var item = toggleMenu.find('.toggle-menu input:checked'),
 						content = '#' + item.attr('id') + '-content';
 
 				$(content).fadeIn(200);
 
 				// Create observer
-				toggleMenu.find('header .segmented-button').on('click', 'input', function (e) {
+				toggleMenu.find('.toggle-menu').on('click', 'input', function (e) {
 
 					var item = $(this),
 							content = '#' + item.attr('id') + '-content';
-
-					console.log(content);
 
 					// Hide all tab content
 					toggleMenu.find('.toggle-menu-content > div').hide();

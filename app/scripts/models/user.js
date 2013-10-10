@@ -1,45 +1,41 @@
-define(['pubsub', 'store'], function (p, store) {
+define(['store'], function (store) {
 
 	'use strict';
 
-	var init = function () {
-		p.subscribe('user.setUser', setUser);
-		p.subscribe('user.getUser', getUser);
-		p.subscribe('user.deleteUser', deleteUser);
-		return this;
-	};
+	return function () {
 
-	var deleteUser = function () {
-		store.remove('user', getUser);
-	};
+		var defaultUser = { name: '', isAdmin: false, isLoggedIn: false};
 
-	var setUser = function (data) {
-		store.save({
-			key: 'user',
-			name: data.name,
-			isAdmin: data.isAdmin,
-			isLoggedIn: true
-		}, getUser);
-	};
+		var deleteUser = function () {
+			store.remove('user');
+		};
 
-	var getUser = function () {
+		var setUser = function (data) {
+			store.save({
+				key: 'user',
+				name: data.name,
+				isAdmin: data.isAdmin,
+				isLoggedIn: true
+			});
+		};
 
-		store.get('user', function (data) {
+		var getUser = function (callback) {
+			store.get('user', function (data) {
+				if (data === null) {
+					data = defaultUser
+				}
+				callback(data);
+			});
+		};
 
-			// return vanilla object if user data doesn't exist
-			if (data === null) {
-				data = { name: '', isAdmin: false, isLoggedIn: false};
-			}
+		var User = {
+			deleteUser: deleteUser,
+			setUser: setUser,
+			getUser: getUser
+		};
 
-			p.publish('user.getUser.result', data);
+		return User;
 
-		});
-	};
-
-	var User = {
-		init: init
-	};
-
-	return User.init();
+	}
 
 });
