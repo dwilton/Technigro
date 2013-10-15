@@ -51,12 +51,6 @@ Grunt tasks to assist with development.
 
 -----------------
 
-# Testing
-
-Please run `$ grunt` before contributing.
-
------------------
-
 # Contributing
 
 - Use the [EditorConfig](http://editorconfig.org/) to maintain consistent coding styles.
