@@ -36,6 +36,6 @@ define(['jquery', 'mocks/workOrders'], function ($) {
 			getWorkOrders: getWorkOrders
 		};
 
-	}
+	};
 
 });

@@ -1,4 +1,4 @@
-define(['ko', 'models/documentRepo'], function (ko, DocumentRepo) {
+define(['knockout', 'models/documentRepo'], function (ko, DocumentRepo) {
 
 	'use strict';
 

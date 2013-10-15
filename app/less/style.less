@@ -518,11 +518,29 @@ a:link {
 
 	.schedule-roads {
 
-		.list li:last-of-type span {
+		.list ul li {
+			position: relative
+			padding: 1rem;
+		}
+
+		.list li:last-of-type a {
 			border-bottom: 0;
 		}
 
-		.done span {
+		.edit {
+			padding: 0.29rem;
+			text-align: right;
+			background-color: @shade-neg-3;
+		}
+
+		.cancel {
+			color: @white;
+			font-size: 0.8rem;
+			background: transparent;
+			border: 0;
+		}
+
+		.done a {
 			positon: relative;
 			color: darken(@green, 10);
 			background-color: lighten(@green, 55);
@@ -531,8 +549,9 @@ a:link {
 				position: absolute;
 				right: 1rem;
 				font-family: "icon";
-				content: "\f105";
+				content: "\f106";
 				font-size: 1rem;
+				line-height: 1.2;
 			}
 		}
 	}

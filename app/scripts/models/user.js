@@ -22,7 +22,7 @@ define(['store'], function (store) {
 		var getUser = function (callback) {
 			store.get('user', function (data) {
 				if (data === null) {
-					data = defaultUser
+					data = defaultUser;
 				}
 				callback(data);
 			});
@@ -36,6 +36,6 @@ define(['store'], function (store) {
 
 		return User;
 
-	}
+	};
 
 });

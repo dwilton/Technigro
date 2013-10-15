@@ -1,4 +1,4 @@
-define(['ko', 'pubsub', 'models/recoverLogin'], function (ko, p, RecoverLogin) {
+define(['knockout', 'pubsub', 'models/recoverLogin'], function (ko, p, RecoverLogin) {
 
 	'use strict';
 

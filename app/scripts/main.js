@@ -1,3 +1,5 @@
+'use strict';
+
 require.config({
 
 	paths: {
@@ -5,8 +7,9 @@ require.config({
 		// Components
 		'animo': '../vendor/animo.js/animo',
 		'jquery': '../vendor/jquery/jquery',
-		'ko': '../vendor/knockout.js/knockout',
+		'knockout': '../vendor/knockout.js/knockout',
 		'ladda': '../vendor/ladda/js/ladda',
+		'mapping': '../vendor/knockout-mapping/knockout.mapping',
 		'mockjax': '../vendor/jquery-mockjax/jquery.mockjax',
 		'page': '../vendor/page/index',
 		'pubsub': '../vendor/pubsub/src/pubsub',
@@ -32,9 +35,9 @@ require.config({
 
 });
 
-require(['ko', 'router', 'bindings', 'app'], function (ko, router, bindings, App) {
+require(['knockout', 'mapping', 'router', 'bindings', 'app'], function (ko, mapping, router, bindings, App) {
 
-	'use strict';
+	ko.mapping = mapping;
 
 	// Apply Knockout Bindings
 	ko.applyBindings(new App());

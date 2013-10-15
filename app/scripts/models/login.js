@@ -24,7 +24,7 @@ define(['jquery', 'models/user', 'mocks/login'], function ($, User) {
 			authenticate: authenticate,
 			logout: logout
 		};
-		
-	}
+
+	};
 
 });

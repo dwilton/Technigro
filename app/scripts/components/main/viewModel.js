@@ -1,4 +1,4 @@
-define(['ko', 'pubsub', 'models/login'], function (ko, p, Login) {
+define(['knockout', 'pubsub', 'models/login'], function (ko, p, Login) {
 
 	'use strict';
 

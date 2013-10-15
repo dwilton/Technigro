@@ -15,6 +15,6 @@ define(['jquery', 'mocks/recoverLogin'], function ($) {
 			recover: recover
 		};
 
-	}
+	};
 
 });

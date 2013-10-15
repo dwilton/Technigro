@@ -1587,22 +1587,41 @@ a:link {
   width: 12rem;
 }
 
-.workorder-schedule .schedule-roads .list li:last-of-type span {
+.workorder-schedule .schedule-roads .list ul li {
+  position: relative
+			padding: 1rem;
+}
+
+.workorder-schedule .schedule-roads .list li:last-of-type a {
   border-bottom: 0;
 }
 
-.workorder-schedule .schedule-roads .done span {
+.workorder-schedule .schedule-roads .edit {
+  padding: 0.29rem;
+  text-align: right;
+  background-color: #404040;
+}
+
+.workorder-schedule .schedule-roads .cancel {
+  color: #ffffff;
+  font-size: 0.8rem;
+  background: transparent;
+  border: 0;
+}
+
+.workorder-schedule .schedule-roads .done a {
   positon: relative;
   color: #118448;
   background-color: #e5fcf0;
 }
 
-.workorder-schedule .schedule-roads .done span:after {
+.workorder-schedule .schedule-roads .done a:after {
   position: absolute;
   right: 1rem;
   font-family: "icon";
-  content: "\f105";
+  content: "\f106";
   font-size: 1rem;
+  line-height: 1.2;
 }
 
 .workorder-invoicing .invoicing {

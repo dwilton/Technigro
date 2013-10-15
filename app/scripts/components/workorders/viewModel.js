@@ -1,4 +1,4 @@
-define(['ko', 'pubsub', 'models/user', 'models/workOrders'], function (ko, p, User, WorkOrders) {
+define(['knockout', 'pubsub', 'models/user', 'models/workOrders'], function (ko, p, User, WorkOrders) {
 
 	'use strict';
 
@@ -31,6 +31,10 @@ define(['ko', 'pubsub', 'models/user', 'models/workOrders'], function (ko, p, Us
 				isAdmin(user.isAdmin);
 			});
 			getRefData();
+		};
+
+		var refresh = function () {
+			addNewMenu(false);
 		};
 
 		var toggleAddNewMenu = function () {
@@ -68,6 +72,7 @@ define(['ko', 'pubsub', 'models/user', 'models/workOrders'], function (ko, p, Us
 
 		var ViewModel = {
 			activate: activate,
+			refresh: refresh,
 			isAdmin: isAdmin,
 			addNewMenu: addNewMenu,
 			toggleAddNewMenu: toggleAddNewMenu,

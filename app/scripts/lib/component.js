@@ -2,7 +2,7 @@
  * Component: DOM manipluation wapper, pairs View and ViewModel
  */
 
-define(['pubsub', 'ko'], function (p, ko) {
+define(['knockout', 'pubsub'], function (ko, p) {
 
 	'use strict';
 

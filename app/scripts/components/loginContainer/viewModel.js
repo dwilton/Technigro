@@ -1,4 +1,4 @@
-define(['ko', 'pubsub'], function (ko, p) {
+define(['knockout', 'pubsub'], function (ko, p) {
 
 	'use strict';
 

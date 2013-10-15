@@ -3,7 +3,7 @@
  */
 
 define([
-	'ko',
+	'knockout',
 	'pubsub',
 	'jquery',
 	'plugins/ladda',

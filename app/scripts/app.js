@@ -1,6 +1,6 @@
 define([
+	'knockout',
 	'pubsub',
-	'ko',
 	'models/user',
 	'components/loginContainer/component',
 	'components/login/component',
@@ -9,7 +9,7 @@ define([
 	'components/workorder/component',
 	'components/workorders/component',
 	'components/documentRepo/component'
-], function (p, ko, User) {
+], function (ko, p, User) {
 
 	'use strict';
 
