@@ -9,50 +9,90 @@ define(['jquery', 'mockjax'], function($) {
 			result: {
 
 				typeId: 0,
-				typeName: '',
 				archived: false,
-				treatmentDate: '23/12/2013',
-				clientId: 1,
-				clientName: '',
-				jobName: 'Cycle Mowing',
-				statusId: 1,
-				statusName: '',
-				jobInstructions: [
-					{ id: 1 },
-					{ id: 2 }
-				],
-				documents: [
-					{ id: 1 },
-					{ id: 2 }
-				],
-				address: '',
-				contactName: '',
-				phone1: '',
-				phone2: '',
-				jobNumber: '',
-				orderNumber: '',
-				date: '',
-				ubdEdition: 1,
-				map: '',
-				ref: '',
+
+				details: {
+
+					treatmentDate: '23/12/2013',
+					clientId: 1,
+					clientName: '',
+					jobName: 'Cycle Mowing',
+					statusId: 1,
+					statusName: '',
+
+					address: '',
+					jobNumber: '',
+					orderNumber: '',
+					date: '',
+					ubdEdition: 1,
+					map: '',
+					ref: '',
+
+					contactName: '',
+					phone1: '',
+					phone2: '',
+
+					documents: [
+						{ id: 1 },
+						{ id: 2 }
+					]
+
+				},
+
 				technicians: [
 					{ id: 1 },
 					{ id: 2 }
 				],
-				timeAllocated: 0,
-				staff: 0,
-				area: 0,
+
+				labour: {
+					timeAllocated: 0,
+					staff: 0,
+					area: 0,
+					jobInstructions: [
+						{ id: 1 },
+						{ id: 2 }
+					],
+					workChecklist: {
+						take5: false,
+						taskConfident: false,
+						incidentReportGuidelines: false
+					},
+					criticalInfo: ''
+				},
+
 				equipment: [
 					{ id: 0 }
 				],
+
 				products: [
 					{ productId: 0, actual: 0, water: 0, area: 0, total: 0 }
 				],
-				invoicedTypeId: 0,
-				quoteTypeId: 0,
+
 				schedule: [
 					{ id: 1, name: 'Nind St, Southport', edit: false, done: false }
-				]
+				],
+
+				invoicing: {
+					invoiceNumber: '',
+					invoiceDate: '',
+					invoicedTypeId: 0,
+					invoiceTotal: '',
+					invoicingNotes: '',
+					quoteTypeId: 0,
+					quoteNumber: ''
+				},
+
+				landAccess: {
+
+					questions: {
+						lloAvailable: false,
+						siteIssues: false,
+						contactingTeamUnderstand: false,
+						proceedWorksProgram: false
+					}
+
+				}
+
 			}
 		}
 	});

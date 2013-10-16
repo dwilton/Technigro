@@ -39,32 +39,68 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrder'], function (ko, 
 			console.log(refData());
 		};
 
+		/* Models */
+
+		var Item = function (id, name) {
+			return {
+				id: ko.observable(id),
+				name: ko.observable(name)
+			};
+		};
+
+		var JobInstruction = function (id, name, price) {
+			return {
+				id: ko.observable(id),
+				name: ko.observable(name),
+				price: ko.observable(price)
+			};
+		};
+
+		var Product = function (id, name, actual, water, area, total) {
+			return {
+				productId: ko.observable(id),
+				name: ko.observable(name),
+				actual: ko.observable(actual),
+				water: ko.observable(water),
+				area: ko.observable(area),
+				total: ko.observable(total)
+			};
+		};
+
+		/* Methods */
+
+		var jobInstruction = function (item) {
+			/* return ko.utils.arrayFirst(refData().jobInstructions, function(item) {
+				return id === item.id();
+			}); */
+		};
+
+		var addDocument = function () {
+			workOrder().details.documents.push(new Item(0, ''));
+		};
+
+		var removeDocument = function (item) {
+			workOrder().details.documents.remove(item);
+		};
+
 		var addTechnician = function () {
-			workOrder().technicians.push({ id: 0 });
+			workOrder().technicians.push(new Item(0, ''));
 		};
 
 		var removeTechnician = function (item) {
 			workOrder().technicians.remove(item);
 		};
 
-		var addDocument = function () {
-			workOrder().documents.push({ id: 0 });
-		};
-
-		var removeDocument = function (item) {
-			workOrder().documents.remove(item);
-		};
-
 		var addJobInstruction = function () {
-			workOrder().jobInstructions.push({ id: 0 });
+			workOrder().labour.jobInstructions.push(new JobInstruction(0, '', 0));
 		};
 
 		var removeJobInstruction = function (item) {
-			workOrder().jobInstructions.remove(item);
+			workOrder().labour.jobInstructions.remove(item);
 		};
 
 		var addEquipment = function () {
-			workOrder().equipment.push({ id: 0 });
+			workOrder().equipment.push(new Item(0, ''));
 		};
 
 		var removeEquipment = function (item) {
@@ -72,7 +108,7 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrder'], function (ko, 
 		};
 
 		var addProduct = function () {
-			workOrder().products.push({ productId: 0, actual: 0, water: 0, area: 0, total: 0 });
+			workOrder().products.push(new Product(0, '', 0, 0, 0, 0));
 		};
 
 		var removeProduct = function (item) {

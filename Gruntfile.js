@@ -379,10 +379,10 @@ module.exports = function(grunt) {
 	]);
 
 	// Test
+	// Disable unit tests
 	grunt.registerTask('test', [
-		//'csslint',
 		'jshint',
-		'karma:unit'
+		//'karma:unit'
 	]);
 
 	// Server

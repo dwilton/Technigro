@@ -33,15 +33,15 @@
 					</div>
 					<div class="client">
 						<label for="client">Client</label>
-						<select id="client" class="input-stretch" data-bind="options: refData().clients, optionsText: 'name', optionsValue: 'id', value: workOrder().clientId(), optionsCaption: 'Please Select'"></select>
+						<select id="client" class="input-stretch" data-bind="options: refData().clients, optionsText: 'name', optionsValue: 'id', value: workOrder().details.clientId(), optionsCaption: 'Please Select'"></select>
 					</div>
 					<div class="job">
 						<label for="job">Job</label>
-						<input id="job" type="text" class="input-stretch" data-bind="value: workOrder().jobName" />
+						<input id="job" type="text" class="input-stretch" data-bind="value: workOrder().details.jobName" />
 					</div>
 					<div class="status">
 						<label for="status">Status</label>
-						<select id="status" class="input-stretch" data-bind="options: refData().statuses, optionsText: 'name', value: workOrder().statusId, optionsValue: 'id'"></select>
+						<select id="status" class="input-stretch" data-bind="options: refData().statuses, optionsText: 'name', value: workOrder().details.statusId, optionsValue: 'id'"></select>
 					</div>
 				</header>
 
@@ -53,13 +53,13 @@
 							<div class="address">
 								<h3>Location</h3>
 								<label for="address">Address</label>
-								<textarea id="address" class="input-stretch" data-bind="value: workOrder().address"></textarea>
+								<textarea id="address" class="input-stretch" data-bind="value: workOrder().details.address"></textarea>
 							</div>
 							<div>
 								<div class="columns form">
 									<div class="col">
 										<label for="job-number">Job #</label>
-										<input id="job-number" type="text" class="input-stretch"  data-bind="value: workOrder().jobNumber" />
+										<input id="job-number" type="text" class="input-stretch"  data-bind="value: workOrder().details.jobNumber" />
 									</div>
 									<div class="col">
 										<label for="order-number">Order #</label>
@@ -67,21 +67,21 @@
 									</div>
 									<div class="col">
 										<label for="date">Date</label>
-										<input id="date" type="date" class="input-stretch" data-bind="value: workOrder().date" />
+										<input id="date" type="date" class="input-stretch" data-bind="value: workOrder().details.date" />
 									</div>
 								</div>
 								<div class="columns form">
 									<div class="col">
 										<label for="ubd-edition">UBD Edition</label>
-										<select id="ubd-edition" class="input-stretch" data-bind="options: refData().ubdEditions, optionsText: 'name', optionsValue: 'id', value: workOrder().ubdEdition(), optionsCaption: 'Please Select'"></select>
+										<select id="ubd-edition" class="input-stretch" data-bind="options: refData().ubdEditions, optionsText: 'name', optionsValue: 'id', value: workOrder().details.ubdEdition(), optionsCaption: 'Please Select'"></select>
 									</div>
 									<div class="col">
 										<label for="map">Map</label>
-										<input id="map" type="text" class="input-stretch" data-bind="value: workOrder().map" />
+										<input id="map" type="text" class="input-stretch" data-bind="value: workOrder().details.map" />
 									</div>
 									<div class="col">
 										<label for="ref">Ref</label>
-										<input id="ref" type="text" class="input-stretch" data-bind="value: workOrder().ref" />
+										<input id="ref" type="text" class="input-stretch" data-bind="value: workOrder().details.ref" />
 									</div>
 								</div>
 							</div>
@@ -92,16 +92,16 @@
 								<h3>Contact</h3>
 								<div>
 									<label for="contact-name">Name</label>
-									<input id="contact-name" type="text" class="input-stretch" data-bind="value: workOrder().contactName" />
+									<input id="contact-name" type="text" class="input-stretch" data-bind="value: workOrder().details.contactName" />
 								</div>
 								<div class="phone-number columns">
 									<div class="col">
 										<label for="phone-one">Phone 1</label>
-										<input id="phone-one" type="text" class="input-stretch" data-bind="value: workOrder().phone1" />
+										<input id="phone-one" type="text" class="input-stretch" data-bind="value: workOrder().details.phone1" />
 									</div>
 									<div class="col">
 										<label for="phone-one">Phone 2</label>
-										<input id="phone-one" type="text" class="input-stretch" data-bind="value: workOrder().phone2" />
+										<input id="phone-one" type="text" class="input-stretch" data-bind="value: workOrder().details.phone2" />
 									</div>
 								</div>
 							</div>
@@ -109,7 +109,7 @@
 								<h3>Maps</h3>
 								<div class="addable">
 									<table class="table stripe">
-										<tbody data-bind="foreach: workOrder().documents">
+										<tbody data-bind="foreach: workOrder().details.documents">
 											<tr>
 												<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeDocument">Remove</a></td>
 												<td>
@@ -142,7 +142,7 @@
 							<tbody data-bind="foreach: workOrder().technicians">
 								<tr>
 									<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeTechnician">Remove</a></td>
-									<td><select data-bind="options: $parent.refData().technicians, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"><select></td>
+									<td><select data-bind="options: $parent.refData().technicians, optionsText: 'name', optionsValue: 'id', value: id(), optionsCaption: 'Please Select'"><select></td>
 								</tr>
 							</tbody>
 						</table>
@@ -157,11 +157,11 @@
 				<header class="header">
 					<div>
 						<label for="time-allocated">Time Allocated</label>
-						<select id="time-allocated" data-bind="options: ko.utils.range(workOrder().timeAllocated, refData().maxTimeAllocated)"></select><span class="small">Days</span>
+						<select id="time-allocated" data-bind="options: ko.utils.range(workOrder().labour.timeAllocated, refData().maxTimeAllocated)"></select><span class="small">Days</span>
 					</div>
 					<div>
 						<label for="number-of-staff">Staff</label>
-						<select id="number-of-staff" data-bind="options: ko.utils.range(workOrder().staff, refData().maxStaff)"></select>
+						<select id="number-of-staff" data-bind="options: ko.utils.range(workOrder().labour.staff, refData().maxStaff)"></select>
 					</div>
 					<div>
 						<label for="area">Area</label>
@@ -174,11 +174,11 @@
 					<div class="addable">
 						<h3>Job Instructions</h3>
 						<table class="job-instruction table stripe">
-							<tbody data-bind="foreach: workOrder().jobInstructions">
+							<tbody data-bind="foreach: workOrder().labour.jobInstructions">
 								<tr>
 									<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeJobInstruction">Remove</a></td>
-									<td width="90%"><select data-bind="options: $parent.refData().jobInstructions, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
-									<td class="price">$0.00</td>
+									<td width="90%"><select data-bind="options: $parent.refData().jobInstructions, optionsText: 'name', optionsValue: 'id', value: id(), optionsCaption: 'Please Select'"></select></td>
+									<td class="price"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -199,19 +199,19 @@
 								<ul>
 									<li>
 										<ul>
-											<li><input id="take-5" type="checkbox" class="switch" /></li>
+											<li><input id="take-5" type="checkbox" class="switch" data-bind="checked: workOrder().labour.workChecklist.take5" /></li>
 											<li><label for="take-5">Have you filled out a take 5?</label></li>
 										</ul>
 									</li>
 									<li>
 										<ul>
-											<li><input id="task-confident" type="checkbox" class="switch" /></li>
+											<li><input id="task-confident" type="checkbox" class="switch"  data-bind="checked: workOrder().labour.workChecklist.taskConfident"/></li>
 											<li><label for="task-confident">Are you confident that you know what you are doing?</label></li>
 										</ul>
 									</li>
 									<li>
 										<ul>
-											<li><input id="incident-report-guidelines" type="checkbox" class="switch" /></li>
+											<li><input id="incident-report-guidelines" type="checkbox" class="switch" data-bind="checked: workOrder().labour.workChecklist.incidentReportGuidelines" /></li>
 											<li><label for="incident-report-guidelines">Have you checked that you have the "incident report" guidelines?</label></li>
 										</ul>
 									</li>
@@ -221,7 +221,7 @@
 						<div class="col critical-info">
 							<div>
 								<label for="critical-info" class="h3">Critial Information</label>
-								<textarea id="critical-info" class="input-stretch"></textarea>
+								<textarea id="critical-info" class="input-stretch" data-bind="value: workOrder().labour.criticalInfo"></textarea>
 							</div>
 						</div>
 					</div>
@@ -238,7 +238,7 @@
 						<tbody data-bind="foreach: workOrder().equipment">
 							<tr>
 								<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeEquipment">Remove</a></td>
-								<td><select data-bind="options: $parent.refData().equipment, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+								<td><select data-bind="options: $parent.refData().equipment, optionsText: 'name', optionsValue: 'id', value: id(), optionsCaption: 'Please Select'"></select></td>
 							</tr>
 						</tbody>
 					</table>
@@ -265,7 +265,7 @@
 						<tbody data-bind="foreach: workOrder().products">
 							<tr>
 								<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeProduct">Remove</a></td>
-								<td width="40%"><select data-bind="options: $parent.refData().products, optionsText: 'name', optionsValue: 'id', value: productId, optionsCaption: 'Please Select'"></select></td>
+								<td width="40%"><select data-bind="options: $parent.refData().products, optionsText: 'name', optionsValue: 'id', value: productId(), optionsCaption: 'Please Select'"></select></td>
 								<td><input type="text" data-bind="value: actual"></td>
 								<td><input type="text" data-bind="value: water"></td>
 								<td><input type="text" data-bind="value: area"></td>
@@ -339,27 +339,27 @@
 								<div class="columns form">
 									<div class="col">
 										<label for="invoice-number">Invoice #</label>
-										<input id="invoice-number" type="text" class="input-stretch" />
+										<input id="invoice-number" type="text" class="input-stretch"  data-bind="value: workOrder().invoicing.invoiceNumber"/>
 									</div>
 									<div class="col">
 										<label for="invoice-date">Invoice Date</label>
-										<input id="invoice-date" type="date" class="input-stretch" />
+										<input id="invoice-date" type="date" class="input-stretch" data-bind="value: workOrder().invoicing.invoiceDate" />
 									</div>
 								</div>
 								<div class="columns form">
 									<div class="col">
 										<label for="invoiced-by">Invoiced By</label>
-										<select id="invoiced-by" class="input-stretch" data-bind="options: refData().invoiceTypes, optionsText: 'name', optionsValue: 'id', value: workOrder().invoicedTypeId(), optionsCaption: 'Please Select'"></select>
+										<select id="invoiced-by" class="input-stretch" data-bind="options: refData().invoiceTypes, optionsText: 'name', optionsValue: 'id', value: workOrder().invoicing.invoicedTypeId(), optionsCaption: 'Please Select'"></select>
 									</div>
 									<div class="col">
 										<label for="invoice-total">Invoice Total</label>
-										<input id="invoice-total" type="text" class="input-stretch" />
+										<input id="invoice-total" type="text" class="input-stretch"  data-bind="value: workOrder().invoicing.invoiceTotal" />
 									</div>
 								</div>
 							</div>
 							<div class="invoicing-notes">
 								<label for="notes">Invoicing Notes</label>
-								<textarea id="invoicing-notes" class="input-stretch"></textarea>
+								<textarea id="invoicing-notes" class="input-stretch" data-bind="value: workOrder().invoicing.invoicingNotes"></textarea>
 							</div>
 						</div>
 
@@ -368,11 +368,11 @@
 								<h3>Quote</h3>
 								<div>
 									<label for="quote-type">Quote Type</label>
-									<select id="quote-type" class="input-stretch" data-bind="options: refData().quoteTypes, optionsText: 'name', optionsValue: 'id', value: workOrder().quoteTypeId(), optionsCaption: 'Please Select'"></select>
+									<select id="quote-type" class="input-stretch" data-bind="options: refData().quoteTypes, optionsText: 'name', optionsValue: 'id', value: workOrder().invoicing.quoteTypeId(), optionsCaption: 'Please Select'"></select>
 								</div>
 								<div>
 									<label for="quote-number">Quote #</label>
-									<input id="quote-number" type="text" class="input-stretch" />
+									<input id="quote-number" type="text" class="input-stretch" data-bind="value: workOrder().invoicing.quoteNumber" />
 								</div>
 							</div>
 						</div>
