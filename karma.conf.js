@@ -16,7 +16,13 @@ module.exports = function(karma) {
 			{pattern: 'node_modules/chai/chai.js', included: false},
 
 			// Bower components
-			{pattern: 'app/vendor/**/*.js', included: false},
+			{pattern: 'app/vendor/knockout.js/knockout.js', included: false},
+			{pattern: 'app/vendor/pubsub/src/pubsub.js', included: false},
+			{pattern: 'app/vendor/jquery/jquery.js', included: false},
+			{pattern: 'app/vendor/jquery-mockjax/jquery.mockjax.js', included: false},
+
+			{pattern: 'app/vendor/lawnchair/src/Lawnchair.js', included: true},
+			{pattern: 'app/vendor/lawnchair/src/adapters/dom.js', included: true},
 
 			// All app and test modules
 			{pattern: 'app/scripts/**/*.js', included: false},

@@ -20,8 +20,9 @@ require.config({
 		// Components
 		'animo': '../vendor/animo.js/animo',
 		'jquery': '../vendor/jquery/jquery',
-		'ko': '../vendor/knockout.js/knockout',
+		'knockout': '../vendor/knockout.js/knockout',
 		'ladda': '../vendor/ladda/js/ladda',
+		'mapping': '../vendor/knockout-mapping/knockout.mapping',
 		'mockjax': '../vendor/jquery-mockjax/jquery.mockjax',
 		'page': '../vendor/page/index',
 		'pubsub': '../vendor/pubsub/src/pubsub',
@@ -35,14 +36,14 @@ require.config({
 		'querystring': 'lib/querystring',
 		'url': 'lib/url',
 		'router': 'lib/router',
-		'store': 'lib/store'
+		'store': 'lib/store',
 
 	},
 
 	shim: {
-		'page': {
-			exports: 'page'
-		}
+		'animo': ['jquery'],
+		'mockjax': ['jquery'],
+		'page': { exports: 'page' }
 	},
 
 	// ask requirejs to load these files (all our tests)

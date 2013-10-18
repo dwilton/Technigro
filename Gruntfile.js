@@ -102,16 +102,6 @@ module.exports = function(grunt) {
 		 * Linting & Unit Testing
 		 */
 
-		// Lint CSS
-		csslint: {
-			strict: {
-				options: {
-					import: 2
-				},
-				src: ['<%= config.app %>/css/*.css']
-			}
-		},
-
 		// Lint Javascript
 		jshint: {
 			options: {
@@ -379,10 +369,9 @@ module.exports = function(grunt) {
 	]);
 
 	// Test
-	// Disable unit tests
 	grunt.registerTask('test', [
 		'jshint',
-		//'karma:unit'
+		'karma:unit'
 	]);
 
 	// Server

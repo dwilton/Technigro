@@ -27,7 +27,6 @@
     "grunt-image-embed": "~0.3.0",
     "grunt-autoprefixer": "~0.1.20130516",
     "grunt-contrib-cssmin": "~0.6.0",
-    "grunt-contrib-csslint": "~0.1.2",
     "grunt-plato": "~0.2.0",
     "grunt-contrib-uglify": "~0.2.2",
     "grunt-karma": "~0.5.0",
