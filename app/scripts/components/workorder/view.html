@@ -289,7 +289,7 @@
 				<div class="schedule-roads">
 					<div class="list">
 						<ul data-bind="foreach: workOrder().schedule">
-							
+
 								<!-- ko if: !edit() -->
 
 									<li data-bind="css: { 'done': done() }">
@@ -313,9 +313,9 @@
 										<!-- ko if: done() -->
 
 										<button class="button" data-bind="click: $parent.scheduleToggleDone">Undo</button>
-										
+
 										<!-- /ko -->
-									
+
 									</li>
 
 								<!-- /ko -->
@@ -515,6 +515,8 @@
 					</div>
 					<div class="toggle-menu">
 						<div class="segmented-button">
+
+							<!-- ko if: !altType() -->
 							<input id="complete-work" name="report-options" type="radio" checked="checked" />
 							<label for="complete-work" class="button">Complete Work</label>
 							<input id="personnel" name="report-options" type="radio" />
@@ -523,6 +525,19 @@
 							<label for="comments" class="button">Comments</label>
 							<input id="incidents" name="report-options" type="radio" />
 							<label for="incidents" class="button">Incidents</label>
+							<!-- /ko -->
+
+							<!-- ko if: altType() -->
+							<input id="pipeline-work" name="report-options" type="radio" checked="checked" />
+							<label for="pipeline-work" class="button">Pipeline Work</label>
+							<input id="personnel" name="report-options" type="radio" />
+							<label for="personnel" class="button">Personnel</label>
+							<input id="equipment-usage" name="report-options" type="radio" />
+							<label for="equipment-usage" class="button">Equipment</label>
+							<input id="weed-treatment" name="report-options" type="radio" />
+							<label for="weed-treatment" class="button">Weed Treatment</label>
+							<!-- /ko -->
+
 						</div>
 					</div>
 
@@ -530,6 +545,7 @@
 
 				<div class="toggle-menu-content content">
 
+					<!-- ko if: !altType() -->
 					<div id="complete-work-content" class="complete-work">
 						<div>
 							<h3>Complete Work</h3>
@@ -558,6 +574,40 @@
 							</div>
 						</div>
 					</div>
+					<!-- /ko -->
+
+					<!-- ko if: altType() -->
+					<div id="pipeline-work-content" class="pipeline-work">
+						<div>
+							<h3>Job Instructions - Completed (Pipeline Works)</h3>
+							<div class="addable">
+								<table class="table stripe ">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Job</th>
+											<th>Parcel</th>
+											<th>From KPI</th>
+											<th>To KPI</th>
+											<th>Daily Qty</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="remove"><a href="#" class="icon icon_cross">Remove</a></td>
+											<td width="40%"><select></select></td>
+											<td><input type="text" /></td>
+											<td><input type="text" /></td>
+											<td><input type="text" /></td>
+											<td><input type="text" /></td>
+										</tr>
+									</tbody>
+								</table>
+								<button class="button button-additional button-small">Add New</button>
+							</div>
+						</div>
+					</div>
+					<!-- /ko -->
 
 					<div id="personnel-content" class="personnel">
 						<div>
@@ -588,6 +638,7 @@
 						</div>
 					</div>
 
+					<!-- ko if: !altType() -->
 					<div id="comments-content" class="comments">
 						<div>
 							<h3>Comments</h3>
@@ -658,6 +709,42 @@
 							</li>
 						</ul>
 					</div>
+					<!-- /ko -->
+
+					<!-- ko if: altType() -->
+					<div id="equipment-usage-content" class="equipment-usage">
+						<div>
+							<h3>Crew Equipments</h3>
+							<div class="addable">
+								<table class="table stripe ">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Equipment</th>
+											<th>Hours Worked</th>
+											<th>Stand-By Hours</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="remove"><a href="#" class="icon icon_cross">Remove</a></td>
+											<td width="40%"><select></select></td>
+											<td><input type="text" /></td>
+											<td><input type="text" /></td>
+										</tr>
+									</tbody>
+								</table>
+								<button class="button button-additional button-small">Add New</button>
+							</div>
+						</div>
+					</div>
+
+					<div id="weed-treatment-content" class="weed-treatment">
+						<div>
+							<h3>Weed Treatment</h3>
+						</div>
+					</div>
+					<!-- /ko -->
 
 				</div>
 

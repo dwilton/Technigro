@@ -921,6 +921,10 @@ a:link {
   -webkit-tap-highlight-color: transparent;
 }
 
+.invalid {
+  border-color: #be1700;
+}
+
 /**
  * App
  */

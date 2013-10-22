@@ -11,6 +11,7 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrder'], function (ko, 
 		var menu = ko.observableArray();
 		var workOrder = ko.observable({});
 		var refData = ko.observable({});
+		var altType = ko.observable(true);
 
 		var init = function () {
 			p.subscribe('workOrder.create', create);
@@ -133,6 +134,7 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrder'], function (ko, 
 			isLoading: isLoading,
 			refData: refData,
 			workOrder: workOrder,
+			altType: altType,
 			addTechnician: addTechnician,
 			removeTechnician: removeTechnician,
 			addDocument: addDocument,
