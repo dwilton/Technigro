@@ -21,10 +21,12 @@
 				<input id="archived" type="checkbox" class="switch" data-bind="checked: filter.archived" />
 			</div>
 
-			<div data-bind="visible: isAdmin">
+			<!-- ko if: isAdmin -->
+			<div>
 				<label for="technician">Technician</label>
 				<select id="technician" class="technician" data-bind="options: refData.technicians, optionsText: 'name', OptionsValue: 'id', value: filter.technician, optionsCaption: 'All'"></select>
 			</div>
+			<!-- /ko -->
 
 			<div>
 				<label for="date-from">Date From</label>
@@ -36,16 +38,18 @@
 				<input id="date-to" type="date" class="date-to" data-bind="value: filter.dateTo" />
 			</div>
 
-			<div class="dropdown-menu" data-bind="visible: isAdmin">
+			<!-- ko if: isAdmin -->
+			<div class="dropdown-menu">
 				<button class="add-new-button button" data-bind="click: toggleAddNewMenu">Add New</button>
 				<div class="dropdown" data-bind="visible: addNewMenu()">
-					<button class="button icon icon_arrow" data-bind="route: '#workorder?type=gccc'">GCCC</button>
-					<button class="button icon icon_arrow" data-bind="route: '#workorder?type=major-project'">Major Projects</button>
-					<button class="button icon icon_arrow" data-bind="route: '#workorder?type=natural-areas-job'">Natural Areas Job</button>
-					<button class="button icon icon_arrow" data-bind="route: '#workorder?type=roads-and-landscapes'">Roads &amp; Landscapes</button>
-					<button class="button icon icon_arrow" data-bind="route: '#workorder?type=turf'">Turf</button>
+					<button class="button icon icon_arrow" data-bind="route: '#workorder?typeid=1'">GCCC</button>
+					<button class="button icon icon_arrow" data-bind="route: '#workorder?typeid=2'">Major Projects</button>
+					<button class="button icon icon_arrow" data-bind="route: '#workorder?typeid=2'">Natural Areas Job</button>
+					<button class="button icon icon_arrow" data-bind="route: '#workorder?typeid=1'">Roads &amp; Landscapes</button>
+					<button class="button icon icon_arrow" data-bind="route: '#workorder?typeid=1'">Turf</button>
 				</div>
 			</div>
+			<!-- /ko -->
 
 		</div>
 
@@ -74,7 +78,7 @@
 				</thead>
 			</table>
 
-			<div class="results">
+			<div class="results scrollable">
 
 				<table class="table stripe">
 					<colgroup>

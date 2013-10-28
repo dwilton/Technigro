@@ -4,6 +4,9 @@
 	<description></description>
 	<author email="david@desingineer.me" href="http://www.desingineer.me">David Wilton</author>
 	<feature name="http://api.phonegap.com/1.0/device" />
+	<feature name="Camera">
+    <param name="ios-package" value="CDVCamera" />
+	</feature>
 	<preference name="permissions" value="none" />
 	<preference name="orientation" value="landscape" />
 	<preference name="target-device" value="ipad" />

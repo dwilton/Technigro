@@ -9,12 +9,16 @@
 		<nav class="menu list">
 			<ul>
 				<li class="selected"><a href="#details" class="icon icon_arrow">Details</a></li>
+				<!-- ko if: isAdmin -->
 				<li><a href="#technicians" class="icon icon_arrow">Technicians</a></li>
+				<!-- /ko -->
 				<li><a href="#labour" class="icon icon_arrow">Labour</a></li>
 				<li><a href="#equipment" class="icon icon_arrow">Equipment</a></li>
 				<li><a href="#products" class="icon icon_arrow">Products</a></li>
 				<li><a href="#schedule" class="icon icon_arrow">Schedule</a></li>
+				<!-- ko if: isAdmin -->
 				<li><a href="#invoicing" class="icon icon_arrow">Invoicing</a></li>
+				<!-- /ko -->
 				<li><a href="#images" class="icon icon_arrow">Images</a></li>
 				<li><a href="#land-access" class="icon icon_arrow">Land Access</a></li>
 				<li><a href="#daily-report" class="icon icon_arrow">Daily Report</a></li>
@@ -22,22 +26,37 @@
 			</ul>
 		</nav>
 
-		<div class="menu-content">
+		<div class="menu-content scrollable">
 
 			<section id="details" class="workorder-details">
 
 				<header class="header">
 					<div class="treatment-date">
 						<label for="treatment-date">Treatment Date</label>
-						<input id="treatment-date" type="date" class="input-stretch" />
+						<!-- ko if: isAdmin -->
+						<input id="treatment-date" type="date" class="input-stretch" data-bind="value: workOrder().details.treatmentDate" />
+						<!-- /ko -->
+						<!-- ko if: !isAdmin() -->
+						<span class="data input-stretch" data-bind="text: workOrder().details.treatmentDate"></span>
+						<!-- /ko -->
 					</div>
 					<div class="client">
 						<label for="client">Client</label>
+						<!-- ko if: isAdmin -->
 						<select id="client" class="input-stretch" data-bind="options: refData().clients, optionsText: 'name', optionsValue: 'id', value: workOrder().details.clientId(), optionsCaption: 'Please Select'"></select>
+						<!-- /ko -->
+						<!-- ko if: !isAdmin() -->
+						<span class="data input-stretch" data-bind="text: workOrder().details.clientName"></span>
+						<!-- /ko -->
 					</div>
 					<div class="job">
 						<label for="job">Job</label>
+						<!-- ko if: isAdmin -->
 						<input id="job" type="text" class="input-stretch" data-bind="value: workOrder().details.jobName" />
+						<!-- /ko -->
+						<!-- ko if: !isAdmin() -->
+						<span class="data input-stretch" data-bind="text: workOrder().details.jobName"></span>
+						<!-- /ko -->
 					</div>
 					<div class="status">
 						<label for="status">Status</label>
@@ -53,35 +72,70 @@
 							<div class="address">
 								<h3>Location</h3>
 								<label for="address">Address</label>
+								<!-- ko if: isAdmin -->
 								<textarea id="address" class="input-stretch" data-bind="value: workOrder().details.address"></textarea>
+								<!-- /ko -->
+								<!-- ko if: !isAdmin() -->
+								<span class="data input-stretch" data-bind="text: workOrder().details.address"></span>
+								<!-- /ko -->
 							</div>
 							<div>
 								<div class="columns form">
 									<div class="col">
 										<label for="job-number">Job #</label>
+										<!-- ko if: isAdmin -->
 										<input id="job-number" type="text" class="input-stretch"  data-bind="value: workOrder().details.jobNumber" />
+										<!-- /ko -->
+										<!-- ko if: !isAdmin() -->
+										<span class="data input-stretch" data-bind="text: workOrder().details.jobNumber"></span>
+										<!-- /ko -->
 									</div>
 									<div class="col">
 										<label for="order-number">Order #</label>
-										<input id="order-number" type="text" class="input-stretch" data-bind="value: workOrder().orderNumber" />
+										<!-- ko if: isAdmin -->
+										<input id="order-number" type="text" class="input-stretch" data-bind="value: workOrder().details.orderNumber" />
+										<!-- /ko -->
+										<!-- ko if: !isAdmin() -->
+										<span class="data input-stretch" data-bind="text: workOrder().details.orderNumber"></span>
+										<!-- /ko -->
 									</div>
 									<div class="col">
 										<label for="date">Date</label>
+										<!-- ko if: isAdmin -->
 										<input id="date" type="date" class="input-stretch" data-bind="value: workOrder().details.date" />
+										<!-- /ko -->
+										<!-- ko if: !isAdmin() -->
+										<span class="data input-stretch" data-bind="text: workOrder().details.date"></span>
+										<!-- /ko -->
 									</div>
 								</div>
 								<div class="columns form">
 									<div class="col">
 										<label for="ubd-edition">UBD Edition</label>
-										<select id="ubd-edition" class="input-stretch" data-bind="options: refData().ubdEditions, optionsText: 'name', optionsValue: 'id', value: workOrder().details.ubdEdition(), optionsCaption: 'Please Select'"></select>
+										<!-- ko if: isAdmin -->
+										<select id="ubd-edition" class="input-stretch" data-bind="options: refData().ubdEditions, optionsText: 'name', optionsValue: 'id', value: workOrder().details.ubdEditionId, optionsCaption: 'Please Select'"></select>
+										<!-- /ko -->
+										<!-- ko if: !isAdmin() -->
+										<span class="data input-stretch" data-bind="text: workOrder().details.ubdEditionName"></span>
+										<!-- /ko -->
 									</div>
 									<div class="col">
 										<label for="map">Map</label>
+										<!-- ko if: isAdmin -->
 										<input id="map" type="text" class="input-stretch" data-bind="value: workOrder().details.map" />
+										<!-- /ko -->
+										<!-- ko if: !isAdmin() -->
+										<span class="data input-stretch" data-bind="text: workOrder().details.map"></span>
+										<!-- /ko -->
 									</div>
 									<div class="col">
 										<label for="ref">Ref</label>
+										<!-- ko if: isAdmin -->
 										<input id="ref" type="text" class="input-stretch" data-bind="value: workOrder().details.ref" />
+										<!-- /ko -->
+										<!-- ko if: !isAdmin() -->
+										<span class="data input-stretch" data-bind="text: workOrder().details.ref"></span>
+										<!-- /ko -->
 									</div>
 								</div>
 							</div>
@@ -92,24 +146,40 @@
 								<h3>Contact</h3>
 								<div>
 									<label for="contact-name">Name</label>
+									<!-- ko if: isAdmin -->
 									<input id="contact-name" type="text" class="input-stretch" data-bind="value: workOrder().details.contactName" />
+									<!-- /ko -->
+									<!-- ko if: !isAdmin() -->
+									<span class="data input-stretch" data-bind="text: workOrder().details.contactName"></span>
+									<!-- /ko -->
 								</div>
 								<div class="phone-number columns">
 									<div class="col">
 										<label for="phone-one">Phone 1</label>
+										<!-- ko if: isAdmin -->
 										<input id="phone-one" type="text" class="input-stretch" data-bind="value: workOrder().details.phone1" />
+										<!-- /ko -->
+										<!-- ko if: !isAdmin() -->
+										<span class="data input-stretch" data-bind="text: workOrder().details.phone1"></span>
+										<!-- /ko -->
 									</div>
 									<div class="col">
 										<label for="phone-one">Phone 2</label>
+										<!-- ko if: isAdmin -->
 										<input id="phone-one" type="text" class="input-stretch" data-bind="value: workOrder().details.phone2" />
+										<!-- /ko -->
+										<!-- ko if: !isAdmin() -->
+										<span class="data input-stretch" data-bind="text: workOrder().details.phone2"></span>
+										<!-- /ko -->
 									</div>
 								</div>
 							</div>
 							<div class="maps">
 								<h3>Maps</h3>
+								<!-- ko if: isAdmin -->
 								<div class="addable">
 									<table class="table stripe">
-										<tbody data-bind="foreach: workOrder().details.documents">
+										<tbody data-bind="foreach: workOrder().documents">
 											<tr>
 												<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeDocument">Remove</a></td>
 												<td>
@@ -124,6 +194,18 @@
 									</table>
 									<button class="button button-additional button-small" data-bind="click: addDocument">Add New</button>
 								</div>
+								<!-- /ko -->
+								<!-- ko if: !isAdmin() -->
+								<table class="table stripe">
+										<tbody data-bind="foreach: workOrder().documents">
+											<tr>
+												<td>
+													<a href="#" data-bind="text: name"></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								<!-- /ko -->
 							</div>
 						</div>
 
@@ -142,12 +224,12 @@
 							<tbody data-bind="foreach: workOrder().technicians">
 								<tr>
 									<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeTechnician">Remove</a></td>
-									<td><select data-bind="options: $parent.refData().technicians, optionsText: 'name', optionsValue: 'id', value: id(), optionsCaption: 'Please Select'"><select></td>
+									<td><select data-bind="options: $parent.refData().technicians, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"><select></td>
 								</tr>
 							</tbody>
 						</table>
+						<button class="button button-additional button-small" data-bind="click: addTechnician">Add New</button>
 					</div>
-					<button class="button button-additional button-small" data-bind="click: addTechnician">Add New</button>
 				</div>
 
 			</section>
@@ -157,28 +239,45 @@
 				<header class="header">
 					<div>
 						<label for="time-allocated">Time Allocated</label>
-						<select id="time-allocated" data-bind="options: ko.utils.range(workOrder().labour.timeAllocated, refData().maxTimeAllocated)"></select><span class="small">Days</span>
+						<!-- ko if: isAdmin -->
+						<select id="time-allocated" data-bind="options: ko.utils.range(0, refData().maxTimeAllocated), value: workOrder().labour.timeAllocated"></select>
+						<!-- /ko -->
+						<!-- ko if: !isAdmin() -->
+						<span class="data" data-bind="text: workOrder().labour.timeAllocated"></span>
+						<!-- /ko -->
+						<span class="small">Days</span>
 					</div>
 					<div>
 						<label for="number-of-staff">Staff</label>
-						<select id="number-of-staff" data-bind="options: ko.utils.range(workOrder().labour.staff, refData().maxStaff)"></select>
+						<!-- ko if: isAdmin -->
+						<select id="number-of-staff" data-bind="options: ko.utils.range(0, refData().maxStaff), value: workOrder().labour.staff"></select>
+						<!-- /ko -->
+						<!-- ko if: !isAdmin() -->
+						<span class="data" data-bind="text: workOrder().labour.staff"></span>
+						<!-- /ko -->
 					</div>
 					<div>
 						<label for="area">Area</label>
-						<input id="area" type="text" data-bind="value: workOrder().area">
+						<!-- ko if: isAdmin -->
+						<input id="area" type="text" data-bind="value: workOrder().labour.area">
+						<!-- /ko -->
+						<!-- ko if: !isAdmin() -->
+						<span class="data" data-bind="text: workOrder().labour.area"></span>
+						<!-- /ko -->
 					</div>
 				</header>
 
-				<div class="content">
+				<div class="content scrollable">
 
 					<div class="addable">
 						<h3>Job Instructions</h3>
+						<!-- ko if: isAdmin -->
 						<table class="job-instruction table stripe">
-							<tbody data-bind="foreach: workOrder().labour.jobInstructions">
+							<tbody data-bind="foreach: workOrder().jobInstructions">
 								<tr>
 									<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeJobInstruction">Remove</a></td>
-									<td width="90%"><select data-bind="options: $parent.refData().jobInstructions, optionsText: 'name', optionsValue: 'id', value: id(), optionsCaption: 'Please Select'"></select></td>
-									<td class="price"></td>
+									<td width="90%"><select data-bind="options: $parent.refData().jobInstructions, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+									<td class="price" data-bind="text: $parent.formatCurrency(price())"></td>
 								</tr>
 							</tbody>
 						</table>
@@ -188,6 +287,16 @@
 								<span>Total</span> $0.00
 							</span>
 						</div>
+						<!-- /ko -->
+						<!-- ko if: !isAdmin() -->
+						<table class="job-instruction table stripe">
+							<tbody data-bind="foreach: workOrder().jobInstructions">
+								<tr>
+									<td data-bind="text: name"></td>
+								</tr>
+							</tbody>
+						</table>
+						<!-- /ko -->
 					</div>
 
 					<hr />
@@ -199,19 +308,19 @@
 								<ul>
 									<li>
 										<ul>
-											<li><input id="take-5" type="checkbox" class="switch" data-bind="checked: workOrder().labour.workChecklist.take5" /></li>
+											<li><input id="take-5" type="checkbox" class="switch" data-bind="checked: workOrder().labour.checklist.take5" /></li>
 											<li><label for="take-5">Have you filled out a take 5?</label></li>
 										</ul>
 									</li>
 									<li>
 										<ul>
-											<li><input id="task-confident" type="checkbox" class="switch"  data-bind="checked: workOrder().labour.workChecklist.taskConfident"/></li>
+											<li><input id="task-confident" type="checkbox" class="switch"  data-bind="checked: workOrder().labour.checklist.taskConfident"/></li>
 											<li><label for="task-confident">Are you confident that you know what you are doing?</label></li>
 										</ul>
 									</li>
 									<li>
 										<ul>
-											<li><input id="incident-report-guidelines" type="checkbox" class="switch" data-bind="checked: workOrder().labour.workChecklist.incidentReportGuidelines" /></li>
+											<li><input id="incident-report-guidelines" type="checkbox" class="switch" data-bind="checked: workOrder().labour.checklist.incidentReportGuidelines" /></li>
 											<li><label for="incident-report-guidelines">Have you checked that you have the "incident report" guidelines?</label></li>
 										</ul>
 									</li>
@@ -221,7 +330,12 @@
 						<div class="col critical-info">
 							<div>
 								<label for="critical-info" class="h3">Critial Information</label>
+								<!-- ko if: isAdmin -->
 								<textarea id="critical-info" class="input-stretch" data-bind="value: workOrder().labour.criticalInfo"></textarea>
+								<!-- /ko -->
+								<!-- ko if: !isAdmin() -->
+								<span class="data input-stretch" data-bind="text: workOrder().labour.criticalInfo"></span>
+								<!-- /ko -->
 							</div>
 						</div>
 					</div>
@@ -232,17 +346,19 @@
 
 			<section id="equipment" class="workorder-equipment content" style="display: none">
 
-				<div class="equipment addable">
+				<div class="equipment">
 					<h3>Equipment</h3>
-					<table class="table stripe">
-						<tbody data-bind="foreach: workOrder().equipment">
-							<tr>
-								<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeEquipment">Remove</a></td>
-								<td><select data-bind="options: $parent.refData().equipment, optionsText: 'name', optionsValue: 'id', value: id(), optionsCaption: 'Please Select'"></select></td>
-							</tr>
-						</tbody>
-					</table>
-					<button class="button button-additional button-small" data-bind="click: addEquipment">Add New</button>
+					<div class="addable">
+						<table class="table stripe">
+							<tbody data-bind="foreach: workOrder().equipment">
+								<tr>
+									<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeEquipment">Remove</a></td>
+									<td><select data-bind="options: $parent.refData().equipment, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+								</tr>
+							</tbody>
+						</table>
+						<button class="button button-additional button-small" data-bind="click: addEquipment">Add New</button>
+					</div>
 				</div>
 
 			</section>
@@ -265,7 +381,7 @@
 						<tbody data-bind="foreach: workOrder().products">
 							<tr>
 								<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeProduct">Remove</a></td>
-								<td width="40%"><select data-bind="options: $parent.refData().products, optionsText: 'name', optionsValue: 'id', value: productId(), optionsCaption: 'Please Select'"></select></td>
+								<td width="40%"><select data-bind="options: $parent.refData().products, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
 								<td><input type="text" data-bind="value: actual"></td>
 								<td><input type="text" data-bind="value: water"></td>
 								<td><input type="text" data-bind="value: area"></td>
@@ -293,7 +409,7 @@
 								<!-- ko if: !edit() -->
 
 									<li data-bind="css: { 'done': done() }">
-										<a href="#" data-bind="click: $parent.scheduleToggleEdit">Nind St, Southport</a>
+										<a href="#" data-bind="click: $parent.scheduleToggleEdit, text: name"></a>
 									</li>
 
 								<!-- /ko -->
@@ -388,17 +504,20 @@
 				<header class="header">
 
 					<div>
-						<button class="button button-small">New Image</button>
+						<button class="button button-small" data-bind="click: addImage">New Image</button>
 					</div>
 
 				</header>
 
-				<div class="content">
+				<div class="photos content">
+
+					<!-- ko foreach: workOrder().images -->
 
 					<div>
-						<img src="" alt="" />
-						<span></span>
+						<img data-bind="attr: { src: src }" />
 					</div>
+
+					<!-- /ko -->
 
 				</div>
 
@@ -406,16 +525,18 @@
 
 			<section id="land-access" class="workorder-land-access" style="display: none">
 
+				<!-- ko if: isAdmin -->
 				<header class="header">
 					<div class="technician">
 						<label for="land-access-technician">Technician</label>
-						<select id="land-access-technician"></select>
+						<select id="land-access-technician" class="input-stretch" data-bind="options: workOrder().technicians, optionsText: 'name', optionsValue: 'id'"></select>
 					</div>
 					<div class="land-access-date">
 						<label for="land-access-date">Date</label>
 						<input id="land-access-date" type="date" />
 					</div>
 				</header>
+				<!-- /ko -->
 
 				<div class="content">
 
@@ -509,18 +630,28 @@
 			<section id="daily-report" class="workorder-daily-report" style="display: none" data-bind="toggleMenu: true">
 
 				<header class="header">
-					<div>
+					<!-- ko if: isAdmin -->
+					<div class="technician">
 						<label for="daily-report-technician">Technician</label>
-						<select id="daily-report-technician" class="technician"></select>
+						<select id="daily-report-technician" class="input-stretch" data-bind="options: workOrder().technicians, optionsText: 'name', optionsValue: 'id'"></select>
 					</div>
+					<!-- /ko -->
 					<div class="toggle-menu">
 						<div class="segmented-button">
 
-							<!-- ko if: !altType() -->
 							<input id="complete-work" name="report-options" type="radio" checked="checked" />
-							<label for="complete-work" class="button">Complete Work</label>
+							<label for="complete-work" class="button">
+								<!-- ko if: !altType() -->
+								Complete Work
+								<!-- /ko -->
+								<!-- ko if: altType() -->
+								Pipeline Work
+								<!-- /ko -->
+							</label>
 							<input id="personnel" name="report-options" type="radio" />
 							<label for="personnel" class="button">Personnel</label>
+
+							<!-- ko if: !altType() -->
 							<input id="comments" name="report-options" type="radio" />
 							<label for="comments" class="button">Comments</label>
 							<input id="incidents" name="report-options" type="radio" />
@@ -528,10 +659,6 @@
 							<!-- /ko -->
 
 							<!-- ko if: altType() -->
-							<input id="pipeline-work" name="report-options" type="radio" checked="checked" />
-							<label for="pipeline-work" class="button">Pipeline Work</label>
-							<input id="personnel" name="report-options" type="radio" />
-							<label for="personnel" class="button">Personnel</label>
 							<input id="equipment-usage" name="report-options" type="radio" />
 							<label for="equipment-usage" class="button">Equipment</label>
 							<input id="weed-treatment" name="report-options" type="radio" />
@@ -545,8 +672,9 @@
 
 				<div class="toggle-menu-content content">
 
-					<!-- ko if: !altType() -->
 					<div id="complete-work-content" class="complete-work">
+
+						<!-- ko if: !altType() -->
 						<div>
 							<h3>Complete Work</h3>
 							<div class="addable">
@@ -560,24 +688,22 @@
 											<th>Hours</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody data-bind="foreach: workOrder().dailyReportCompleteWork">
 										<tr>
-											<td class="remove"><a href="#" class="icon icon_cross">Remove</a></td>
-											<td width="40%"><select></select></td>
-											<td width="20%"><select></select></td>
-											<td><input type="text" /></td>
-											<td><input type="text" /></td>
+											<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeDailyReportCompleteWork">Remove</a></td>
+											<td width="40%"><select data-bind="options: $parent.workOrder().jobInstructions, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+											<td width="20%"><select data-bind="options: $parent.refData().jobStatuses, optionsText: 'name', optionsValue: 'id', value: stateId, optionsCaption: 'Please Select'"></select></td>
+											<td><input type="text" data-bind="value: area" /></td>
+											<td><input type="text" data-bind="value: hours" /></td>
 										</tr>
 									</tbody>
 								</table>
-								<button class="button button-additional button-small">Add New</button>
+								<button class="button button-additional button-small" data-bind="click: addDailyReportCompleteWork">Add New</button>
 							</div>
 						</div>
-					</div>
-					<!-- /ko -->
+						<!-- /ko -->
 
-					<!-- ko if: altType() -->
-					<div id="pipeline-work-content" class="pipeline-work">
+						<!-- ko if: altType -->
 						<div>
 							<h3>Job Instructions - Completed (Pipeline Works)</h3>
 							<div class="addable">
@@ -592,22 +718,23 @@
 											<th>Daily Qty</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody data-bind="foreach: workOrder().dailyReportCompletePiplineWork">
 										<tr>
-											<td class="remove"><a href="#" class="icon icon_cross">Remove</a></td>
-											<td width="40%"><select></select></td>
-											<td><input type="text" /></td>
-											<td><input type="text" /></td>
-											<td><input type="text" /></td>
-											<td><input type="text" /></td>
+											<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeDailyReportCompletePiplineWork">Remove</a></td>
+											<td width="40%"><select data-bind="options: $parent.workOrder().jobInstructions, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+											<td><input type="text" data-bind="value: parcel" /></td>
+											<td><input type="text" data-bind="value: fromKPI" /></td>
+											<td><input type="text" data-bind="value: toKPI" /></td>
+											<td><input type="text" data-bind="value: dailyQty" /></td>
 										</tr>
 									</tbody>
 								</table>
-								<button class="button button-additional button-small">Add New</button>
+								<button class="button button-additional button-small" data-bind="click: addDailyReportCompletePiplineWork">Add New</button>
 							</div>
 						</div>
+						<!-- /ko -->
+
 					</div>
-					<!-- /ko -->
 
 					<div id="personnel-content" class="personnel">
 						<div>
@@ -623,22 +750,21 @@
 											<th>Stand-By Hours</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody data-bind="foreach: workOrder().dailyReportPersonal">
 										<tr>
-											<td class="remove"><a href="#" class="icon icon_cross">Remove</a></td>
-											<td width="40%"><select></select></td>
-											<td width="20%"><input type="text" /></td>
-											<td><input type="text" /></td>
-											<td><input type="text" /></td>
+											<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeDailyReportPersonal">Remove</a></td>
+											<td width="40%"><select data-bind="options: $parent.refData().personal, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+											<td width="20%"><input type="text" data-bind="value: name" /></td>
+											<td><input type="text" data-bind="value: hoursWorked" /></td>
+											<td><input type="text" data-bind="value: hoursStandby" /></td>
 										</tr>
 									</tbody>
 								</table>
-								<button class="button button-additional button-small">Add New</button>
+								<button class="button button-additional button-small" data-bind="click: addDailyReportPersonal">Add New</button>
 							</div>
 						</div>
 					</div>
 
-					<!-- ko if: !altType() -->
 					<div id="comments-content" class="comments">
 						<div>
 							<h3>Comments</h3>
@@ -709,14 +835,12 @@
 							</li>
 						</ul>
 					</div>
-					<!-- /ko -->
 
-					<!-- ko if: altType() -->
 					<div id="equipment-usage-content" class="equipment-usage">
 						<div>
 							<h3>Crew Equipments</h3>
 							<div class="addable">
-								<table class="table stripe ">
+								<table class="table stripe">
 									<thead>
 										<tr>
 											<th></th>
@@ -725,16 +849,16 @@
 											<th>Stand-By Hours</th>
 										</tr>
 									</thead>
-									<tbody>
+									<tbody data-bind="foreach: workOrder().dailyReportEquipment">
 										<tr>
-											<td class="remove"><a href="#" class="icon icon_cross">Remove</a></td>
-											<td width="40%"><select></select></td>
-											<td><input type="text" /></td>
-											<td><input type="text" /></td>
+											<td class="remove"><a href="#" class="icon icon_cross" data-bind="click: $parent.removeDailyReportEquipment">Remove</a></td>
+											<td width="40%"><select data-bind="options: $parent.workOrder().equipment, optionsText: 'name', optionsValue: 'id'"></select></td>
+											<td><input type="text" data-bind="value: hoursWorked" /></td>
+											<td><input type="text" data-bind="value: hoursStandby" /></td>
 										</tr>
 									</tbody>
 								</table>
-								<button class="button button-additional button-small">Add New</button>
+								<button class="button button-additional button-small" data-bind="click: addDailyReportEquipment">Add New</button>
 							</div>
 						</div>
 					</div>
@@ -744,7 +868,6 @@
 							<h3>Weed Treatment</h3>
 						</div>
 					</div>
-					<!-- /ko -->
 
 				</div>
 
@@ -753,10 +876,12 @@
 			<section id="completion" class="workorder-completion" style="display: none" data-bind="toggleMenu: true">
 
 				<header class="header">
-					<div>
+					<!-- ko if: isAdmin -->
+					<div class="technician">
 						<label for="completion-technician">Technician</label>
-						<select id="completion-technician" class="technician"></select>
+						<select id="completion-technician" class="input-stretch" data-bind="options: workOrder().technicians, optionsText: 'name', optionsValue: 'id'"></select>
 					</div>
+					<!-- /ko -->
 					<div class="toggle-menu">
 						<div class="segmented-button">
 							<input id="job-completion" name="completion" type="radio" checked="checked" />
@@ -778,17 +903,11 @@
 						<div class="form">
 							<div>
 								<div class="list">
-									<ul>
+									<ul data-bind="foreach: workOrder().jobInstructions">
 										<li>
 											<span class="checkbox">
-												<input id="40400" type="checkbox" class="switch" />
-												<label for="40400">Hand Mowing - 40400</label>
-											</span>
-										</li>
-										<li>
-											<span class="checkbox">
-												<input id="40401" type="checkbox" class="switch" />
-												<label for="40401">Clearing (on rotation)</label>
+												<input type="checkbox" class="switch" data-bind="attr: { id: id }" />
+												<label data-bind="attr: { id: id }, text: name"></label>
 											</span>
 										</li>
 									</ul>
@@ -807,19 +926,19 @@
 							<div class="columns">
 								<div class="col">
 									<label for="soil">Soil</label>
-									<select id="soil" class="input-stretch"></select>
+									<select id="soil" class="input-stretch" data-bind="options: refData().soil, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Please Select'"></select>
 								</div>
 								<div class="col">
 									<label for="dew">Dew</label>
-									<select id="dew" class="input-stretch"></select>
+									<select id="dew" class="input-stretch" data-bind="options: refData().dew, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Please Select'"></select>
 								</div>
 								<div class="col">
 									<label for="weather">Weather</label>
-									<select id="weather" class="input-stretch"></select>
+									<select id="weather" class="input-stretch" data-bind="options: refData().weather, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Please Select'"></select>
 								</div>
 								<div class="col">
 									<label for="growth-stage">Growth State</label>
-									<select id="growth-stage" class="input-stretch"></select>
+									<select id="growth-stage" class="input-stretch" data-bind="options: refData().growthStages, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Please Select'"></select>
 								</div>
 							</div>
 							<div class="condition-time">
@@ -865,33 +984,9 @@
 												<th>Hours</th>
 											</tr>
 										</thead>
-										<tbody>
+										<tbody data-bind="foreach: ko.utils.range(1, workOrder().labour.timeAllocated)">
 											<tr>
-												<td>Day 1</td>
-												<td><input type="text" class="input-stretch" /></td>
-												<td><input type="text" class="input-stretch" /></td>
-												<td><input type="text" class="input-stretch" /></td>
-											</tr>
-											<tr>
-												<td>Day 2</td>
-												<td><input type="text" class="input-stretch" /></td>
-												<td><input type="text" class="input-stretch" /></td>
-												<td><input type="text" class="input-stretch" /></td>
-											</tr>
-											<tr>
-												<td>Day 3</td>
-												<td><input type="text" class="input-stretch" /></td>
-												<td><input type="text" class="input-stretch" /></td>
-												<td><input type="text" class="input-stretch" /></td>
-											</tr>
-											<tr>
-												<td>Day 4</td>
-												<td><input type="text" class="input-stretch" /></td>
-												<td><input type="text" class="input-stretch" /></td>
-												<td><input type="text" class="input-stretch" /></td>
-											</tr>
-											<tr>
-												<td>Day 5</td>
+												<td>Day <span data-bind="text: $parent.formatCount($index())"></span></td>
 												<td><input type="text" class="input-stretch" /></td>
 												<td><input type="text" class="input-stretch" /></td>
 												<td><input type="text" class="input-stretch" /></td>
@@ -901,7 +996,7 @@
 								</div>
 							</div>
 							<div class="col total">
-								<h3>24.6</h3>
+								<h3>0</h3>
 								<span>Total Hours</span>
 							</div>
 						</div>

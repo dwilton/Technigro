@@ -17,8 +17,10 @@
 @import "ui/label.less";
 @import "ui/list.less";
 @import "ui/loader.less";
+@import "ui/photos.less";
 @import "ui/segment-button.less";
 @import "ui/switch.less";
+@import "ui/table.less";
 @import "ui/tabs.less";
 @import "ui/toggle-menu.less";
 @import "settings/default.less";
@@ -44,8 +46,10 @@
 .label();
 .list();
 .loader();
+.photos();
 .segmented-buttons();
 .switch();
+.table();
 .tabs();
 .toggle-menu();
 
@@ -56,6 +60,7 @@
 html, body {
 	width: 100%;
 	height: 100%;
+	overflow: hidden;
 }
 
 body {
@@ -73,6 +78,11 @@ a:link {
 
 .invalid {
 	border-color: @negative;
+}
+
+.scrollable {
+	overflow: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 
 /**
@@ -340,11 +350,11 @@ a:link {
 		}
 
 		.technician {
-			width: 7rem;
+			width: 6.5rem;
 		}
 
 		.date-to, .date-from {
-			width: 6.5rem;
+			width: 6.3rem;
 		}
 
 		.add-new-button {
@@ -394,7 +404,7 @@ a:link {
 	.header {
 
 		.toggle-menu {
-			width: 30rem;
+			width: 28.5rem;
 			vertical-align: bottom;
 		}
 
@@ -411,7 +421,6 @@ a:link {
 		> section {
 			.display(flex);
 			.flexFlow(column);
-			.scrollable();
 		}
 	}
 
@@ -420,7 +429,6 @@ a:link {
 		.display(flex);
 		.flexFlow(column);
 		.flex(1);
-		.scrollable();
 	}
 
 	.action {
@@ -455,25 +463,31 @@ a:link {
 		.justifyContent(space-between);
 
 		.treatment-date {
+			.flex(1);
 			width: 20%;
 		}
 
 		.client {
-			width: 40%;
+			.flex(2);
+			width: 25%;
 		}
 
 		.job {
-			width: 30%;
+			.flex(2);
+			width: 25%;
 		}
 
 		.status {
+			.flex(1);
 			width: 20%;
 		}
 	}
 
-	.address textarea {
-		margin-bottom: 1.8rem;
-		height: 6.4rem;
+	.address {
+		textarea, span {
+			margin-bottom: 1.8rem;
+			height: 6.4rem;
+		}
 	}
 
 	.contact {
@@ -495,19 +509,20 @@ a:link {
 		display: inline-block;
 		width: 8.5rem;
 
-		select, input {
+		select, input, span {
 			width: 6rem;
 		}
 	}
 
 	.work-checklist {
-		width: 65%;
+		.flex(2);
+		width: 70%;
 	}
 
 	.critical-info {
-		width: 35%;
+		width: 30%;
 
-		textarea {
+		textarea, span {
 			height: 8.5rem;
 		}
 	}

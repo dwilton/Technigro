@@ -1,58 +1,49 @@
-define(['jquery', 'mockjax'], function($) {
+define(['jquery', 'mockjax'], function ($) {
 
 	'use strict';
 
 	$.mockjax({
-		url: '/api/workOrder/*',
+		url: '/api/workOrder/',
+		data: { typeid: 1 },
 		responseTime: 1000,
 		responseText: {
 			result: {
 
-				typeId: 0,
+				typeId: 1,
 				archived: false,
 
 				details: {
 
-					treatmentDate: '23/12/2013',
-					clientId: 1,
+					treatmentDate: '',
+					clientId: 0,
 					clientName: '',
-					jobName: 'Cycle Mowing',
+					jobName: '',
 					statusId: 1,
-					statusName: '',
+					statusName: 'New',
 
 					address: '',
 					jobNumber: '',
 					orderNumber: '',
 					date: '',
-					ubdEdition: 1,
+					ubdEditionId: 0,
+					ubdEditionName: '',
 					map: '',
 					ref: '',
 
 					contactName: '',
 					phone1: '',
 					phone2: '',
-
-					documents: [
-						{ id: 1 },
-						{ id: 2 }
-					]
-
 				},
 
-				technicians: [
-					{ id: 1 },
-					{ id: 2 }
+				documents: [
+					{ id: 0, name: '' }
 				],
 
 				labour: {
-					timeAllocated: 0,
-					staff: 0,
-					area: 0,
-					jobInstructions: [
-						{ id: 1 },
-						{ id: 2 }
-					],
-					workChecklist: {
+					timeAllocated: 6,
+					staff: 4,
+					area: 100,
+					checklist: {
 						take5: false,
 						taskConfident: false,
 						incidentReportGuidelines: false
@@ -60,16 +51,10 @@ define(['jquery', 'mockjax'], function($) {
 					criticalInfo: ''
 				},
 
-				equipment: [
-					{ id: 0 }
-				],
-
-				products: [
-					{ productId: 0, actual: 0, water: 0, area: 0, total: 0 }
-				],
-
 				schedule: [
-					{ id: 1, name: 'Nind St, Southport', edit: false, done: false }
+					{ id: 1, name: 'Nind St, Southport', edit: false, done: false },
+					{ id: 2, name: 'Scarborough St, Southport', edit: false, done: false },
+					{ id: 3, name: 'Queen St, Southport', edit: false, done: false }
 				],
 
 				invoicing: {
@@ -83,15 +68,391 @@ define(['jquery', 'mockjax'], function($) {
 				},
 
 				landAccess: {
-
 					questions: {
 						lloAvailable: false,
 						siteIssues: false,
 						contactingTeamUnderstand: false,
 						proceedWorksProgram: false
 					}
+				},
 
-				}
+				images: [],
+
+				// Addables
+				technicians: [
+					{ id: 0, name: '' }
+				],
+
+				jobInstructions: [
+					{ id: 0, name: '', price: 0 }
+				],
+
+				equipment: [
+					{ id: 0, name: '' }
+				],
+
+				products: [
+					{ id: 0, name: '', actual: 0, water: 0, area: 0, total: 0 }
+				],
+
+				dailyReportCompleteWork: [
+					{ id: 0, stateId: 0, area: 0, hours: 0 }
+				],
+
+				dailyReportCompletePiplineWork: [
+					{ id: 0, parcel: 0, fromKPI: 0, toKPI: 0, dailyQty: 0 }
+				],
+
+				dailyReportPersonal: [
+					{ id: 0, name: '', hoursWorked: 0, hoursStandby: 0 }
+				],
+
+				dailyReportEquipment: [
+					{ id: 0, hoursWorked: 0, hoursStandby: 0 }
+				]
+
+			}
+		}
+	});
+
+	$.mockjax({
+		url: '/api/workOrder/',
+		data: { typeid: 2 },
+		responseTime: 1000,
+		responseText: {
+			result: {
+
+				typeId: 2,
+				archived: false,
+
+				details: {
+
+					treatmentDate: '',
+					clientId: 0,
+					clientName: '',
+					jobName: '',
+					statusId: 1,
+					statusName: 'New',
+
+					address: '',
+					jobNumber: '',
+					orderNumber: '',
+					date: '',
+					ubdEditionId: 0,
+					ubdEditionName: '',
+					map: '',
+					ref: '',
+
+					contactName: '',
+					phone1: '',
+					phone2: '',
+				},
+
+				documents: [
+					{ id: 0, name: '' }
+				],
+
+				labour: {
+					timeAllocated: 6,
+					staff: 4,
+					area: 100,
+					checklist: {
+						take5: false,
+						taskConfident: false,
+						incidentReportGuidelines: false
+					},
+					criticalInfo: ''
+				},
+
+				schedule: [
+					{ id: 1, name: 'Nind St, Southport', edit: false, done: false },
+					{ id: 2, name: 'Scarborough St, Southport', edit: false, done: false },
+					{ id: 3, name: 'Queen St, Southport', edit: false, done: false }
+				],
+
+				invoicing: {
+					invoiceNumber: '',
+					invoiceDate: '',
+					invoicedTypeId: 0,
+					invoiceTotal: '',
+					invoicingNotes: '',
+					quoteTypeId: 0,
+					quoteNumber: ''
+				},
+
+				landAccess: {
+					questions: {
+						lloAvailable: false,
+						siteIssues: false,
+						contactingTeamUnderstand: false,
+						proceedWorksProgram: false
+					}
+				},
+
+				images: [],
+
+				// Addables
+				technicians: [
+					{ id: 0, name: '' }
+				],
+
+				jobInstructions: [
+					{ id: 0, name: '', price: 0 }
+				],
+
+				equipment: [
+					{ id: 0, name: '' }
+				],
+
+				products: [
+					{ id: 0, name: '', actual: 0, water: 0, area: 0, total: 0 }
+				],
+
+				dailyReportCompleteWork: [
+					{ id: 0, stateId: 0, area: 0, hours: 0 }
+				],
+
+				dailyReportCompletePiplineWork: [
+					{ id: 0, parcel: 0, fromKPI: 0, toKPI: 0, dailyQty: 0 }
+				],
+
+				dailyReportPersonal: [
+					{ id: 0, name: '', hoursWorked: 0, hoursStandby: 0 }
+				],
+
+				dailyReportEquipment: [
+					{ id: 0, hoursWorked: 0, hoursStandby: 0 }
+				]
+
+			}
+		}
+	});
+
+	$.mockjax({
+		url: '/api/workOrder/2',
+		responseTime: 1000,
+		responseText: {
+			result: {
+
+				typeId: 2,
+				archived: false,
+
+				details: {
+
+					treatmentDate: '23/12/2013',
+					clientId: 1,
+					clientName: 'Tincidunt Consulting',
+					jobName: 'Cycle Mowing',
+					statusId: 4,
+					statusName: 'Submitted',
+
+					address: 'Emerald Lakes, Carrara QLD 4211',
+					jobNumber: '1004',
+					orderNumber: '4003',
+					date: '23/11/2013',
+					ubdEditionId: 1,
+					ubdEditionName: 'Gold Coast 2013',
+					map: '89',
+					ref: 'E10',
+
+					contactName: 'David Wilton',
+					phone1: '0409 655 818',
+					phone2: '0755 941 326',
+				},
+
+				documents: [
+					{ id: 1, name: 'Document 01' },
+					{ id: 2, name: 'Document 02' }
+				],
+
+				labour: {
+					timeAllocated: 6,
+					staff: 4,
+					area: 100,
+					checklist: {
+						take5: false,
+						taskConfident: false,
+						incidentReportGuidelines: false
+					},
+					criticalInfo: ''
+				},
+
+				schedule: [
+					{ id: 1, name: 'Nind St, Southport', edit: false, done: true },
+					{ id: 2, name: 'Scarborough St, Southport', edit: false, done: false },
+					{ id: 3, name: 'Queen St, Southport', edit: false, done: false }
+				],
+
+				invoicing: {
+					invoiceNumber: 2531,
+					invoiceDate: '20/12/2013',
+					invoicedTypeId: 0,
+					invoiceTotal: '$500.00',
+					invoicingNotes: '',
+					quoteTypeId: 0,
+					quoteNumber: '45345'
+				},
+
+				landAccess: {
+					questions: {
+						lloAvailable: false,
+						siteIssues: false,
+						contactingTeamUnderstand: false,
+						proceedWorksProgram: false
+					}
+				},
+
+				images: [],
+
+				// Addables
+				technicians: [
+					{ id: 1, name: 'David Wilton' },
+					{ id: 2, name: 'Elicia Squires' }
+				],
+
+				jobInstructions: [
+					{ id: 1, name: 'Hand Mowing - 40400', price: 664.00 },
+					{ id: 2, name: 'Clearing (On Rotation) - 40500', price: 949.05 }
+				],
+
+				equipment: [
+					{ id: 1, name: 'Chainsaw' }
+				],
+
+				products: [
+					{ id: 1, name: 'Glyphosate @ 1.5L / 100L', actual: 0, water: 0, area: 0, total: 0 }
+				],
+
+				dailyReportCompleteWork: [
+					{ id: 1, stateId: 1, area: 50, hours: 2 }
+				],
+
+				dailyReportCompletePiplineWork: [
+					{ id: 1, parcel: 0, fromKPI: 0, toKPI: 0, dailyQty: 0 }
+				],
+
+				dailyReportPersonal: [
+					{ id: 1, name: 'Bob Smith', hoursWorked: 2, hoursStandby: 1 }
+				],
+
+				dailyReportEquipment: [
+					{ id: 1, hoursWorked: 1, hoursStandby: 2 }
+				]
+
+			}
+		}
+	});
+
+	$.mockjax({
+		url: '/api/workOrder/*',
+		responseTime: 1000,
+		responseText: {
+			result: {
+
+				typeId: 1,
+				archived: false,
+
+				details: {
+
+					treatmentDate: '23/12/2013',
+					clientId: 1,
+					clientName: 'Ac Mattis Consulting',
+					jobName: 'Cycle Mowing',
+					statusId: 1,
+					statusName: 'New',
+
+					address: 'Emerald Lakes, Carrara QLD 4211',
+					jobNumber: '1004',
+					orderNumber: '4003',
+					date: '23/11/2013',
+					ubdEditionId: 1,
+					ubdEditionName: 'Gold Coast 2013',
+					map: '89',
+					ref: 'E10',
+
+					contactName: 'David Wilton',
+					phone1: '0409 655 818',
+					phone2: '0755 941 326',
+				},
+
+				documents: [
+					{ id: 1, name: 'Document 01' },
+					{ id: 2, name: 'Document 02' }
+				],
+
+				labour: {
+					timeAllocated: 6,
+					staff: 4,
+					area: 100,
+					checklist: {
+						take5: false,
+						taskConfident: false,
+						incidentReportGuidelines: false
+					},
+					criticalInfo: ''
+				},
+
+				schedule: [
+					{ id: 1, name: 'Nind St, Southport', edit: false, done: true },
+					{ id: 2, name: 'Scarborough St, Southport', edit: false, done: false },
+					{ id: 3, name: 'Queen St, Southport', edit: false, done: false }
+				],
+
+				invoicing: {
+					invoiceNumber: 2531,
+					invoiceDate: '20/12/2013',
+					invoicedTypeId: 0,
+					invoiceTotal: '$500.00',
+					invoicingNotes: '',
+					quoteTypeId: 0,
+					quoteNumber: '45345'
+				},
+
+				landAccess: {
+					questions: {
+						lloAvailable: false,
+						siteIssues: false,
+						contactingTeamUnderstand: false,
+						proceedWorksProgram: false
+					}
+				},
+
+				images: [],
+
+				// Addables
+				technicians: [
+					{ id: 1, name: 'David Wilton' },
+					{ id: 2, name: 'Elicia Squires' }
+				],
+
+				jobInstructions: [
+					{ id: 1, name: 'Hand Mowing - 40400', price: 664.00 },
+					{ id: 2, name: 'Clearing (On Rotation) - 40500', price: 949.05 }
+				],
+
+				equipment: [
+					{ id: 1, name: 'Chainsaw' }
+				],
+
+				products: [
+					{ id: 1, name: 'Glyphosate @ 1.5L / 100L', actual: 0, water: 0, area: 0, total: 0 }
+				],
+
+				dailyReportCompleteWork: [
+					{ id: 1, stateId: 1, area: 50, hours: 2 }
+				],
+
+				dailyReportCompletePiplineWork: [
+					{ id: 1, parcel: 0, fromKPI: 0, toKPI: 0, dailyQty: 0 }
+				],
+
+				dailyReportPersonal: [
+					{ id: 1, name: 'Bob Smith', hoursWorked: 2, hoursStandby: 1 }
+				],
+
+				dailyReportEquipment: [
+					{ id: 1, hoursWorked: 1, hoursStandby: 2 }
+				]
 
 			}
 		}
@@ -203,9 +564,14 @@ define(['jquery', 'mockjax'], function($) {
 
 				maxStaff: 20,
 
-				conditions: [
+				soil: [
 					{ id: 1, name: 'Wet' },
 					{ id: 2, name: 'Dry' }
+				],
+
+				dew: [
+					{ id: 1, name: 'Light' },
+					{ id: 2, name: 'Heavy' }
 				],
 
 				weather: [

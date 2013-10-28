@@ -1,4 +1,4 @@
-define(['jquery', 'mockjax'], function($) {
+define(['jquery', 'mockjax'], function ($) {
 
 	'use strict';
 

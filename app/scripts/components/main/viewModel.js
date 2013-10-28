@@ -19,6 +19,7 @@ define(['knockout', 'pubsub', 'models/login'], function (ko, p, Login) {
 			p.subscribe('main.workOrder', workOrder);
 			p.subscribe('main.workOrders', workOrders);
 			p.subscribe('main.documentRepo', documentRepo);
+			p.subscribe('main.title', title);
 			return this;
 		};
 
@@ -32,7 +33,7 @@ define(['knockout', 'pubsub', 'models/login'], function (ko, p, Login) {
 		};
 
 		var workOrder = function () {
-			title('Work Order');
+			title('Work Orders');
 			content('workOrder');
 			menu('workOrders');
 		};

@@ -78,6 +78,7 @@
 .addable .remove {
   padding: 0.6rem 0 0.6rem 0.8rem;
   width: 1rem;
+  font-size: 1rem;
 }
 
 .addable .remove a {
@@ -399,6 +400,11 @@
 .columns > .col {
   margin-right: 1.5em;
   width: 50%;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .columns > .col:last-of-type {
@@ -423,7 +429,8 @@
 
 .header > div {
   display: inline-block;
-  margin-right: 1.5rem;
+  margin-right: 0.9rem;
+  vertical-align: top;
 }
 
 .header > div:last-of-type {
@@ -548,12 +555,36 @@ input[type=radio]:checked::after {
 
 input[type=checkbox]:checked::after {
   font-family: "icon";
-  content: "\f105";
+  content: "\f106";
   line-height: 1.2em;
 }
 
 .input-stretch {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   width: 100%;
+}
+
+.data {
+  display: inline-block;
+  padding: 0.35rem 0.5rem;
+  min-height: 1.7rem;
+  font-weight: normal;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  color: #828282;
+  background: #fafafa;
+  border-radius: 0.356em;
+  border: 1px solid rgba(0, 0, 0, 0);
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.04);
 }
 
 .checkbox {
@@ -722,6 +753,21 @@ label {
   margin: 0 auto;
 }
 
+.photos div {
+  display: inline-block;
+  margin: 0 1rem 1rem 0;
+  padding: 8px;
+  width: 160px;
+  height: 100px;
+  box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.25);
+  vertical-align: middle;
+  overflow: hidden;
+}
+
+.photos img {
+  width: 100%;
+}
+
 .segmented-button {
   display: table;
   table-layout: fixed;
@@ -814,6 +860,15 @@ input[type=checkbox].switch:checked:before {
   content: "\f106";
 }
 
+.table td {
+  font-weight: normal;
+  font-size: 0.8rem;
+}
+
+.table a {
+  color: #17b161;
+}
+
 .tabs {
   margin: 0;
   padding: 0;
@@ -894,6 +949,7 @@ html,
 body {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 body {
@@ -923,6 +979,11 @@ a:link {
 
 .invalid {
   border-color: #be1700;
+}
+
+.scrollable {
+  overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 /**
@@ -1290,12 +1351,12 @@ a:link {
 }
 
 .workorders .filter .technician {
-  width: 7rem;
+  width: 6.5rem;
 }
 
 .workorders .filter .date-to,
 .workorders .filter .date-from {
-  width: 6.5rem;
+  width: 6.3rem;
 }
 
 .workorders .filter .add-new-button {
@@ -1396,7 +1457,7 @@ a:link {
 }
 
 .workorder .header .toggle-menu {
-  width: 30rem;
+  width: 28.5rem;
   vertical-align: bottom;
 }
 
@@ -1433,8 +1494,6 @@ a:link {
   -webkit-flex-flow: column;
   -ms-flex-flow: column;
   flex-flow: column;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 
 .workorder .content {
@@ -1454,8 +1513,6 @@ a:link {
   -moz-box-flex: 1;
   -ms-flex: 1;
   flex: 1;
-  overflow: scroll;
-  -webkit-overflow-scrolling: touch;
 }
 
 .workorder .action {
@@ -1531,22 +1588,43 @@ a:link {
 }
 
 .workorder-details .header .treatment-date {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   width: 20%;
 }
 
 .workorder-details .header .client {
-  width: 40%;
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+  -moz-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  width: 25%;
 }
 
 .workorder-details .header .job {
-  width: 30%;
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+  -moz-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  width: 25%;
 }
 
 .workorder-details .header .status {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
   width: 20%;
 }
 
-.workorder-details .address textarea {
+.workorder-details .address textarea,
+.workorder-details .address span {
   margin-bottom: 1.8rem;
   height: 6.4rem;
 }
@@ -1570,19 +1648,26 @@ a:link {
 }
 
 .workorder-labour .header > div select,
-.workorder-labour .header > div input {
+.workorder-labour .header > div input,
+.workorder-labour .header > div span {
   width: 6rem;
 }
 
 .workorder-labour .work-checklist {
-  width: 65%;
+  -webkit-box-flex: 2;
+  -webkit-flex: 2;
+  -moz-box-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+  width: 70%;
 }
 
 .workorder-labour .critical-info {
-  width: 35%;
+  width: 30%;
 }
 
-.workorder-labour .critical-info textarea {
+.workorder-labour .critical-info textarea,
+.workorder-labour .critical-info span {
   height: 8.5rem;
 }
 

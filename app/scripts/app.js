@@ -67,7 +67,7 @@ define([
 			if(ctx.params.id !== undefined) {
 				p.publish('workOrder.edit', ctx.params.id);
 			} else {
-				p.publish('workOrder.create', ctx.querystring.type);
+				p.publish('workOrder.create', ctx.querystring.typeid);
 			}
 
 		};

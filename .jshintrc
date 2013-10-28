@@ -22,6 +22,7 @@
 	"white": false,
 	"validthis": true,
 	"globals": {
+		"alert": true,
 		"console": false,
 		"require": false,
 		"define": false,
@@ -36,6 +37,7 @@
 		"assert": false,
 		"should": false,
 		"expect": false,
-		"CSSRule": false
+		"CSSRule": false,
+		"Camera": false
 	}
 }

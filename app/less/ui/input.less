@@ -64,12 +64,28 @@
 
 	input[type=checkbox]:checked::after {
 		font-family:"icon";
-		content:"\f105";
+		content:"\f106";
 		line-height: 1.2em;
 	}
 
 	.input-stretch {
+		.display(flex);
+		.flex(1);
 		width: 100%;
+	}
+
+	.data {
+		display: inline-block;
+		padding: 0.35rem 0.5rem;
+		min-height: 1.7rem;
+		font-weight: normal;
+		font-size: 0.8rem;
+		line-height: 1.2;
+		color: @data-color;
+		background: @data-bg-color;
+		border-radius: 0.356em;
+		border: 1px solid rgba(0,0,0,0.0);
+		box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
 	}
 
 	.checkbox {

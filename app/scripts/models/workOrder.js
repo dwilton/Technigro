@@ -4,8 +4,8 @@ define(['jquery', 'mocks/workOrder'], function ($) {
 
 	return function () {
 
-		var getRefData = function (data, callback) {
-			$.getJSON('/api/workOrderData/', data)
+		var getRefData = function (callback) {
+			$.getJSON('/api/workOrderData/')
 				.done(function (data) {
 					callback(data.result);
 				});
@@ -18,7 +18,15 @@ define(['jquery', 'mocks/workOrder'], function ($) {
 				});
 		};
 
+		var createWorkOrder = function (data, callback) {
+			$.getJSON('/api/workOrder/', data)
+				.done(function (data) {
+					callback(data.result);
+				});
+		};
+
 		return {
+			createWorkOrder: createWorkOrder,
 			getRefData: getRefData,
 			getWorkOrder: getWorkOrder
 		};
