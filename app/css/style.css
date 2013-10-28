@@ -1568,16 +1568,6 @@ a:link {
 }
 
 .workorder-details .header {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-orient: row;
-  -webkit-flex-flow: row;
-  -ms-flex-flow: row;
-  flex-flow: row;
   -webkit-box-pack: justify;
   /* Old value for 'space-between' */
   -webkit-box-pack: space-between;
