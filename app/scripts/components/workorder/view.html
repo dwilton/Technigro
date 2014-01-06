@@ -395,49 +395,52 @@
 			</section>
 
 			<section id="schedule" class="workorder-schedule content" style="display: none">
+				
+				<div>
 
-				<div class="location">
-					<select id="location">
-						<option value="">Gold Coast Central</option>
-					</select>
-				</div>
+					<div class="location">
+						<select id="location">
+							<option value="">Gold Coast Central</option>
+						</select>
+					</div>
 
-				<div class="schedule-roads">
-					<div class="list">
-						<ul data-bind="foreach: workOrder().schedule">
+					<div class="schedule-roads">
+						<div class="list">
+							<ul data-bind="foreach: workOrder().schedule">
 
-								<!-- ko if: !edit() -->
+									<!-- ko if: !edit() -->
 
-									<li data-bind="css: { 'done': done() }">
-										<a href="#" data-bind="click: $parent.scheduleToggleEdit, text: name"></a>
-									</li>
+										<li data-bind="css: { 'done': done() }">
+											<a href="#" data-bind="click: $parent.scheduleToggleEdit, text: name"></a>
+										</li>
 
-								<!-- /ko -->
+									<!-- /ko -->
 
-								<!-- ko if: edit() -->
+									<!-- ko if: edit() -->
 
-									<li class="edit">
+										<li class="edit">
 
-										<button class="cancel" data-bind="click: $parent.scheduleToggleEdit">Cancel</button>
+											<button class="cancel" data-bind="click: $parent.scheduleToggleEdit">Cancel</button>
 
-										<!-- ko if: !done() -->
+											<!-- ko if: !done() -->
 
-										<button class="button" data-bind="click: $parent.scheduleToggleDone">Complete</button>
+											<button class="button" data-bind="click: $parent.scheduleToggleDone">Complete</button>
 
-										<!-- /ko -->
+											<!-- /ko -->
 
-										<!-- ko if: done() -->
+											<!-- ko if: done() -->
 
-										<button class="button" data-bind="click: $parent.scheduleToggleDone">Undo</button>
+											<button class="button" data-bind="click: $parent.scheduleToggleDone">Undo</button>
 
-										<!-- /ko -->
+											<!-- /ko -->
 
-									</li>
+										</li>
 
-								<!-- /ko -->
+									<!-- /ko -->
 
-							</li>
-						</ul>
+								</li>
+							</ul>
+						</div>
 					</div>
 				</div>
 

@@ -1,11 +1,11 @@
 <?xml version="1.0" standalone="no"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <!--
-2013-10-10: Created.
+2014-1-7: Created.
 -->
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Thu Oct 10 19:20:04 2013
+Created by FontForge 20120731 at Tue Jan  7 07:35:42 2014
  By David Wilton
 Created by David Wilton with FontForge 2.0 (http://fontforge.sf.net)
 </metadata>
@@ -22,7 +22,7 @@ Created by David Wilton with FontForge 2.0 (http://fontforge.sf.net)
     bbox="0 -14 412 398"
     underline-thickness="25.6"
     underline-position="-51.2"
-    unicode-range="U+F100-F107"
+    unicode-range="U+F100-F108"
   />
     <missing-glyph />
     <glyph glyph-name="uniF100" unicode="&#xf100;" 
@@ -39,8 +39,10 @@ c-2 3 -4 7 -6 11c9 9 25 22 44 27c22 5 59 -3 43 -46c-11 -30 -19 -51 -24 -67s1 -19
     <glyph glyph-name="uniF105" unicode="&#xf105;" 
 d="M412 284h-412v66h412v-66zM412 224v-64h-412v64h412zM412 100v-66h-412v66h412z" />
     <glyph glyph-name="uniF106" unicode="&#xf106;" 
+d="M206 398c114 0 206 -92 206 -206s-92 -206 -206 -206s-206 92 -206 206s92 206 206 206zM333 155v68h-90v90h-68v-90h-90v-68h90v-90h68v90h90z" />
+    <glyph glyph-name="uniF107" unicode="&#xf107;" 
 d="M348 355l64 -64l-262 -262l-150 150l64 64l86 -86z" />
-    <glyph glyph-name="uniF107" unicode="&#xf107;" horiz-adv-x="354" 
+    <glyph glyph-name="uniF108" unicode="&#xf108;" horiz-adv-x="354" 
 d="M93 157l14 13c17 -8 29 -14 48 -28c36 41 60 62 105 90l5 -11c-37 -32 -64 -68 -103 -138c-24 28 -40 47 -69 74zM354 338v-352h-354v352h80l-40 -40v-271h273v271l-40 40h81zM229 339l57 -57h-217l56 57v7c0 29 23 52 52 52s52 -23 52 -52v-7zM178 330c10 0 17 8 17 18
 s-7 17 -17 17s-18 -7 -18 -17s8 -18 18 -18z" />
   </font>
