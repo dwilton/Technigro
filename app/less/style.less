@@ -759,26 +759,36 @@ a:link {
 
 .document-repository {
 	.display(flex);
-	.flexFlow(row);
+	.flexFlow(column);
 	.flex(1);
 
-	.menu {
-		.display(flex);
-		.flexFlow(column);
-		.scrollable();
-		width: 17rem;
-		border-width: 0 1px 0 0;
+	.header {
+		text-align: right;
 	}
 
-	.document {
+	.document-container {
 		.display(flex);
-		.flexFlow(column);
-		.scrollable();
+		.flexFlow(row);
 		.flex(1);
-	}
 
-	.content {
-		padding: 3rem;
-		.scrollable();
+		.menu {
+			.display(flex);
+			.flexFlow(column);
+			.scrollable();
+			width: 17rem;
+			border-width: 0 1px 0 0;
+		}
+
+		.document {
+			.display(flex);
+			.flexFlow(column);
+			.scrollable();
+			.flex(1);
+		}
+
+		.content {
+			.scrollable();
+			padding: 3rem;
+		}
 	}
 }

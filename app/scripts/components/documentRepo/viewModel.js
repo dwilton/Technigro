@@ -1,10 +1,11 @@
-define(['knockout', 'models/documentRepo'], function (ko, DocumentRepo) {
+define(['knockout', 'models/documentRepo', 'models/user'], function (ko, DocumentRepo, User) {
 
 	'use strict';
 
 	return function () {
 
 		var _documentRepo = new DocumentRepo();
+		var _user = new User();
 
 		var isLoading = ko.observable(true);
 		var documentList = ko.observableArray();
@@ -12,12 +13,19 @@ define(['knockout', 'models/documentRepo'], function (ko, DocumentRepo) {
 		var isDocumentLoaded = ko.observable(false);
 		var isDocumentLoading = ko.observable(false);
 		var selected = ko.observable();
+		var isAdmin = ko.observable(false);
 
 		selected.subscribe(function (value) {
 			if(value !== null) {
 				getDocument(selected().id);
 			}
 		});
+
+		var activate = function () {
+			_user.getUser(function (user) {
+				isAdmin(user.isAdmin);
+			});
+		};
 
 		var refresh = function () {
 			getDocumentList();
@@ -47,13 +55,15 @@ define(['knockout', 'models/documentRepo'], function (ko, DocumentRepo) {
 		};
 
 		var ViewModel = {
+			activate: activate,
 			refresh: refresh,
 			documentList: documentList,
 			documentDetails: documentDetails,
 			isDocumentLoaded: isDocumentLoaded,
 			isLoading: isLoading,
 			isDocumentLoading: isDocumentLoading,
-			selected: selected
+			selected: selected,
+			isAdmin: isAdmin
 		};
 
 		return ViewModel;

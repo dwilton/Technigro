@@ -1,39 +1,46 @@
 <section class="document-repository">
 
-	<div class="loader" data-bind="spin: isLoading(), visible: isLoading()"></div>
+	<div class="header" data-bind="visible: isAdmin()">
+		<button class="add-new-button button">Add New</button>
+	</div>
 
-	<!-- ko if: !isLoading() -->
+	<div class="document-container">
 
-		<nav class="menu list">
-			<div class="results scrollable">
-				<ul data-bind="foreach: documentList">
-					<li>
-						<h2 data-bind="text: name"></h2>
-						<ul data-bind="foreach: documents">
-							<li data-bind="css: { selected: $data == $root.selected() }"><a href="" class="icon icon_arrow" data-bind="text: name, click: $root.selected.bind($data)"></a></li>
-						</ul>
-					</li>
-				</ul>
-			</div>
-		</nav>
+		<div class="loader" data-bind="spin: isLoading(), visible: isLoading()"></div>
 
-		<div class="document scrollable">
+		<!-- ko if: !isLoading() -->
 
-			<div class="loader" data-bind="spin: isDocumentLoading(), visible: isDocumentLoading()"></div>
-
-			<!-- ko if: !isDocumentLoading() -->
-
-				<div class="info" data-bind="visible: !isDocumentLoaded()">
-					<span class="icon icon_info">Select a document</span>
+			<nav class="menu list">
+				<div class="results scrollable">
+					<ul data-bind="foreach: documentList">
+						<li>
+							<h2 data-bind="text: name"></h2>
+							<ul data-bind="foreach: documents">
+								<li data-bind="css: { selected: $data == $root.selected() }"><a href="" class="icon icon_arrow" data-bind="text: name, click: $root.selected.bind($data)"></a></li>
+							</ul>
+						</li>
+					</ul>
 				</div>
+			</nav>
 
-				<div class="content" data-bind="visible: isDocumentLoaded(), html: documentDetails()"></div>
+			<div class="document scrollable">
 
-			<!-- /ko -->
+				<div class="loader" data-bind="spin: isDocumentLoading(), visible: isDocumentLoading()"></div>
 
-		</div>
+				<!-- ko if: !isDocumentLoading() -->
 
-	<!-- /ko -->
+					<div class="info" data-bind="visible: !isDocumentLoaded()">
+						<span class="icon icon_info">Select a document</span>
+					</div>
 
+					<div class="content" data-bind="visible: isDocumentLoaded(), html: documentDetails()"></div>
+
+				<!-- /ko -->
+
+			</div>
+
+		<!-- /ko -->
+
+	</div>
 
 </section>
