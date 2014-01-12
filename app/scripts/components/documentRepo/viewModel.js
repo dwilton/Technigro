@@ -14,6 +14,7 @@ define(['knockout', 'models/documentRepo', 'models/user'], function (ko, Documen
 		var isDocumentLoading = ko.observable(false);
 		var selected = ko.observable();
 		var isAdmin = ko.observable(false);
+		var isEdit = ko.observable(false);
 
 		selected.subscribe(function (value) {
 			if(value !== null) {
@@ -31,6 +32,10 @@ define(['knockout', 'models/documentRepo', 'models/user'], function (ko, Documen
 			getDocumentList();
 			selected(null);
 			isDocumentLoaded(false);
+		};
+
+		var toggleEdit = function () {
+			isEdit(isEdit() ? false : true);
 		};
 
 		var getDocumentList = function () {
@@ -63,7 +68,9 @@ define(['knockout', 'models/documentRepo', 'models/user'], function (ko, Documen
 			isLoading: isLoading,
 			isDocumentLoading: isDocumentLoading,
 			selected: selected,
-			isAdmin: isAdmin
+			isAdmin: isAdmin,
+			isEdit: isEdit,
+			toggleEdit: toggleEdit
 		};
 
 		return ViewModel;

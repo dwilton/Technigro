@@ -15,6 +15,10 @@
 			list-style: none;
 		}
 
+		li {
+			position: relative;
+		}
+
 		h2 {
 			display: block;
 			margin: 0;
@@ -42,6 +46,38 @@
 				font-size: 1.2rem;
 				line-height: 1;
 			}
+		}
+
+		a.remove {
+			display: none;
+		}
+
+		&.edit {
+
+			a.remove {
+				display: block;
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 3rem;
+				color: @negative;
+				text-indent: -999rem;
+
+				&:hover {
+					color: @white;
+					background-color: @negative;
+					border-color: @negative;
+				}
+
+				&:before {
+					text-indent: 0;
+				}
+			}
+
+			li.selected a {
+				color: @selected-color;;
+			}
+
 		}
 
 		li.selected a {

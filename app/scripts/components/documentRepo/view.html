@@ -1,7 +1,12 @@
 <section class="document-repository">
 
 	<div class="header" data-bind="visible: isAdmin()">
-		<button class="add-new-button button">Add New</button>
+		<div>
+			<button class="edit-button button" data-bind="click: toggleEdit">Edit</button>
+		</div>
+		<div>
+			<button class="add-new-button button">Add New</button>
+		</div>
 	</div>
 
 	<div class="document-container">
@@ -10,13 +15,13 @@
 
 		<!-- ko if: !isLoading() -->
 
-			<nav class="menu list">
+			<nav class="menu list" data-bind="css: { edit : isEdit}">
 				<div class="results scrollable">
 					<ul data-bind="foreach: documentList">
 						<li>
 							<h2 data-bind="text: name"></h2>
 							<ul data-bind="foreach: documents">
-								<li data-bind="css: { selected: $data == $root.selected() }"><a href="" class="icon icon_arrow" data-bind="text: name, click: $root.selected.bind($data)"></a></li>
+								<li data-bind="css: { selected: $data == $root.selected() }"><a href="" class="icon icon_arrow" data-bind="text: name, click: $root.selected.bind($data)"></a><a href="#" class="remove icon icon-remove">Remove</a></li>
 							</ul>
 						</li>
 					</ul>
