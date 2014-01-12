@@ -1784,11 +1784,15 @@ a:link {
   background-color: #e5fcf0;
 }
 
+.workorder-schedule .schedule-roads .done a:hover {
+  border-color: #d6d6d6;
+}
+
 .workorder-schedule .schedule-roads .done a:after {
   position: absolute;
   right: 1rem;
   font-family: "icon";
-  content: "\f106";
+  content: "\f108";
   font-size: 1rem;
   line-height: 1.2;
 }

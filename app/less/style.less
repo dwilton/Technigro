@@ -563,11 +563,15 @@ a:link {
 			color: darken(@green, 10);
 			background-color: lighten(@green, 55);
 
+			&:hover {
+				border-color: @list-border-color;
+			}
+
 			&:after {
 				position: absolute;
 				right: 1rem;
 				font-family: "icon";
-				content: "\f106";
+				content: "\f108";
 				font-size: 1rem;
 				line-height: 1.2;
 			}
