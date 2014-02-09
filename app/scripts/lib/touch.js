@@ -1,3 +1,7 @@
+/*
+ * Hide CSS hover effects on touch devices
+ */
+
 define(['jquery'], function ($) {
 
 	'use strict';

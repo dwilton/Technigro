@@ -6,17 +6,19 @@ define(['store'], function (store) {
 
 		var defaultUser = { name: '', isAdmin: false, isLoggedIn: false};
 
-		var deleteUser = function () {
-			store.remove('user');
+		var deleteUser = function (callback) {
+			store.remove('user', function () {
+				callback();
+			});
 		};
 
-		var setUser = function (data) {
+		var setUser = function (data, callback) {
 			store.save({
 				key: 'user',
 				name: data.name,
 				isAdmin: data.isAdmin,
 				isLoggedIn: true
-			});
+			}, callback);
 		};
 
 		var getUser = function (callback) {

@@ -2,6 +2,7 @@ define([
 	'knockout',
 	'pubsub',
 	'models/user',
+	'models/login',
 	'components/loginContainer/component',
 	'components/login/component',
 	'components/recoverLogin/component',
@@ -9,26 +10,31 @@ define([
 	'components/workorder/component',
 	'components/workorders/component',
 	'components/documentRepo/component'
-], function (ko, p, User) {
+], function (ko, p, User, Login) {
 
 	'use strict';
 
 	return function () {
 
 		var user = new User();
-		var content = ko.observable();
+		var login = new Login();
+		var region = {};
+
+		// Regions (Component name are assigned to these) e.g. region.content('main');
+		region.content = ko.observable();
 
 		var init = function () {
 
-			// Set routes (Note: use hashes for PhoneGap, not pushstate)
+			// Routes (Note: use hashes for PhoneGap, not pushstate)
 			p.publish('route.set', { name: '/', callback: workOrders });
 			p.publish('route.set', { name: '#workorder?', callback: workOrder });
 			p.publish('route.set', { name: '#workorder/:id', callback: workOrder });
 			p.publish('route.set', { name: '#workorders', callback: workOrders });
 			p.publish('route.set', { name: '#document-repository', callback: documentRepo });
 
+			// Security
 			p.subscribe('app.authenticate', authenticate);
-
+			p.subscribe('app.logout', logout);
 			authenticate();
 
 			return this;
@@ -40,15 +46,21 @@ define([
 				if (user.isLoggedIn) {
 					p.publish('route', window.location.hash);
 				} else {
-					content('loginContainer');
+					region.content('loginContainer');
 				}
+			});
+		};
+
+		var logout = function () {
+			login.logout(function () {
+				authenticate();
 			});
 		};
 
 		var workOrders = function () {
 
-			// Update content
-			content('main');
+			// Update regions
+			region.content('main');
 
 			// Publish 'main' observer
 			p.publish('main.workOrders');
@@ -57,8 +69,8 @@ define([
 
 		var workOrder = function (ctx) {
 
-			// Update content
-			content('main');
+			// Update regions
+			region.content('main');
 
 			// Publish 'main' observer
 			p.publish('main.workOrder');
@@ -74,8 +86,8 @@ define([
 
 		var documentRepo = function () {
 
-			// Update content
-			content('main');
+			// Update regions
+			region.content('main');
 
 			// Publish 'main' observer
 			p.publish('main.documentRepo');
@@ -84,7 +96,7 @@ define([
 
 		var App = {
 			init: init,
-			content: content
+			region: region
 		};
 
 		return App.init();

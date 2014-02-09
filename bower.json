@@ -1,6 +1,6 @@
 {
-  "name": "backbone-amd",
-  "version": "0.1.1",
+  "name": "technigro",
+  "version": "0.1.0",
   "dependencies": {
     "almond": "*",
     "animo.js": "*",

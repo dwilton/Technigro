@@ -22,16 +22,16 @@ define(['knockout', 'models/documentRepo', 'models/user'], function (ko, Documen
 			}
 		});
 
-		var activate = function () {
+		var refresh = function () {
+
 			_user.getUser(function (user) {
 				isAdmin(user.isAdmin);
 			});
-		};
 
-		var refresh = function () {
 			getDocumentList();
 			selected(null);
 			isDocumentLoaded(false);
+
 		};
 
 		var toggleEdit = function () {
@@ -60,7 +60,6 @@ define(['knockout', 'models/documentRepo', 'models/user'], function (ko, Documen
 		};
 
 		var ViewModel = {
-			activate: activate,
 			refresh: refresh,
 			documentList: documentList,
 			documentDetails: documentDetails,

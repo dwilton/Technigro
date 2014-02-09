@@ -1,17 +1,16 @@
-define(['knockout', 'pubsub', 'models/login'], function (ko, p, Login) {
+define(['knockout', 'pubsub'], function (ko, p, Login) {
 
 	'use strict';
 
 	return function () {
 
-		var _login = new Login();
-
+		var region = {};
 		var title = ko.observable();
-		var content = ko.observable();
 		var menu = ko.observable();
 		var menuVisibility = ko.observable(false);
 
-		content.subscribe(function () {
+		region.content = ko.observable();
+		region.content.subscribe(function () {
 			menuVisibility(false);
 		});
 
@@ -24,8 +23,7 @@ define(['knockout', 'pubsub', 'models/login'], function (ko, p, Login) {
 		};
 
 		var logout = function () {
-			_login.logout();
-			p.publish('app.authenticate');
+			p.publish('app.logout');
 		};
 
 		var menuToggle = function () {
@@ -34,19 +32,19 @@ define(['knockout', 'pubsub', 'models/login'], function (ko, p, Login) {
 
 		var workOrder = function () {
 			title('Work Orders');
-			content('workOrder');
+			region.content('workOrder');
 			menu('workOrders');
 		};
 
 		var workOrders = function () {
 			title('Work Orders');
-			content('workOrders');
+			region.content('workOrders');
 			menu('workOrders');
 		};
 
 		var documentRepo = function () {
 			title('Document Repository');
-			content('documentRepo');
+			region.content('documentRepo');
 			menu('documentRepo');
 		};
 
@@ -54,7 +52,7 @@ define(['knockout', 'pubsub', 'models/login'], function (ko, p, Login) {
 			init: init,
 			logout: logout,
 			title: title,
-			content: content,
+			region: region,
 			menu: menu,
 			menuToggle: menuToggle,
 			menuVisibility: menuVisibility

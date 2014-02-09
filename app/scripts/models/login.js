@@ -10,14 +10,15 @@ define(['jquery', 'models/user', 'mocks/login'], function ($, User) {
 			$.getJSON('/api/login/', data)
 				.done(function (data) {
 					if(data.result) {
-						user.setUser(data);
+						user.setUser(data, function () { callback(data.result); });
+					} else {
+						callback(data.result);
 					}
-					callback(data.result);
 				});
 		};
 
-		var logout = function () {
-			user.deleteUser();
+		var logout = function (callback) {
+			user.deleteUser(callback);
 		};
 
 		return {

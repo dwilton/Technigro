@@ -27,13 +27,15 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrders'], function (ko,
 		};
 
 		var activate = function () {
-			_user.getUser(function (user) {
-				isAdmin(user.isAdmin);
-			});
 			getRefData();
 		};
 
 		var refresh = function () {
+			_user.getUser(function (user) {
+				isAdmin(user.isAdmin);
+				console.log(user.isAdmin);
+			});
+
 			addNewMenu(false);
 		};
 

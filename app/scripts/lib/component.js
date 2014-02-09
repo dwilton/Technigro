@@ -1,5 +1,5 @@
 /**
- * Component: DOM manipluation wapper, pairs View and ViewModel
+ * DOM manipluation wapper, pairs View and ViewModel
  */
 
 define(['knockout', 'pubsub'], function (ko, p) {
@@ -30,7 +30,16 @@ define(['knockout', 'pubsub'], function (ko, p) {
 				deactivate(parentEl);
 			});
 
+			// Refresh All
+			p.subscribe('component.refreshAll', function () {
+				refresh();
+			});
+
 			return this;
+		};
+
+		var getName = function () {
+			return _name;
 		};
 
 		var activate = function (parentEl) {
@@ -103,7 +112,8 @@ define(['knockout', 'pubsub'], function (ko, p) {
 		};
 
 		var Component = {
-			init: init
+			init: init,
+			name: name
 		};
 
 		return Component.init(name, ViewModel, View);
