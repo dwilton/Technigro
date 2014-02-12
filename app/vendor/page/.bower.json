@@ -1,0 +1,26 @@
+{
+  "name": "page",
+  "repo": "visionmedia/page.js",
+  "version": "1.3.6",
+  "description": "Tiny client-side router (~1200 bytes)",
+  "keywords": [
+    "page",
+    "route",
+    "router",
+    "routes",
+    "pushState"
+  ],
+  "scripts": [
+    "index.js"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/visionmedia/page.js",
+  "_release": "1.3.6",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.3.6",
+    "commit": "54b1d847f9129c35142b9a5c376fa8878cc800c1"
+  },
+  "_source": "git://github.com/visionmedia/page.js.git",
+  "_target": "*"
+}

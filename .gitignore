@@ -3,6 +3,5 @@
 *.sublime-workspace
 *.sublime-grunt.cache
 node_modules
-app/vendor
 dist
 report

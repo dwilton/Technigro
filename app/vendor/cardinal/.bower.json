@@ -1,0 +1,13 @@
+{
+  "name": "cardinal",
+  "homepage": "https://github.com/git@github.com:cbracco/cardinal",
+  "version": "0.3.7",
+  "_release": "0.3.7",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.3.7",
+    "commit": "9bfee630b05193d36a5c40c8f7d26b79e70e7976"
+  },
+  "_source": "git@github.com:cbracco/cardinal.git",
+  "_target": "*"
+}
