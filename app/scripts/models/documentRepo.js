@@ -1,4 +1,7 @@
-define(['jquery', 'mocks/documentRepo'], function ($) {
+define([
+	'jquery',
+	'mocks/documentRepo'
+], function ($) {
 
 	'use strict';
 

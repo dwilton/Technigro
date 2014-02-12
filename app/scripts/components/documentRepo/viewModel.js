@@ -1,11 +1,15 @@
-define(['knockout', 'models/documentRepo', 'models/user'], function (ko, DocumentRepo, User) {
+define([
+	'knockout',
+	'models/documentRepo',
+	'models/user'
+], function (ko, DocumentRepoModel, UserModel) {
 
 	'use strict';
 
 	return function () {
 
-		var _documentRepo = new DocumentRepo();
-		var _user = new User();
+		var documentRepoModel = new DocumentRepoModel();
+		var userModel = new UserModel();
 
 		var isLoading = ko.observable(true);
 		var documentList = ko.observableArray();
@@ -17,21 +21,22 @@ define(['knockout', 'models/documentRepo', 'models/user'], function (ko, Documen
 		var isEdit = ko.observable(false);
 
 		selected.subscribe(function (value) {
-			if(value !== null) {
+			if (value !== null) {
 				getDocument(selected().id);
 			}
 		});
 
-		var refresh = function () {
-
-			_user.getUser(function (user) {
+		var init = function () {
+			userModel.getUser(function (user) {
 				isAdmin(user.isAdmin);
 			});
+			return this;
+		};
 
-			getDocumentList();
+		var refresh = function () {
 			selected(null);
 			isDocumentLoaded(false);
-
+			getDocumentList();
 		};
 
 		var toggleEdit = function () {
@@ -40,7 +45,7 @@ define(['knockout', 'models/documentRepo', 'models/user'], function (ko, Documen
 
 		var getDocumentList = function () {
 			isLoading(true);
-			_documentRepo.getDocumentList(getDocumentListResult);
+			documentRepoModel.getDocumentList(getDocumentListResult);
 		};
 
 		var getDocumentListResult = function (data) {
@@ -50,7 +55,7 @@ define(['knockout', 'models/documentRepo', 'models/user'], function (ko, Documen
 
 		var getDocument = function () {
 			isDocumentLoading(true);
-			_documentRepo.getDocument({ documentId: selected().id }, getDocumentResult);
+			documentRepoModel.getDocument({ documentId: selected().id }, getDocumentResult);
 		};
 
 		var getDocumentResult = function (data) {
@@ -60,6 +65,7 @@ define(['knockout', 'models/documentRepo', 'models/user'], function (ko, Documen
 		};
 
 		var ViewModel = {
+			init: init,
 			refresh: refresh,
 			documentList: documentList,
 			documentDetails: documentDetails,

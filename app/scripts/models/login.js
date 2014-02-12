@@ -1,28 +1,38 @@
-define(['jquery', 'models/user', 'mocks/login'], function ($, User) {
+define([
+	'jquery',
+	'pubsub',
+	'models/user',
+	'mocks/login'
+], function ($, p, UserModel) {
 
 	'use strict';
 
 	return function () {
 
-		var user = new User();
+		var userModel = new UserModel();
 
-		var authenticate = function (data, callback) {
+		var login = function (data, callback) {
 			$.getJSON('/api/login/', data)
 				.done(function (data) {
-					if(data.result) {
-						user.setUser(data, function () { callback(data.result); });
+					if (data.result) {
+						userModel.setUser(data, function () {
+							callback(data.result);
+							p.publish('app.authenticate');
+						});
 					} else {
 						callback(data.result);
 					}
 				});
 		};
 
-		var logout = function (callback) {
-			user.deleteUser(callback);
+		var logout = function () {
+			userModel.deleteUser(function () {
+				p.publish('app.authenticate');
+			});
 		};
 
 		return {
-			authenticate: authenticate,
+			login: login,
 			logout: logout
 		};
 

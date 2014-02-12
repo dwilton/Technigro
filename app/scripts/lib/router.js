@@ -2,7 +2,11 @@
  * Router exposed via pubsub
  */
 
-define(['pubsub', 'page', 'querystring'], function (p, page, qs) {
+define([
+	'pubsub',
+	'page',
+	'querystring'
+], function (p, page, qs) {
 
 	'use strict';
 

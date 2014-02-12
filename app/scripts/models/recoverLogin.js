@@ -1,4 +1,7 @@
-define(['jquery', 'mocks/recoverLogin'], function ($) {
+define([
+	'jquery',
+	'mocks/recoverLogin'
+], function ($) {
 
 	'use strict';
 

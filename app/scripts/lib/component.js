@@ -1,45 +1,39 @@
 /**
- * DOM manipluation wapper, pairs View and ViewModel
+ * Component
+ * - Bundles the 'View' and 'ViewModel' into a reusable module
+ * - Provides external access via pubsub
+ * - Handles DOM manipluation and applies bindings
+ * - Automatically triggers ViewModel methods if they exist e.g. init, activate, refresh
  */
 
-define(['knockout', 'pubsub'], function (ko, p) {
+define([
+	'knockout',
+	'pubsub'
+], function (ko, p) {
 
 	'use strict';
 
 	return function (name, ViewModel, View) {
 
-		var _name,
-		_vm,
-		_view,
-		_element,
-		_active = false;
+		var	vm, view, element, active;
 
-		var init = function (name, ViewModel, View) {
+		var init = function () {
 
-			_name = name;
-			_vm = new ViewModel();
-			_view = View;
+			vm = new ViewModel();
+			view = View;
+			active = false;
 
-			// Activate observer
-			p.subscribe('component.' + _name + '.activate', function (parentEl) {
-				activate(parentEl);
-			});
+			// Init component
+			initVM();
 
-			// Deactivate observer
-			p.subscribe('component.' + _name + '.deactivate', function (parentEl) {
-				deactivate(parentEl);
-			});
-
-			// Refresh All
-			p.subscribe('component.refreshAll', function () {
-				refresh();
-			});
+			// Create observers
+			p.subscribe('component.' + name + '.activate', function (parentEl) { activate(parentEl); });
+			p.subscribe('component.' + name + '.init', initVM);
+			p.subscribe('component.' + name + '.refresh', refreshVM);
+			p.subscribe('component.initAll', initVM);
+			p.subscribe('component.refreshAll', refreshVM);
 
 			return this;
-		};
-
-		var getName = function () {
-			return _name;
 		};
 
 		var activate = function (parentEl) {
@@ -54,69 +48,87 @@ define(['knockout', 'pubsub'], function (ko, p) {
 			}
 
 			// Activate or show component
-			if (!_active) {
+			if (!active) {
 
 				// Append view to the DOM
 				var container = document.createElement('div');
-				container.innerHTML = _view;
-				_element = parentEl.appendChild(container.firstChild);
+				container.innerHTML = view;
+				element = parentEl.appendChild(container.firstChild);
 
 				// Set component as active
-				_active = true;
+				active = true;
 
 				// Apply knockout bindings
-				ko.applyBindings(_vm, _element);
+				ko.applyBindings(vm, element);
 
-				// Call activate method viewmodel if available
-				if (_vm.activate !== undefined) {
-					_vm.activate();
+				// Call viewmodel 'activate' method if available
+				if (vm.activate !== undefined) {
+					vm.activate();
 				}
 
 				// Refresh component
-				refresh();
+				refreshVM();
 
 			} else {
 
 				// Refresh component
-				refresh();
+				refreshVM();
 
 				// Show the component
-				_element.style.display = '';
+				// TODO: replace with detectable viewModel method e.g. animateIn
+				element.style.display = '';
 
-			}
-
-		};
-
-		var refresh = function () {
-
-			// Call refresh method viewmodel if available
-			if (_vm.refresh !== undefined) {
-				_vm.refresh();
 			}
 
 		};
 
 		var deactivate = function () {
 
-			// Remove knockout bindings
-			if (ko.dataFor(_element) !== undefined) {
-				ko.cleanNode(_element);
+			// Set component as not active
+			active = false;
+
+			if (element !== undefined) {
+
+				// Remove knockout bindings
+				if (ko.dataFor(element) !== undefined) {
+					ko.cleanNode(element);
+				}
+
+				// Remove DOM elements
+				element.parentNode.removeChild(element);
+
 			}
 
-			// Remove DOM elements
-			_element.parentNode.removeChild(_element);
+		};
 
-			// Set component as not active
-			_active = false;
+		var refreshVM = function () {
+
+			// Call viewmodel 'refresh' method if available
+			if (vm.refresh !== undefined) {
+				vm.refresh();
+			}
+
+		};
+
+		var initVM = function () {
+
+			// Call viewmodel 'init' method if available
+			if (vm.init !== undefined) {
+				vm.init();
+			}
 
 		};
 
 		var Component = {
 			init: init,
-			name: name
+			name: name,
+			activate: activate,
+			deactivate: deactivate,
+			initVM: initVM,
+			refreshVM: refreshVM
 		};
 
-		return Component.init(name, ViewModel, View);
+		return Component;
 
 	};
 

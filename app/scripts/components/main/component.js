@@ -6,6 +6,6 @@ define([
 
 	'use strict';
 
-	return new Component('main', ViewModel, View);
+	return new Component('main', ViewModel, View).init();
 
 });

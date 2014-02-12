@@ -1,10 +1,11 @@
 .scrollable() {
-	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 }
 
 /**
- * Flexbox (Provide support for Mobile Webkit)
+ * Flexbox (Provides support for Mobile Webkit)
  */
 
 .display(@display) when (@display = flex) {

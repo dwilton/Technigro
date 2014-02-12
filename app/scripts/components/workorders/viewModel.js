@@ -1,11 +1,16 @@
-define(['knockout', 'pubsub', 'models/user', 'models/workOrders'], function (ko, p, User, WorkOrders) {
+define([
+	'knockout',
+	'pubsub',
+	'models/user',
+	'models/workOrders'
+], function (ko, p, UserModel, WorkOrdersModel) {
 
 	'use strict';
 
 	return function () {
 
-		var _user = new User();
-		var _workOrders = new WorkOrders();
+		var userModel = new UserModel();
+		var workOrdersModel = new WorkOrdersModel();
 
 		var isLoading = ko.observable(false);
 		var isWorkOrdersLoading = ko.observable(false);
@@ -26,16 +31,17 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrders'], function (ko,
 			dateTo: ko.observable('')
 		};
 
+		var init = function () {
+			userModel.getUser(function (user) {
+				isAdmin(user.isAdmin);
+			});
+		};
+
 		var activate = function () {
 			getRefData();
 		};
 
 		var refresh = function () {
-			_user.getUser(function (user) {
-				isAdmin(user.isAdmin);
-				console.log(user.isAdmin);
-			});
-
 			addNewMenu(false);
 		};
 
@@ -51,7 +57,7 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrders'], function (ko,
 
 		var getRefData = function () {
 			isLoading(true);
-			_workOrders.getRefData(getRefDataResult);
+			workOrdersModel.getRefData(getRefDataResult);
 		};
 
 		var getRefDataResult = function (data) {
@@ -64,7 +70,7 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrders'], function (ko,
 
 		var getWorkOrders = function () {
 			isWorkOrdersLoading(true);
-			_workOrders.getWorkOrders(ko.toJSON(filter), getWorkOrdersResult);
+			workOrdersModel.getWorkOrders(ko.toJSON(filter), getWorkOrdersResult);
 		};
 
 		var getWorkOrdersResult = function (data) {
@@ -73,6 +79,7 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrders'], function (ko,
 		};
 
 		var ViewModel = {
+			init: init,
 			activate: activate,
 			refresh: refresh,
 			isAdmin: isAdmin,

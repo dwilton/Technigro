@@ -10,7 +10,7 @@ define(function () {
 
 		var query = {};
 
-		if(string.length) {
+		if (string.length) {
 
 			var pairs = string.split('&');
 

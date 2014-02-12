@@ -9,10 +9,10 @@
 	</nav>
 	<div class="container">
 		<header class="main-bar">
-			<a href="#" class="menu-toggle icon icon_menu" data-bind="click: menuToggle"><span>Menu</span></a><!-- ko if: region.content() == 'workOrder' --><a href="#" class="menu-back icon icon_back" data-bind="route: '#workorders'"><span>Back</span></a><!-- /ko -->
+			<a href="#" class="menu-toggle icon icon_menu" data-bind="click: menuToggle"><span>Menu</span></a><!-- ko if: content() == 'workOrder' --><a href="#" class="menu-back icon icon_back" data-bind="route: '#workorders'"><span>Back</span></a><!-- /ko -->
 			<h1 class="title" data-bind="text: title"></h1>
 			<button class="logout" data-bind="click: logout">Logout</button>
 		</header>
-		<div class="content" data-bind="component: region.content()"></div>
+		<div class="content" data-bind="component: content()"></div>
 	</div>
 </div>

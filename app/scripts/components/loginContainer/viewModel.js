@@ -1,4 +1,9 @@
-define(['knockout', 'pubsub'], function (ko, p) {
+define([
+	'knockout',
+	'pubsub',
+	'components/login/component',
+	'components/recoverLogin/component'
+], function (ko, p) {
 
 	'use strict';
 
@@ -22,7 +27,7 @@ define(['knockout', 'pubsub'], function (ko, p) {
 			animation: animation
 		};
 
-		return ViewModel.init();
+		return ViewModel;
 
 	};
 

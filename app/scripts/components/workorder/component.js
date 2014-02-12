@@ -6,6 +6,6 @@ define([
 
 	'use strict';
 
-	return new Component('workOrder', ViewModel, View);
+	return new Component('workOrder', ViewModel, View).init();
 
 });

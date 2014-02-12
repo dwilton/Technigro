@@ -146,7 +146,7 @@ module.exports = function(grunt) {
 			options: {
 				port: buildConfig.port,
 				// change this to '0.0.0.0' to access the server from outside
-				hostname: buildConfig.hostname
+				hostname: '0.0.0.0' //buildConfig.hostname
 			},
 			livereload: {
 				options: {
@@ -266,8 +266,8 @@ module.exports = function(grunt) {
 			compile: {
 				options: {
 					baseUrl: '<%= config.app %>/scripts',
-					name: '../vendor/almond/almond',
-					mainConfigFile: '<%= config.app %>/scripts/main.js',
+					name: '../../node_modules/almond/almond',
+					mainConfigFile: '<%= config.app %>/scripts/config.js',
 					include: ['main'],
 					insertRequire: ['main'],
 					out: '<%= config.dist %>/scripts/main.min.js',

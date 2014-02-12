@@ -1,4 +1,7 @@
-define(['jquery', 'mocks/workOrder'], function ($) {
+define([
+	'jquery',
+	'mocks/workOrder'
+], function ($) {
 
 	'use strict';
 

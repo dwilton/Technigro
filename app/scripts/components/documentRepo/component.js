@@ -6,6 +6,6 @@ define([
 
 	'use strict';
 
-	return new Component('documentRepo', ViewModel, View);
+	return new Component('documentRepo', ViewModel, View).init();
 
 });

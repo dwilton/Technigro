@@ -1,15 +1,19 @@
-define(['knockout', 'pubsub', 'models/recoverLogin'], function (ko, p, RecoverLogin) {
+define([
+	'knockout',
+	'pubsub',
+	'models/recoverLogin'
+], function (ko, p, RecoverLoginModel) {
 
 	'use strict';
 
 	return function () {
 
-		var _recoverLogin = new RecoverLogin();
-
+		var recoverLoginModel = new RecoverLoginModel();
 		var email = ko.observable('');
 		var isLoading = ko.observable(false);
 		var isFailed = ko.observable(false);
 		var isSuccess = ko.observable(false);
+
 		var animation = ko.computed(function () {
 			p.publish('loginContainer.animation', isFailed() ? 'shake' : '');
 		});
@@ -23,11 +27,12 @@ define(['knockout', 'pubsub', 'models/recoverLogin'], function (ko, p, RecoverLo
 		var recover = function () {
 			isLoading(true);
 			isFailed(false);
-			_recoverLogin.recover({ email: email() }, recoverResult);
+			recoverLoginModel.recover({ email: email() }, recoverResult);
 		};
 
 		var recoverResult = function (data) {
 			isLoading(false);
+
 			if (data) {
 				isSuccess(true);
 			} else {

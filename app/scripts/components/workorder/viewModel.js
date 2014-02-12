@@ -1,11 +1,16 @@
-define(['knockout', 'pubsub', 'models/user', 'models/workOrder'], function (ko, p, User, WorkOrder) {
+define([
+	'knockout',
+	'pubsub',
+	'models/user',
+	'models/workOrder'
+], function (ko, p, UserModel, WorkOrderModel) {
 
 	'use strict';
 
 	return function () {
 
-		var _user = new User();
-		var _workOrder = new WorkOrder();
+		var userModel = new UserModel();
+		var workOrderModel = new WorkOrderModel();
 
 		var isAdmin = ko.observable(false);
 		var isLoading = ko.observable(true);
@@ -21,27 +26,25 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrder'], function (ko, 
 		};
 
 		var create = function (typeid) {
-			console.log(typeid);
 			isLoading(true);
-			_workOrder.getRefData(function (data) {
+			workOrderModel.getRefData(function (data) {
 				refData(ko.mapping.fromJS(data));
-				_workOrder.createWorkOrder({ typeid: typeid }, workOrderResult);
+				workOrderModel.createWorkOrder({ typeid: typeid }, workOrderResult);
 			});
 		};
 
 		var edit = function (id) {
 			isLoading(true);
-			_workOrder.getRefData(function (data) {
+			workOrderModel.getRefData(function (data) {
 				refData(ko.mapping.fromJS(data));
-				_workOrder.getWorkOrder({ id: id }, workOrderResult);
+				workOrderModel.getWorkOrder({ id: id }, workOrderResult);
 			});
 		};
 
 		var workOrderResult = function (data) {
-
 			altType(data.typeId === 2 ? true : false);
 
-			_user.getUser(function (user) {
+			userModel.getUser(function (user) {
 				isAdmin(user.isAdmin);
 			});
 
@@ -214,12 +217,12 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrder'], function (ko, 
 				};
 
 				navigator.camera.getPicture(function (imageData) {
-					workOrder().images.push({ src: imageData });
-				},
-				function () {
-					alert('Camera Failed');
-				},
-				options);
+						workOrder().images.push({ src: imageData });
+					},
+					function () {
+						alert('Camera Failed');
+					},
+					options);
 
 			} else {
 				alert('No camera available on this device');
@@ -266,7 +269,7 @@ define(['knockout', 'pubsub', 'models/user', 'models/workOrder'], function (ko, 
 			save: save
 		};
 
-		return ViewModel.init();
+		return ViewModel;
 
 	};
 

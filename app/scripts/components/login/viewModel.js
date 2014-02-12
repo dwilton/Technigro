@@ -1,15 +1,20 @@
-define(['knockout', 'pubsub', 'models/login'], function (ko, p, Login) {
+define([
+	'knockout',
+	'pubsub',
+	'models/login'
+], function (ko, p, LoginModel) {
 
 	'use strict';
 
 	return function () {
 
-		var _login = new Login();
+		var loginModel = new LoginModel();
 
 		var username = ko.observable('');
 		var password = ko.observable('');
 		var isLoading = ko.observable(false);
 		var isFailed = ko.observable(false);
+
 		var animation = ko.computed(function () {
 			p.publish('loginContainer.animation', isFailed() ? 'shake' : '');
 		});
@@ -21,19 +26,18 @@ define(['knockout', 'pubsub', 'models/login'], function (ko, p, Login) {
 			isFailed(false);
 		};
 
-		var authenticate = function () {
+		var login = function () {
 			isLoading(true);
 			isFailed(false);
-			_login.authenticate({ username: username(), password: password() }, authenticateResult);
+			loginModel.login({ username: username(), password: password() }, loginResult);
 		};
 
-		var authenticateResult = function (data) {
+		var loginResult = function (data) {
 			isLoading(false);
-			if(data) {
+
+			if (data) {
 				refresh();
-				p.publish('app.authenticate');
-			}
-			else {
+			} else {
 				isFailed(true);
 			}
 		};
@@ -44,7 +48,7 @@ define(['knockout', 'pubsub', 'models/login'], function (ko, p, Login) {
 			password: password,
 			isLoading: isLoading,
 			isFailed: isFailed,
-			authenticate: authenticate
+			login: login
 		};
 
 		return ViewModel;

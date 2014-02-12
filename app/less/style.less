@@ -69,7 +69,6 @@ body {
 	.flex(1);
 	padding: 0;
 	font-family: "Helvetica Neue", "HelveticaNeue", Arial;
-	font-family: Arial;
 	font-weight: 600;
 }
 
@@ -82,7 +81,8 @@ a:link {
 }
 
 .scrollable {
-	overflow: scroll;
+	overflow-x: hidden;
+	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 }
 
@@ -242,7 +242,10 @@ a:link {
 	.justifyContent(center);
 	.alignItems(center);
 	.flex(1);
-	-webkit-transform: translateZ(0.00001px); /* Hack: (Chrome) force redraw of background on hidden elements */
+
+	/* JARED: Remove this due to rendering issues in google chrome */
+	/* -webkit-transform: translateZ(0.00001px); */ /* Hack: (Chrome) force redraw of background on hidden elements */
+	-webkit-transform: scale(1); /* Hack: (Chrome) force redraw of background on hidden elements */
 
 	label {
 		display: none;
@@ -269,6 +272,7 @@ a:link {
 	}
 
 	.tab-content {
+		position: relative;
 		min-height: 11rem;
 		box-shadow: 0 5px 5px 0 @login-shadow-color;
 	}
@@ -280,8 +284,10 @@ a:link {
 	.issue-success {
 		padding: 2.5rem;
 		text-align: center;
+		vertical-align: middle;
 
 		&:before {
+			display: block;
 			font-size: 2rem;
 			line-height: 1;
 			text-align: center;
@@ -571,7 +577,7 @@ a:link {
 				position: absolute;
 				right: 1rem;
 				font-family: "icon";
-				content: "\f108";
+				content: "\f109";
 				font-size: 1rem;
 				line-height: 1.2;
 			}

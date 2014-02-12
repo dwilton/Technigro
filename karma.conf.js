@@ -1,4 +1,4 @@
-module.exports = function(karma) {
+module.exports = function (karma) {
 
 	'use strict';
 
@@ -10,6 +10,9 @@ module.exports = function(karma) {
 		// Base path, that will be used to resolve files and exclude
 		basePath: '',
 
+		// Disable preprocessors (This is required for RequireJS Text Plugin, otherwise fails)
+		preprocessors: {},
+
 		files: [
 
 			// Assertion library
@@ -20,6 +23,7 @@ module.exports = function(karma) {
 			{pattern: 'app/vendor/pubsub/src/pubsub.js', included: false},
 			{pattern: 'app/vendor/jquery/jquery.js', included: false},
 			{pattern: 'app/vendor/jquery-mockjax/jquery.mockjax.js', included: false},
+			{pattern: 'app/vendor/text/text.js', included: false},
 
 			{pattern: 'app/vendor/lawnchair/src/Lawnchair.js', included: true},
 			{pattern: 'app/vendor/lawnchair/src/adapters/dom.js', included: true},
@@ -84,4 +88,5 @@ module.exports = function(karma) {
 		plugins: ['karma-mocha', 'karma-html2js-preprocessor', 'karma-requirejs', 'karma-phantomjs-launcher', 'karma-chrome-launcher', 'karma-coverage']
 
 	});
+
 };
