@@ -145,7 +145,7 @@ module.exports = function(grunt) {
 		connect: {
 			options: {
 				port: buildConfig.port,
-				// change this to '0.0.0.0' to access the server from outside
+				// change this to '0.0.0.0' to access the server from outside or from a vm if useing vmware fusion
 				hostname: '0.0.0.0' //buildConfig.hostname
 			},
 			livereload: {
@@ -237,7 +237,7 @@ module.exports = function(grunt) {
 				src: [
 					'<%= config.app %>/vendor/cardinal/css/main.min.css',
 					'<%= config.app %>/vendor/ladda/dist/ladda-themeless.min.css',
-					'<%= config.app %>/vendor/animo.js/animate+animo.css',
+					'<%= config.app %>/vendor/animate.css/animate.css',
 					'<%= config.app %>/css/style.css'
 				],
 				dest: '<%= config.dist %>/css/style.min.css',

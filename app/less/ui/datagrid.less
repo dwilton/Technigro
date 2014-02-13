@@ -4,6 +4,29 @@
 		border: 1px solid @datagrid-border-color;
 		user-select: none;
 
+		.remove {
+			text-align: center;
+
+			.icon {
+				display: inline-block;
+				position: relative;
+				width: 1rem;
+				text-decoration: none;
+				text-indent: 100%;
+				white-space: nowrap;
+				overflow: hidden;
+
+				&:before {
+					position: absolute;
+					left: 0;
+					color: @negative;
+					font-size: 1.2rem;
+					line-height: 1rem;
+					text-indent: 0;
+				}
+			}
+		}
+
 		table {
 			margin: 0;
 			font-weight: normal;

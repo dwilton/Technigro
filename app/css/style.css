@@ -149,6 +149,7 @@
   display: block;
   position: relative;
   width: 1rem;
+  text-decoration: none;
   text-indent: 100%;
   white-space: nowrap;
   overflow: hidden;
@@ -286,6 +287,29 @@
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.datagrid .remove {
+  text-align: center;
+}
+
+.datagrid .remove .icon {
+  display: inline-block;
+  position: relative;
+  width: 1rem;
+  text-decoration: none;
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.datagrid .remove .icon:before {
+  position: absolute;
+  left: 0;
+  color: #be1700;
+  font-size: 1.2rem;
+  line-height: 1rem;
+  text-indent: 0;
 }
 
 .datagrid table {
@@ -765,7 +789,7 @@ label {
   display: block;
   position: relative;
   padding: 0.7em 1em;
-  font-weight: 500;
+  font-weight: 400;
   color: #666666;
   font-size: 0.8rem;
   text-decoration: none;
@@ -1193,10 +1217,8 @@ a:link {
 .main-bar .menu-toggle,
 .main-bar .menu-back,
 .main-bar .logout {
-  padding: 0.5rem 0.8rem;
   height: 100%;
   color: #f2f2f2;
-  line-height: 1;
   text-decoration: none;
   background-color: #149a55;
   border: 0;
@@ -1205,15 +1227,20 @@ a:link {
 .main-bar .menu-toggle,
 .main-bar .menu-back {
   display: inline-block;
+  padding: 0.6rem 0.8rem;
   width: 3rem;
   font-size: 1.5rem;
-  line-height: 1.4;
+  line-height: normal;
   text-align: center;
 }
 
 .main-bar .menu-toggle span,
 .main-bar .menu-back span {
   display: none;
+}
+
+.main-bar .logout {
+  padding: 0.4rem 0.8rem;
 }
 
 .main-bar .menu-back ~ .title {
@@ -1227,7 +1254,6 @@ a:link {
   -ms-flex: 1;
   flex: 1;
   margin: 0;
-  padding-left: 3.5rem;
   color: #ffffff;
   font-weight: 100;
   font-family: "HelveticaNeue-Light", "Helvetica Neue", Arial;
@@ -1261,6 +1287,7 @@ a:link {
 .main-menu a {
   display: block;
   color: #595959;
+  font-weight: 200;
   text-align: center;
   text-decoration: none;
 }
@@ -2064,4 +2091,89 @@ a:link {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   padding: 3rem;
+}
+
+.settings {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-orient: column;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+
+.settings header .toggle-menu {
+  margin-top: 1rem;
+}
+
+.settings .content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-orient: column;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  padding: 1.5rem;
+}
+
+.settings .actions {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-orient: row;
+  -webkit-flex-flow: row;
+  -ms-flex-flow: row;
+  flex-flow: row;
+  -webkit-box-pack: end;
+  -webkit-justify-content: end;
+  -moz-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: end;
+  margin-bottom: 1rem;
+}
+
+.settings .actions input {
+  width: 15rem;
+  margin-right: 1rem;
+}
+
+.settings .datagrid,
+.settings .toggle-menu-content,
+.settings .settings-clients-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-orient: column;
+  -webkit-flex-flow: column;
+  -ms-flex-flow: column;
+  flex-flow: column;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }

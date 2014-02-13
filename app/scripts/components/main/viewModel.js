@@ -4,8 +4,9 @@ define([
 	'models/login',
 	'components/workorder/component',
 	'components/workorders/component',
-	'components/documentRepo/component'
-], function (ko, p, LoginModel, workOrderComponent, workOrdersComponent, documentRepoComponent) {
+	'components/documentRepo/component',
+	'components/settings/component'
+], function (ko, p, LoginModel, workOrderComponent, workOrdersComponent, documentRepoComponent, settingsComponent) {
 
 	'use strict';
 
@@ -29,6 +30,7 @@ define([
 			p.publish('route.set', { name: '#workorder/:id', callback: workOrder });
 			p.publish('route.set', { name: '#workorders', callback: workOrders });
 			p.publish('route.set', { name: '#document-repository', callback: documentRepo });
+			p.publish('route.set', { name: '#settings', callback: settings });
 
 			p.subscribe('main.title', title);
 
@@ -66,6 +68,12 @@ define([
 			title('Document Repository');
 			menu('documentRepo');
 			content(documentRepoComponent.name);
+		};
+
+		var settings = function () {
+			title('Settings');
+			menu('settings');
+			content(settingsComponent.name);
 		};
 
 		var ViewModel = {

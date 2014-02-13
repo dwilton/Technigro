@@ -141,10 +141,8 @@ a:link {
 	}
 
 	.menu-toggle, .menu-back, .logout {
-		padding: 0.5rem 0.8rem;
 		height: 100%;
 		color: @app-bar-button-color;
-		line-height: 1;
 		text-decoration: none;
 		background-color: @app-bar-button-bg-color;
 		border: 0;
@@ -152,14 +150,19 @@ a:link {
 
 	.menu-toggle, .menu-back {
 		display: inline-block;
+		padding: 0.6rem 0.8rem;
 		width: 3rem;
 		font-size: 1.5rem;
-		line-height: 1.4;
+		line-height: normal;
 		text-align: center;
 
 		span {
 			display: none;
 		}
+	}
+
+	.logout {
+		padding: 0.4rem 0.8rem;
 	}
 
 	.menu-back ~ .title {
@@ -169,7 +172,6 @@ a:link {
 	.title {
 		.flex(1);
 		margin: 0;
-		padding-left: 3.5rem;
 		color: @app-bar-title-color;
 		font-weight: 100;
 		font-family: "HelveticaNeue-Light", "Helvetica Neue", Arial;
@@ -203,6 +205,7 @@ a:link {
 	a {
 		display: block;
 		color: @menu-color;
+		font-weight: 200;
 		text-align: center;
 		text-decoration: none;
 
@@ -803,4 +806,40 @@ a:link {
 			padding: 3rem;
 		}
 	}
+}
+
+.settings {
+	.display(flex);
+	.flexFlow(column);
+	.flex(1);
+
+	header .toggle-menu {
+		margin-top: 1rem;
+	}
+
+	.content {
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+		padding: 1.5rem;
+	}
+
+	.actions {
+		.display(flex);
+		.flexFlow(row);
+		.justifyContent(end);
+		margin-bottom: 1rem;
+
+		input {
+			width: 15rem;
+			margin-right: 1rem;
+		}
+	}
+
+	.datagrid, .toggle-menu-content, .settings-clients-content {
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+	}
+
 }
