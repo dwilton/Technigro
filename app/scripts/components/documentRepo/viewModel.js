@@ -20,6 +20,19 @@ define([
 		var isAdmin = ko.observable(false);
 		var isEdit = ko.observable(false);
 
+		var addNewDocument = {
+			showMenu: ko.observable(false),
+			groupType: ko.observable('existing'),
+			existingGroup: ko.observable(''),
+			createGroup: ko.observable(''),
+			file: ko.observable(''),
+			isUploading: ko.observable(false)
+		};
+
+		addNewDocument.placeholder = ko.computed(function() {
+        return addNewDocument.file().replace('C:\\fakepath\\', '');
+    }, this);
+
 		selected.subscribe(function (value) {
 			if (value !== null) {
 				getDocument(selected().id);
@@ -37,6 +50,11 @@ define([
 			selected(null);
 			isDocumentLoaded(false);
 			getDocumentList();
+			addNewDocument.showMenu(false);
+		};
+
+		var toggleAddNewMenu = function () {
+			addNewDocument.showMenu(addNewDocument.showMenu() ? false : true);
 		};
 
 		var toggleEdit = function () {
@@ -64,6 +82,18 @@ define([
 			documentDetails(data);
 		};
 
+		var uploadDocument = function () {
+			addNewDocument.isUploading(true);
+
+			setTimeout(function () {
+				addNewDocument.isUploading(false);
+				addNewDocument.existingGroup('');
+				addNewDocument.createGroup('');
+				addNewDocument.file('');
+				toggleAddNewMenu();
+			}, 2000);
+		};
+
 		var ViewModel = {
 			init: init,
 			refresh: refresh,
@@ -75,7 +105,10 @@ define([
 			selected: selected,
 			isAdmin: isAdmin,
 			isEdit: isEdit,
-			toggleEdit: toggleEdit
+			addNewDocument: addNewDocument,
+			toggleEdit: toggleEdit,
+			uploadDocument: uploadDocument,
+			toggleAddNewMenu: toggleAddNewMenu
 		};
 
 		return ViewModel;

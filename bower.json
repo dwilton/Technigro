@@ -1,6 +1,6 @@
 {
   "name": "technigro",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "dependencies": {
     "animo.js": "*",
     "cardinal": "git@github.com:cbracco/cardinal.git",
@@ -15,10 +15,9 @@
     "requirejs": "*",
     "modernizr": "*",
     "page": "*",
-    "text": "*"
-  },
-  "devDependencies": {
+    "text": "*",
     "jquery-mockjax": "~1.5.2",
-    "knockout-mapping": "~2.4.1"
+    "knockout-mapping": "~2.4.1",
+    "typeahead.js": "0.9.3"
   }
 }

@@ -15,6 +15,7 @@ require.config({
 		'pubsub': '../vendor/pubsub/src/pubsub',
 		'spin': '../vendor/spin.js/spin',
 		'text': '../vendor/text/text',
+		'typeahead': '../vendor/typeahead.js/dist/typeahead',
 
 		// Libraries
 		'bindings': 'lib/bindings',
@@ -30,7 +31,8 @@ require.config({
 	shim: {
 		'animo': ['jquery'],
 		'mockjax': ['jquery'],
-		'page': { exports: 'page' }
+		'page': { exports: 'page' },
+		'typeahead': ['jquery']
 	}
 
 });

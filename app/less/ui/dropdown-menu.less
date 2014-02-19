@@ -6,9 +6,9 @@
 
 		.dropdown {
 			position: absolute;
-			top: 4rem;
 			right: 0rem;
-			padding: 0.2rem 0.4rem;
+			margin-top: 1rem;
+			padding: 0.4rem;
 			width: 11rem;
 			background: @dropdown-bg-color;
 			border-radius: 0.356rem;
@@ -26,7 +26,20 @@
 				border-bottom-color: @dropdown-bg-color;
 			}
 
-			.button {
+			.content {
+				margin-bottom: 0.4rem;
+				padding: 0.4rem;
+				background: @dropdown-content-bg-color;
+				border-radius: 0.2rem;
+			}
+
+			.dropdown-primary-button {
+				padding: 0.8em 0.75em;
+				width: 100%;
+				background: @dropdown-primary-button-color;
+			}
+
+			.dropdown-list-button {
 				display: block;
 				position: relative;
 				padding: 0.7em;
@@ -36,6 +49,7 @@
 				font-size: 0.8rem;
 				text-align: left;
 				background: @dropdown-bg-color;
+				border: 0;
 				border-top: 1px solid darken(@dropdown-bg-color, 9);
 				border-radius: 0;
 

@@ -13,7 +13,8 @@ define([
 	'plugins/accordian',
 	'plugins/toggleMenu',
 	'lib/touch',
-	'animo'
+	'animo',
+	'typeahead'
 ], function (ko, p, $) {
 
 	'use strict';
@@ -34,6 +35,19 @@ define([
 		},
 		update: function (element, valueAccessor) {
 			p.publish('component.' + valueAccessor() + '.activate', element);
+		}
+	};
+
+	// typehead: { typehead:  }
+	ko.bindingHandlers.typeahead = {
+		init: function (element, valueAccessor, allBindingsAccessor) {
+			var options = ko.toJS(allBindingsAccessor().typeahead());
+			console.log(options);
+			$(element).attr('autocomplete', 'off').typeahead({
+				name: 'typeahead',
+				valueKey: 'name',
+				local: options
+			});
 		}
 	};
 

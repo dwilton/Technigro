@@ -43,7 +43,7 @@
 					<div class="client">
 						<label for="client">Client</label>
 						<!-- ko if: isAdmin -->
-						<select id="client" class="input-stretch" data-bind="options: refData().clients, optionsText: 'name', optionsValue: 'id', value: workOrder().details.clientId(), optionsCaption: 'Please Select'"></select>
+						<input id="client" type="text" placeholder="Please Select" class="input-stretch" data-bind="typeahead: refData().clients, value: workOrder().details.clientName"></select>
 						<!-- /ko -->
 						<!-- ko if: !isAdmin() -->
 						<span class="data input-stretch" data-bind="text: workOrder().details.clientName"></span>
@@ -395,7 +395,7 @@
 			</section>
 
 			<section id="schedule" class="workorder-schedule content" style="display: none">
-				
+
 				<div>
 
 					<div class="location">

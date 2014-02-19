@@ -23,6 +23,7 @@
 @import "ui/table.less";
 @import "ui/tabs.less";
 @import "ui/toggle-menu.less";
+@import "ui/typeahead.less";
 @import "settings/default.less";
 
 /**
@@ -52,6 +53,7 @@
 .table();
 .tabs();
 .toggle-menu();
+.typeahead();
 
 /**
  * Common
@@ -781,6 +783,14 @@ a:link {
 		.justifyContent(space-between);
 	}
 
+	.dropdown {
+		width: 15rem;
+
+		.segmented-button {
+			margin-bottom: 0.5rem;
+		}
+	}
+
 	.document-container {
 		.display(flex);
 		.flexFlow(row);
@@ -815,6 +825,7 @@ a:link {
 
 	header .toggle-menu {
 		margin-top: 1rem;
+		padding: 0;
 	}
 
 	.content {
