@@ -1,16 +1,16 @@
 'use strict';
 
+// App config
 require.config({
 
 	paths: {
 
-		// Components
+		// Vendor
 		'animo': '../vendor/animo.js/animo',
 		'jquery': '../vendor/jquery/jquery',
 		'knockout': '../vendor/knockout.js/knockout',
 		'ladda': '../vendor/ladda/js/ladda',
 		'mapping': '../vendor/knockout-mapping/knockout.mapping',
-		'mockjax': '../vendor/jquery-mockjax/jquery.mockjax',
 		'page': '../vendor/page/index',
 		'pubsub': '../vendor/pubsub/src/pubsub',
 		'spin': '../vendor/spin.js/spin',
@@ -24,13 +24,11 @@ require.config({
 		'querystring': 'lib/querystring',
 		'url': 'lib/url',
 		'router': 'lib/router',
-		'store': 'lib/store'
-
+		'store': 'lib/store',
 	},
 
 	shim: {
 		'animo': ['jquery'],
-		'mockjax': ['jquery'],
 		'page': { exports: 'page' },
 		'typeahead': ['jquery']
 	}

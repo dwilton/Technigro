@@ -1,0 +1,43 @@
+@import "core.less";
+
+.workorders {
+	.display(flex);
+	.flexFlow(column);
+	.flex(1);
+
+	.filter {
+		.display(flex);
+		.flexFlow(row);
+		.justifyContent(space-between);
+
+		.status {
+			width: 20rem;
+		}
+
+		.technician {
+			width: 6.5rem;
+		}
+
+		.date-to, .date-from {
+			width: 6.3rem;
+		}
+
+		.add-new-button {
+			position: relative;
+			margin-top: 1.35rem;
+			width: 5.5rem;
+		}
+	}
+
+	.datagrid {
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+		margin: 1.5rem;
+	}
+
+	.results {
+		.display(flex);
+		.flex(1);
+	}
+}

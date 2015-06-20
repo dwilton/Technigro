@@ -2,10 +2,10 @@ define([
 	'component',
 	'./viewModel',
 	'text!./view.html'
-], function (Component, ViewModel, View) {
+], function (Component, ViewModel, view) {
 
 	'use strict';
 
-	return new Component('login', ViewModel, View).init();
+	return new Component('login', ViewModel, view);
 
 });

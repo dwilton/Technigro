@@ -1,6 +1,6 @@
 {
   "name": "technigro",
-  "version": "0.1.1",
+  "version": "1.0.1",
   "dependencies": {
     "animo.js": "*",
     "cardinal": "git@github.com:cbracco/cardinal.git",

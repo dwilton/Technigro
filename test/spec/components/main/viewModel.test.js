@@ -1,4 +1,4 @@
-define(['chai', 'components/main/viewModel'], function(chai, ViewModel) {
+define(['chai', 'components/main/viewModel'], function (chai, ViewModel) {
 
 	'use strict';
 
@@ -6,11 +6,11 @@ define(['chai', 'components/main/viewModel'], function(chai, ViewModel) {
 	var should = chai.should();
 	var expect = chai.expect;
 
-	describe('ViewModel', function() {
+	describe('ViewModel', function () {
 
 		var viewModel = new ViewModel();
 
-		it('viewModel instance should exist', function() {
+		it('viewModel instance should exist', function () {
 				should.exist(viewModel);
 		});
 

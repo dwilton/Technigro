@@ -1,0 +1,31 @@
+/*
+
+	Filter
+
+	The filter represents a group of introductory or navigational aids
+
+	Markup:
+	<header>
+		<div>
+			<label for="search">Search</label>
+			<input id="search" name="search" type="search" placeholder="Enter Criteria">
+		</div>
+	</header>
+
+*/
+
+.filter {
+	padding: 1rem 1.5rem;
+	background-color: @header-bg-color;
+	border-bottom: 1px solid @header-border-color;
+
+	> div {
+		display: inline-block;
+		margin-right: 0.9rem;
+		vertical-align: top;
+
+		&:last-of-type {
+			margin-right: 0;
+		}
+	}
+}

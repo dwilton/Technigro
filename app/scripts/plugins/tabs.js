@@ -8,6 +8,7 @@ define(['jquery'], function (jQuery) {
 
 		function Plugin (element, options) {
 			this.element = element;
+			this.options = options;
 			this.init();
 		}
 
@@ -16,9 +17,10 @@ define(['jquery'], function (jQuery) {
 			init: function () {
 
 				var tabs = $(this.element);
+				var tabContent = $(this.options.tabContentId);
 
 				// Create observer
-				tabs.find('> .tabs').on('click', 'li a', function (e) {
+				tabs.on('click', 'li a', function (e) {
 
 					e.preventDefault();
 
@@ -27,13 +29,13 @@ define(['jquery'], function (jQuery) {
 							content = tab.attr('href');
 
 					// Remove 'active' CSS class from all 'li' elements
-					tabs.find('> .tabs > .active').removeClass('active');
+					tabs.children('.active').removeClass('active');
 
 					// Add 'active' CSS class to the select tab 'li' element
 					li.addClass('active');
 
 					// Hide all tab content
-					tabs.find('.tab-content > div').hide();
+					tabContent.children('div').hide();
 
 					// Show content, target DOM elements using the anchor name
 					$(content).fadeIn(200);
@@ -44,8 +46,8 @@ define(['jquery'], function (jQuery) {
 
 		};
 
-		$.fn[pluginName] = function(options) {
-			return this.each(function() {
+		$.fn[pluginName] = function (options) {
+			return this.each(function () {
 				if (!$.data(this, 'plugin_' + pluginName)) {
 					$.data(this, 'plugin_' + pluginName, new Plugin(this, options));
 				}

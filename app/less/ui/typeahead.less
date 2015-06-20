@@ -1,57 +1,63 @@
-.typeahead() {
+/*
 
-	.twitter-typeahead,
-	.typeahead,
-	.tt-hint {
-		.display(flex);
-		.flex(1);
-		width: 100%;
-	}
+	Typeahead
 
-	.typeahead,
-	.tt-hint {
-		padding: 0.35rem 0.5rem;
-		min-height: 1rem;
-		font-size: 0.8rem;
-		background: @input-bg-color;
-		border: 1px solid rgba(0,0,0,0.2);
-		border-radius: 0.356em;
-		box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
-	}
+	Autocomplete plugin
 
-	input:not([type="submit"]).tt-hint {
-		color: @typeahead-hint-color;
-	}
+	Markup:
 
-	.tt-query {
-		box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-	}
+*/
 
-	.tt-dropdown-menu {
-		width: 18rem;
-		margin-top: 1rem;
-		padding: 0;
-		min-height: 1rem;
-		font-size: 0.8rem;
-		font-weight: 200;
-		background: @input-bg-color;
-		border: 1px solid rgba(0,0,0,0.2);
-		border-radius: 0.356em;
-		box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
-		overflow: hidden;
-	}
+.twitter-typeahead,
+.typeahead,
+.tt-hint {
+	.display(flex);
+	.flex(1);
+	width: 100%;
+}
 
-	.tt-suggestion {
-		padding: 0.35rem 0.5rem;
-	}
+.typeahead,
+.tt-hint {
+	padding: 0.35rem 0.5rem;
+	min-height: 1rem;
+	font-size: 0.8rem;
+	background: @input-bg-color;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 0.356em;
+	box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
+}
 
-	.tt-suggestion:hover {
+input:not([type="submit"]).tt-hint {
+	color: @typeahead-hint-color;
+}
+
+.tt-query {
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.tt-dropdown-menu {
+	margin-top: 1rem;
+	padding: 0;
+	width: 18rem;
+	min-height: 1rem;
+	font-size: 0.8rem;
+	font-weight: 200;
+	background: @input-bg-color;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 0.356em;
+	box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
+	overflow: hidden;
+}
+
+.tt-suggestion {
+	padding: 0.35rem 0.5rem;
+
+	&:hover {
 		color: @hover-color;
 		background-color: @hover-bg-color;
 	}
 
-	.tt-suggestion p {
+	p {
 		margin: 0;
 	}
-
 }

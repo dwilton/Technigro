@@ -1,4 +1,4 @@
-define(['jquery', 'mockjax'], function ($) {
+define(['models/workOrders', 'jquery', 'mockjax'], function (WorkOrders, $) {
 
 	'use strict';
 
@@ -834,5 +834,7 @@ define(['jquery', 'mockjax'], function ($) {
 			]
 		}
 	});
+
+	return WorkOrders;
 
 });

@@ -1,0 +1,72 @@
+<section class="settings">
+
+	<header class="filter">
+		<ul class="tab-nav tab-nav-button" data-bind="tabs: 'settings-content'">
+			<li><a href="#settings-clients">Clients</a></li>
+			<li><a href="#settings-data-types">Data Types</a></li>
+			<li><a href="#settings-document-groups">Document Groups</a></li>
+		</ul>
+	</header>
+
+	<div id="settings-content" class="content tab-content">
+
+		<div class="settings-clients-content">
+
+			<div class="actions">
+				<input id="client-name" type="text" />
+				<button class="button">Add New</button>
+			</div>
+
+			<div class="datagrid">
+
+				<table class="fixed-header table stripe">
+					<colgroup>
+						<col width="4%">
+						<col width="96%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th></th>
+							<th>Client Name</th>
+						</tr>
+					</thead>
+				</table>
+
+				<div class="results scrollable">
+
+					<table class="table stripe editable">
+						<colgroup>
+							<col width="4%">
+							<col width="96%">
+						</colgroup>
+						<thead>
+							<tr>
+								<th></th>
+								<th>Client Name</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td class="action"><a href="#" class="icon icon-cross icon-negative">Remove</a></td>
+								<td>Client A</td>
+							</tr>
+							<tr>
+								<td class="action"><a href="#" class="icon icon-cross icon-negative">Remove</a></td>
+								<td>Client B</td>
+							</tr>
+							<tr>
+								<td class="action"><a href="#" class="icon icon-cross icon-negative">Remove</a></td>
+								<td>Client C</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</section>

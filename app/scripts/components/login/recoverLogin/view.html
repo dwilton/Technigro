@@ -1,0 +1,14 @@
+<div id="recover-login" class="recover-login">
+	<form name="recover-login" data-bind="visible: !isSuccess()">
+		<div>
+			<label for="email">Email Address</label>
+			<input id="email" type="text" placeholder="Email Address" data-bind="value: email" />
+		</div>
+		<p>If you have forgotten your login, we will send you an email to reset your password.</p>
+		<div class="issue issue-negative icon icon-cross" data-bind="visible: isFailed()">Email address doesn't exist.</div>
+		<div>
+			<button class="button button-positive" data-bind="click: recover, ladda: isLoading()">Recover Login</button>
+		</div>
+	</form>
+	<div class="issue issue-positive icon icon-tick" data-bind="visible: isSuccess()">Check your email.</div>
+</div>

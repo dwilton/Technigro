@@ -13,32 +13,54 @@ define([
 
 	'use strict';
 
-	return function (name, ViewModel, View) {
+	/**
+	 * Component
+	 * @param  {String} name      Component name (Target the component with pubsub)
+	 * @param  {Object} ViewModel ViewModel
+	 * @param  {String} View      View Template
+	 * @return {Object}           Instance of this
+	 */
+	return function (name, ViewModel, view) {
 
-		var	vm, view, element, active;
+		var	vm, vmArgs, element, active;
 
-		var init = function () {
+		/**
+		 * Init Component
+		 * @param  {Object} args
+		 * @return {Object}      Instance of this
+		 */
+		var init = function (args) {
 
+			// Create a new instance of the ViewModel
 			vm = new ViewModel();
-			view = View;
+			vmArgs = args;
+
+			// Component is inactive
 			active = false;
 
-			// Init component
+			// Init ViewModel
 			initVM();
 
-			// Create observers
+			// Subscribers of this component
 			p.subscribe('component.' + name + '.activate', function (parentEl) { activate(parentEl); });
 			p.subscribe('component.' + name + '.init', initVM);
 			p.subscribe('component.' + name + '.refresh', refreshVM);
+
+			// Subscribers for all components
 			p.subscribe('component.initAll', initVM);
 			p.subscribe('component.refreshAll', refreshVM);
 
 			return this;
+
 		};
 
+		/**
+		 * Active Component
+		 * @param  {Object} parentEl Parent element
+		 */
 		var activate = function (parentEl) {
 
-			// Hide all siblings
+			// Hide all DOM siblings
 			var children = parentEl.childNodes;
 
 			for (var i = 0; i < children.length; i = i + 1) {
@@ -50,41 +72,42 @@ define([
 			// Activate or show component
 			if (!active) {
 
-				// Append view to the DOM
+				// Append view to the DOM inside a new 'div' element
 				var container = document.createElement('div');
 				container.innerHTML = view;
 				element = parentEl.appendChild(container.firstChild);
 
-				// Set component as active
+				// Component is active
 				active = true;
 
 				// Apply knockout bindings
 				ko.applyBindings(vm, element);
 
-				// Call viewmodel 'activate' method if available
-				if (vm.activate !== undefined) {
-					vm.activate();
-				}
+				// Active ViewModel
+				activateVM();
 
-				// Refresh component
+				// Refresh ViewModel
 				refreshVM();
 
 			} else {
 
-				// Refresh component
+				// Refresh ViewModel
 				refreshVM();
 
 				// Show the component
-				// TODO: replace with detectable viewModel method e.g. animateIn
+				// TODO: replace with detectable ViewModel method e.g. animateIn
 				element.style.display = '';
 
 			}
 
 		};
 
+		/**
+		 * Deactivate Component
+		 */
 		var deactivate = function () {
 
-			// Set component as not active
+			// Component is inactive
 			active = false;
 
 			if (element !== undefined) {
@@ -101,30 +124,44 @@ define([
 
 		};
 
-		var refreshVM = function () {
+		/**
+		 * Calls ViewModel 'init' method if it exists
+		 */
+		var initVM = function () {
+			if (vm.init !== undefined) {
+				vm.init(vmArgs);
+			}
+		};
 
-			// Call viewmodel 'refresh' method if available
+		/**
+		 * Calls ViewModel 'activate' method if it exists
+		 */
+		var activateVM = function () {
+			if (vm.activate !== undefined) {
+				vm.activate();
+			}
+		};
+
+		/**
+		 * Calls ViewModel 'refresh' method if it exists
+		 */
+		var refreshVM = function () {
 			if (vm.refresh !== undefined) {
 				vm.refresh();
 			}
-
 		};
 
-		var initVM = function () {
-
-			// Call viewmodel 'init' method if available
-			if (vm.init !== undefined) {
-				vm.init();
-			}
-
-		};
-
+		/**
+		 * Component
+		 * @type {Object}
+		 */
 		var Component = {
 			init: init,
 			name: name,
 			activate: activate,
 			deactivate: deactivate,
 			initVM: initVM,
+			activateVM: activateVM,
 			refreshVM: refreshVM
 		};
 

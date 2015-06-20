@@ -1,0 +1,23 @@
+/*
+
+	Icon
+
+	Icons can provide feedback to the user.
+
+	Markup:
+	<a href="#" class="icon icon_tick icon-positive">Sucess</a>
+	<a href="#" class="icon icon_cross icon-negative">Remove</a>
+
+	:hover               - Highlight the icon when hovered.
+
+ */
+
+.icon-positive, a.icon-positive:before, a.icon-positive:hover, a.icon-positive:hover:before {
+	color: @positive !important;
+	background: transparent !important;
+}
+
+.icon-negative, .icon-negative:before, a.icon-negative:hover, a.icon-negative:hover:before {
+	color: @negative !important;
+	background: transparent !important;
+}

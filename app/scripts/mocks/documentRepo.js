@@ -1,4 +1,4 @@
-define(['jquery', 'mockjax'], function ($) {
+define(['models/documentRepo', 'jquery', 'mockjax'], function (DocumentRepo, $) {
 
 	'use strict';
 
@@ -61,5 +61,7 @@ define(['jquery', 'mockjax'], function ($) {
 		responseTime: 1000,
 		responseText: { result: '<h1>Lorem ipsum dolor</h1><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec blandit eros nunc, at facilisis leo varius vel. Pellentesque tincidunt sapien nec scelerisque cursus. Ut tortor ante, dapibus ut enim eget, imperdiet sodales libero. Etiam vitae enim lorem. In at nibh sit amet sapien vestibulum sagittis. Etiam consectetur magna sit amet posuere aliquet. Ut fringilla iaculis porttitor. Aenean magna tellus, porttitor a nisl ac, viverra mattis turpis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nullam facilisis commodo nisi id accumsan. Donec elementum porta odio ac iaculis. Curabitur in mollis nisi. Cras lacus massa, luctus nec lacinia quis, scelerisque et lacus. Nam sed feugiat purus. Cras consequat erat felis, vehicula porta tortor hendrerit eget. Curabitur quis nulla nec metus porta facilisis. Mauris ullamcorper vel quam nec faucibus. Duis scelerisque nisl sed mi lobortis luctus. Ut ut leo accumsan, pulvinar quam a, pulvinar sapien. Cras purus turpis, mattis eget tellus ut, commodo fringilla augue. Fusce tellus purus, porttitor et elit vel, fringilla venenatis ante. Etiam gravida nulla et augue viverra suscipit. Cras eu dignissim felis. Suspendisse potenti. Cras in sapien dui. Interdum et malesuada fames ac ante ipsum primis in faucibus. Ut dignissim, tortor ut interdum consequat, libero justo congue tortor, non porta est risus ac metus. Morbi ac erat congue, imperdiet lectus ac, egestas elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Proin dignissim sodales elit, et mollis felis tristique ut. Nunc non cursus metus, a adipiscing nunc. Mauris consequat est vel quam fermentum, nec pulvinar metus blandit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi facilisis purus non ante varius suscipit. Aenean consectetur nunc vel nisl facilisis, a semper nisl posuere.</p>' }
 	});
+
+	return DocumentRepo;
 
 });

@@ -1,142 +1,206 @@
-.input() {
+/*
 
-	input:not([type="submit"]),
-	textarea,
-	select {
-		padding: 0.35rem 0.5rem;
-		font-size: 0.8rem;
-		color: @input-color;
-		background: @input-bg-color;
-		border: 1px solid rgba(0,0,0,0.2);
-		border-radius: 0.356em;
-		box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
+	Input
+
+	Markup:
+	<input type="text">
+	<input type="date">
+	<input type="time">
+	<input type="email">
+	<input type="number">
+	<input type="search">
+	<input type="url">
+	<input type="tel">
+	<input type="range">
+	<input type="month">
+	<input type="week">
+	<input type="datetime">
+	<input type="datetime-local">
+	<input type="color">
+
+*/
+
+input:not([type="submit"]),
+textarea,
+select {
+	padding: 0.35rem 0.5rem;
+	min-height: 1.8rem;
+	font-size: 0.8rem;
+	color: @input-color;
+	background: @input-bg-color;
+	border: 1px solid rgba(0,0,0,0.2);
+	border-radius: 0.356em;
+	box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
+	-webkit-appearance: none;
+
+	&:focus, &:active {
+		background-color: @input-bg-color-focus;
+		border: 1px solid @input-border-color-focus;
+		outline: none;
+	}
+}
+
+input[type="date"] {
+	&::-webkit-inner-spin-button,
+	&::-webkit-calendar-picker-indicator,
+	&::-webkit-clear-button {
+		display: none;
 		-webkit-appearance: none;
-
-		&:focus, &:active {
-			background-color: @input-bg-color-focus;
-			border: 1px solid @input-border-color-focus;
-			outline: none;
-		}
 	}
+}
 
-	input[type="text"],
-	input[type="date"],
-	textarea,
-	select {
-		min-height: 1.8rem;
+input {
+	&[type=checkbox], &[type=radio] {
+		display: inline-block;
+		margin: 0 0.1em 0 0;
+		padding: 0;
+		width: 1.25em;
+		height: 1.25em;
+		font-size: 1em;
+		line-height: 1em;
+		vertical-align: text-top;
+		text-align: center;
+		box-shadow: none;
+		border-radius: 0.25em;
 	}
+}
 
-	select {
-		position: relative;
-		-webkit-padding-end: 1.5em;
-		height: 1.8rem;
-		background-image: @input-select-bg-image;
-		background-repeat: no-repeat;
-		background-position: right center;
-		background-size: 2em 50%;
-	}
+/*
 
-	input[type="date"] {
-		&::-webkit-inner-spin-button,
-		&::-webkit-calendar-picker-indicator,
-		&::-webkit-clear-button {
-			display: none;
-			-webkit-appearance: none;
-		}
+	Select
+
+	Markup:
+	<select>
+		<option value="1">Option 1</option>
+		<option value="2">Option 2</option>
+		<option value="3">Option 3</option>
+	</select>
+
+ */
+
+select {
+	position: relative;
+	height: 1.8rem;
+	background-image: @input-select-bg-image;
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-size: 2em 50%;
+	-webkit-padding-end: 1.5em;
+}
+
+/*
+
+	Radio Button
+
+	Markup:
+	<input name="example-radio-group" type="radio" value="option 1" checked>
+	<input name="example-radio-group" type="radio" value="option 2">
+	<input name="example-radio-group" type="radio" value="option 3">
+
+*/
+
+input[type=radio] {
+	border-radius: 100%;
+
+	&:checked::after {
+		content: "●";
 	}
+}
+
+/*
+
+	Checkbox
+
+	Markup:
+	<input name="example-checkbox" type="checkbox" value="1" checked>
+	<input name="another-example-checkbox" type="checkbox" value="1">
+
+*/
+
+input[type=checkbox]:checked::after {
+	font-family:"icon";
+	content:"\f109";
+	line-height: 1.2em;
+}
+
+.checkbox {
+	.display(flex);
+	.flexFlow(row);
 
 	input {
-		&[type=checkbox], &[type=radio] {
-			display: inline-block;
-			margin: 0 0.1em 0 0;
-			padding: 0;
-			width: 1.25em;
-			height: 1.25em;
-			font-size: 1em;
-			line-height: 1em;
-			vertical-align: text-top;
-			text-align: center;
-			box-shadow: none;
-			border-radius: 0.25em;
-		}
-	}
-
-	input[type=radio] {
-		border-radius: 100%;
-
-		&:checked::after {
-			content: "●";
-		}
-	}
-
-	input[type=checkbox]:checked::after {
-		font-family:"icon";
-		content:"\f109";
-		line-height: 1.2em;
-	}
-
-	.input-stretch {
-		.display(flex);
-		.flex(1);
-		width: 100%;
-	}
-
-	.data {
 		display: inline-block;
-		padding: 0.35rem 0.5rem;
-		min-height: 1.7rem;
-		font-weight: normal;
-		font-size: 0.8rem;
-		line-height: 1.2;
-		color: @data-color;
-		background: @data-bg-color;
-		border-radius: 0.356em;
-		border: 1px solid rgba(0,0,0,0.0);
-		box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
+		float: left;
+		margin-top: 0.3rem;
+		margin-right: 0.5rem;
 	}
 
-	.checkbox {
-		.display(flex);
-		.flexFlow(row);
+	label {
+		display: inline-block;
+		margin-top: 0.3rem;
+		order: 2;
+	}
+}
 
-		input {
-			display: inline-block;
-			float: left;
-			margin-top: 0.3rem;
-			margin-right: 0.5rem;
-		}
+/*
 
-		label {
-			display: inline-block;
-			margin-top: 0.3rem;
-			order: 2;
-		}
+	Data
+
+	Markup:
+	<span class="data">Example Data</span>
+
+ */
+
+.data {
+	display: inline-block;
+	padding: 0.35rem 0.5rem;
+	min-height: 1.7rem;
+	font-weight: normal;
+	font-size: 0.8rem;
+	line-height: 1.2;
+	color: @data-color;
+	background: @data-bg-color;
+	border-radius: 0.356em;
+	border: 1px solid rgba(0,0,0,0.0);
+	box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
+}
+
+/*
+
+	File Upload
+
+	Markup:
+	<div class="file-upload">
+		<input id="upload-placeholder" class="upload-placeholder" placeholder="Choose File" disabled>
+		<div class="button">
+			<span>Upload</span>
+			<input id="upload" type="file" class="upload-button">
+		</div>
+	</div>
+
+*/
+
+.file-upload {
+	.display(flex);
+	.flexFlow(row);
+	margin-top: 0.4rem;
+	position: relative;
+
+	.upload-placeholder {
+		.flex(1);
+		margin-right: 0.4rem;
 	}
 
-	.file-upload {
-		.display(flex);
-		.flexFlow(row);
-		margin-top: 0.4rem;
-		position: relative;
-
-		.upload-placeholder {
-			.flex(1);
-			margin-right: 0.4rem;
-		}
-
-		span {
-			margin-top: 0.2rem;
-		}
-
-		.upload-button {
-			position: absolute;
-			top: 0;
-			right: 0;
-			padding: 0 1rem;
-			font-size: 1rem;
-			cursor: pointer;
-			opacity: 0;
-		}
+	span {
+		margin-top: 0.2rem;
 	}
 
+	.upload-button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 0 1rem;
+		font-size: 1rem;
+		cursor: pointer;
+		opacity: 0;
+	}
 }

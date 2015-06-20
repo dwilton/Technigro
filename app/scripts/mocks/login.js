@@ -1,4 +1,4 @@
-define(['jquery', 'mockjax'], function ($) {
+define(['models/login', 'jquery', 'mockjax'], function (LoginModel, $) {
 
 	'use strict';
 
@@ -21,5 +21,7 @@ define(['jquery', 'mockjax'], function ($) {
 		responseTime: 1000,
 		responseText: { result: false }
 	});
+
+	return LoginModel;
 
 });

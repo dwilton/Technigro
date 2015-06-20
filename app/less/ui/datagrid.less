@@ -1,80 +1,102 @@
-.datagrid() {
+/*
 
-	.datagrid {
-		border: 1px solid @datagrid-border-color;
-		user-select: none;
+	Datagrid
 
-		.remove {
-			text-align: center;
+	Datagrids provide scrollable containers for tables
 
-			.icon {
-				display: inline-block;
-				position: relative;
-				width: 1rem;
-				text-decoration: none;
-				text-indent: 100%;
-				white-space: nowrap;
-				overflow: hidden;
+	Markup:
+	<div class="datagrid">
+		<table class="fixed-header table">
+			<colgroup>
+				<col width="20%">
+				<col width="80%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Client</th>
+				</tr>
+			</thead>
+		</table>
+		<div class="results scrollable">
+			<table class="table stripe">
+				<colgroup>
+					<col width="20%">
+					<col width="80%">
+				</colgroup>
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Client</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
 
-				&:before {
-					position: absolute;
-					left: 0;
-					color: @negative;
-					font-size: 1.2rem;
-					line-height: 1rem;
-					text-indent: 0;
-				}
-			}
-		}
+ */
 
-		table {
-			margin: 0;
-			font-weight: normal;
-			font-size: 0.7rem;
-			hyphens: auto;
-			border: 0;
-		}
+.datagrid {
+	border: 1px solid @datagrid-border-color;
+	user-select: none;
 
-		td {
-			color: @datagrid-color;
-			background-color: @datagrid-bg-color;
-		}
+	table {
+		margin: 0;
+		border: 0;
+	}
 
-		tr:hover td, tr.selected td {
-			color: @hover-color;
-			background-color: @hover-bg-color !important;
-			cursor: pointer;
-		}
+	tr:hover td, tr.selected td {
+		color: @hover-color;
+		background-color: @hover-bg-color !important;
+		cursor: pointer;
+	}
 
-		th {
-			color: @datagrid-header-color;
-			background-color: @datagrid-header-bg-color;
-		}
+	th {
+		color: @datagrid-header-color;
+		background-color: @datagrid-header-bg-color;
+	}
 
-		.table th {
-			text-align: left;
-		}
+	td {
+		color: @datagrid-color;
+		background-color: @datagrid-bg-color;
+	}
 
-		.fixed-header {
-			position: relative;
+	.table th {
+		text-align: left;
+	}
 
-			&:after {
-				content: '';
-				display: block;
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				width: 100%;
-				height: 2rem;
-				box-shadow: @datagrid-header-shadow;
-				z-index: 1;
-			}
-		}
+	.fixed-header {
+		position: relative;
 
-		.results thead {
-			display: none;
+		&:after {
+			content: '';
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			width: 100%;
+			height: 2rem;
+			box-shadow: 0 3px 3px -1px rgba(0,0,0,0.2);
+			z-index: 1;
 		}
 	}
 
+	.results thead {
+		display: none;
+	}
 }

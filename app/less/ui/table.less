@@ -1,16 +1,109 @@
-.table() {
+/*
 
-	.table {
+	Table
 
-		td {
-			font-weight: normal;
-			font-size: 0.8rem;
-		}
+	Display collections of data grouped into rows
 
-		a {
-			color: @positive;
-		}
+	Markup:
+	<table class="table stripe">
+		<thead>
+			<tr>
+				<th class="action"></th>
+				<th>Column Two</th>
+				<th>Column Three</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="action remove"><a href="#" class="icon icon_cross">Remove</a></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="action remove"><a href="#" class="icon icon_cross">Remove</a></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="action remove"><a href="#" class="icon icon_cross">Remove</a></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
 
+	<table class="table stripe editable">
+		<thead>
+			<tr>
+				<th class="action"></th>
+				<th>Column Two</th>
+				<th>Column Three</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td class="action remove"><a href="#" class="icon icon_cross">Remove</a></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="action remove"><a href="#" class="icon icon_cross">Remove</a></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td class="action remove"><a href="#" class="icon icon_cross">Remove</a></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+
+*/
+
+.table {
+	font-weight: normal;
+	font-size: 0.7rem;
+	hyphens: auto;
+
+	.action {
+		display: none;
 	}
 
+	&.editable .action {
+		display: table-cell;
+	}
+
+	th {
+		font-weight: 200;
+	}
+
+	td {
+		font-weight: normal;
+		font-size: 0.8rem;
+	}
+
+	.action {
+		padding: 0.6rem 0 0.6rem 0.8rem;
+		width: 1rem;
+		font-size: 1rem;
+
+		a.icon {
+			display: block;
+			position: relative;
+			width: 1rem;
+			text-decoration: none;
+			text-indent: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+
+			&:before {
+				position: absolute;
+				left: 0;
+				font-size: 1.2rem;
+				line-height: 1.8rem;
+				text-indent: 0;
+			}
+		}
+	}
 }

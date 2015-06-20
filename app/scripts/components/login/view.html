@@ -1,16 +1,9 @@
-<div id="login" class="login show">
-	<form name="user-login">
-		<div>
-			<label for="username">Username</label>
-			<input id="username" type="text" placeholder="User Name" class="username"  data-bind="value: username" autocorrect="off" autocapitalize="off" autofocus />
-		</div>
-		<div>
-			<label for="password">Password</label>
-			<input id="password" type="password" placeholder="Password" class="password" data-bind="value: password" />
-		</div>
-		<div class="issue issue-error icon icon_cross" data-bind="visible: isFailed()">Login failed, please try again.</div>
-		<div>
-			<button class="button positive" data-bind="click: login, ladda: isLoading()">Login</button>
-		</div>
-	</form>
-</div>
+<section class="login">
+	<div class="tabs" data-bind="animo: { animation: animation() }">
+		<ul class="tab-nav" data-bind="tabs: 'login-content'">
+			<li class="active"><a href="#user-login" data-bind="click: content.bind($data, 'userLogin')">Login</a></li>
+			<li><a href="#recover-login" data-bind="click: content.bind($data, 'recoverLogin')">Recover Login</a></li>
+		</ul>
+		<div id="login-content" class="tab-content" data-bind="component: content()"></div>
+	</div>
+</section>

@@ -12,8 +12,8 @@
 
 @hover-color:                   @white;
 @hover-bg-color:                @green;
-@selected-color:                @white;
-@selected-bg-color:             @grey;
+@active-color:                  @white;
+@active-bg-color:               @grey;
 
 @shade-neg-5:                   #262626;
 @shade-neg-4:                   #333333;
@@ -31,29 +31,31 @@
 @img-noise:                     url(../images/noise.png);
 
 /**
- * Components
+ * UI
  */
 
-@heading-color:                 @green;
+@h1-color:                      @black;
+@h2-color:                      @green;
+@h3-color:                      @grey;
+
+@hyperlink-color:               @green;
 
 @button-color:                  @white;
-@button-bg-color:               @green;
-@button-disabled-bg-color:      @shade-pos-1;
+@button-bg-color:               @shade-pos-1;
+@button-disabled-bg-color:      @shade-pos-2;
 
 @datagrid-color:                @shade;
 @datagrid-bg-color:             @white;
 @datagrid-header-bg-color:      @shade-pos-4;
 @datagrid-header-color:         @shade-pos-1;
-@datagrid-header-shadow:        0 3px 3px -1px rgba(0,0,0,0.2);
 @datagrid-border-color:         @shade-pos-4;
 
 @header-bg-color:               @shade-pos-5;
 @header-border-color:           @shade-pos-4;
 
-@hr-color:                      @shade-pos-4;
+@horizontal-rule-color:         @shade-pos-4;
 
-@info-color:                    @list-color;
-@info-bg-color:                 @white;
+@message-color:                 @list-color;
 
 @data-color:                    @shade-pos-1;
 @data-bg-color:                 lighten(@shade-pos-5, 3);
@@ -84,19 +86,15 @@
 @tabs-bg-color:                 @shade-neg-4;
 @tabs-bg-color-active:          @white;
 
-@dropdown-color:                @white;
-@dropdown-bg-color:             @shade-pos-2;
-@dropdown-content-bg-color:     @shade-pos-5;
-@dropdown-primary-button-color: @grey;
+@popover-color:                 @white;
+@popover-bg-color:              @shade-pos-2;
+@popover-content-bg-color:      @shade-pos-5;
+@popover-primary-button-color:  @grey;
 
 @segmented-button-color:        @green;
 @segmented-button-bg-color:     @white;
 
-@issue-error-color:             @black;
-@issue-error-base-color:        @negative;
-
-@issue-success-color:           @black;
-@issue-success-base-color:      @positive;
+@issue-color:                   @black;
 
 @typeahead-hint-color:          @shade-pos-4;
 
@@ -108,6 +106,8 @@
 @app-bg-image:                  @img-noise;
 @content-bg-color:              @white;
 
+@login-tab-active-color:        @black;
+@login-tab-active-bg:           @white;
 @login-input-bg-color:          @shade-pos-5;
 @login-shadow-color:            @black;
 

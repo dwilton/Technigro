@@ -1,0 +1,37 @@
+@import "core.less";
+
+.settings {
+	.display(flex);
+	.flexFlow(column);
+	.flex(1);
+
+	.filter .tab-nav {
+		margin-top: 1rem;
+		padding: 0;
+	}
+
+	.content {
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+		padding: 1.5rem;
+	}
+
+	.actions {
+		.display(flex);
+		.flexFlow(row);
+		.justifyContent(end);
+		margin-bottom: 1rem;
+
+		input {
+			width: 15rem;
+			margin-right: 1rem;
+		}
+	}
+
+	.datagrid, .toggle-menu-content, .settings-clients-content {
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+	}
+}

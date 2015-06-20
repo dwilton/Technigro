@@ -27,10 +27,10 @@ define(['jquery'], function (jQuery) {
 							content = item.attr('href');
 
 					// Remove 'active' CSS class from all 'li' elements
-					menu.find('.menu > ul > .selected').removeClass('selected');
+					menu.find('.menu > ul > .active').removeClass('active');
 
 					// Add 'active' CSS class to the select item 'li' element
-					li.addClass('selected');
+					li.addClass('active');
 
 					// Hide all item content
 					menu.find('.menu-content > section').hide();
@@ -44,8 +44,8 @@ define(['jquery'], function (jQuery) {
 
 		};
 
-		$.fn[pluginName] = function(options) {
-			return this.each(function() {
+		$.fn[pluginName] = function (options) {
+			return this.each(function () {
 				if (!$.data(this, 'plugin_' + pluginName)) {
 					$.data(this, 'plugin_' + pluginName, new Plugin(this, options));
 				}

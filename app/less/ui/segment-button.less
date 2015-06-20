@@ -1,42 +1,56 @@
-.segmented-buttons() {
+/*
 
-	.segmented-button {
-		display: table;
-		table-layout: fixed;
-		width: 100%;
+	Segmented Buttons
 
-		input {
-			display: none;
+	Grouped buttons where only one can be selected at a time
+
+	Markup:
+	<div class="segmented-button">
+		<input id="option-one" name="option-one" type="radio" checked="checked" />
+		<label for="option-one" class="button">Option One</label>
+		<input id="option-two" name="option-two" type="radio" />
+		<label for="option-two" class="button">Option Two</label>
+		<input id="option-three" name="option-three" type="radio" />
+		<label for="option-three" class="button">Option Three</label>
+	</div>
+
+ */
+
+.segmented-button {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+
+	input {
+		display: none;
+	}
+
+	label.button {
+		display: table-cell;
+		padding-left: 0;
+		padding-right: 0;
+		font-weight: 200;
+		font-size: 0.86rem;
+		color: @segmented-button-color;
+		background-color: @segmented-button-bg-color;
+		cursor: pointer;
+		border-radius: 0;
+		border: 1px solid;
+		border-right: 0;
+		border-color: @segmented-button-color;
+
+		&:first-of-type {
+			border-radius: 0.356rem 0 0 0.356rem;
 		}
 
-		label.button {
-			display: table-cell;
-			padding-left: 0;
-			padding-right: 0;
-			font-weight: 200;
-			font-size: 0.86rem;
-			color: @segmented-button-color;
-			background-color: @segmented-button-bg-color;
-			cursor: pointer;
-			border-radius: 0;
-			border: 1px solid;
-			border-right: 0;
-			border-color: @segmented-button-color;
-
-			&:first-of-type {
-				border-radius: 0.356rem 0 0 0.356rem;
-			}
-
-			&:last-child {
-				border: 1px solid @segmented-button-color;
-				border-radius: 0 0.356rem 0.356rem 0;
-			}
-		}
-
-		input:checked + label, input:checked + label:last-child {
-			color: @segmented-button-bg-color;
-			background: @segmented-button-color;
+		&:last-child {
+			border: 1px solid @segmented-button-color;
+			border-radius: 0 0.356rem 0.356rem 0;
 		}
 	}
 
+	input:checked + label, input:checked + label:last-child {
+		color: @segmented-button-bg-color;
+		background: @segmented-button-color;
+	}
 }

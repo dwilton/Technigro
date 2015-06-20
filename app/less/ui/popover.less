@@ -1,0 +1,97 @@
+/*
+
+	Popover
+
+	Add small overlays of content, like those on the iPad, to any element for housing secondary information.
+
+	Markup:
+	<div class="popover-wrapper">
+		<button class="add-new-button button button-positive">Add New</button>
+		<div class="popover">
+			<nav>
+				<li><a href="#" class="icon icon-arrow">Item 1</a></li>
+				<li><a href="#" class="icon icon-arrow">Item 2</a></li>
+				<li><a href="#" class="icon icon-arrow">Item 3</a></li>
+			</nav>
+		</div>
+	</div>
+
+ */
+
+.popover-target {
+	position: relative;
+	z-index: 3;
+}
+
+.popover-right {
+	right: 0rem;
+}
+
+.popover-bottom {
+	margin-top: 1rem;
+}
+
+.popover {
+	position: absolute;
+	padding: 0.4rem;
+	width: 11rem;
+	background: @popover-bg-color;
+	border-radius: 0.356rem;
+	animation-duration: 0.5s;
+
+	&:before {
+		display: block;
+		content: '';
+		position: absolute;
+		top: -1.5rem;
+		right: 1rem;
+		width: 0;
+		height: 0;
+		border: solid 0.8rem transparent;
+		border-bottom-color: @popover-bg-color;
+	}
+
+	.popover-content {
+		margin-bottom: 0.4rem;
+		padding: 0.4rem;
+		background: @popover-content-bg-color;
+		border-radius: 0.2rem;
+	}
+
+	> nav {
+		margin: -0.2rem 0;
+		padding: 0;
+		list-style: none;
+
+		li {
+
+			&:first-of-type a {
+				border: 0;
+			}
+
+			a {
+				display: block;
+				position: relative;
+				padding: 0.7em;
+				width: 100%;
+				color: @popover-color;
+				font-weight: 300;
+				font-size: 0.8rem;
+				text-align: left;
+				text-decoration: none;
+				background: @popover-bg-color;
+				border: 0;
+				border-top: 1px solid darken(@popover-bg-color, 9);
+				border-radius: 0;
+
+				&.icon:before {
+					position: absolute;
+					top: 0.45em;
+					right: 0.5em;
+					font-size: 1.2rem;
+					line-height: 1;
+				}
+			}
+		}
+	}
+}

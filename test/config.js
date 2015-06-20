@@ -17,12 +17,13 @@ require.config({
 		'chai': '../../node_modules/chai/chai',
 	},
 
-	// ask requirejs to load these files (all our tests)
+	// Ask requirejs to load these files (all our tests)
 	deps: tests,
 
-	// start test run, once requirejs is done
+	// Start test run, once requirejs is done
 	callback: window.__karma__.start
 
 });
 
+// Require existing app config
 require(['config']);

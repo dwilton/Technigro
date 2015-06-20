@@ -1,11 +1,14 @@
 'use strict';
 
+// Live Reload Snippet
 var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+
+// Basic web server
 var mountFolder = function (connect, dir) {
 	return connect.static(require('path').resolve(dir));
 };
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
 
 	// Load all grunt tasks
 	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
@@ -63,11 +66,12 @@ module.exports = function(grunt) {
 		// Compile LESS files to CSS
 		less: {
 			app: {
-				expand: true,
-				cwd: '<%= config.app %>/less/',
-				src: '*.less',
-				dest: '<%= config.app %>/css/',
-				ext: '.css'
+				options: {
+					paths: '<%= config.app %>/less'
+				},
+				files: {
+					'<%= config.app %>/css/style.css': ['<%= config.app %>/less/*.less', '<%= config.app %>/scripts/components/**/*.less']
+				}
 			}
 		},
 
@@ -178,10 +182,6 @@ module.exports = function(grunt) {
 
 		// Watch tasks
 		regarde: {
-			/*scripts: {
-				files: '<%= jshint.files %>',
-				tasks: ['jshint', 'karma:unit']
-			},*/
 			html: {
 				files: [
 					'<%= config.app %>/*.html',
@@ -312,14 +312,15 @@ module.exports = function(grunt) {
 			icons: {
 				src: '<%= config.app %>/icons/*.svg',
 				dest: '<%= config.app %>/fonts',
-				destCss: '<%= config.app %>/less/icon',
+				destCss: '<%= config.app %>/less/icons',
 				options: {
 					font: 'icon',
 					hashes: false,
 					stylesheet: 'less',
 					bem: true,
 					relativeFontPath: '../fonts',
-					htmlDemo: false
+					htmlDemo: false,
+					template: '<%= config.app %>/icons/template/template.css'
 				}
 			}
 		},
@@ -401,7 +402,7 @@ module.exports = function(grunt) {
 	]);
 
 	// Default
-	grunt.registerTask('default', function() {
+	grunt.registerTask('default', function () {
 		grunt.task.run('preprocess');
 		grunt.task.run('test');
 	});

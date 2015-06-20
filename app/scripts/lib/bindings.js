@@ -11,7 +11,6 @@ define([
 	'plugins/tabs',
 	'plugins/menu',
 	'plugins/accordian',
-	'plugins/toggleMenu',
 	'lib/touch',
 	'animo',
 	'typeahead'
@@ -38,11 +37,10 @@ define([
 		}
 	};
 
-	// typehead: { typehead:  }
+	// typehead: { typehead: [{ name: 'Example Name 01' }, { name: 'Example Name 02' }] }
 	ko.bindingHandlers.typeahead = {
 		init: function (element, valueAccessor, allBindingsAccessor) {
 			var options = ko.toJS(allBindingsAccessor().typeahead());
-			console.log(options);
 			$(element).attr('autocomplete', 'off').typeahead({
 				name: 'typeahead',
 				valueKey: 'name',
@@ -59,10 +57,10 @@ define([
 		}
 	};
 
-	// tabs: true
+	// tabs: 'tabContentId'
 	ko.bindingHandlers.tabs = {
 		init: function (element, valueAccessor) {
-			$(element).tabs();
+			$(element).tabs({ tabContentId: valueAccessor() });
 		}
 	};
 
@@ -70,13 +68,6 @@ define([
 	ko.bindingHandlers.menu = {
 		init: function (element, valueAccessor) {
 			$(element).menu();
-		}
-	};
-
-	// toggleMenu: true
-	ko.bindingHandlers.toggleMenu = {
-		init: function (element, valueAccessor) {
-			$(element).toggleMenu();
 		}
 	};
 

@@ -1,7 +1,6 @@
 *.DS_Store
 *.sublime-project
 *.sublime-workspace
-*.sublime-grunt.cache
 node_modules
 dist
 report

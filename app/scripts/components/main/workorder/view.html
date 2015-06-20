@@ -1,0 +1,908 @@
+<section class="workorder">
+
+	<div class="loader" data-bind="spin: isLoading(), visible: isLoading()"></div>
+
+	<!-- ko if: !isLoading() -->
+
+	<div class="container" data-bind="menu: true">
+
+		<nav class="menu list list-border list-border-rows scrollable">
+			<ul>
+				<li class="active"><a href="#details" class="icon icon-arrow">Details</a></li>
+				<li><a href="#technicians" class="icon icon-arrow" data-bind="visible: isAdmin()">Technicians</a></li>
+				<li><a href="#labour" class="icon icon-arrow">Labour</a></li>
+				<li><a href="#equipment" class="icon icon-arrow">Equipment</a></li>
+				<li><a href="#products" class="icon icon-arrow">Products</a></li>
+				<li><a href="#schedule" class="icon icon-arrow">Schedule</a></li>
+				<li><a href="#invoicing" class="icon icon-arrow" data-bind="visible: isAdmin()">Invoicing</a></li>
+				<li><a href="#images" class="icon icon-arrow">Images</a></li>
+				<li><a href="#land-access" class="icon icon-arrow">Land Access</a></li>
+				<li><a href="#daily-report" class="icon icon-arrow">Daily Report</a></li>
+				<li><a href="#completion" class="icon icon-arrow">Completion</a></li>
+			</ul>
+		</nav>
+
+		<div class="menu-content scrollable">
+
+			<section id="details" class="workorder-details">
+				<header class="filter">
+					<div class="treatment-date">
+						<label for="treatment-date">Treatment Date</label>
+						<input id="treatment-date" type="date" class="fluid" data-bind="value: workOrder().details.treatmentDate, visible: isAdmin()">
+						<span class="data fluid" data-bind="text: workOrder().details.treatmentDate, visible: !isAdmin()"></span>
+					</div>
+					<div class="client">
+						<label for="client">Client</label>
+						<input id="client" type="text" placeholder="Please Select" class="fluid" data-bind="typeahead: refData().clients, value: workOrder().details.clientName, visible: isAdmin()"></select>
+						<span class="data fluid" data-bind="text: workOrder().details.clientName, visible: !isAdmin()"></span>
+					</div>
+					<div class="job">
+						<label for="job">Job</label>
+						<input id="job" type="text" class="fluid" data-bind="value: workOrder().details.jobName, visible: isAdmin()">
+						<span class="data fluid" data-bind="text: workOrder().details.jobName, visible: !isAdmin()"></span>
+					</div>
+					<div class="status">
+						<label for="status">Status</label>
+						<select id="status" class="fluid" data-bind="options: refData().statuses, optionsText: 'name', value: workOrder().details.statusId, optionsValue: 'id'"></select>
+					</div>
+				</header>
+				<div class="content">
+					<div class="flex-row">
+						<div class="flex-col">
+							<div class="address">
+								<h3>Location</h3>
+								<label for="address">Address</label>
+								<textarea id="address" class="fluid" data-bind="value: workOrder().details.address, visible: isAdmin()"></textarea>
+								<span class="data fluid" data-bind="text: workOrder().details.address, visible: !isAdmin()"></span>
+							</div>
+							<div>
+								<div class="flex-row form">
+									<div class="flex-col">
+										<label for="job-number">Job #</label>
+										<input id="job-number" type="text" class="fluid"  data-bind="value: workOrder().details.jobNumber, visible: isAdmin()">
+										<span class="data fluid" data-bind="text: workOrder().details.jobNumber, visible: !isAdmin()"></span>
+									</div>
+									<div class="flex-col">
+										<label for="order-number">Order #</label>
+										<input id="order-number" type="text" class="fluid" data-bind="value: workOrder().details.orderNumber, visible: isAdmin()">
+										<span class="data fluid" data-bind="text: workOrder().details.orderNumber, visible: !isAdmin()"></span>
+									</div>
+									<div class="flex-col">
+										<label for="date">Date</label>
+										<input id="date" type="date" class="fluid" data-bind="value: workOrder().details.date, visible: isAdmin()">
+										<span class="data fluid" data-bind="text: workOrder().details.date, visible: !isAdmin()"></span>
+									</div>
+								</div>
+								<div class="flex-row form">
+									<div class="flex-col">
+										<label for="ubd-edition">UBD Edition</label>
+										<select id="ubd-edition" class="fluid" data-bind="options: refData().ubdEditions, optionsText: 'name', optionsValue: 'id', value: workOrder().details.ubdEditionId, optionsCaption: 'Please Select', visible: isAdmin()"></select>
+										<span class="data fluid" data-bind="text: workOrder().details.ubdEditionName, visible: !isAdmin()"></span>
+									</div>
+									<div class="flex-col">
+										<label for="map">Map</label>
+										<input id="map" type="text" class="fluid" data-bind="value: workOrder().details.map, visible: isAdmin()">
+										<span class="data fluid" data-bind="text: workOrder().details.map, visible: !isAdmin()"></span>
+									</div>
+									<div class="flex-col">
+										<label for="ref">Ref</label>
+										<input id="ref" type="text" class="fluid" data-bind="value: workOrder().details.ref, visible: isAdmin()">
+										<span class="data fluid" data-bind="text: workOrder().details.ref, visible: !isAdmin()"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="flex-col">
+							<div class="contact form">
+								<h3>Contact</h3>
+								<div>
+									<label for="contact-name">Name</label>
+									<input id="contact-name" type="text" class="fluid" data-bind="value: workOrder().details.contactName, visible: isAdmin()">
+									<span class="data fluid" data-bind="text: workOrder().details.contactName, visible: !isAdmin()"></span>
+								</div>
+								<div class="flex-row phone-number">
+									<div class="flex-col">
+										<label for="phone-one">Phone 1</label>
+										<input id="phone-one" type="text" class="fluid" data-bind="value: workOrder().details.phone1, visible: isAdmin()">
+										<span class="data fluid" data-bind="text: workOrder().details.phone1, visible: !isAdmin()"></span>
+									</div>
+									<div class="flex-col">
+										<label for="phone-one">Phone 2</label>
+										<input id="phone-one" type="text" class="fluid" data-bind="value: workOrder().details.phone2, visible: isAdmin()">
+										<span class="data fluid" data-bind="text: workOrder().details.phone2, visible: !isAdmin()"></span>
+									</div>
+								</div>
+							</div>
+							<div class="maps">
+								<h3>Maps</h3>
+								<!-- ko if: isAdmin -->
+								<div class="addable">
+									<table class="table stripe editable">
+										<tbody data-bind="foreach: workOrder().documents">
+											<tr>
+												<td class="action"><a href="#" class="icon icon-cross icon-negative" data-bind="click: $parent.removeDocument">Remove</a></td>
+												<td>
+													<select class="fluid" data-bind="foreach: $parent.refData().documentList, value: id">
+														<optgroup data-bind="attr: { label: name }, foreach: documents">
+															<option data-bind="text: name, value: id"></option>
+														</optgroup>
+													<select>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<button class="button button-additional button-small" data-bind="click: addDocument">Add New</button>
+								</div>
+								<!-- /ko -->
+								<!-- ko if: !isAdmin() -->
+								<table class="table stripe">
+										<tbody data-bind="foreach: workOrder().documents">
+											<tr>
+												<td>
+													<a href="#" data-bind="text: name"></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								<!-- /ko -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="technicians" class="workorder-technicians content" style="display: none">
+				<div class="technicians">
+					<h3>Technicians</h3>
+					<div class="addable">
+						<table class="table stripe editable">
+							<tbody data-bind="foreach: workOrder().technicians">
+								<tr>
+									<td class="action remove"><a href="#" class="icon icon-cross icon-negative" data-bind="click: $parent.removeTechnician">Remove</a></td>
+									<td><select class="fluid" data-bind="options: $parent.refData().technicians, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"><select></td>
+								</tr>
+							</tbody>
+						</table>
+						<button class="button button-additional button-small" data-bind="click: addTechnician">Add New</button>
+					</div>
+				</div>
+			</section>
+
+			<section id="labour" class="workorder-labour" style="display: none">
+				<header class="filter">
+					<div>
+						<label for="time-allocated">Time Allocated</label>
+						<select id="time-allocated" data-bind="options: ko.utils.range(0, refData().maxTimeAllocated), value: workOrder().labour.timeAllocated, visible: isAdmin()"></select>
+						<span class="data" data-bind="text: workOrder().labour.timeAllocated, visible: !isAdmin()"></span>
+						<small>Days</small>
+					</div>
+					<div>
+						<label for="number-of-staff">Staff</label>
+						<select id="number-of-staff" data-bind="options: ko.utils.range(0, refData().maxStaff), value: workOrder().labour.staff, visible: isAdmin()"></select>
+						<span class="data" data-bind="text: workOrder().labour.staff, visible: !isAdmin()"></span>
+					</div>
+					<div>
+						<label for="area">Area</label>
+						<input id="area" type="text" data-bind="value: workOrder().labour.area, visible: isAdmin()">
+						<span class="data" data-bind="text: workOrder().labour.area, visible: !isAdmin()"></span>
+					</div>
+				</header>
+				<div class="content scrollable">
+					<div class="addable">
+						<h3>Job Instructions</h3>
+						<!-- ko if: isAdmin -->
+						<table class="job-instruction table stripe editable">
+							<tbody data-bind="foreach: workOrder().jobInstructions">
+								<tr>
+									<td class="action remove"><a href="#" class="icon icon-cross icon-negative" data-bind="click: $parent.removeJobInstruction">Remove</a></td>
+									<td width="90%"><select class="fluid" data-bind="options: $parent.refData().jobInstructions, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+									<td class="price" data-bind="text: $parent.formatCurrency(price())"></td>
+								</tr>
+							</tbody>
+						</table>
+						<div>
+							<button class="button button-additional button-small" data-bind="click: addJobInstruction">Add New</button>
+							<span class="total">
+								<span>Total</span> $0.00
+							</span>
+						</div>
+						<!-- /ko -->
+						<!-- ko if: !isAdmin() -->
+						<table class="job-instruction table stripe">
+							<tbody data-bind="foreach: workOrder().jobInstructions">
+								<tr>
+									<td data-bind="text: name"></td>
+								</tr>
+							</tbody>
+						</table>
+						<!-- /ko -->
+					</div>
+					<hr />
+					<div class="flex-row">
+						<div class="flex-col work-checklist">
+							<h3>Work Checklist</h3>
+							<div class="list list-border island">
+								<ul>
+									<li>
+										<ul>
+											<li><input id="take-5" type="checkbox" class="switch" data-bind="checked: workOrder().labour.checklist.take5" /></li>
+											<li><label for="take-5">Have you filled out a take 5?</label></li>
+										</ul>
+									</li>
+									<li>
+										<ul>
+											<li><input id="task-confident" type="checkbox" class="switch"  data-bind="checked: workOrder().labour.checklist.taskConfident"/></li>
+											<li><label for="task-confident">Are you confident that you know what you are doing?</label></li>
+										</ul>
+									</li>
+									<li>
+										<ul>
+											<li><input id="incident-report-guidelines" type="checkbox" class="switch" data-bind="checked: workOrder().labour.checklist.incidentReportGuidelines" /></li>
+											<li><label for="incident-report-guidelines">Have you checked that you have the "incident report" guidelines?</label></li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="flex-col critical-info">
+							<div>
+								<label for="critical-info" class="h3">Critial Information</label>
+								<textarea id="critical-info" class="fluid" data-bind="value: workOrder().labour.criticalInfo, visible: isAdmin()"></textarea>
+								<span class="data fluid" data-bind="text: workOrder().labour.criticalInfo, visible: !isAdmin()"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="equipment" class="workorder-equipment content" style="display: none">
+				<div class="equipment">
+					<h3>Equipment</h3>
+					<div class="addable">
+						<table class="table stripe editable">
+							<tbody data-bind="foreach: workOrder().equipment">
+								<tr>
+									<td class="action remove"><a href="#" class="icon icon-cross icon-negative" data-bind="click: $parent.removeEquipment">Remove</a></td>
+									<td><select class="fluid" data-bind="options: $parent.refData().equipment, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+								</tr>
+							</tbody>
+						</table>
+						<button class="button button-additional button-small" data-bind="click: addEquipment">Add New</button>
+					</div>
+				</div>
+			</section>
+
+			<section id="products" class="workorder-products content" style="display: none">
+				<h3>Products</h3>
+				<div class="products addable">
+					<table class="table stripe editable">
+						<thead>
+							<tr>
+								<th class="action"></th>
+								<th>Name</th>
+								<th>Actual</th>
+								<th>Water</th>
+								<th>Area</th>
+								<th>Total Products (Ltrs)</th>
+							</tr>
+						</thead>
+						<tbody data-bind="foreach: workOrder().products">
+							<tr>
+								<td class="action remove"><a href="#" class="icon icon-cross icon-negative" data-bind="click: $parent.removeProduct">Remove</a></td>
+								<td width="40%"><select class="fluid" data-bind="options: $parent.refData().products, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+								<td><input type="text" class="fluid" data-bind="value: actual"></td>
+								<td><input type="text" class="fluid" data-bind="value: water"></td>
+								<td><input type="text" class="fluid" data-bind="value: area"></td>
+								<td width="20%"><input type="text" class="fluid" data-bind="value: total"></td>
+							</tr>
+						</tbody>
+					</table>
+					<button class="button button-additional button-small" data-bind="click: addProduct">Add New</button>
+				</div>
+			</section>
+
+			<section id="schedule" class="workorder-schedule content" style="display: none">
+				<div>
+					<div class="location">
+						<select id="location">
+							<option value="">Gold Coast Central</option>
+						</select>
+					</div>
+					<div class="schedule-roads">
+						<div class="list">
+							<ul data-bind="foreach: workOrder().schedule">
+									<!-- ko if: !edit() -->
+										<li data-bind="css: { 'done': done() }">
+											<a href="#" data-bind="click: $parent.scheduleToggleEdit, text: name"></a>
+										</li>
+									<!-- /ko -->
+									<!-- ko if: edit() -->
+										<li class="edit">
+											<button class="cancel" data-bind="click: $parent.scheduleToggleEdit">Cancel</button>
+											<!-- ko if: !done() -->
+											<button class="button" data-bind="click: $parent.scheduleToggleDone">Complete</button>
+											<!-- /ko -->
+											<!-- ko if: done() -->
+											<button class="button" data-bind="click: $parent.scheduleToggleDone">Undo</button>
+											<!-- /ko -->
+										</li>
+									<!-- /ko -->
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="invoicing" class="workorder-invoicing" style="display: none">
+				<div class="content">
+					<div class="flex-row">
+						<div class="flex-col invoicing">
+							<div class="invoicing-details">
+								<h3>Invoicing</h3>
+								<div class="flex-row form">
+									<div class="flex-col">
+										<label for="invoice-number">Invoice #</label>
+										<input id="invoice-number" type="text" class="fluid"  data-bind="value: workOrder().invoicing.invoiceNumber"/>
+									</div>
+									<div class="flex-col">
+										<label for="invoice-date">Invoice Date</label>
+										<input id="invoice-date" type="date" class="fluid" data-bind="value: workOrder().invoicing.invoiceDate" />
+									</div>
+								</div>
+								<div class="flex-row form">
+									<div class="flex-col">
+										<label for="invoiced-by">Invoiced By</label>
+										<select id="invoiced-by" class="fluid" data-bind="options: refData().invoiceTypes, optionsText: 'name', optionsValue: 'id', value: workOrder().invoicing.invoicedTypeId(), optionsCaption: 'Please Select'"></select>
+									</div>
+									<div class="flex-col">
+										<label for="invoice-total">Invoice Total</label>
+										<input id="invoice-total" type="text" class="fluid"  data-bind="value: workOrder().invoicing.invoiceTotal" />
+									</div>
+								</div>
+							</div>
+							<div class="invoicing-notes">
+								<label for="notes">Invoicing Notes</label>
+								<textarea id="invoicing-notes" class="fluid" data-bind="value: workOrder().invoicing.invoicingNotes"></textarea>
+							</div>
+						</div>
+						<div class="flex-col quote">
+							<div class="form">
+								<h3>Quote</h3>
+								<div>
+									<label for="quote-type">Quote Type</label>
+									<select id="quote-type" class="fluid" data-bind="options: refData().quoteTypes, optionsText: 'name', optionsValue: 'id', value: workOrder().invoicing.quoteTypeId(), optionsCaption: 'Please Select'"></select>
+								</div>
+								<div>
+									<label for="quote-number">Quote #</label>
+									<input id="quote-number" type="text" class="fluid" data-bind="value: workOrder().invoicing.quoteNumber" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="images" class="workorder-images" style="display: none">
+				<header class="filter">
+					<div>
+						<button class="button button-small" data-bind="click: addImage">New Image</button>
+					</div>
+				</header>
+				<div class="gallery content" data-bind="foreach: workOrder().images">
+					<div class="image">
+						<img data-bind="attr: { src: src }" />
+					</div>
+				</div>
+			</section>
+
+			<section id="land-access" class="workorder-land-access" style="display: none">
+				<!-- ko if: isAdmin -->
+				<header class="filter">
+					<div class="technician">
+						<label for="land-access-technician">Technician</label>
+						<select id="land-access-technician" class="fluid" data-bind="options: workOrder().technicians, optionsText: 'name', optionsValue: 'id'"></select>
+					</div>
+					<div class="land-access-date">
+						<label for="land-access-date">Date</label>
+						<input id="land-access-date" type="date" />
+					</div>
+				</header>
+				<!-- /ko -->
+				<div class="content">
+					<div class="flex-row">
+						<div class="flex-col questions">
+							<h3>Questions</h3>
+							<div>
+								<table>
+									<tbody>
+										<tr>
+											<td><input id="llo-available" type="checkbox" class="switch" /></td>
+											<td>Will the LLO be available for contact throughout the days work?
+												<div class="contact form">
+													<div>
+														<label for="alt-contact-name">Alternate Name</label>
+														<input id="alt-contact-name" type="text" />
+													</div>
+													<div>
+														<label for="alt-contact-number">Alternate Number</label>
+														<input id="alt-contact-number" type="text" />
+													</div>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td><input id="site-issues" type="checkbox" class="switch" /></td>
+											<td>Have all site specific issues been discussed with the LLO?</td>
+										</tr>
+										<tr>
+											<td><input id="contacting-team-understand" type="checkbox" class="switch" /></td>
+											<td>Do all members of the contracting team understand the site specific issues for each land parcel?</td>
+										</tr>
+										<tr>
+											<td><input id="proceed-works-program" type="checkbox" class="switch" /></td>
+											<td>Has approval been granted from the LLO to proceed with the specific works program?</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+						<div class="flex-col details">
+							<div class="notes">
+								<h3>Notes</h3>
+								<ul class="accordian" data-bind="accordian: true">
+									<li class="active">
+										<a href="#">Land Parcels scheduled for works</a>
+										<div>
+											<textarea placeholder="Enter Land Parcels" class="fluid"></textarea>
+										</div>
+									</li>
+									<li>
+										<a href="#">Generic Site specific constraints identified</a>
+										<div>
+											<textarea placeholder="Enter constraints" class="fluid"></textarea>
+										</div>
+									</li>
+									<li>
+										<a href="#">Additional site specific constraints</a>
+										<div>
+											<textarea placeholder="Enter constraints" class="fluid"></textarea>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="authorisation">
+								<h3>Authorisation</h3>
+								<div class="form">
+									<div>
+										<label for="llo-name">LLO Name</label>
+										<input id="llo-name" type="text" class="fluid" />
+									</div>
+									<div class="signature">
+										<label for="signature">Signature</label>
+										<textarea id="signature" class="fluid"></textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="daily-report" class="workorder-daily-report" style="display: none" data-bind="toggleMenu: true">
+				<header class="filter">
+					<!-- ko if: isAdmin -->
+					<div class="technician">
+						<label for="daily-report-technician">Technician</label>
+						<select id="daily-report-technician" class="fluid" data-bind="options: workOrder().technicians, optionsText: 'name', optionsValue: 'id'"></select>
+					</div>
+					<!-- /ko -->
+					<div class="toggle-menu">
+						<div class="segmented-button">
+
+							<input id="complete-work" name="report-options" type="radio" checked="checked" />
+							<label for="complete-work" class="button">
+								<!-- ko if: !altType() -->
+								Complete Work
+								<!-- /ko -->
+								<!-- ko if: altType() -->
+								Pipeline Work
+								<!-- /ko -->
+							</label>
+							<input id="personnel" name="report-options" type="radio" />
+							<label for="personnel" class="button">Personnel</label>
+							<!-- ko if: !altType() -->
+							<input id="comments" name="report-options" type="radio" />
+							<label for="comments" class="button">Comments</label>
+							<input id="incidents" name="report-options" type="radio" />
+							<label for="incidents" class="button">Incidents</label>
+							<!-- /ko -->
+							<!-- ko if: altType() -->
+							<input id="equipment-usage" name="report-options" type="radio" />
+							<label for="equipment-usage" class="button">Equipment</label>
+							<input id="weed-treatment" name="report-options" type="radio" />
+							<label for="weed-treatment" class="button">Weed Treatment</label>
+							<!-- /ko -->
+						</div>
+					</div>
+				</header>
+				<div class="toggle-menu-content content">
+					<div id="complete-work-content" class="complete-work">
+						<!-- ko if: !altType() -->
+						<div>
+							<h3>Complete Work</h3>
+							<div class="addable">
+								<table class="table stripe ">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Job</th>
+											<th>State</th>
+											<th>Area (m2)</th>
+											<th>Hours</th>
+										</tr>
+									</thead>
+									<tbody data-bind="foreach: workOrder().dailyReportCompleteWork">
+										<tr>
+											<td class="remove"><a href="#" class="icon icon-cross" data-bind="click: $parent.removeDailyReportCompleteWork">Remove</a></td>
+											<td width="40%"><select data-bind="options: $parent.workOrder().jobInstructions, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+											<td width="20%"><select data-bind="options: $parent.refData().jobStatuses, optionsText: 'name', optionsValue: 'id', value: stateId, optionsCaption: 'Please Select'"></select></td>
+											<td><input type="text" data-bind="value: area" /></td>
+											<td><input type="text" data-bind="value: hours" /></td>
+										</tr>
+									</tbody>
+								</table>
+								<button class="button button-additional button-small" data-bind="click: addDailyReportCompleteWork">Add New</button>
+							</div>
+						</div>
+						<!-- /ko -->
+						<!-- ko if: altType -->
+						<div>
+							<h3>Job Instructions - Completed (Pipeline Works)</h3>
+							<div class="addable">
+								<table class="table stripe ">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Job</th>
+											<th>Parcel</th>
+											<th>From KPI</th>
+											<th>To KPI</th>
+											<th>Daily Qty</th>
+										</tr>
+									</thead>
+									<tbody data-bind="foreach: workOrder().dailyReportCompletePiplineWork">
+										<tr>
+											<td class="remove"><a href="#" class="icon icon-cross" data-bind="click: $parent.removeDailyReportCompletePiplineWork">Remove</a></td>
+											<td width="40%"><select data-bind="options: $parent.workOrder().jobInstructions, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+											<td><input type="text" data-bind="value: parcel" /></td>
+											<td><input type="text" data-bind="value: fromKPI" /></td>
+											<td><input type="text" data-bind="value: toKPI" /></td>
+											<td><input type="text" data-bind="value: dailyQty" /></td>
+										</tr>
+									</tbody>
+								</table>
+								<button class="button button-additional button-small" data-bind="click: addDailyReportCompletePiplineWork">Add New</button>
+							</div>
+						</div>
+						<!-- /ko -->
+					</div>
+					<div id="personnel-content" class="personnel">
+						<div>
+							<h3>Personnel</h3>
+							<div class="addable">
+								<table class="table stripe addable">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Role</th>
+											<th>Name</th>
+											<th>Worked Hours</th>
+											<th>Stand-By Hours</th>
+										</tr>
+									</thead>
+									<tbody data-bind="foreach: workOrder().dailyReportPersonal">
+										<tr>
+											<td class="remove"><a href="#" class="icon icon-cross" data-bind="click: $parent.removeDailyReportPersonal">Remove</a></td>
+											<td width="40%"><select data-bind="options: $parent.refData().personal, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+											<td width="20%"><input type="text" data-bind="value: name" /></td>
+											<td><input type="text" data-bind="value: hoursWorked" /></td>
+											<td><input type="text" data-bind="value: hoursStandby" /></td>
+										</tr>
+									</tbody>
+								</table>
+								<button class="button button-additional button-small" data-bind="click: addDailyReportPersonal">Add New</button>
+							</div>
+						</div>
+					</div>
+					<div id="comments-content" class="comments">
+						<div>
+							<h3>Comments</h3>
+							<div class="form">
+								<div>
+									<label for="comments-on-previous">Comments on Previous</label>
+									<textarea id="comments-on-previous" class="fluid"></textarea>
+								</div>
+								<div>
+									<label for="native-fauna-notes">Native Fauna Notes</label>
+									<textarea id="native-fauna-notes" class="fluid"></textarea>
+								</div>
+								<div>
+									<label for="flora-notes">Flora Notes</label>
+									<textarea id="native-fauna-notes" class="fluid"></textarea>
+							</div>
+							</div>
+						</div>
+					</div>
+					<div id="incidents-content" class="incidents">
+						<h3>Incidents</h3>
+						<ul>
+							<li>
+								<label for="environmental-issues">
+									Environmental Issues
+									<span>(Significant erosion, fires etc)</span>
+								</label>
+								<input id="environmental-issues" type="checkbox" />
+								<textarea id="environmental-issues-details"></textarea>
+							</li>
+							<li>
+								<label for="animal-management">
+									Animal Management
+									<span>cattle, pigs, foxes, dogs etc</span>
+								</label>
+								<input id="animal-management" type="checkbox" />
+								<textarea id="animal-management-details"></textarea>
+							</li>
+							<li>
+								<label for="illegal-dumping">
+									Illegal Dumping
+									<span>(garden waster, cars, rubblish etc)</span>
+								</label>
+								<input id="illegal-dumping" type="checkbox" />
+								<textarea id="illegal-dumping-details"></textarea>
+							</li>
+							<li>
+								<label for="illegal-access">
+									Illegal Access
+									<span>(motorbikes, cars, mtn bikes, camping)</span>
+								</label>
+								<input id="illegal-access" type="checkbox" />
+								<textarea id="illegal-access-details"></textarea>
+							</li>
+							<li>
+								<label for="whs">
+									WH&amp;S
+									<span>(accidents, near misses, safety issues)</span>
+								</label>
+								<input id="whs" type="checkbox" />
+								<textarea id="whs-details"></textarea>
+							</li>
+							<li>
+								<label for="other">Other</label>
+								<input id="other" type="checkbox" />
+								<textarea id="other-details"></textarea>
+							</li>
+						</ul>
+					</div>
+
+					<div id="equipment-usage-content" class="equipment-usage">
+						<div>
+							<h3>Crew Equipments</h3>
+							<div class="addable">
+								<table class="table stripe">
+									<thead>
+										<tr>
+											<th></th>
+											<th>Equipment</th>
+											<th>Hours Worked</th>
+											<th>Stand-By Hours</th>
+										</tr>
+									</thead>
+									<tbody data-bind="foreach: workOrder().dailyReportEquipment">
+										<tr>
+											<td class="remove"><a href="#" class="icon icon-cross" data-bind="click: $parent.removeDailyReportEquipment">Remove</a></td>
+											<td width="40%"><select data-bind="options: $parent.workOrder().equipment, optionsText: 'name', optionsValue: 'id'"></select></td>
+											<td><input type="text" data-bind="value: hoursWorked" /></td>
+											<td><input type="text" data-bind="value: hoursStandby" /></td>
+										</tr>
+									</tbody>
+								</table>
+								<button class="button button-additional button-small" data-bind="click: addDailyReportEquipment">Add New</button>
+							</div>
+						</div>
+					</div>
+					<div id="weed-treatment-content" class="weed-treatment">
+						<div>
+							<h3>Weed Treatment</h3>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="completion" class="workorder-completion" style="display: none" data-bind="toggleMenu: true">
+				<header class="filter">
+					<!-- ko if: isAdmin -->
+					<div class="technician">
+						<label for="completion-technician">Technician</label>
+						<select id="completion-technician" class="fluid" data-bind="options: workOrder().technicians, optionsText: 'name', optionsValue: 'id'"></select>
+					</div>
+					<!-- /ko -->
+					<div class="toggle-menu">
+						<div class="segmented-button">
+							<input id="job-completion" name="completion" type="radio" checked="checked" />
+							<label for="job-completion" class="button">Job Completion</label>
+							<input id="conditions" name="completion" type="radio" />
+							<label for="conditions" class="button">Conditions</label>
+							<input id="timesheets" name="completion" type="radio" />
+							<label for="timesheets" class="button">Timesheets</label>
+							<input id="quality" name="completion" type="radio" />
+							<label for="quality" class="button">Quality</label>
+						</div>
+					</div>
+				</header>
+				<div class="toggle-menu-content content">
+					<div id="job-completion-content" class="job-completion">
+						<h3>Job Completion</h3>
+						<div class="form">
+							<div>
+								<div class="list">
+									<ul data-bind="foreach: workOrder().jobInstructions">
+										<li>
+											<span class="checkbox">
+												<input type="checkbox" class="switch" data-bind="attr: { id: id }" />
+												<label data-bind="attr: { id: id }, text: name"></label>
+											</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="completion-notes">
+								<label for="completion-notes">Completion Notes</label>
+								<textarea id="completion-notes" class="fluid"></textarea>
+							</div>
+						</div>
+					</div>
+					<div id="conditions-content" class="conditions">
+						<h3>Conditions</h3>
+						<div class="box">
+							<div class="flex-row">
+								<div class="flex-col">
+									<label for="soil">Soil</label>
+									<select id="soil" class="fluid" data-bind="options: refData().soil, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Please Select'"></select>
+								</div>
+								<div class="flex-col">
+									<label for="dew">Dew</label>
+									<select id="dew" class="fluid" data-bind="options: refData().dew, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Please Select'"></select>
+								</div>
+								<div class="flex-col">
+									<label for="weather">Weather</label>
+									<select id="weather" class="fluid" data-bind="options: refData().weather, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Please Select'"></select>
+								</div>
+								<div class="flex-col">
+									<label for="growth-stage">Growth State</label>
+									<select id="growth-stage" class="fluid" data-bind="options: refData().growthStages, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Please Select'"></select>
+								</div>
+							</div>
+							<div class="condition-time">
+								<table class="table">
+									<tbody>
+										<tr>
+											<th></th>
+											<th>AM</th>
+											<th>PM</th>
+										</tr>
+										<tr>
+											<td><label>Wind Speed</label></td>
+											<td><input type="text" class="fluid" /></td>
+											<td><input type="text" class="fluid" /></td>
+										</tr>
+										<tr>
+											<td><label>Direction</label></td>
+											<td><input type="text" class="fluid" /></td>
+											<td><input type="text" class="fluid" /></td>
+										</tr>
+										<tr>
+											<td><label>Temp</label></td>
+											<td><input type="text" class="fluid" /></td>
+											<td><input type="text" class="fluid" /></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div id="timesheets-content" class="timesheets">
+						<h3>Timesheets</h3>
+						<div class="flex-row">
+							<div class="flex-col days">
+								<div class="box">
+									<table>
+										<thead>
+											<tr>
+												<th></th>
+												<th>Start Time</th>
+												<th>End Time</th>
+												<th>Hours</th>
+											</tr>
+										</thead>
+										<tbody data-bind="foreach: ko.utils.range(1, workOrder().labour.timeAllocated)">
+											<tr>
+												<td>Day <span data-bind="text: $parent.formatCount($index())"></span></td>
+												<td><input type="text" class="fluid" /></td>
+												<td><input type="text" class="fluid" /></td>
+												<td><input type="text" class="fluid" /></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<div class="flex-col total">
+								<h3>0</h3>
+								<span>Total Hours</span>
+							</div>
+						</div>
+					</div>
+					<div id="quality-content" class="quality">
+						<div class="flex-row">
+							<div class="flex-col form">
+								<h3>Quality</h3>
+								<div>
+									<label for="comments-on-work-order">Comments on Work Order</label>
+									<textarea id="comments-on-work-order" class="fluid"></textarea>
+								</div>
+								<div>
+									<label for="remedy-if-required">Remedy if Required</label>
+									<textarea id="remedy-if-required" class="fluid"></textarea>
+								</div>
+								<div>
+									<label for="actions-recommended-to-top-reoccurrence">Actions Recommended to Stop Reoccurrence</label>
+									<textarea id="actions-recommended-to-top-reoccurrence" class="fluid"></textarea>
+								</div>
+							</div>
+							<div class="flex-col">
+								<label class="h3">QA Questions</label>
+								<div class="checklist box">
+									<ul>
+										<li>
+											<ul>
+												<li><input id="customer-satisfied" type="checkbox" class="switch" /></li>
+												<li><label for="customer-satisfied">Would the customer be totally satisfied?</label></li>
+											</ul>
+										</li>
+										<li>
+											<ul>
+												<li><input id="on-site-meeting" type="checkbox" class="switch" /></li>
+												<li><label for="on-site-meeting">On site meeting with staff required?</label></li>
+											</ul>
+										</li>
+										<li>
+											<ul>
+												<li><input id="results-relayed" type="checkbox" class="switch" /></li>
+												<li><label for="results-relayed">Results relayed to customer?</label></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+								<button class="button button-additional button-small">Print QA Report</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+		</div>
+
+	</div>
+
+	<div class="action">
+		<div>
+			<button class="button button-large button-negative">Archive</button>
+		</div>
+		<div>
+				<button class="button button-large button-positive" data-bind="click: save">Save</button>
+		</div>
+	</div>
+
+	<!-- /ko -->
+
+</section>

@@ -16,22 +16,22 @@ module.exports = function (karma) {
 		files: [
 
 			// Assertion library
-			{pattern: 'node_modules/chai/chai.js', included: false},
+			{ pattern: 'node_modules/chai/chai.js', included: false },
 
 			// Bower components
-			{pattern: 'app/vendor/knockout.js/knockout.js', included: false},
-			{pattern: 'app/vendor/pubsub/src/pubsub.js', included: false},
-			{pattern: 'app/vendor/jquery/jquery.js', included: false},
-			{pattern: 'app/vendor/jquery-mockjax/jquery.mockjax.js', included: false},
-			{pattern: 'app/vendor/text/text.js', included: false},
+			{ pattern: 'app/vendor/knockout.js/knockout.js', included: false },
+			{ pattern: 'app/vendor/pubsub/src/pubsub.js', included: false },
+			{ pattern: 'app/vendor/jquery/jquery.js', included: false },
+			{ pattern: 'app/vendor/jquery-mockjax/jquery.mockjax.js', included: false },
+			{ pattern: 'app/vendor/text/text.js', included: false },
 
-			{pattern: 'app/vendor/lawnchair/src/Lawnchair.js', included: true},
-			{pattern: 'app/vendor/lawnchair/src/adapters/dom.js', included: true},
+			{ pattern: 'app/vendor/lawnchair/src/Lawnchair.js', included: true },
+			{ pattern: 'app/vendor/lawnchair/src/adapters/dom.js', included: true },
 
 			// All app and test modules
-			{pattern: 'app/scripts/**/*.js', included: false},
-			{pattern: 'app/scripts/**/*.html', included: false},
-			{pattern: 'test/spec/**/*.test.js', included: false},
+			{ pattern: 'app/scripts/**/*.js', included: false },
+			{ pattern: 'app/scripts/**/*.html', included: false },
+			{ pattern: 'test/spec/**/*.test.js', included: false },
 
 			'test/config.js'
 
@@ -74,7 +74,7 @@ module.exports = function (karma) {
 
 		// If browser does not capture in given timeout [ms], kill it
 		// CLI --capture-timeout 60000
-		captureTimeout: 60000,
+		captureTimeout: 120000,
 
 		// Test results reporter to use
 		// Possible values: 'dots', 'progress', 'junit', 'coverage'

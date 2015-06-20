@@ -1,12 +1,17 @@
-define([
-	'jquery',
-	'mocks/workOrder'
-], function ($) {
+define(['jquery'], function ($) {
 
 	'use strict';
 
+	/**
+	 * Work Order Model
+	 * @return {Object} Model
+	 */
 	return function () {
 
+		/**
+		 * Get Reference Data
+		 * @param  {Function} callback
+		 */
 		var getRefData = function (callback) {
 			$.getJSON('/api/workOrderData/')
 				.done(function (data) {
@@ -14,6 +19,11 @@ define([
 				});
 		};
 
+		/**
+		 * Get Work Order
+		 * @param  {Object}   data
+		 * @param  {Function} callback
+		 */
 		var getWorkOrder = function (data, callback) {
 			$.getJSON('/api/workOrder/' + data.id)
 				.done(function (data) {
@@ -21,6 +31,11 @@ define([
 				});
 		};
 
+		/**
+		 * Create Work Order
+		 * @param  {Object}   data
+		 * @param  {Function} callback
+		 */
 		var createWorkOrder = function (data, callback) {
 			$.getJSON('/api/workOrder/', data)
 				.done(function (data) {

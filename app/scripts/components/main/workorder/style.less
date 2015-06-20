@@ -1,0 +1,400 @@
+@import "core.less";
+
+.workorder {
+	.display(flex);
+	.flexFlow(column);
+	.flex(1);
+
+	.container {
+		.display(flex);
+		.flexFlow(row);
+		.flex(1);
+	}
+
+	.menu {
+		.display(flex);
+		.flexFlow(column);
+		width: 12rem;
+		border-width: 0 1px 0 0;
+	}
+
+	.header {
+
+		.toggle-menu {
+			width: 28.5rem;
+			vertical-align: bottom;
+		}
+
+		.technician {
+			width: 12rem;
+		}
+	}
+
+	.menu-content {
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+
+		> section {
+			.display(flex);
+			.flexFlow(column);
+		}
+	}
+
+	.content {
+		padding: 1rem 1.5rem;
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+	}
+
+	> .action {
+		.display(flex);
+		.flexFlow(row);
+		.justifyContent(space-between);
+		padding: 1rem;
+		height: 4rem;
+		font-size: 1rem;
+		background-color: @shade-pos-5;
+		border-top: 1px solid @shade-pos-4;
+
+		.button {
+			width: 6rem;
+		}
+	}
+
+	.box {
+		padding: 0.8rem;
+		background-color: @shade-pos-5;
+	}
+}
+
+
+/* Details */
+
+.workorder-details {
+	.display(flex);
+	.flexFlow(column);
+	.flex(1);
+
+	.filter {
+		.justifyContent(space-between);
+
+		.treatment-date {
+			.flex(1);
+			width: 20%;
+		}
+
+		.client {
+			.flex(2);
+			width: 25%;
+		}
+
+		.job {
+			.flex(2);
+			width: 25%;
+		}
+
+		.status {
+			.flex(1);
+			width: 20%;
+		}
+	}
+
+	.address {
+		textarea, span {
+			margin-bottom: 1.8rem;
+			height: 6.4rem;
+		}
+	}
+
+	.contact {
+		margin-bottom: 1.4rem;
+	}
+}
+
+
+/* Labour */
+
+.workorder-labour {
+
+	.filter {
+
+		> div {
+			display: inline-block;
+			width: 8.5rem;
+		}
+
+		select, input, span {
+			width: 6rem;
+		}
+	}
+
+	.work-checklist {
+		.flex(2);
+		width: 70%;
+	}
+
+	.critical-info {
+		width: 30%;
+
+		textarea, span {
+			height: 8.5rem;
+		}
+	}
+}
+
+
+/* Schedule */
+
+.workorder-schedule {
+
+	.location select {
+		margin-bottom: 1rem;
+		width: 12rem;
+	}
+
+	.schedule-roads {
+
+		.list ul li {
+			position: relative
+			padding: 1rem;
+		}
+
+		.list li:last-of-type a {
+			border-bottom: 0;
+		}
+
+		.edit {
+			padding: 0.29rem;
+			text-align: right;
+			background-color: @shade-neg-3;
+		}
+
+		.cancel {
+			color: @white;
+			font-size: 0.8rem;
+			background: transparent;
+			border: 0;
+		}
+
+		.done a {
+			positon: relative;
+			color: darken(@green, 10);
+			background-color: lighten(@green, 55);
+
+			&:hover {
+				border-color: @list-border-color;
+			}
+
+			&:after {
+				position: absolute;
+				right: 1rem;
+				font-family: "icon";
+				content: "\f109";
+				font-size: 1rem;
+				line-height: 1.2;
+			}
+		}
+	}
+}
+
+
+/* Invoicing */
+
+.workorder-invoicing {
+
+	.invoicing {
+		width: 65%;
+	}
+
+	.quote {
+		width: 35%;
+	}
+
+	.invoicing-details {
+		margin-bottom: 2rem;
+		width: 70%;
+	}
+
+	.invoicing-notes textarea {
+		height: 8rem;
+	}
+}
+
+
+/* Images */
+
+.workorder-images {
+
+	.header {
+		height: 3.8rem;
+	}
+}
+
+
+/* Land Access */
+
+.workorder-land-access {
+
+	.header {
+
+		.technician select {
+			width: 12rem;
+		}
+
+		.land-access-date input {
+			width: 7rem;
+		}
+	}
+
+	.questions {
+		font-size: 0.8rem;
+		font-weight: 400;
+		width: 50%;
+
+		td {
+			padding: 0.5rem;
+			vertical-align: top;
+		}
+	}
+
+	.accordian textarea {
+		height: 4rem;
+		background-color: @white;
+		border: 0;
+		border-radius: 0;
+	}
+
+	.contact {
+		margin-top: 1rem;
+
+		input {
+			width: 80%;
+		}
+	}
+
+	.details {
+		width: 50%;
+	}
+
+	.authorisation {
+		margin-top: 2.5rem;
+	}
+}
+
+
+/* Daily Report */
+
+.workorder-daily-report {
+
+	.comments textarea {
+		height: 4rem;
+	}
+
+	.incidents {
+
+		ul {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+
+		li {
+			margin-bottom: 0.5rem;
+		}
+
+		input {
+			float: left;
+			margin-right: 0.5rem;
+		}
+
+		label {
+			display: inline-block;
+
+			span {
+				display: block;
+				font-size: 0.6rem;
+			}
+		}
+
+		textarea {
+			display: none;
+		}
+
+		input:checked + textarea {
+			display: block;
+			margin-left: 1.8rem;
+			margin-bottom: 1rem;
+			width: 20rem;
+			height: 4rem;
+		}
+	}
+}
+
+
+/* Completion */
+
+.workorder-completion {
+
+	.job-completion {
+
+		.list li:last-of-type span {
+			border-bottom: 0;
+		}
+
+		.completion-notes textarea {
+			height: 8rem;
+		}
+	}
+
+	.conditions {
+
+		.condition-time {
+			margin: 2rem auto 0;
+			padding-right: 5rem;
+			width: 24rem;
+
+			table {
+				white-space: nowrap;
+			}
+		}
+	}
+
+	.timesheets {
+
+		.days {
+			width: 70%;
+
+			tr td:first-of-type {
+				white-space: nowrap;
+			}
+
+			td {
+				padding: 0.5rem;
+				font-size: 0.6rem;
+			}
+		}
+
+		.total {
+			width: 30%;
+			text-align: center;
+
+			h3 {
+				font-size: 4rem;
+				line-height: 0.8;
+			}
+		}
+	}
+
+	.quality {
+
+		.columns .col {
+			width: 50%;
+		}
+
+		textarea {
+			height: 4rem;
+		}
+	}
+}

@@ -1,52 +1,60 @@
-.switch() {
+/*
 
-	input[type=checkbox].switch {
-		position: relative;
-		margin-top: 0.2rem;
-		padding: 0.18rem 0.18rem;
-		width: 3rem;
-		height: 1.6rem;
-		font-size: 1rem;
-		background: @switch-bg-color;
-		border: 0;
-		border-radius: 3em;
-		cursor: pointer;
-		overflow: hidden;
-		vertical-align: middle;
-		transition-property: padding, background-color;
-		transition-duration: .2s;
-		transition-timing-function: ease;
-		appearance: none;
+	Switch
 
-		&:before {
-			position: absolute;
-			top: 0.3rem;
-			right: 0.5rem;
-			color: @switch-color;
-			font-family: "icon";
-			content: "\f102";
-		}
+	Visually indicates the status of a user's selection
 
-		&:after {
-			content: "";
-			display: block;
-			position: relative;
-			width: 1.2rem;
-			height: 1.2rem;
-			background: @switch-thumb-bg-color;
-			border-radius: 1.5rem;
-		}
+	Markup:
+	<input id="option-name" type="checkbox" class="switch">
 
-		&:checked {
-			padding-left: 1.65rem;
-			background: @switch-on-bg-color;
+*/
 
-			&:before {
-				left: -0.7rem;
-				color: @switch-on-color;
-				content: "\f109";
-			}
-		}
+input[type=checkbox].switch {
+	position: relative;
+	margin-top: 0.2rem;
+	padding: 0.18rem 0.18rem;
+	width: 3rem;
+	min-height: 1.6rem;
+	height: 1.6rem;
+	font-size: 1rem;
+	background: @switch-bg-color;
+	border: 0;
+	border-radius: 3em;
+	cursor: pointer;
+	overflow: hidden;
+	vertical-align: middle;
+	transition-property: padding, background-color;
+	transition-duration: .2s;
+	transition-timing-function: ease;
+	-webkit-appearance: none;
+
+	&:before {
+		position: absolute;
+		top: 0.3rem;
+		right: 0.5rem;
+		color: @switch-color;
+		font-family: "icon";
+		content: "\e003";
 	}
 
+	&:after {
+		content: "";
+		display: block;
+		position: relative;
+		width: 1.2rem;
+		height: 1.2rem;
+		background: @switch-thumb-bg-color;
+		border-radius: 1.5rem;
+	}
+
+	&:checked {
+		padding-left: 1.65rem;
+		background: @switch-on-bg-color;
+
+		&:before {
+			left: -0.7rem;
+			color: @switch-on-color;
+			content: "\e00a";
+		}
+	}
 }

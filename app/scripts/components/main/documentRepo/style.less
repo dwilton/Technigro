@@ -1,0 +1,51 @@
+@import "core.less";
+
+.document-repository {
+	.display(flex);
+	.flexFlow(column);
+	.flex(1);
+
+	.filter {
+		.display(flex);
+		.flexFlow(row);
+		.justifyContent(space-between);
+
+		.popover {
+			width: 15rem;
+
+			.segmented-button {
+				margin-bottom: 0.5rem;
+			}
+		}
+	}
+
+	.menu {
+		.display(flex);
+		.flexFlow(column);
+		width: 17rem;
+		border-width: 0 1px 0 0;
+	}
+
+	.document-container {
+		.display(flex);
+		.flexFlow(row);
+		.flex(1);
+	}
+
+	.document {
+		.display(flex);
+		.flexFlow(column);
+		.flex(1);
+	}
+
+	.content {
+		padding: 3rem;
+	}
+
+	.message {
+		.display(flex);
+		.flexFlow(column);
+		.justifyContent(center);
+		.flex(1);
+	}
+}

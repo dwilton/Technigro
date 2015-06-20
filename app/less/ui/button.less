@@ -1,54 +1,87 @@
-.button() {
+/*
 
-	.button {
-		padding: 0.58em 0.75em;
+	Buttons
+
+	Buttons are action items for users.
+
+	<a href="#" class="button {$modifiers}">Link Button</a>
+	<button class="button {$modifiers}">Button Element</button>
+	<input type="button" class="button {$modifiers}" value="Input Element"/>
+
+	:hover               - Highlight the button when hovered.
+	:active              - "Press" the button down when clicked.
+
+*/
+
+.button {
+	padding: 0.58em 0.75em;
+	color: @button-color;
+	font-weight: 600;
+	font-weight: 200;
+	font-size: 0.86rem;
+	line-height: 1;
+	background-color: @button-bg-color;
+	border-radius: 0.356em;
+	transition: color .2s ease, background-color .2s ease;
+
+	&:hover {
 		color: @button-color;
-		font-weight: 600;
-		font-weight: 200;
-		font-size: 0.86rem;
-		line-height: 1;
-		background-color: @button-bg-color;
-		border-radius: 0.356em;
-		transition: color .2s ease, background-color .2s ease;
-
-		&:hover {
-			color: @button-color;
-			background-color: lighten(@button-bg-color, 5%);
-		}
-
-		&[disabled] {
-			/* Yuck: Cardinal was using !important so I had too as well :( */
-			color: mix(@button-color, @button-disabled-bg-color, 80) !important;
-			background-color: @button-disabled-bg-color !important;
-		}
+		background-color: lighten(@button-bg-color, 5%);
 	}
 
-	.button-large {
-		font-size: 1rem;
+	&[disabled] {
+		/* Yuck: Cardinal was using !important so I had too as well :( */
+		color: mix(@button-color, @button-disabled-bg-color, 80) !important;
+		background-color: @button-disabled-bg-color !important;
 	}
+}
 
-	.button-small {
-		font-size: 0.7rem;
+
+/*
+
+	Buttons Sizes
+
+	Buttons come in different sizes.
+
+	<a href="#" class="button {$modifiers}">Link Button</a>
+	<button class="button {$modifiers}">Button Element</button>
+	<input type="button" class="button {$modifiers}" value="Input Element"/>
+
+*/
+
+.button-large {
+	font-size: 1rem;
+}
+
+.button-small {
+	font-size: 0.7rem;
+}
+
+
+/*
+
+	Button Feedback
+
+	Buttons can provide feedback to the user.
+
+	Markup:
+	<button class="button button-positive">Positive</button>
+	<button class="button button-negative">Negative</button>
+
+*/
+
+.button-positive {
+	background-color: @positive;
+
+	&:hover {
+		background-color: darken(@positive, 5);
 	}
+}
 
-	.button-additional {
-		background-color: @shade-pos-1;
+.button-negative {
+	background-color: @negative;
+
+	&:hover {
+		background-color: darken(@negative, 5);
 	}
-
-	.positive {
-		background-color: @positive;
-
-		&:hover {
-			background-color: darken(@positive, 5);
-		}
-	}
-
-	.negative {
-		background-color: @negative;
-
-		&:hover {
-			background-color: darken(@negative, 5);
-		}
-	}
-
 }

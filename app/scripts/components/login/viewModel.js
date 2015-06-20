@@ -1,54 +1,48 @@
 define([
 	'knockout',
 	'pubsub',
-	'models/login'
-], function (ko, p, LoginModel) {
+	'components/login/userLogin/component',
+	'components/login/recoverLogin/component'
+], function (ko, p, userLoginCom, recoverLoginCom) {
 
 	'use strict';
 
+	/**
+	 * Login Container ViewModel
+	 * @return {Object} ViewModel
+	 */
 	return function () {
 
-		var loginModel = new LoginModel();
+		// Observables
+		var content = ko.observable('userLogin');
+		var animation = ko.observable('');
 
-		var username = ko.observable('');
-		var password = ko.observable('');
-		var isLoading = ko.observable(false);
-		var isFailed = ko.observable(false);
-
-		var animation = ko.computed(function () {
-			p.publish('loginContainer.animation', isFailed() ? 'shake' : '');
+		// Subscribed Observables
+		content.subscribe(function () {
+			animation('');
 		});
 
-		var refresh = function () {
-			username('');
-			password('');
-			isLoading(false);
-			isFailed(false);
+		// Init Components
+		userLoginCom.init();
+		recoverLoginCom.init();
+
+		/**
+		 * Init
+		 * @return {Object} Instance
+		 */
+		var init = function () {
+			p.subscribe('login.animation', animation);
+			return this;
 		};
 
-		var login = function () {
-			isLoading(true);
-			isFailed(false);
-			loginModel.login({ username: username(), password: password() }, loginResult);
-		};
-
-		var loginResult = function (data) {
-			isLoading(false);
-
-			if (data) {
-				refresh();
-			} else {
-				isFailed(true);
-			}
-		};
-
+		/**
+		 * ViewModel
+		 * @type {Object}
+		 */
 		var ViewModel = {
-			refresh: refresh,
-			username: username,
-			password: password,
-			isLoading: isLoading,
-			isFailed: isFailed,
-			login: login
+			init: init,
+			content: content,
+			animation: animation
 		};
 
 		return ViewModel;

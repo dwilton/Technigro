@@ -1,7 +1,20 @@
-.scrollable() {
-	overflow-x: hidden;
-	overflow-y: auto;
-	-webkit-overflow-scrolling: touch;
+/*
+ * Layer Creation Hack (GPU Accelerated Compositing)
+ * USE WITH CAUTION!!!
+ * http://aerotwist.com/blog/on-translate3d-and-layer-creation-hacks/
+ */
+
+.gpu-layer(@device) when (@device = desktop) {
+	-webkit-transform: translateZ(0);
+	-webkit-transform: translate3d(0,0,0);
+}
+
+.gpu-layer(@device) when (@device = mobile) {
+	/* Note: GPU Accelerated Compositing "Triggers" continue to change in mobile webkit (Hence Kitchen Sink Approach) */
+	-webkit-transform: translateZ(0);
+	-webkit-transform: translate3d(0,0,0);
+	-webkit-perspective: 1000; /* Warning: Causes slowness for iOS6 and below */
+	-webkit-backface-visibility: hidden;
 }
 
 /**
