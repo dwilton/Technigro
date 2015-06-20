@@ -1,0 +1,50 @@
+// ==================================================================
+// Message ($message)
+// ==================================================================
+
+
+// Message
+//
+// Provides simple feedback to the user, can also include an icon for clarity.
+//
+// Markup:
+// <div class="message">
+// 	<span class="icon icon--top icon--warning">No Results</span>
+// </div>
+// <div class="message">
+// 	<span class="icon icon--top icon--info">A Helpful Hint</span>
+// </div>
+
+.message {
+	color: @message-color;
+	font-size: 1rem;
+	text-align: center;
+}
+
+
+// Sizes
+.message--small {
+	font-size: 0.8rem;
+}
+
+.message--large {
+	font-size: 1.2rem;
+}
+
+
+// Styles
+.message--muted {
+	color: @muted;
+}
+
+.message--positive {
+	color: @positive;
+}
+
+.message--warning {
+	color: @warning;
+}
+
+.message--negative {
+	color: @negative;
+}

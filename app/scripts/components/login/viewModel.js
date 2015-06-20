@@ -15,11 +15,11 @@ define([
 
 		// Observables
 		var content = ko.observable('userLogin');
-		var animation = ko.observable('');
+		var animate = ko.observable('');
 
 		// Subscribed Observables
 		content.subscribe(function () {
-			animation('');
+			animate({});
 		});
 
 		// Init Components
@@ -31,8 +31,13 @@ define([
 		 * @return {Object} Instance
 		 */
 		var init = function () {
-			p.subscribe('login.animation', animation);
+
+			p.subscribe('login.shake', function () {
+				animate('shake');
+			});
+
 			return this;
+
 		};
 
 		/**
@@ -42,7 +47,7 @@ define([
 		var ViewModel = {
 			init: init,
 			content: content,
-			animation: animation
+			animate: animate
 		};
 
 		return ViewModel;

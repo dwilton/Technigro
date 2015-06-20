@@ -1,0 +1,195 @@
+// ==================================================================
+// Buttons ($buttons)
+// ==================================================================
+
+
+// Buttons
+//
+// Buttons are action items for users.
+//
+// Markup:
+// <a href="#" class="button {$modifiers}">Link Button</a>
+// <button class="button {$modifiers}">Button Element</button>
+// <input type="button" class="button {$modifiers}" value="Input Element" />
+//
+// :hover               - Highlight the button when hovered.
+// :active              - "Press" the button down when clicked.
+// .button--active      - Active state
+//
+// Styleguide 2.
+
+.button {
+	display: inline-block;
+	margin: 0;
+	padding: @button-default-padding;
+	color: @button-color;
+	font-weight: @button-font-weight;
+	font-size: @button-default-font-size;
+	line-height: 1;
+	vertical-align: middle;
+	text-align: center;
+	white-space: nowrap;
+	background-color: @button-background;
+	border: 0 none;
+	border-radius: 0.356em;
+	cursor: pointer;
+	transition: color .2s ease, background-color .2s ease;
+
+	&:active,
+	&.button--active {
+		color: @button-color;
+		box-shadow: inset 0 0 0.317rem hsla(0, 0%, 0%, 0.25);
+	}
+
+	&:visited {
+		color: @button-color;
+	}
+
+	&:hover {
+		color: @button-color;
+		background-color: lighten(@button-background, 5%);
+	}
+
+	&[disabled] {
+		color: mix(@button-color, @button-disabled-background, 80);
+		background-color: @button-disabled-background;
+		text-shadow: none;
+		box-shadow: none;
+		cursor: not-allowed;
+		pointer-events: none;
+	}
+}
+
+
+// Sizing
+//
+// Buttons come in different sizes.
+//
+// Markup:
+// <a href="#" class="button {$modifiers}">Link Button</a>
+// <button class="button {$modifiers}">Button Element</button>
+// <input type="button" class="button {$modifiers}" value="Input Element"/>
+//
+// .botton--mini      - Mini size button.
+// .button--small     - Small size button.
+// .button--large     - Large size button.
+// .button--block     - Block size button.
+//
+// Styleguide 2.1.
+
+.button--mini {
+	padding: @button-mini-padding;
+	font-size: @button-mini-font-size;
+}
+
+.button--small {
+	padding: @button-small-padding;
+	font-size: @button-small-font-size;
+}
+
+.button--large,
+.button--block {
+	padding: @button-large-padding;
+	font-size: @button-large-font-size;
+	line-height: @button-large-line-height;
+}
+
+.button--block {
+	display: block;
+	width: 100%;
+}
+
+
+// Feedback
+//
+// Buttons can provide feedback to the user.
+//
+// Markup:
+// <button class="button {$modifiers}">Button</button>
+//
+// .button--primary      - Indicates a primary action
+// .button--positive     - Indicates a positive action.
+// .button--negative     - Indicates a negative action.
+//
+// Styleguide 2.2
+
+.button--primary {
+	background-color: @primary;
+
+	&:hover {
+		background-color: darken(@primary, 5);
+	}
+}
+
+.button--positive {
+	background-color: @positive;
+
+	&:hover {
+		background-color: darken(@positive, 5);
+	}
+}
+
+.button--negative {
+	background-color: @negative;
+
+	&:hover {
+		background-color: darken(@negative, 5);
+	}
+}
+
+// Button Group
+//
+// Grouped buttons where only one can be selected at a time
+//
+// Markup:
+// <div class="button-group">
+// 	<input id="option-one" name="button-group" type="radio" checked="checked" />
+// 	<label for="option-one">Option One</label>
+// 	<input id="option-two" name="button-group" type="radio" />
+// 	<label for="option-two">Option Two</label>
+// 	<input id="option-three" name="button-group" type="radio" />
+// 	<label for="option-three">Option Three</label>
+// </div>
+//
+// Styleguide 2.3
+
+.button-group {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	font-size: @button-default-font-size;
+
+	input[type=radio] {
+		display: none;
+	}
+
+	label {
+		display: table-cell;
+		padding: @button-default-padding;
+		font-weight: @button-font-weight;
+		font-size: 1em;
+		line-height: 1;
+		text-align: center;
+		color: @button-group-color;
+		background-color: @button-group-background;
+		cursor: pointer;
+		border-radius: 0;
+		border: 1px solid;
+		border-right: 0;
+		border-color: @button-group-color;
+
+		&:first-of-type {
+			border-radius: 0.356rem 0 0 0.356rem;
+		}
+
+		&:last-child {
+			border: 1px solid @button-group-color;
+			border-radius: 0 0.356rem 0.356rem 0;
+		}
+	}
+
+	input:checked + label, input:checked + label:last-child {
+		color: @button-group-background;
+		background: @button-group-color;
+	}
+}

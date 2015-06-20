@@ -16,12 +16,12 @@ define([
 		var loginModel = new LoginModel();
 
 		// Observables
-		var title = ko.observable();
-		var menu = ko.observable();
-		var content = ko.observable();
+		var title = ko.observable('');
+		var menu = ko.observable('');
+		var content = ko.observable('');
 		var menuVisibility = ko.observable(false);
 
-		// Subscriber Observables
+		// Subscribe to observables
 		content.subscribe(function () {
 			menuVisibility(false);
 		});
@@ -48,6 +48,8 @@ define([
 
 			// Subscribers
 			p.subscribe('main.title', title);
+
+			workOrders();
 
 			return this;
 

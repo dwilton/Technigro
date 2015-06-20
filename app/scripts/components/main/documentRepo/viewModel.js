@@ -60,6 +60,7 @@ define([
 			});
 
 			return this;
+
 		};
 
 		/**

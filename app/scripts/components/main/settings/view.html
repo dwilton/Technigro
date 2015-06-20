@@ -1,16 +1,16 @@
 <section class="settings">
 
 	<header class="filter">
-		<ul class="tab-nav tab-nav-button" data-bind="tabs: 'settings-content'">
+		<ul class="tabs" data-bind="tabs: 'settings'">
 			<li><a href="#settings-clients">Clients</a></li>
 			<li><a href="#settings-data-types">Data Types</a></li>
 			<li><a href="#settings-document-groups">Document Groups</a></li>
 		</ul>
 	</header>
 
-	<div id="settings-content" class="content tab-content">
+	<div id="settings" class="content tabs-content">
 
-		<div class="settings-clients-content">
+		<div id="settings-clients">
 
 			<div class="actions">
 				<input id="client-name" type="text" />
@@ -19,7 +19,7 @@
 
 			<div class="datagrid">
 
-				<table class="fixed-header table stripe">
+				<table class="datagrid__fixed-header table table--stripes">
 					<colgroup>
 						<col width="4%">
 						<col width="96%">
@@ -32,9 +32,9 @@
 					</thead>
 				</table>
 
-				<div class="results scrollable">
+				<div class="datagrid__results scrollable">
 
-					<table class="table stripe editable">
+					<table class="table table--stripes table--editable">
 						<colgroup>
 							<col width="4%">
 							<col width="96%">
@@ -47,15 +47,15 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td class="action"><a href="#" class="icon icon-cross icon-negative">Remove</a></td>
+								<td class="table__action"><a href="#" class="icon icon--cross icon--negative">Remove</a></td>
 								<td>Client A</td>
 							</tr>
 							<tr>
-								<td class="action"><a href="#" class="icon icon-cross icon-negative">Remove</a></td>
+								<td class="table__action"><a href="#" class="icon icon--cross icon--negative">Remove</a></td>
 								<td>Client B</td>
 							</tr>
 							<tr>
-								<td class="action"><a href="#" class="icon icon-cross icon-negative">Remove</a></td>
+								<td class="table__action"><a href="#" class="icon icon--cross icon--negative">Remove</a></td>
 								<td>Client C</td>
 							</tr>
 						</tbody>
@@ -66,6 +66,10 @@
 			</div>
 
 		</div>
+
+		<div id="settings-data-types"></div>
+
+		<div id="settings-document-groups"></div>
 
 	</div>
 

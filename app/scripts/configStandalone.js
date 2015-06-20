@@ -3,11 +3,10 @@
 // Provide some feedback in the console
 console.log('%cRunning in STANDALONE mode', 'color: blue;');
 
-// Extend the existing application config
+// Extend the existing RequireJS config
 require.config({
 
 	paths: {
-		// Todo: Add a module containing the standalone API config
 		'mockjax': '../vendor/jquery-mockjax/jquery.mockjax',
 		'monkeyPatch': 'lib/monkeyPatch'
 	},
@@ -22,7 +21,7 @@ require.config({
 require(['monkeyPatch'], function (patch) {
 
 	patch({
-		// Patch some models with mocks
+		// Patch these models with mocks
 		'models/documentRepo': 'mocks/documentRepo',
 		'models/login': 'mocks/login',
 		'models/recoverLogin': 'mocks/recoverLogin',

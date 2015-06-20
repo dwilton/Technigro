@@ -3,66 +3,85 @@
 	<div class="overlay" data-bind="visible: addNewDocument.showMenu(), click: toggleAddNewMenu"></div>
 
 	<div class="filter" data-bind="visible: isAdmin()">
+
 		<div>
-			<button class="edit-button button button-positive" data-bind="click: toggleEdit">Edit</button>
+			<button class="edit-button button button--positive" data-bind="click: toggleEdit">Edit</button>
 		</div>
-		<div class="popover-target">
-			<button class="add-new-button button button-positive" data-bind="click: toggleAddNewMenu">Add New</button>
-			<div class="popover popover-right popover-bottom" data-bind="visible: addNewDocument.showMenu()">
-				<div class="popover-content">
-					<div class="segmented-button">
-						<input type="radio" id="group-existing" name="group" value="existing" data-bind="checked: addNewDocument.groupType" />
-						<label class="button" for="group-existing">Existing Group</label>
-						<input type="radio" id="group-new" name="group" value="new" data-bind="checked: addNewDocument.groupType" />
-						<label class="button" for="group-new">New Group</label>
+
+		<div class="popover">
+			<button class="add-new-button button button--positive" data-bind="click: toggleAddNewMenu">Add New</button>
+			<div class="popover__flyout popover__flyout--right popover__flyout--bottom" data-bind="visible: addNewDocument.showMenu()">
+				<div class="popover__content">
+
+					<div class="button-group">
+						<input type="radio" name="group" id="group-existing" value="existing" data-bind="checked: addNewDocument.groupType" />
+						<label for="group-existing">Existing Group</label>
+						<input type="radio" name="group" id="group-new" value="new" data-bind="checked: addNewDocument.groupType" />
+						<label for="group-new">New Group</label>
 					</div>
+
 					<!-- ko if: addNewDocument.groupType() == 'existing' -->
-					<select id="existing-group" class="fluid" data-bind="options: documentList, optionsText: 'name', optionsValue: 'name', value: addNewDocument.existingGroup, optionsCaption: 'Select Group'"></select>
+						<select id="existing-group" data-bind="options: documentList, optionsText: 'name', optionsValue: 'name', value: addNewDocument.existingGroup, optionsCaption: 'Select Group'"></select>
 					<!-- /ko -->
+
 					<!-- ko if: addNewDocument.groupType() == 'new' -->
-					<input id="new-group" type="text" class="fluid" data-bind="value: addNewDocument.createGroup" placeholder="Group Name" />
+						<input id="new-group" type="text" data-bind="value: addNewDocument.createGroup" placeholder="Group Name" />
 					<!-- /ko -->
+
 					<div class="file-upload">
-						<input id="upload-placeholder" class="upload-placeholder" placeholder="Choose File" disabled="disabled" data-bind="value: addNewDocument.placeholder" />
+						<input id="upload-placeholder" class="file-upload__upload-placeholder" placeholder="Choose File" disabled="disabled" data-bind="value: addNewDocument.placeholder" />
 						<div class="button">
 							<span>Upload</span>
 							<input id="upload" type="file" class="upload-button" data-bind="value: addNewDocument.file" />
 						</div>
 					</div>
+
 				</div>
-				<button class="button button-large fluid" data-bind="click: uploadDocument, ladda: addNewDocument.isUploading()">Add Document</button>
+				<button class="file-upload__upload-button button button--block" data-bind="click: uploadDocument, ladda: addNewDocument.isUploading">Add Document</button>
 			</div>
 		</div>
+
 	</div>
 
 	<div class="document-container">
-		<div class="loader" data-bind="spin: isLoading(), visible: isLoading()"></div>
+
+		<div class="loader" data-bind="spin: isLoading, visible: isLoading()"></div>
+
 		<!-- ko if: !isLoading() -->
-			<nav class="menu list list-border" data-bind="css: { editable : isEdit}">
+
+			<nav class="menu list list--border" data-bind="css: { 'list--editable': isEdit }">
 				<div class="results scrollable">
 					<ul data-bind="foreach: documentList">
-						<li class="list list-border-rows">
+						<li class="list list--border-rows">
 							<h2 data-bind="text: name"></h2>
 							<ul data-bind="foreach: documents">
-								<li data-bind="css: { active: $data == $root.selected() }">
-									<a href="#" class="action icon icon-cross icon-negative">Remove</a>
-									<a href="" class="icon icon-arrow" data-bind="text: name, click: $root.selected.bind($data)"></a>
+								<li data-bind="css: { 'list_active': $data == $parentContext.$parent.selected() }">
+									<a href="#" class="list__action icon icon--cross icon--negative">Remove</a>
+									<a href="" class="icon icon--arrow" data-bind="text: name, click: $parentContext.$parent.selected.bind($data)"></a>
 								</li>
 							</ul>
 						</li>
 					</ul>
 				</div>
 			</nav>
+
 			<div class="document scrollable">
-				<div class="loader" data-bind="spin: isDocumentLoading(), visible: isDocumentLoading()"></div>
+
+				<!-- ko if: isDocumentLoading() -->
+					<div class="loader" data-bind="spin: isDocumentLoading"></div>
+				<!-- /ko -->
+
 				<!-- ko if: !isDocumentLoading() -->
-					<div class="message" data-bind="visible: !isDocumentLoaded()">
-						<span class="icon icon-top icon-info">Select a document</span>
+					<div class="message message--muted" data-bind="visible: !isDocumentLoaded()">
+						<span class="icon icon--top icon--large icon--info">Select a document</span>
 					</div>
 					<div class="content" data-bind="visible: isDocumentLoaded(), html: documentDetails()"></div>
 				<!-- /ko -->
+
 			</div>
+
 		<!-- /ko -->
+
 	</div>
 
 </section>

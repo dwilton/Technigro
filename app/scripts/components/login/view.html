@@ -1,9 +1,10 @@
-<section class="login">
-	<div class="tabs" data-bind="animo: { animation: animation() }">
-		<ul class="tab-nav" data-bind="tabs: 'login-content'">
-			<li class="active"><a href="#user-login" data-bind="click: content.bind($data, 'userLogin')">Login</a></li>
-			<li><a href="#recover-login" data-bind="click: content.bind($data, 'recoverLogin')">Recover Login</a></li>
-		</ul>
-		<div id="login-content" class="tab-content" data-bind="component: content()"></div>
+<section class="app-login" data-bind="animate: animate">
+	<ul class="tabs" data-bind="tabs: '#login-content'">
+		<li class="tabs__item tabs__item--active"><a href="#user-login">Login</a></li>
+		<li class="tabs__item"><a href="#recover-login">Recover Login</a></li>
+	</ul>
+	<div id="login-content" class="tabs-content">
+		<div id="user-login" data-bind="component: 'userLogin'"></div>
+		<div id="recover-login" data-bind="component: 'recoverLogin'"></div>
 	</div>
 </section>

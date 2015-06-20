@@ -1,6 +1,6 @@
 'use strict';
 
-// App config
+// ReuqireJS Config
 require.config({
 
 	paths: {
@@ -8,7 +8,7 @@ require.config({
 		// Vendor
 		'animo': '../vendor/animo.js/animo',
 		'jquery': '../vendor/jquery/jquery',
-		'knockout': '../vendor/knockout.js/knockout',
+		'knockout': '../vendor/knockout/dist/knockout',
 		'ladda': '../vendor/ladda/js/ladda',
 		'mapping': '../vendor/knockout-mapping/knockout.mapping',
 		'page': '../vendor/page/index',
@@ -18,13 +18,15 @@ require.config({
 		'typeahead': '../vendor/typeahead.js/dist/typeahead',
 
 		// Libraries
-		'bindings': 'lib/bindings',
 		'component': 'lib/component',
 		'modernizr': 'lib/modernizr',
 		'querystring': 'lib/querystring',
-		'url': 'lib/url',
 		'router': 'lib/router',
 		'store': 'lib/store',
+
+		// Settings
+		'api': 'settings/api'
+
 	},
 
 	shim: {

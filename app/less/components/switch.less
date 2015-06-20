@@ -1,0 +1,61 @@
+// ==================================================================
+// Switch ($switch)
+// ==================================================================
+
+
+// Switch
+//
+// Visually indicates the status of a user's selection
+//
+// Markup:
+// <input id="option-name" type="checkbox" class="switch">
+
+input[type=checkbox].switch {
+	position: relative;
+	margin-top: 0.2em;
+	padding: 0.18em 0.18em;
+	width: 3em;
+	min-height: 1.6em;
+	height: 1.6em;
+	font-size: 1rem;
+	background: @switch-background;
+	border: 0;
+	border-radius: 3em;
+	cursor: pointer;
+	overflow: hidden;
+	vertical-align: middle;
+	transition-property: padding, background-color;
+	transition-duration: .2s;
+	transition-timing-function: ease;
+	-webkit-appearance: none;
+
+	&:before {
+		position: absolute;
+		top: 0.41em;
+		right: 0.5em;
+		color: @switch-color;
+		font-family: "icon";
+		content: "\e003";
+	}
+
+	&:after {
+		content: "";
+		display: block;
+		position: relative;
+		width: 1.2em;
+		height: 1.2em;
+		background: @switch-thumb-background;
+		border-radius: 1.5em;
+	}
+
+	&:checked {
+		padding-left: 1.60em;
+		background: @switch-on-background;
+
+		&:before {
+			left: 0.5em;
+			color: @switch-on-color;
+			content: "\e00a";
+		}
+	}
+}

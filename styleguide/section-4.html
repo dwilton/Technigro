@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+
+	<title>Living Styleguide</title>
+	<meta name="description" content="">
+	<meta name="generator" content="kss-node" />
+
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" href="public/kss.css">
+	<link rel="stylesheet" href="../app/css/style.css" />
+	<link rel="stylesheet" href="public/style.css">
+
+</head>
+<body>
+
+	<div id="kss-wrapper">
+		<div id="kss-nav">
+			<header id="kss-header">
+				<hgroup><h1>Styleguide</h1></hgroup>
+			</header>
+			<aside>
+				<nav><ul>
+					<li><a href="index.html">Overview</a></li>
+					
+						<li><a href="section-1.html">Accordion</a></li>
+					
+						<li><a href="section-2.html">Buttons</a></li>
+					
+						<li><a href="section-3.html">Breadcrumbs</a></li>
+					
+						<li><a href="section-4.html">Datagrid</a></li>
+					
+						<li><a href="section-4.html">Filter</a></li>
+					
+						<li><a href="section-9.html">List</a></li>
+					
+						<li><a href="section-11.html">Icon</a></li>
+					
+						<li><a href="section-12.html">Validation</a></li>
+					
+						<li><a href="section-13.html">Table</a></li>
+					
+						<li><a href="section-14.html">Issue</a></li>
+					
+				</ul></nav>
+			</aside>
+		</div>
+		<div role="main" id="kss-main">
+			<article id="kss-content">
+
+				
+
+					
+
+					
+						
+							<h1 class="kss-title">Datagrid</h1>
+						
+							
+									<blockquote class="kss-box"><p>Datagrids provide scrollable containers for tables</p>
+</blockquote>
+									<table class="kss-mod-list">
+										<tr class="kss-mod-desc-group">
+											<td class="kss-mod-desc"><h2>Default styling</h2></td>
+											<td class="kss-mod-name"></td>
+										</tr>
+										<tr class="kss-mod-example">
+											<td colspan="2"><div class="datagrid">
+	<table class="datagrid__fixed-header table">
+		<colgroup>
+			<col width="20%">
+			<col width="80%">
+		</colgroup>
+		<thead>
+			<tr>
+				<th>Date</th>
+				<th>Client</th>
+			</tr>
+		</thead>
+	</table>
+	<div class="datagrid__results scrollable">
+		<table class="table table-stripe">
+			<colgroup>
+				<col width="20%">
+				<col width="80%">
+			</colgroup>
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Client</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>20 Sep 2015</td>
+					<td>Kanye West</td>
+				</tr>
+				<tr>
+					<td>21 Sep 2015</td>
+					<td>JayZ</td>
+				</tr>
+				<tr>
+					<td>22 Sep 2015</td>
+					<td>Dr Dre</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div></td>
+										</tr>
+									
+									</table>
+									<div class="kss-markup">
+										<pre class="prettyprint lang-html">&lt;div class=&quot;datagrid&quot;&gt;
+	&lt;table class=&quot;datagrid__fixed-header table&quot;&gt;
+		&lt;colgroup&gt;
+			&lt;col width=&quot;20%&quot;&gt;
+			&lt;col width=&quot;80%&quot;&gt;
+		&lt;/colgroup&gt;
+		&lt;thead&gt;
+			&lt;tr&gt;
+				&lt;th&gt;Date&lt;/th&gt;
+				&lt;th&gt;Client&lt;/th&gt;
+			&lt;/tr&gt;
+		&lt;/thead&gt;
+	&lt;/table&gt;
+	&lt;div class=&quot;datagrid__results scrollable&quot;&gt;
+		&lt;table class=&quot;table table-stripe&quot;&gt;
+			&lt;colgroup&gt;
+				&lt;col width=&quot;20%&quot;&gt;
+				&lt;col width=&quot;80%&quot;&gt;
+			&lt;/colgroup&gt;
+			&lt;thead&gt;
+				&lt;tr&gt;
+					&lt;th&gt;Date&lt;/th&gt;
+					&lt;th&gt;Client&lt;/th&gt;
+				&lt;/tr&gt;
+			&lt;/thead&gt;
+			&lt;tbody&gt;
+				&lt;tr&gt;
+					&lt;td&gt;20 Sep 2015&lt;/td&gt;
+					&lt;td&gt;Kanye West&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;21 Sep 2015&lt;/td&gt;
+					&lt;td&gt;JayZ&lt;/td&gt;
+				&lt;/tr&gt;
+				&lt;tr&gt;
+					&lt;td&gt;22 Sep 2015&lt;/td&gt;
+					&lt;td&gt;Dr Dre&lt;/td&gt;
+				&lt;/tr&gt;
+			&lt;/tbody&gt;
+		&lt;/table&gt;
+	&lt;/div&gt;
+&lt;/div&gt;</pre>
+									</div>
+							
+						 
+					
+						
+							<h1 class="kss-title">Filter</h1>
+						
+							
+									<blockquote class="kss-box"><p>The filter represents a group of introductory or navigational aids</p>
+</blockquote>
+									<table class="kss-mod-list">
+										<tr class="kss-mod-desc-group">
+											<td class="kss-mod-desc"><h2>Default styling</h2></td>
+											<td class="kss-mod-name"></td>
+										</tr>
+										<tr class="kss-mod-example">
+											<td colspan="2"><div class="filter">
+	<label for="search">Search</label>
+	<input id="search" name="search" type="search" placeholder="Enter Criteria">
+</div></td>
+										</tr>
+									
+									</table>
+									<div class="kss-markup">
+										<pre class="prettyprint lang-html">&lt;div class=&quot;filter&quot;&gt;
+	&lt;label for=&quot;search&quot;&gt;Search&lt;/label&gt;
+	&lt;input id=&quot;search&quot; name=&quot;search&quot; type=&quot;search&quot; placeholder=&quot;Enter Criteria&quot;&gt;
+&lt;/div&gt;</pre>
+									</div>
+							
+						 
+					
+				
+			</article>
+		</div>
+
+		<!-- SCRIPTS -->
+		<script src="public/kss.js"></script>
+		<script src="public/prettify.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+
+				var sidebarAdjust = function() {
+					if ($(window).width() <= 768) {
+						$('#kss-main, #kss-nav').height('auto');
+					}
+				};
+
+				$(window).resize(sidebarAdjust);
+				sidebarAdjust();
+
+				// Ensure code blocks are highlighted properly...
+				$('pre>code').addClass('prettyprint');
+				prettyPrint();
+
+			});
+		</script>
+
+	</div>
+</body>
+</html>

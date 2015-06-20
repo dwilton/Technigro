@@ -1,68 +1,40 @@
 @import "core.less";
 
-.login {
-	.display(flex);
-	.flexFlow(column);
-	.justifyContent(center);
-	.alignItems(center);
-	.flex(1);
-	-webkit-transform: scale(1); /* Hack: (Chrome) force redraw of background on hidden elements */
+// 1. Hack: (Chrome) force redraw of background on hidden elements
+.app-login {
+	width: 16em;
+	-webkit-transform: scale(1); // 1
 
-	label {
-		display: none;
+	// Tabs
+	.tabs__item a {
+		color: @app-login-tab-color;
+		background-color: @app-login-tab-background;
 	}
 
-	input {
-		padding: 0.6rem;
-		width: 100%;
-		font-weight: 300;
-		background-color: @login-input-bg-color !important;
-		border-color: @input-border-color !important;
+	.tabs__item--active a {
+		color: @app-login-tab-color-active;
+		background-color: @app-login-tab-background-active;
 	}
 
-	.tabs {
-		width: 17rem;
-	}
-
-	.tab-nav li.active {
-		background-color: @login-tab-active-bg;
-		box-shadow: -5px 10px 5px -5px @login-shadow-color;
-
-		a {
-			color: @login-tab-active-color;
-		}
-	}
-
-	.tab-content {
+	.tabs-content {
 		position: relative;
 		min-height: 11rem;
-		box-shadow: 0 5px 5px 0 @login-shadow-color;
+		box-shadow: @app-login-shadow;
 	}
 
-	.issue-negative {
-		margin-top: 1rem;
+	// 1. Overide the focus
+	input {
+		font-weight: 300;
+		font-size: 1rem;
+		background-color: @app-login-input-background !important; // 1
+		border: @input-border !important; // 1
 	}
 
-	.issue-positive {
-		padding: 2.5rem;
-		text-align: center;
-		vertical-align: middle;
-
-		&:before {
-			display: block;
-			font-size: 2rem;
-			line-height: 1;
-			text-align: center;
-		}
+	.issue {
+		margin: 1rem 0 0;
 	}
 
 	.button {
-		margin-top: 1.5rem;
-		padding: 0.7em 0.5em;
-		width: 100%;
-
-		.ladda-spinner {
-			left: 50% !important;
-		}
+		margin-top: 1.5em;
 	}
 }

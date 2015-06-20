@@ -1,18 +1,38 @@
-<div class="main" data-bind="css: { active: menuVisibility }">
-	<nav class="main-menu">
-		<ul>
-			<li data-bind="css: { selected: menu() == 'workOrders' }"><a href="#" class="icon icon-workorders" data-bind="route: '#workorders'">Work Orders</a></li>
-			<li data-bind="css: { selected: menu() == 'documentRepo' }"><a href="#" class="icon icon-document-repo" data-bind="route: '#document-repository'">Document Repository</a></li>
-			<li data-bind="css: { selected: menu() == 'users' }"><a href="#" class="icon icon-user" data-bind="route: '#users'">Users</a></li>
-			<li data-bind="css: { selected: menu() == 'settings' }"><a href="#" class="icon icon-settings" data-bind="route: '#settings'">Settings</a></li>
-		</ul>
-	</nav>
-	<div class="container">
-		<header class="main-bar">
-			<a href="#" class="menu-toggle icon icon-menu" data-bind="click: menuToggle"><span>Menu</span></a><!-- ko if: content() == 'workOrder' --><a href="#" class="menu-back icon icon-back" data-bind="route: '#workorders'"><span>Back</span></a><!-- /ko -->
-			<h1 class="title" data-bind="text: title"></h1>
-			<button class="logout" data-bind="click: logout">Logout</button>
-		</header>
-		<div class="content" data-bind="component: content()"></div>
+<div class="app-main" data-bind="css: { 'app-main--draw-left': menuVisibility }">
+
+	<!-- Left Draw -->
+	<div class="app-draw app-draw--left">
+
+		<nav class="nav nav--large-icons">
+			<ul>
+				<li class="nav__item" data-bind="css: { 'nav__item--selected': menu() == 'workOrders' }"><a href="#" class="icon icon--top icon--workorders" data-bind="route: '#workorders'">Work Orders</a></li>
+				<li class="nav__item" data-bind="css: { 'nav__item--selected': menu() == 'documentRepo' }"><a href="#" class="icon icon--top icon--document-repo" data-bind="route: '#document-repository'">Document Repository</a></li>
+				<li class="nav__item" data-bind="css: { 'nav__item--selected': menu() == 'users' }"><a href="#" class="icon icon--top icon--user" data-bind="route: '#users'">Users</a></li>
+				<li class="nav__item" data-bind="css: { 'nav__item--selected': menu() == 'settings' }"><a href="#" class="icon icon--top icon--settings" data-bind="route: '#settings'">Settings</a></li>
+			</ul>
+		</nav>
+
 	</div>
+
+	<!-- Container -->
+	<div class="app-container">
+
+		<!-- Header -->
+		<header class="app-header">
+			<a href="#" class="app-header__button app-header__button--icon icon icon--menu" data-bind="click: menuToggle"><span>Menu</span></a>
+			<a href="#" class="app-header__button app-header__button--icon icon icon--back" data-bind="route: '#workorders', visible: content() == 'workOrder'"><span>Back</span></a>
+			<h1 class="app-header__title" data-bind="text: title"></h1>
+			<a class="app-header__button" data-bind="click: logout">Logout</a>
+		</header>
+
+		<!-- Content -->
+		<section class="app-content" data-bind="component: { name: content() }"></section>
+
+	</div>
+
+	<!-- Right Draw -->
+	<div class="app-draw app-draw--right">
+
+	</div>
+
 </div>

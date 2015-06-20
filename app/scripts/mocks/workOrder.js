@@ -1,9 +1,9 @@
-define(['models/workOrder', 'jquery', 'mockjax'], function (WorkOrder, $) {
+define(['models/workOrder', 'api', 'jquery', 'mockjax'], function (WorkOrder, api, $) {
 
 	'use strict';
 
 	$.mockjax({
-		url: '/api/workOrder/',
+		url: api + 'workOrder/',
 		data: { typeid: 1 },
 		responseTime: 1000,
 		responseText: {
@@ -157,7 +157,7 @@ define(['models/workOrder', 'jquery', 'mockjax'], function (WorkOrder, $) {
 	});
 
 	$.mockjax({
-		url: '/api/workOrder/',
+		url: api + 'workOrder/',
 		data: { typeid: 2 },
 		responseTime: 1000,
 		responseText: {
@@ -311,7 +311,7 @@ define(['models/workOrder', 'jquery', 'mockjax'], function (WorkOrder, $) {
 	});
 
 	$.mockjax({
-		url: '/api/workOrder/2',
+		url: api + 'workOrder/2',
 		responseTime: 1000,
 		responseText: {
 			result: {
@@ -426,7 +426,7 @@ define(['models/workOrder', 'jquery', 'mockjax'], function (WorkOrder, $) {
 	});
 
 	$.mockjax({
-		url: '/api/workOrder/*',
+		url: api + 'workOrder/*',
 		responseTime: 1000,
 		responseText: {
 			result: {
@@ -541,7 +541,7 @@ define(['models/workOrder', 'jquery', 'mockjax'], function (WorkOrder, $) {
 	});
 
 	$.mockjax({
-		url: '/api/workOrderData/',
+		url: api + 'workOrderData/',
 		responseTime: 1000,
 		responseText: {
 			result: {

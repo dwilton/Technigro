@@ -24,7 +24,7 @@ define([
 
 	// Subscribers for setting up routes 'route.set'
 	p.subscribe('route.set', function (data) {
-		page(data.name, function (ctx) {
+		page(data.name, function (ctx, next) {
 			ctx.querystring = qs.parse(ctx.querystring);
 			data.callback(ctx);
 		});

@@ -1,16 +1,23 @@
-<div id="user-login" class="user-login show">
-	<form name="user-login">
+<div class="user-login">
+
+	<form>
+
 		<div>
-			<label for="username">Username</label>
-			<input id="username" type="text" placeholder="User Name" class="username" data-bind="value: username" autocorrect="off" autocapitalize="off" autofocus />
+			<input type="text" placeholder="User Name" class="user-login__username" data-bind="value: username" autocorrect="off" autocapitalize="off" autofocus />
 		</div>
+
 		<div>
-			<label for="password">Password</label>
-			<input id="password" type="password" placeholder="Password" class="password" data-bind="value: password" />
+			<input type="password" placeholder="Password" class="user-login__password" data-bind="value: password" />
 		</div>
-		<div class="issue issue-negative icon icon-cross" data-bind="visible: isFailed()">Login failed, please try again.</div>
+
+		<!-- ko if: isFailed() -->
+		<div class="issue issue--negative icon icon--left icon--cross">Login failed, please try again.</div>
+		<!-- /ko -->
+
 		<div>
-			<button class="button button-positive" data-bind="click: login, ladda: isLoading()">Login</button>
+			<button class="button button--block button--positive" data-bind="click: login, ladda: isLoading">Login</button>
 		</div>
+
 	</form>
+
 </div>

@@ -1,0 +1,174 @@
+// ==================================================================
+// App ($app)
+// ==================================================================
+
+
+html { height: 100%; }
+form { margin: 0; }
+
+
+// ==================================================================
+// App
+// ==================================================================
+
+.app {
+	.display(flex);
+	.flexFlow(column);
+	.justifyContent(center);
+	.alignItems(center);
+	.flex(1);
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	padding: 0;
+	background: @app-background;
+	overflow: hidden;
+}
+
+
+// ==================================================================
+// Main
+// ==================================================================
+
+.app-main {
+	.display(flex);
+	.flexFlow(column);
+	position: absolute;
+	top: 0;
+	right: -12rem;
+	bottom: 0;
+	left: -12rem;
+	transition: all 0.3s ease-out;
+}
+
+.app-main--draw-left {
+	right: -24rem;
+	left: 0;
+}
+
+.app-main--draw-right {
+	right: 0;
+	left: -24rem;
+}
+
+
+// ==================================================================
+// Container
+// ==================================================================
+
+.app-container {
+	.display(flex);
+	.flexFlow(column);
+	.flex(1);
+	padding-right: 12rem;
+	padding-left: 12rem;
+}
+
+
+// ==================================================================
+// Draw
+// ==================================================================
+
+.app-draw {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	padding: 0.5rem;
+	width: 12rem;
+	font-size: 1rem;
+	box-shadow: @app-draw-shadow;
+	z-index: 1;
+}
+
+.app-draw--left {
+	left: 0;
+}
+
+.app-draw--right {
+	right: 0;
+}
+
+
+// ==================================================================
+// Header
+// ==================================================================
+
+.app-header {
+	.display(flex);
+	.flexFlow(row);
+	width: 100%;
+	height: 3rem;
+	font-size: 1rem;
+	background-color: @app-header-background;
+}
+
+.app-header__button {
+	margin-right: 1px;
+	padding: 0.6rem 0.8rem;
+	text-align: center;
+	text-decoration: none;
+	color: @app-header-color;
+	background: darken(@app-header-background, 5);
+	border: 0;
+	cursor: pointer;
+
+	&:hover {
+		color: mix(@app-header-background, @app-header-color, 20);
+	}
+
+	&:last-of-type {
+		margin-right: 0;
+	}
+}
+
+.app-header__button--icon {
+	width: 3rem;
+
+	&:before {
+		font-size: 1.5em;
+		text-indent: 0;
+		line-height: 1.2;
+	}
+
+	span {
+		display: none;
+	}
+}
+
+.app-header__title {
+	.flex(1);
+	margin: 0;
+	font-weight: 100;
+	font-size: 1.5em;
+	line-height: 2;
+	text-align: center;
+	color: @app-header-color;
+}
+
+
+// ==================================================================
+// Content
+// ==================================================================
+
+.app-content {
+	.display(flex);
+	.flexFlow(column);
+	.flex(1);
+	background-color: @app-content-background;
+}
+
+
+// ==================================================================
+// Footer
+// ==================================================================
+
+.app-footer {
+	.display(flex);
+	.flexFlow(row);
+	width: 100%;
+	font-size: 1rem;
+	height: 3rem;
+	background-color: @app-footer-background;
+}

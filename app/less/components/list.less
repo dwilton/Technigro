@@ -1,0 +1,149 @@
+// ==================================================================
+// List ($list)
+// ==================================================================
+
+
+// List
+//
+// Group of related content items ordered consecutively
+//
+// Markup:
+// <ul class="list list--border list--border-rows">
+// 	<li class="list__active"><a href="#">Option One</a></li>
+// 	<li><a href="#">Option Two</a></li>
+// 	<li><a href="#">Option Three</a></li>
+// 	<li><a href="#">Option Four</a></li>
+// </ul>
+//
+// <ul class="list list--border list--border-rows list--editable">
+// 	<li class="list__active"><a href="#">Option One</a></li>
+// 	<li><a href="#">Option Two</a></li>
+// 	<li><a href="#">Option Three</a></li>
+// 	<li><a href="#">Option Four</a></li>
+// </ul>
+//
+// <ul class="list list--border list--border-rows">
+// 	<li class="list__active"><span>Option One</span></li>
+// 	<li><span>Option Two</span></li>
+// 	<li><span>Option Three</span></li>
+// 	<li><span>Option Four</span></li>
+// </ul>
+//
+// Styleguide 9.
+
+// Default, borderless
+.list {
+	margin: 0;
+	padding: 0;
+	font-size: @list-font-size;
+	list-style: none;
+	background-color: @list-background;
+	user-select: none;
+
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	h2 {
+		display: block;
+		margin: 0;
+		padding: 0.8em 1em;
+		font-weight: 300;
+		font-size: 1em;
+		color: @list-header-color;
+		background-color: @list-header-background;
+	}
+
+	ul li {
+		display: block;
+		position: relative;
+
+		a, span {
+			display: block;
+			position: relative;
+			padding: 0.7em 1em;
+			font-weight: 300;
+			font-size: 1em;
+			color: @list-color;
+			text-decoration: none;
+			transition: margin 0.2s ease;
+
+			&:before {
+				position: absolute;
+				right: 1rem;
+				font-size: 1.2em;
+				line-height: 1.2;
+			}
+		}
+
+		a:hover {
+			color: @hover-color;
+			background-color: @hover-background;
+			border-color: @hover-background;
+
+			&:before {
+				color: @hover-color;
+			}
+		}
+	}
+}
+
+// Active row
+.list ul li.list__active a {
+	color: @active-color;
+	background-color: @active-background;
+	border-color: @active-background;
+}
+
+// Actions
+.list ul li a.list__action {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	text-indent: -999rem;
+	background: transparent;
+	border: 0;
+	overflow: hidden;
+	z-index: 1;
+	transition: width 0.2s ease 0.3s;
+
+	&.icon:before {
+		position: absolute;
+		left: 0;
+		right: 0;
+		text-indent: 0;
+		text-align: center;
+	}
+}
+
+// Border
+.list--border {
+	border: @list-border;
+}
+
+// Border on rows
+.list--border-rows > ul > li {
+
+	a, span {
+		border-bottom: @list-border;
+	}
+}
+
+// Editable "display actions"
+.list--editable ul li {
+
+	a, span {
+		margin-left: 2.5rem;
+	}
+
+	a.list__action {
+		display: inline-block;
+		margin: 0;
+		padding: 0.7em;
+		width: 2.5rem;
+	}
+}

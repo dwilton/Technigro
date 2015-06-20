@@ -10,9 +10,9 @@
 
 			<div>
 				<label>Status</label>
-				<div class="segmented-button status" data-bind="foreach: refData.statuses">
+				<div class="button-group status" data-bind="foreach: refData.statuses">
 					<input name="status" type="radio" data-bind="attr: { id: id }, value: id, checked: $parent.filter.status" />
-					<label class="button" data-bind="text: name, attr: { for: id }"></label>
+					<label data-bind="text: name, attr: { for: id }"></label>
 				</div>
 			</div>
 
@@ -39,10 +39,10 @@
 			</div>
 
 			<!-- ko if: isAdmin -->
-			<div class="popover-target">
-				<button class="add-new-button button button-positive" data-bind="click: toggleAddNewMenu">Add New</button>
-				<div class="popover popover-right popover-bottom" data-bind="visible: addNewMenu()">
-					<nav>
+			<div class="popover">
+				<button class="add-new-button button button--positive" data-bind="click: toggleAddNewMenu">Add New</button>
+				<div class="popover__flyout popover__flyout--right popover__flyout--bottom" data-bind="visible: addNewMenu()">
+					<nav class="popover__navigation">
 						<li><a href="#" class="icon icon-arrow" data-bind="route: '#workorder?typeid=1'">GCCC</a></li>
 						<li><a href="#" class="icon icon-arrow" data-bind="route: '#workorder?typeid=2'">Major Projects</a></li>
 						<li><a href="#" class="icon icon-arrow" data-bind="route: '#workorder?typeid=2'">Natural Areas Job</a></li>
@@ -57,11 +57,11 @@
 
 		<div class="datagrid">
 
-			<div class="loader" data-bind="spin: isWorkOrdersLoading(), visible: isWorkOrdersLoading()"></div>
+			<div class="loader" data-bind="spin: isWorkOrdersLoading, visible: isWorkOrdersLoading()"></div>
 
 			<!-- ko if: !isWorkOrdersLoading() -->
 
-			<table class="fixed-header table stripe">
+			<table class="datagrid__fixed-header">
 				<colgroup>
 					<col width="12%">
 					<col width="30%">
@@ -80,9 +80,9 @@
 				</thead>
 			</table>
 
-			<div class="results scrollable">
+			<div class="datagrid__results scrollable">
 
-				<table class="table stripe">
+				<table class="table table--stripes">
 					<colgroup>
 						<col width="12%">
 						<col width="30%">

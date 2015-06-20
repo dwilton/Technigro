@@ -1,4 +1,4 @@
-define(['jquery'], function ($) {
+define(['jquery', 'api'], function ($, api) {
 
 	'use strict';
 
@@ -18,13 +18,13 @@ define(['jquery'], function ($) {
 			var result = {};
 
 			// Get Status Types and append to the 'results' object
-			var statuses = $.getJSON('/api/statuses/')
+			var statuses = $.getJSON(api + 'statuses/')
 				.done(function (data) {
 					result.statuses = data.result;
 				});
 
 			// Get Technicians and append to the 'results' object
-			var technicians = $.getJSON('/api/technicians/')
+			var technicians = $.getJSON(api + 'technicians/')
 				.done(function (data) {
 					result.technicians = data.result;
 				});
@@ -42,7 +42,7 @@ define(['jquery'], function ($) {
 		 * @param  {Function} callback
 		 */
 		var getWorkOrders = function (data, callback) {
-			$.getJSON('/api/workOrders/', data)
+			$.getJSON(api + 'workOrders/', data)
 				.done(function (data) {
 					callback(data.result);
 				});

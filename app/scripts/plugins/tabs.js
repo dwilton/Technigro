@@ -18,6 +18,10 @@ define(['jquery'], function (jQuery) {
 
 				var tabs = $(this.element);
 				var tabContent = $(this.options.tabContentId);
+				var activeTab = $(tabs.find('li.tabs__item--active a').attr('href'));
+
+				tabContent.children('div').hide();
+				activeTab.show();
 
 				// Create observer
 				tabs.on('click', 'li a', function (e) {
@@ -29,10 +33,10 @@ define(['jquery'], function (jQuery) {
 							content = tab.attr('href');
 
 					// Remove 'active' CSS class from all 'li' elements
-					tabs.children('.active').removeClass('active');
+					tabs.children('.tabs__item--active').removeClass('tabs__item--active');
 
 					// Add 'active' CSS class to the select tab 'li' element
-					li.addClass('active');
+					li.addClass('tabs__item--active');
 
 					// Hide all tab content
 					tabContent.children('div').hide();

@@ -1,8 +1,6 @@
-/*
- * Layer Creation Hack (GPU Accelerated Compositing)
- * USE WITH CAUTION!!!
- * http://aerotwist.com/blog/on-translate3d-and-layer-creation-hacks/
- */
+// Layer Promotion Mixin
+// Apply GPU Accelerated Compositing, USE WITH CAUTION!!!
+// http://aerotwist.com/blog/on-translate3d-and-layer-creation-hacks/
 
 .gpu-layer(@device) when (@device = desktop) {
 	-webkit-transform: translateZ(0);
@@ -10,16 +8,16 @@
 }
 
 .gpu-layer(@device) when (@device = mobile) {
-	/* Note: GPU Accelerated Compositing "Triggers" continue to change in mobile webkit (Hence Kitchen Sink Approach) */
+	// Note: GPU Accelerated Compositing "Triggers" continue to change in mobile webkit (Hence Kitchen Sink Approach)
 	-webkit-transform: translateZ(0);
 	-webkit-transform: translate3d(0,0,0);
-	-webkit-perspective: 1000; /* Warning: Causes slowness for iOS6 and below */
+	-webkit-perspective: 1000; // Warning: Causes slowness for iOS6 and below
 	-webkit-backface-visibility: hidden;
 }
 
-/**
- * Flexbox (Provides support for Mobile Webkit)
- */
+
+// Flexbox Mixins
+// Provides support for Mobile Webkit, Autoprefixer can't do this.
 
 .display(@display) when (@display = flex) {
 	display: -webkit-box;
@@ -45,7 +43,7 @@
 }
 
 .justifyContent(@justifyContent) when (@justifyContent = space-between) {
-	-webkit-box-pack: justify; /* Old value for 'space-between' */
+	-webkit-box-pack: justify; // Old value for 'space-between'
 	justify-content: space-between;
 }
 .justifyContent(@justifyContent) {

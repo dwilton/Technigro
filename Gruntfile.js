@@ -19,6 +19,7 @@ module.exports = function (grunt) {
 		dist: 'dist/technigro/www',
 		test: 'test',
 		report: 'report',
+		styleGuide: 'styleguide',
 		port: 9000,
 		hostname: 'localhost'
 	};
@@ -70,7 +71,10 @@ module.exports = function (grunt) {
 					paths: '<%= config.app %>/less'
 				},
 				files: {
-					'<%= config.app %>/css/style.css': ['<%= config.app %>/less/*.less', '<%= config.app %>/scripts/components/**/*.less']
+					'<%= config.app %>/css/style.css': [
+						'<%= config.app %>/less/*.less',
+						'<%= config.app %>/scripts/components/**/*.less'
+					]
 				}
 			}
 		},
@@ -98,6 +102,24 @@ module.exports = function (grunt) {
 				options: {
 					deleteAfterEncoding: false
 				}
+			}
+		},
+
+
+		/**
+		 * Style Guide
+		 */
+
+		kss: {
+			options: {
+				includeType: 'less',
+				includePath: '<%= config.app %>/less/ui.less',
+				template: '<%= config.app %>/less/template'
+			},
+			dist: {
+					files: {
+						'<%= config.styleGuide %>': ['<%= config.app %>/less']
+					}
 			}
 		},
 
@@ -150,7 +172,7 @@ module.exports = function (grunt) {
 			options: {
 				port: buildConfig.port,
 				// change this to '0.0.0.0' to access the server from outside or from a vm if useing vmware fusion
-				hostname: '0.0.0.0' //buildConfig.hostname
+				hostname: '127.0.0.1' //buildConfig.hostname
 			},
 			livereload: {
 				options: {
@@ -192,7 +214,8 @@ module.exports = function (grunt) {
 			less: {
 				files: [
 					'<%= config.app %>/less/*.less',
-					'<%= config.app %>/less/**/*.less'
+					'<%= config.app %>/less/**/*.less',
+					'<%= config.app %>/scripts/components/**/*.less'
 				],
 				tasks: ['less:app', 'autoprefixer:app', 'imageEmbed:app']
 			},
@@ -245,6 +268,7 @@ module.exports = function (grunt) {
 			lawnchair: {
 				src: [
 					'<%= config.app %>/vendor/lawnchair/src/Lawnchair.js',
+					// Swapping the DOM adapter for the webkit-sqlite version
 					'<%= config.app %>/vendor/lawnchair/src/adapters/webkit-sqlite.js'
 				],
 				dest: '<%= config.dist %>/scripts/lawnchair.min.js'
@@ -340,13 +364,6 @@ module.exports = function (grunt) {
 					'<%= config.report %>/plato': ['<%= config.app %>/scripts/**/*.js', '<%= config.test %>/spec/**/*.js'],
 				}
 			}
-		},
-
-		// Dependo: Visualize CommonJS or AMD module dependencies in a force directed graph report
-		dependo: {
-			targetPath: '<%= config.app %>/scripts',
-			outputPath: '<%= config.report %>/dependo',
-			format: 'amd'
 		}
 
 	});
@@ -416,8 +433,12 @@ module.exports = function (grunt) {
 	// Create Reports
 	grunt.registerTask('report', [
 		'karma:coverage',
-		'plato',
-		'dependo'
+		'plato'
+	]);
+
+	// KSS
+	grunt.registerTask('styleguide', [
+		'kss'
 	]);
 
 };

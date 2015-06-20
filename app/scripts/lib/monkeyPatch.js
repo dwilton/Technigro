@@ -10,7 +10,7 @@ define(function() {
 
 	/**
 	 * Monkey Patch
-	 * @param  {Object} modules JSON { 'path/module-to-patch': 'path/patch' }
+	 * @param  {Object} modules, example json "{ 'path/foo': 'path/fooPatch', 'path/bar': 'path/barPatch' }"
 	 */
 	return function (modules) {
 
@@ -26,7 +26,7 @@ define(function() {
 			// Modules to patch
 			patches[moduleToPatch] = patchModule;
 
-			// Reference the module to monkey patch it
+			// Re-reference the module to monkey patch it
 			references[moduleToPatch] = moduleToPatch;
 
 			// Add references to the map object
@@ -34,7 +34,7 @@ define(function() {
 
 		}
 
-		// For all modules loaded, use this map config
+		// For all modules loaded, use these patches
 		map['*'] = patches;
 
 		// Apply map to require.config

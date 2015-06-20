@@ -1,8 +1,9 @@
 define([
 	'jquery',
+	'api',
 	'pubsub',
 	'models/user'
-], function ($, p, UserModel) {
+], function ($, api, p, UserModel) {
 
 	'use strict';
 
@@ -21,7 +22,7 @@ define([
 		 * @param  {Function} callback
 		 */
 		var login = function (data, callback) {
-			$.getJSON('/api/login/', data)
+			$.getJSON(api + 'login/', data)
 				.done(function (data) {
 					if (data.result) {
 						userModel.setUser(data, function () {

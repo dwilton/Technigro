@@ -1,14 +1,27 @@
-<div id="recover-login" class="recover-login">
-	<form name="recover-login" data-bind="visible: !isSuccess()">
+<div class="recover-login">
+
+	<!-- ko if: !isSuccess() -->
+	<form>
+
 		<div>
-			<label for="email">Email Address</label>
-			<input id="email" type="text" placeholder="Email Address" data-bind="value: email" />
+			<input type="text" placeholder="Email Address" data-bind="value: email" />
 		</div>
-		<p>If you have forgotten your login, we will send you an email to reset your password.</p>
-		<div class="issue issue-negative icon icon-cross" data-bind="visible: isFailed()">Email address doesn't exist.</div>
+
+		<p class="recover-login__message">If you have forgotten your login, we will send you an email to reset your password.</p>
+
+		<!-- ko if: isFailed() -->
+		<div class="issue issue--negative icon icon--left icon--cross">Email address doesn't exist.</div>
+		<!-- /ko -->
+
 		<div>
-			<button class="button button-positive" data-bind="click: recover, ladda: isLoading()">Recover Login</button>
+			<button class="button button--block button--positive" data-bind="click: recover, ladda: isLoading">Recover Login</button>
 		</div>
+
 	</form>
-	<div class="issue issue-positive icon icon-tick" data-bind="visible: isSuccess()">Check your email.</div>
+	<!-- /ko -->
+
+	<!-- ko if: isSuccess() -->
+	<div class="recover-login__success issue issue--positive icon icon--large icon--top icon--tick">Check your email.</div>
+	<!-- /ko -->
+
 </div>

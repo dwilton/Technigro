@@ -1,0 +1,59 @@
+// ==================================================================
+// Issue ($issue)
+// ==================================================================
+
+
+// Issue
+//
+// Alerts the user to information they must immediately consider before proceeding on to the normal content of the page
+//
+// Markup:
+// <div class="issue {$modifiers}">Message presented to the user</div>
+//
+// .issue--positive     - Positive
+// .issue--warning      - Wanring
+// .issue--negative     - Negative
+//
+// Styleguide 14.
+
+.issue {
+	display: block;
+	margin-bottom: 1rem;
+	padding: 0.5rem;
+	font-weight: 300;
+	font-size: @issue-font-size;
+	border-width: 1px;
+	border-style: solid;
+}
+
+
+// Styles
+.issue--positive {
+	color: @issue-color;
+	background-color: lighten(@positive, 50);
+	border-color: @positive;
+
+	&:before, a {
+		color: @positive;
+	}
+}
+
+.issue--warning {
+	color: @issue-color;
+	background-color: lighten(@warning, 50);
+	border-color: @warning;
+
+	&:before, a {
+		color: @warning;
+	}
+}
+
+.issue--negative {
+	color: @issue-color;
+	background-color: lighten(@negative, 50);
+	border-color: @negative;
+
+	&:before, a {
+		color: @negative;
+	}
+}

@@ -1,4 +1,4 @@
-define(['jquery'], function ($) {
+define(['jquery', 'api'], function ($, api) {
 
 	'use strict';
 
@@ -14,7 +14,7 @@ define(['jquery'], function ($) {
 		 * @param  {Function} callback
 		 */
 		var recover = function (data, callback) {
-			$.getJSON('/api/recover-password/', data)
+			$.getJSON(api + 'recover-password/', data)
 				.done(function (data) {
 					callback(data.result);
 				});

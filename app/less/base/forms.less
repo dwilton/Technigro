@@ -1,0 +1,282 @@
+// ==================================================================
+// Forms ($forms)
+// ==================================================================
+
+
+// Fieldset
+//
+// Markup:
+// <fieldset>
+// 	<legend>Legend</legend>
+// </fieldset>
+
+// 1. Remove default `border` and `padding` across browsers
+// 2. Set `min-width` to 0 to avoid overflow issues in Chrome
+fieldset {
+	padding: 0;   // 1
+	min-width: 0; // 2
+	border: 0;    // 1
+
+	// Remove `margin-bottom` from the last element in a <fieldset>
+	> *:last-child {
+		margin-bottom: 0;
+	}
+}
+
+@media only screen and (min-width: @grid-breakpoint-medium) {
+	fieldset {
+		font-size: 1.125rem;
+	}
+}
+
+// 1. Remove `padding` so people aren't caught out if they zero out fieldsets
+// 2. Correct `color` not being inherited in IE 8/9
+legend {
+	padding: 0; // 1
+	border: 0;  // 2
+	color: @black;
+	font-weight: @heading-font-weight;
+}
+
+// Add this class for a bordered <fieldset>
+.fieldset-border {
+	padding: @base-rem-unit;
+	border: 1px solid @gray-light;
+}
+
+// If <fieldset> has a border, give its <legend> different styles
+.fieldset-border legend {
+	margin: 0;
+	padding: 0 0.356rem;
+	background: @white;
+}
+
+
+// Label
+//
+// Give descriptions to pieces of content
+//
+// Markup:
+// <label>Example Name</label>
+
+label {
+	display: block;
+	margin-bottom: 0.3rem;
+	color: @label-color;
+	font-weight: 200;
+	font-size: @label-font-size;
+}
+
+
+// Input
+//
+// Markup:
+// <input type="text">
+// <input type="date">
+// <input type="time">
+// <input type="email">
+// <input type="number">
+// <input type="search">
+// <input type="url">
+// <input type="tel">
+// <input type="range">
+// <input type="month">
+// <input type="week">
+// <input type="datetime">
+// <input type="datetime-local">
+// <input type="color">
+
+// 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native
+//    <audio> and <video> controls
+// 2. Improve usability and consistency of cursor style between
+//    image-type <input> and others
+button,
+html input[type="button"], // 1
+input[type="checkbox"],
+input[type="file"],
+input[type="image"],
+input[type="radio"],
+input[type="reset"],
+input[type="submit"],
+label,
+select {
+	cursor: pointer; // 2
+}
+
+// Make checkbox, image, and radio inputs `inline-block` by default
+input[type="checkbox"],
+input[type="image"],
+input[type="radio"] {
+	display: inline-block;
+	width: auto;
+	outline: none;
+}
+
+// Give inputs, selects, and textareas some basic styles
+input[type="date"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="email"],
+input[type="month"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="time"],
+input[type="url"],
+input[type="week"],
+select,
+textarea {
+	display: block;
+	padding: @input-padding;
+	width: 100%;
+	color: @input-color;
+	font-size: @input-font-size;
+	line-height: @input-line-height;
+	vertical-align: middle;
+	background: @input-background;
+	outline: 0 none;
+ *outline: thin dotted #222 \9; // IE 6-8
+	border: @input-border;
+	border-radius: 0.356em;
+	box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
+	-webkit-appearance: none;
+
+	&:focus, &:active {
+		outline: 0 none;
+		background-color: @input-background-focus;
+		border: @input-border-focus;
+		box-shadow: inset 0.1rem 0.1rem 0.238rem hsla(0, 0%, 0%, 0.15);
+	}
+}
+
+// 1. Restrict <textarea> elements to vertical resizing only
+textarea {
+	resize: vertical; // 1
+}
+
+// 1. Constrict `max-width` for file inputs to avoid overflow issues
+input[type="file"] {
+	max-width: 100%; // 1
+	cursor: pointer;
+}
+
+input[type="search"] {
+	box-sizing: border-box;
+}
+
+
+// Select
+//
+// Give <select> menus a different background */
+//
+// Markup:
+// <select>
+// 	<option value="">Value 1</option>
+// 	<option value="">Value 2</option>
+// </select>
+
+select {
+	position: relative;
+	background-image: @select-background-image;
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-size: 2em 50%;
+	-webkit-padding-end: 1.5em;
+}
+
+// 1. Set a `max-height` on <select> in Firefox only
+@-moz-document url-prefix() {
+	select {
+		max-height: 40px;   // 1
+		height: auto;
+	}
+}
+
+
+// Radio Button
+//
+// Markup:
+// <input name="example-radio-group" type="radio" value="option 1" checked>
+// <input name="example-radio-group" type="radio" value="option 2">
+// <input name="example-radio-group" type="radio" value="option 3">
+
+input[type=radio] {
+	border-radius: 100%;
+
+	&:checked::after {
+		content: "●";
+	}
+}
+
+
+// Checkbox
+//
+// Markup:
+// <input name="example-checkbox" type="checkbox" value="1" checked>
+// <input name="another-example-checkbox" type="checkbox" value="1">
+
+input[type=checkbox]:checked::after {
+	font-family:"icon";
+	content:"\f109";
+	line-height: 1.2em;
+}
+
+
+// Data
+//
+// Markup:
+// <span class="data">Example Data</span>
+
+.data {
+	display: inline-block;
+	padding: 0.35rem 0.5rem;
+	min-height: 1.7rem;
+	font-weight: normal;
+	font-size: 0.8rem;
+	line-height: 1.2;
+	color: @data-color;
+	background: @data-background;
+	border-radius: 0.356em;
+	border: 1px solid rgba(0,0,0,0.0);
+	box-shadow: 0 0 0 2px rgba(0,0,0,0.04);
+}
+
+
+// File Upload
+//
+// Markup:
+// <div class="file-upload">
+// 	<input id="upload-placeholder" class="file-upload__upload-placeholder" placeholder="Choose File" disabled>
+// 	<div class="button">
+// 		<span>Upload</span>
+// 		<input id="upload" type="file" class="file-upload__upload-button">
+// 	</div>
+// </div>
+
+.file-upload {
+	.display(flex);
+	.flexFlow(row);
+	margin-top: 0.4rem;
+	position: relative;
+
+	span {
+		margin-top: 0.2rem;
+	}
+}
+
+.file-upload__upload-placeholder {
+	.flex(1);
+	margin-right: 0.4rem;
+}
+
+.file-upload__upload-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 0 1rem;
+	font-size: 1rem;
+	cursor: pointer;
+	opacity: 0;
+}

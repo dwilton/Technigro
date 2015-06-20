@@ -5,10 +5,10 @@
    * Modern browsers and almost all mobile browsers support CSS animations (http://caniuse.com/css-animation).
    *
    * @author Daniel Raftery : twitter/ThrivingKings
-   * @version 1.0.1
+   * @version 1.0.2
   */
   function animo( element, options, callback, other_cb ) {
-
+    
     // Default configuration
     var defaults = {
     	duration: 1,
@@ -82,7 +82,7 @@
 	    this.options = $.extend( defaults, options );
 
 	    this.init(cb);
-
+  	
       break;
     }
   }
@@ -91,7 +91,7 @@
 
     // A standard CSS animation
     init: function(callback) {
-
+      
       var $me = this;
 
       // Are we stacking animations?
@@ -104,7 +104,7 @@
 	    $me.cleanse();
 
 	    $me.animate(callback);
-
+      
     },
 
     // The actual adding of the class and listening for completion
@@ -189,7 +189,7 @@
       	var svg_id = "svg_" + (((1 + Math.random()) * 0x1000000) | 0).toString(16).substring(1);
       	var filter_id = "filter_" + (((1 + Math.random()) * 0x1000000) | 0).toString(16).substring(1);
 
-      	$('body').append('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" id="'+svg_id+'" style="height:0;"><filter id="'+filter_id+'"><feGaussianBlur stdDeviation="'+this.options.amount+'" /></filter></svg>');
+      	$('body').append('<svg version="1.1" xmlns="http://www.w3.org/2000/svg" id="'+svg_id+'" style="height:0;position:absolute;top:-1000px;"><filter id="'+filter_id+'"><feGaussianBlur stdDeviation="'+this.options.amount+'" /></filter></svg>');
 
       	var ai = this.prefixes.length;
 
@@ -204,7 +204,7 @@
         this.element.css("filter", "url(#"+filter_id+")");
 
         this.element.data("svgid", svg_id);
-
+      
       } else {
 
         var color = this.element.css('color');
@@ -293,7 +293,7 @@
       var binding = type.toLowerCase()+" webkit"+type+" o"+type+" MS"+type;
 
       this.element.bind(binding, function() {
-
+        
         $me.element.unbind(binding);
 
         if(typeof todo == "function") {
@@ -306,14 +306,14 @@
           callback($me);
         }
       });
-
+      
     }
   };
 
   $.fn.animo = function ( options, callback, other_cb ) {
-
+    
     return this.each(function() {
-
+			
 			new animo( this, options, callback, other_cb );
 
 		});

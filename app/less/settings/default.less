@@ -1,127 +1,201 @@
-/**
- * Color Palette
- */
+// ==================================================================
+// Palette
+// ==================================================================
 
-@positive:                      #17b161;
-@warning:                       #cc7829;
-@negative:                      #be1700;
-@white:                         #fff;
-@black:                         #000;
-@green:                         #17b161;
-@grey:                          #595959;
+@primary:                          #2764db;
+@positive:                         #17b161;
+@warning:                          #cc7829;
+@negative:                         #be1700;
+@muted:                            #aaa;
 
-@hover-color:                   @white;
-@hover-bg-color:                @green;
-@active-color:                  @white;
-@active-bg-color:               @grey;
+@green:                            #17b161;
 
-@shade-neg-5:                   #262626;
-@shade-neg-4:                   #333333;
-@shade-neg-3:                   #404040;
-@shade-neg-2:                   #4D4D4D;
-@shade-neg-1:                   #595959;
-@shade:                         #666666;
-@shade-pos-1:                   #828282;
-@shade-pos-2:                   #9E9E9E;
-@shade-pos-3:                   #BABABA;
-@shade-pos-4:                   #D6D6D6;
-@shade-pos-5:                   #F2F2F2;
+@black:                            #222;
+@gray-darkest:                     #444;
+@gray-darker:                      #777;
+@gray-dark:                        #aaa;
+@gray:                             #ccc;
+@gray-light:                       #dedede;
+@gray-lighter:                     #efefef;
+@gray-lightest:                    #f8f8f8;
+@white:                            #fff;
 
-@img-arrow-down:                url(../images/arrow-down.svg);
-@img-noise:                     url(../images/noise.png);
+@hover-color:                      @white;
+@hover-background:                 @green;
+@active-color:                     @white;
+@active-background:                @gray-darkest;
 
-/**
- * UI
- */
+@img-arrow-down:                   url(../images/arrow-down.svg);
+@img-noise:                        url(../images/noise.png);
 
-@h1-color:                      @black;
-@h2-color:                      @green;
-@h3-color:                      @grey;
 
-@hyperlink-color:               @green;
+// ==================================================================
+// UI Components
+// ==================================================================
 
-@button-color:                  @white;
-@button-bg-color:               @shade-pos-1;
-@button-disabled-bg-color:      @shade-pos-2;
+// Selection Highlight
+@selection-background:             @green;
+@selection-background-blur:        @gray-light;
 
-@datagrid-color:                @shade;
-@datagrid-bg-color:             @white;
-@datagrid-header-bg-color:      @shade-pos-4;
-@datagrid-header-color:         @shade-pos-1;
-@datagrid-border-color:         @shade-pos-4;
+// Typography
+@base-rem-unit:                    1rem;
+@base-font-color:                  @gray-darkest;
+@base-font-family:                 "Helvetica Neue", Arial, sans-serif;
+@base-font-size:                   @base-rem-unit;
+@base-line-height:                 1.5;
+@base-muted-color:                 @muted;
+@base-link-color:                  @green;
+@base-link-hover-color:            @base-link-color;
+@base-hr-color:                    @gray-light;
 
-@header-bg-color:               @shade-pos-5;
-@header-border-color:           @shade-pos-4;
+// Blockquotes
+@blockquote-font-family:           Baskerville, "Baskerville Old Face", "Hoefler Text", Garamond, "Times New Roman", serif;
+@blockquote-font-size:             1.333rem;
+@blockquote-border-width:          0.375rem;
 
-@horizontal-rule-color:         @shade-pos-4;
+// Headings
+@heading-color:                    @black;
+@heading-font-family:              "Helvetica Neue", "HelveticaNeue", Arial;
+@heading-line-height:              1.5;
+@heading-font-weight:              700;
+@heading-h1-color:                 @black;
+@heading-h2-color:                 @gray-darkest;
+@heading-h3-color:                 @gray-darkest;
 
-@message-color:                 @list-color;
+// Layout
+@grid-gutter:                      (@base-rem-unit * 2);
+@grid-breakpoint-medium:           600px;
+@grid-breakpoint-large:            960px;
 
-@data-color:                    @shade-pos-1;
-@data-bg-color:                 lighten(@shade-pos-5, 3);
+// Syntax
+@syntax-font-size:                 0.875rem;
+@syntax-font-color:                @gray-darkest;
+@syntax-font-family:               Monaco, "Lucida Sans Typewriter", Consolas, "Courier New", monospace;
 
-@input-color:                   @shade-neg-5;
-@input-bg-color:                @white;
-@input-bg-color-focus:          @white;
-@input-border-color:            @shade-pos-3;
-@input-border-color-focus:      @green;
-@input-select-bg-image:         @img-arrow-down;
+// Forms
+@input-padding:                    0.58em 0.75em;
+@input-font-size:                  0.8rem;
+@input-line-height:                1.2;
+@input-border-width:               1px;
+@input-color:                      @gray-darker;
+@input-background:                 @white;
+@input-background-focus:           @white;
+@input-border:                     @input-border-width solid @gray-dark;
+@input-border-focus:               @input-border-width solid @green;
 
-@label-color:                   @shade-pos-1;
+@select-height:                    40px;
+@select-background:                @gray-lightest;
+@select-background-image:          @img-arrow-down;
 
-@list-color:                    @shade;
-@list-bg-color:                 @white;
-@list-border-color:             @shade-pos-4;
-@list-header-color:             @shade-neg-1;
-@list-header-bg-color:          @list-border-color;
+@label-font-size:                  0.8rem;
+@label-color:                      @gray-dark;
 
-@switch-color:                  @shade-pos-3;
-@switch-bg-color:               @shade-pos-4;
-@switch-thumb-bg-color:         @white;
-@switch-on-color:               @white;
-@switch-on-bg-color:            @positive;
+@data-color:                       @gray-darkest;
+@data-background:                  @gray-lightest;
 
-@tabs-color:                    @white;
-@tabs-color-active:             @shade-neg-4;
-@tabs-bg-color:                 @shade-neg-4;
-@tabs-bg-color-active:          @white;
+// Buttons
+@button-font-weight:               200;
+@button-border-radius:             0;
+@button-mini-padding:              0.238rem 0.475rem;
+@button-mini-font-size:            0.6rem;
+@button-small-padding:             0.55rem 0.633rem;
+@button-small-font-size:           0.7rem;
+@button-default-padding:           0.68rem 0.75rem;
+@button-default-font-size:         0.8rem;
+@button-default-line-height:       1.2;
+@button-large-padding:             0.633rem 0.875rem;
+@button-large-font-size:           1rem;
+@button-large-line-height:         1.333;
+@button-color:                     @white;
+@button-background:                @gray-darker;
+@button-disabled-background:       @gray-dark;
+@button-group-color:               @green;
+@button-group-background:          @white;
 
-@popover-color:                 @white;
-@popover-bg-color:              @shade-pos-2;
-@popover-content-bg-color:      @shade-pos-5;
-@popover-primary-button-color:  @grey;
+// Accordian
+@accordian-color:                  @gray-darker;
+@accordian-color-active:           @black;
+@accordian-background:             @gray-lightest;
+@accordian-background-active:      @gray-lightest;
+@accordian-border:                 1px solid @gray;
 
-@segmented-button-color:        @green;
-@segmented-button-bg-color:     @white;
+// Data Grid
+@datagrid-color:                   @gray-darker;
+@datagrid-background:              @white;
+@datagrid-header-color:            @gray-darker;
+@datagrid-header-background:       @gray-lighter;
+@datagrid-border:                  1px solid @gray;
 
-@issue-color:                   @black;
+// Table
+@table-font-size:                  0.8rem;
+@table-header-color:               @gray-darkest;
+@table-header-background:          @gray-lighter;
+@table-border:                     1px solid @gray-light;
+@table-alt-row-background:         @gray-lightest;
 
-@typeahead-hint-color:          @shade-pos-4;
+// Filter
+@filter-background:                @gray-lightest;
+@filter-border:                    1px solid @gray-light;
 
-/**
- * Application
- */
+// List
+@list-font-size:                   0.9rem;
+@list-color:                       @gray-darkest;
+@list-background:                  @white;
+@list-border:                      1px solid @gray-light;
+@list-header-color:                @gray-darker;
+@list-header-background:           @gray;
 
-@app-bg-color:                  @shade-neg-5;
-@app-bg-image:                  @img-noise;
-@content-bg-color:              @white;
+// Message
+@message-color:                    @list-color;
 
-@login-tab-active-color:        @black;
-@login-tab-active-bg:           @white;
-@login-input-bg-color:          @shade-pos-5;
-@login-shadow-color:            @black;
+// Switch
+@switch-color:                     @gray;
+@switch-background:                @gray-light;
+@switch-thumb-background:          @white;
+@switch-on-color:                  @white;
+@switch-on-background:             @positive;
 
-@app-bar-color:                 @white;
-@app-bar-bg-color:              @green;
-@app-bar-button-color:          @shade-pos-5;
-@app-bar-button-bg-color:       darken(@app-bar-bg-color,5);
-@app-bar-title-color:           @white;
+// Tabs
+@tabs-color:                       @white;
+@tabs-color-active:                @gray-darkest;
+@tabs-background:                  @gray-darkest;
+@tabs-background-active:           @white;
 
-@menu-color:                    @shade-neg-1;
-@menu-color-hover:              @white;
-@menu-color-selected:           @white;
-@menu-border-color:             @shade-neg-4;
-@menu-shadow-color:             @black;
+// Nav
+@nav-color:                        @gray-darkest;
+@nav-color-hover:                  @white;
+@nav-color-selected:               @white;
+@nav-color-disabled:               darken(@nav-color, 10);
+@nav-border:                       1px solid @gray-darkest;
 
-@filter-bg-color:               @shade-pos-5;
-@filter-label-color:            @shade-pos-2;
+// Popover
+@popover-color:                    @white;
+@popover-background:               @gray-darker;
+@popover-content-background:       @gray-darker;
+
+// Issue
+@issue-font-size:                  0.8rem;
+@issue-color:                      @black;
+
+// Typeahead
+@typeahead-hint-color:             @gray-light;
+
+// Breadcrumbs
+@breadcrumbs-color:                @gray-dark;
+@breadcrumbs-arrow-color:          @gray;
+
+// App
+@app-background:                   @black @img-noise;
+@app-header-color:                 @white;
+@app-header-background:            @green;
+@app-content-background:           @white;
+@app-footer-background:            @gray-lighter;
+@app-draw-shadow:                  inset -5px 0 10px -5px @black;
+
+// App Login
+@app-login-tab-color:              @white;
+@app-login-tab-color-active:       @gray-darkest;
+@app-login-tab-background:         @gray-darkest;
+@app-login-tab-background-active:  @white;
+@app-login-input-background:       @gray-lighter;
+@app-login-shadow:                 0 5px 5px 0 @black;

@@ -1,9 +1,9 @@
-define(['models/workOrders', 'jquery', 'mockjax'], function (WorkOrders, $) {
+define(['models/workOrders', 'api', 'jquery', 'mockjax'], function (WorkOrders, api, $) {
 
 	'use strict';
 
 	$.mockjax({
-		url: '/api/technicians/',
+		url: api + 'technicians/',
 		responseTime: 1000,
 		responseText: {
 			result: [
@@ -14,7 +14,7 @@ define(['models/workOrders', 'jquery', 'mockjax'], function (WorkOrders, $) {
 	});
 
 	$.mockjax({
-		url: '/api/statuses/',
+		url: api + 'statuses/',
 		responseTime: 1000,
 		responseText: {
 			result: [
@@ -27,7 +27,7 @@ define(['models/workOrders', 'jquery', 'mockjax'], function (WorkOrders, $) {
 	});
 
 	$.mockjax({
-		url: '/api/workOrders/',
+		url: api + 'workOrders/',
 		responseTime: 1000,
 		responseText: {
 			result: [

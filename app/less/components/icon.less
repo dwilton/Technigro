@@ -1,0 +1,57 @@
+// ==================================================================
+// Icon ($icon)
+// ==================================================================
+
+
+// Icon
+//
+// Icons can provide feedback to the user.
+//
+// Markup:
+// <a href="#" class="icon icon--tick icon--positive">Sucess</a>
+// <a href="#" class="icon icon--cross icon--negative">Remove</a>
+//
+// Styleguide 11.
+
+
+// Position
+.icon--left {
+	position: relative;
+	padding-left: 2.5em;
+
+	&:before {
+		position: absolute;
+		top: 0.18em;
+		left: 0.5em;
+		font-size: 1.5em;
+	}
+}
+
+.icon--top {
+	text-align: center;
+
+	&:before {
+		display: block;
+	}
+}
+
+
+// Sizes
+.icon--large:before {
+	font-size: 2.5em;
+	line-height: 1.2;
+}
+
+
+// Styles
+.icon--positive:before {
+	color: @positive !important;
+}
+
+.icon--warning:before {
+	color: @warning !important;
+}
+
+.icon--negative:before {
+	color: @negative !important;
+}

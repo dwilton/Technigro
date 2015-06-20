@@ -1,0 +1,89 @@
+// ==================================================================
+// Tabs ($tabs)
+// ==================================================================
+
+
+// Tabs
+//
+// A single content area with multiple panels, each associated with a header in a list
+//
+// Markup:
+// <div>
+// 	<ul class="tabs" data-bind="tabs: 'example-one'">
+// 		<li class="tabs__item tabs__item--active"><a href="#tab-one">Tab One</a></li>
+// 		<li class="tabs__item"><a href="#tab-two">Tab Two</a></li>
+// 	</ul>
+// 	<div id="example-one" class="tabs-content">
+// 		<div id="tab-one"></div>
+// 		<div id="tab-two"></div>
+// 	</div>
+// </div>
+//
+//
+
+.tabs {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.tabs__item {
+	display: inline-block;
+
+	a {
+		display: inline-block;
+		padding: 0.6rem 1rem;
+		color: @tabs-color;
+		font-weight: 300;
+		text-decoration: none;
+		background-color: @tabs-background;
+	}
+}
+
+.tabs__item--active a {
+	color: @tabs-color-active;
+	background-color: @tabs-background-active;
+}
+
+
+// Button Group Tabs
+.tabs--button-group {
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+
+	.tabs__item {
+		display: table-cell;
+
+		a {
+			padding-left: 0;
+			padding-right: 0;
+			width: 100%;
+			font-weight: 200;
+			font-size: 0.86rem;
+			color: @tabs-color;
+			text-align: center;
+			background-color: @tabs-background-active;
+			border: 1px solid;
+			border-right: 0;
+			border-color: @tabs-background-active;
+		}
+
+		&:first-of-type a {
+			border-radius: 0.356rem 0 0 0.356rem;
+		}
+
+		&:last-child a {
+			border: 1px solid @tabs-background-active;
+			border-radius: 0 0.356rem 0.356rem 0;
+		}
+	}
+
+}
+
+
+// Tabs Content
+.tabs-content {
+	padding: 1.5rem;
+	background-color: @tabs-background-active;
+}

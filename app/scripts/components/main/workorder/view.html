@@ -1,128 +1,141 @@
 <section class="workorder">
 
-	<div class="loader" data-bind="spin: isLoading(), visible: isLoading()"></div>
+	<div class="loader" data-bind="spin: isLoading, visible: isLoading()"></div>
 
 	<!-- ko if: !isLoading() -->
 
 	<div class="container" data-bind="menu: true">
 
-		<nav class="menu list list-border list-border-rows scrollable">
+		<nav class="menu list list--border list--border-rows scrollable">
 			<ul>
-				<li class="active"><a href="#details" class="icon icon-arrow">Details</a></li>
-				<li><a href="#technicians" class="icon icon-arrow" data-bind="visible: isAdmin()">Technicians</a></li>
-				<li><a href="#labour" class="icon icon-arrow">Labour</a></li>
-				<li><a href="#equipment" class="icon icon-arrow">Equipment</a></li>
-				<li><a href="#products" class="icon icon-arrow">Products</a></li>
-				<li><a href="#schedule" class="icon icon-arrow">Schedule</a></li>
-				<li><a href="#invoicing" class="icon icon-arrow" data-bind="visible: isAdmin()">Invoicing</a></li>
-				<li><a href="#images" class="icon icon-arrow">Images</a></li>
-				<li><a href="#land-access" class="icon icon-arrow">Land Access</a></li>
-				<li><a href="#daily-report" class="icon icon-arrow">Daily Report</a></li>
-				<li><a href="#completion" class="icon icon-arrow">Completion</a></li>
+				<li class="list__active"><a href="#details" class="icon icon--arrow">Details</a></li>
+				<li><a href="#technicians" class="icon icon--arrow" data-bind="visible: isAdmin()">Technicians</a></li>
+				<li><a href="#labour" class="icon icon--arrow">Labour</a></li>
+				<li><a href="#equipment" class="icon icon--arrow">Equipment</a></li>
+				<li><a href="#products" class="icon icon--arrow">Products</a></li>
+				<li><a href="#schedule" class="icon icon--arrow">Schedule</a></li>
+				<li><a href="#invoicing" class="icon icon--arrow" data-bind="visible: isAdmin()">Invoicing</a></li>
+				<li><a href="#images" class="icon icon--arrow">Images</a></li>
+				<li><a href="#land-access" class="icon icon--arrow">Land Access</a></li>
+				<li><a href="#daily-report" class="icon icon--arrow">Daily Report</a></li>
+				<li><a href="#completion" class="icon icon--arrow">Completion</a></li>
 			</ul>
 		</nav>
 
 		<div class="menu-content scrollable">
 
+			<!--
+			========================================
+			Details
+			========================================
+			-->
+
 			<section id="details" class="workorder-details">
+
 				<header class="filter">
 					<div class="treatment-date">
 						<label for="treatment-date">Treatment Date</label>
-						<input id="treatment-date" type="date" class="fluid" data-bind="value: workOrder().details.treatmentDate, visible: isAdmin()">
+						<input id="treatment-date" type="date" data-bind="value: workOrder().details.treatmentDate, visible: isAdmin()">
 						<span class="data fluid" data-bind="text: workOrder().details.treatmentDate, visible: !isAdmin()"></span>
 					</div>
 					<div class="client">
 						<label for="client">Client</label>
-						<input id="client" type="text" placeholder="Please Select" class="fluid" data-bind="typeahead: refData().clients, value: workOrder().details.clientName, visible: isAdmin()"></select>
+						<input id="client" type="text" placeholder="Please Select" data-bind="typeahead: refData().clients, value: workOrder().details.clientName, visible: isAdmin()"></select>
 						<span class="data fluid" data-bind="text: workOrder().details.clientName, visible: !isAdmin()"></span>
 					</div>
 					<div class="job">
 						<label for="job">Job</label>
-						<input id="job" type="text" class="fluid" data-bind="value: workOrder().details.jobName, visible: isAdmin()">
+						<input id="job" type="text" data-bind="value: workOrder().details.jobName, visible: isAdmin()">
 						<span class="data fluid" data-bind="text: workOrder().details.jobName, visible: !isAdmin()"></span>
 					</div>
 					<div class="status">
 						<label for="status">Status</label>
-						<select id="status" class="fluid" data-bind="options: refData().statuses, optionsText: 'name', value: workOrder().details.statusId, optionsValue: 'id'"></select>
+						<select id="status" data-bind="options: refData().statuses, optionsText: 'name', value: workOrder().details.statusId, optionsValue: 'id'"></select>
 					</div>
 				</header>
+
 				<div class="content">
+
 					<div class="flex-row">
+
 						<div class="flex-col">
 							<div class="address">
 								<h3>Location</h3>
 								<label for="address">Address</label>
-								<textarea id="address" class="fluid" data-bind="value: workOrder().details.address, visible: isAdmin()"></textarea>
+								<textarea id="address" data-bind="value: workOrder().details.address, visible: isAdmin()"></textarea>
 								<span class="data fluid" data-bind="text: workOrder().details.address, visible: !isAdmin()"></span>
 							</div>
 							<div>
 								<div class="flex-row form">
 									<div class="flex-col">
 										<label for="job-number">Job #</label>
-										<input id="job-number" type="text" class="fluid"  data-bind="value: workOrder().details.jobNumber, visible: isAdmin()">
+										<input id="job-number" type="text" data-bind="value: workOrder().details.jobNumber, visible: isAdmin()">
 										<span class="data fluid" data-bind="text: workOrder().details.jobNumber, visible: !isAdmin()"></span>
 									</div>
 									<div class="flex-col">
 										<label for="order-number">Order #</label>
-										<input id="order-number" type="text" class="fluid" data-bind="value: workOrder().details.orderNumber, visible: isAdmin()">
+										<input id="order-number" type="text" data-bind="value: workOrder().details.orderNumber, visible: isAdmin()">
 										<span class="data fluid" data-bind="text: workOrder().details.orderNumber, visible: !isAdmin()"></span>
 									</div>
 									<div class="flex-col">
 										<label for="date">Date</label>
-										<input id="date" type="date" class="fluid" data-bind="value: workOrder().details.date, visible: isAdmin()">
+										<input id="date" type="date" data-bind="value: workOrder().details.date, visible: isAdmin()">
 										<span class="data fluid" data-bind="text: workOrder().details.date, visible: !isAdmin()"></span>
 									</div>
 								</div>
 								<div class="flex-row form">
 									<div class="flex-col">
 										<label for="ubd-edition">UBD Edition</label>
-										<select id="ubd-edition" class="fluid" data-bind="options: refData().ubdEditions, optionsText: 'name', optionsValue: 'id', value: workOrder().details.ubdEditionId, optionsCaption: 'Please Select', visible: isAdmin()"></select>
+										<select id="ubd-edition" data-bind="options: refData().ubdEditions, optionsText: 'name', optionsValue: 'id', value: workOrder().details.ubdEditionId, optionsCaption: 'Please Select', visible: isAdmin()"></select>
 										<span class="data fluid" data-bind="text: workOrder().details.ubdEditionName, visible: !isAdmin()"></span>
 									</div>
 									<div class="flex-col">
 										<label for="map">Map</label>
-										<input id="map" type="text" class="fluid" data-bind="value: workOrder().details.map, visible: isAdmin()">
+										<input id="map" type="text" data-bind="value: workOrder().details.map, visible: isAdmin()">
 										<span class="data fluid" data-bind="text: workOrder().details.map, visible: !isAdmin()"></span>
 									</div>
 									<div class="flex-col">
 										<label for="ref">Ref</label>
-										<input id="ref" type="text" class="fluid" data-bind="value: workOrder().details.ref, visible: isAdmin()">
+										<input id="ref" type="text" data-bind="value: workOrder().details.ref, visible: isAdmin()">
 										<span class="data fluid" data-bind="text: workOrder().details.ref, visible: !isAdmin()"></span>
 									</div>
 								</div>
 							</div>
 						</div>
+
 						<div class="flex-col">
+
 							<div class="contact form">
 								<h3>Contact</h3>
 								<div>
 									<label for="contact-name">Name</label>
-									<input id="contact-name" type="text" class="fluid" data-bind="value: workOrder().details.contactName, visible: isAdmin()">
+									<input id="contact-name" type="text" data-bind="value: workOrder().details.contactName, visible: isAdmin()">
 									<span class="data fluid" data-bind="text: workOrder().details.contactName, visible: !isAdmin()"></span>
 								</div>
 								<div class="flex-row phone-number">
 									<div class="flex-col">
 										<label for="phone-one">Phone 1</label>
-										<input id="phone-one" type="text" class="fluid" data-bind="value: workOrder().details.phone1, visible: isAdmin()">
+										<input id="phone-one" type="text" data-bind="value: workOrder().details.phone1, visible: isAdmin()">
 										<span class="data fluid" data-bind="text: workOrder().details.phone1, visible: !isAdmin()"></span>
 									</div>
 									<div class="flex-col">
 										<label for="phone-one">Phone 2</label>
-										<input id="phone-one" type="text" class="fluid" data-bind="value: workOrder().details.phone2, visible: isAdmin()">
+										<input id="phone-one" type="text" data-bind="value: workOrder().details.phone2, visible: isAdmin()">
 										<span class="data fluid" data-bind="text: workOrder().details.phone2, visible: !isAdmin()"></span>
 									</div>
 								</div>
 							</div>
+
 							<div class="maps">
 								<h3>Maps</h3>
 								<!-- ko if: isAdmin -->
 								<div class="addable">
-									<table class="table stripe editable">
+									<table class="table table--stripes table--editable">
 										<tbody data-bind="foreach: workOrder().documents">
 											<tr>
-												<td class="action"><a href="#" class="icon icon-cross icon-negative" data-bind="click: $parent.removeDocument">Remove</a></td>
+												<td class="table__action"><a href="#" class="icon icon--cross icon--negative" data-bind="click: $parent.removeDocument">Remove</a></td>
 												<td>
-													<select class="fluid" data-bind="foreach: $parent.refData().documentList, value: id">
+													<select data-bind="foreach: $parent.refData().documentList, value: id">
 														<optgroup data-bind="attr: { label: name }, foreach: documents">
 															<option data-bind="text: name, value: id"></option>
 														</optgroup>
@@ -131,11 +144,11 @@
 											</tr>
 										</tbody>
 									</table>
-									<button class="button button-additional button-small" data-bind="click: addDocument">Add New</button>
+									<button class="button button--additional button--small" data-bind="click: addDocument">Add New</button>
 								</div>
 								<!-- /ko -->
 								<!-- ko if: !isAdmin() -->
-								<table class="table stripe">
+								<table class="table table--stripes">
 										<tbody data-bind="foreach: workOrder().documents">
 											<tr>
 												<td>
@@ -146,29 +159,47 @@
 									</table>
 								<!-- /ko -->
 							</div>
+
 						</div>
+
 					</div>
+
 				</div>
+
 			</section>
+
+			<!--
+			========================================
+			Technicians
+			========================================
+			-->
 
 			<section id="technicians" class="workorder-technicians content" style="display: none">
-				<div class="technicians">
-					<h3>Technicians</h3>
-					<div class="addable">
-						<table class="table stripe editable">
-							<tbody data-bind="foreach: workOrder().technicians">
-								<tr>
-									<td class="action remove"><a href="#" class="icon icon-cross icon-negative" data-bind="click: $parent.removeTechnician">Remove</a></td>
-									<td><select class="fluid" data-bind="options: $parent.refData().technicians, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"><select></td>
-								</tr>
-							</tbody>
-						</table>
-						<button class="button button-additional button-small" data-bind="click: addTechnician">Add New</button>
-					</div>
+
+				<h3>Technicians</h3>
+
+				<div class="addable">
+					<table class="table table--stripes table--editable">
+						<tbody data-bind="foreach: workOrder().technicians">
+							<tr>
+								<td class="table__action remove"><a href="#" class="icon icon--cross icon--negative" data-bind="click: $parent.removeTechnician">Remove</a></td>
+								<td><select data-bind="options: $parent.refData().technicians, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"><select></td>
+							</tr>
+						</tbody>
+					</table>
+					<button class="button button--small" data-bind="click: addTechnician">Add New</button>
 				</div>
+
 			</section>
 
+			<!--
+			========================================
+			Labor
+			========================================
+			-->
+
 			<section id="labour" class="workorder-labour" style="display: none">
+
 				<header class="filter">
 					<div>
 						<label for="time-allocated">Time Allocated</label>
@@ -187,28 +218,30 @@
 						<span class="data" data-bind="text: workOrder().labour.area, visible: !isAdmin()"></span>
 					</div>
 				</header>
+
 				<div class="content scrollable">
+
 					<div class="addable">
 						<h3>Job Instructions</h3>
 						<!-- ko if: isAdmin -->
-						<table class="job-instruction table stripe editable">
+						<table class="job-instruction table table--stripes table--editable">
 							<tbody data-bind="foreach: workOrder().jobInstructions">
 								<tr>
-									<td class="action remove"><a href="#" class="icon icon-cross icon-negative" data-bind="click: $parent.removeJobInstruction">Remove</a></td>
-									<td width="90%"><select class="fluid" data-bind="options: $parent.refData().jobInstructions, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+									<td class="table__action remove"><a href="#" class="icon icon--cross icon--negative" data-bind="click: $parent.removeJobInstruction">Remove</a></td>
+									<td width="90%"><select data-bind="options: $parent.refData().jobInstructions, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
 									<td class="price" data-bind="text: $parent.formatCurrency(price())"></td>
 								</tr>
 							</tbody>
 						</table>
 						<div>
-							<button class="button button-additional button-small" data-bind="click: addJobInstruction">Add New</button>
+							<button class="button button--small" data-bind="click: addJobInstruction">Add New</button>
 							<span class="total">
 								<span>Total</span> $0.00
 							</span>
 						</div>
 						<!-- /ko -->
 						<!-- ko if: !isAdmin() -->
-						<table class="job-instruction table stripe">
+						<table class="job-instruction table table--stripes">
 							<tbody data-bind="foreach: workOrder().jobInstructions">
 								<tr>
 									<td data-bind="text: name"></td>
@@ -217,11 +250,14 @@
 						</table>
 						<!-- /ko -->
 					</div>
+
 					<hr />
+
 					<div class="flex-row">
+
 						<div class="flex-col work-checklist">
 							<h3>Work Checklist</h3>
-							<div class="list list-border island">
+							<div class="island">
 								<ul>
 									<li>
 										<ul>
@@ -231,7 +267,7 @@
 									</li>
 									<li>
 										<ul>
-											<li><input id="task-confident" type="checkbox" class="switch"  data-bind="checked: workOrder().labour.checklist.taskConfident"/></li>
+											<li><input id="task-confident" type="checkbox" class="switch" data-bind="checked: workOrder().labour.checklist.taskConfident"/></li>
 											<li><label for="task-confident">Are you confident that you know what you are doing?</label></li>
 										</ul>
 									</li>
@@ -244,41 +280,58 @@
 								</ul>
 							</div>
 						</div>
+
 						<div class="flex-col critical-info">
-							<div>
-								<label for="critical-info" class="h3">Critial Information</label>
-								<textarea id="critical-info" class="fluid" data-bind="value: workOrder().labour.criticalInfo, visible: isAdmin()"></textarea>
-								<span class="data fluid" data-bind="text: workOrder().labour.criticalInfo, visible: !isAdmin()"></span>
-							</div>
+							<label for="critical-info" class="h3">Critial Information</label>
+							<textarea id="critical-info" data-bind="value: workOrder().labour.criticalInfo, visible: isAdmin()"></textarea>
+							<span class="data fluid" data-bind="text: workOrder().labour.criticalInfo, visible: !isAdmin()"></span>
 						</div>
+
 					</div>
+
 				</div>
+
 			</section>
+
+			<!--
+			========================================
+			Equipment
+			========================================
+			-->
 
 			<section id="equipment" class="workorder-equipment content" style="display: none">
-				<div class="equipment">
-					<h3>Equipment</h3>
-					<div class="addable">
-						<table class="table stripe editable">
-							<tbody data-bind="foreach: workOrder().equipment">
-								<tr>
-									<td class="action remove"><a href="#" class="icon icon-cross icon-negative" data-bind="click: $parent.removeEquipment">Remove</a></td>
-									<td><select class="fluid" data-bind="options: $parent.refData().equipment, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
-								</tr>
-							</tbody>
-						</table>
-						<button class="button button-additional button-small" data-bind="click: addEquipment">Add New</button>
-					</div>
+
+				<h3>Equipment</h3>
+
+				<div class="addable">
+					<table class="table table--stripes table--editable">
+						<tbody data-bind="foreach: workOrder().equipment">
+							<tr>
+								<td class="table__action remove"><a href="#" class="icon icon--cross icon--negative" data-bind="click: $parent.removeEquipment">Remove</a></td>
+								<td><select data-bind="options: $parent.refData().equipment, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+							</tr>
+						</tbody>
+					</table>
+					<button class="button button--small" data-bind="click: addEquipment">Add New</button>
 				</div>
+
 			</section>
 
+			<!--
+			========================================
+			Products
+			========================================
+			-->
+
 			<section id="products" class="workorder-products content" style="display: none">
+
 				<h3>Products</h3>
-				<div class="products addable">
-					<table class="table stripe editable">
+
+				<div class="addable">
+					<table class="table table--stripes table--editable">
 						<thead>
 							<tr>
-								<th class="action"></th>
+								<th class="table__action"></th>
 								<th>Name</th>
 								<th>Actual</th>
 								<th>Water</th>
@@ -288,113 +341,138 @@
 						</thead>
 						<tbody data-bind="foreach: workOrder().products">
 							<tr>
-								<td class="action remove"><a href="#" class="icon icon-cross icon-negative" data-bind="click: $parent.removeProduct">Remove</a></td>
-								<td width="40%"><select class="fluid" data-bind="options: $parent.refData().products, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
-								<td><input type="text" class="fluid" data-bind="value: actual"></td>
-								<td><input type="text" class="fluid" data-bind="value: water"></td>
-								<td><input type="text" class="fluid" data-bind="value: area"></td>
-								<td width="20%"><input type="text" class="fluid" data-bind="value: total"></td>
+								<td class="table__action remove"><a href="#" class="icon icon--cross icon--negative" data-bind="click: $parent.removeProduct">Remove</a></td>
+								<td width="40%"><select data-bind="options: $parent.refData().products, optionsText: 'name', optionsValue: 'id', value: id, optionsCaption: 'Please Select'"></select></td>
+								<td><input type="text" data-bind="value: actual"></td>
+								<td><input type="text" data-bind="value: water"></td>
+								<td><input type="text" data-bind="value: area"></td>
+								<td width="20%"><input type="text" data-bind="value: total"></td>
 							</tr>
 						</tbody>
 					</table>
-					<button class="button button-additional button-small" data-bind="click: addProduct">Add New</button>
+					<button class="button button--small" data-bind="click: addProduct">Add New</button>
 				</div>
+
 			</section>
+
+			<!--
+			========================================
+			Schedule
+			========================================
+			-->
 
 			<section id="schedule" class="workorder-schedule content" style="display: none">
-				<div>
-					<div class="location">
-						<select id="location">
-							<option value="">Gold Coast Central</option>
-						</select>
-					</div>
-					<div class="schedule-roads">
-						<div class="list">
-							<ul data-bind="foreach: workOrder().schedule">
-									<!-- ko if: !edit() -->
-										<li data-bind="css: { 'done': done() }">
-											<a href="#" data-bind="click: $parent.scheduleToggleEdit, text: name"></a>
-										</li>
+
+				<div class="list list--border list--striped">
+					<ul data-bind="foreach: workOrder().schedule">
+							<!-- ko if: !edit() -->
+								<li data-bind="css: { 'done': done() }">
+									<a href="#" data-bind="click: $parent.scheduleToggleEdit, text: name"></a>
+								</li>
+							<!-- /ko -->
+							<!-- ko if: edit() -->
+								<li class="edit">
+									<button class="cancel" data-bind="click: $parent.scheduleToggleEdit">Cancel</button>
+									<!-- ko if: !done() -->
+									<button class="button button--mini" data-bind="click: $parent.scheduleToggleDone">Complete</button>
 									<!-- /ko -->
-									<!-- ko if: edit() -->
-										<li class="edit">
-											<button class="cancel" data-bind="click: $parent.scheduleToggleEdit">Cancel</button>
-											<!-- ko if: !done() -->
-											<button class="button" data-bind="click: $parent.scheduleToggleDone">Complete</button>
-											<!-- /ko -->
-											<!-- ko if: done() -->
-											<button class="button" data-bind="click: $parent.scheduleToggleDone">Undo</button>
-											<!-- /ko -->
-										</li>
+									<!-- ko if: done() -->
+									<button class="button button--mini" data-bind="click: $parent.scheduleToggleDone">Undo</button>
 									<!-- /ko -->
 								</li>
-							</ul>
-						</div>
-					</div>
+							<!-- /ko -->
+						</li>
+					</ul>
 				</div>
+
 			</section>
 
+			<!--
+			========================================
+			Invoicing
+			========================================
+			-->
+
 			<section id="invoicing" class="workorder-invoicing" style="display: none">
+
 				<div class="content">
+
 					<div class="flex-row">
+
 						<div class="flex-col invoicing">
 							<div class="invoicing-details">
 								<h3>Invoicing</h3>
 								<div class="flex-row form">
 									<div class="flex-col">
 										<label for="invoice-number">Invoice #</label>
-										<input id="invoice-number" type="text" class="fluid"  data-bind="value: workOrder().invoicing.invoiceNumber"/>
+										<input id="invoice-number" type="text" data-bind="value: workOrder().invoicing.invoiceNumber"/>
 									</div>
 									<div class="flex-col">
 										<label for="invoice-date">Invoice Date</label>
-										<input id="invoice-date" type="date" class="fluid" data-bind="value: workOrder().invoicing.invoiceDate" />
+										<input id="invoice-date" type="date" data-bind="value: workOrder().invoicing.invoiceDate" />
 									</div>
 								</div>
 								<div class="flex-row form">
 									<div class="flex-col">
 										<label for="invoiced-by">Invoiced By</label>
-										<select id="invoiced-by" class="fluid" data-bind="options: refData().invoiceTypes, optionsText: 'name', optionsValue: 'id', value: workOrder().invoicing.invoicedTypeId(), optionsCaption: 'Please Select'"></select>
+										<select id="invoiced-by" data-bind="options: refData().invoiceTypes, optionsText: 'name', optionsValue: 'id', value: workOrder().invoicing.invoicedTypeId(), optionsCaption: 'Please Select'"></select>
 									</div>
 									<div class="flex-col">
 										<label for="invoice-total">Invoice Total</label>
-										<input id="invoice-total" type="text" class="fluid"  data-bind="value: workOrder().invoicing.invoiceTotal" />
+										<input id="invoice-total" type="text" data-bind="value: workOrder().invoicing.invoiceTotal" />
 									</div>
 								</div>
 							</div>
 							<div class="invoicing-notes">
 								<label for="notes">Invoicing Notes</label>
-								<textarea id="invoicing-notes" class="fluid" data-bind="value: workOrder().invoicing.invoicingNotes"></textarea>
+								<textarea id="invoicing-notes" data-bind="value: workOrder().invoicing.invoicingNotes"></textarea>
 							</div>
 						</div>
+
 						<div class="flex-col quote">
 							<div class="form">
 								<h3>Quote</h3>
 								<div>
 									<label for="quote-type">Quote Type</label>
-									<select id="quote-type" class="fluid" data-bind="options: refData().quoteTypes, optionsText: 'name', optionsValue: 'id', value: workOrder().invoicing.quoteTypeId(), optionsCaption: 'Please Select'"></select>
+									<select id="quote-type" data-bind="options: refData().quoteTypes, optionsText: 'name', optionsValue: 'id', value: workOrder().invoicing.quoteTypeId(), optionsCaption: 'Please Select'"></select>
 								</div>
 								<div>
 									<label for="quote-number">Quote #</label>
-									<input id="quote-number" type="text" class="fluid" data-bind="value: workOrder().invoicing.quoteNumber" />
+									<input id="quote-number" type="text" data-bind="value: workOrder().invoicing.quoteNumber" />
 								</div>
 							</div>
 						</div>
+
 					</div>
+
 				</div>
+
 			</section>
+
+			<!--
+			========================================
+			Images
+			========================================
+			-->
 
 			<section id="images" class="workorder-images" style="display: none">
 				<header class="filter">
 					<div>
-						<button class="button button-small" data-bind="click: addImage">New Image</button>
+						<button class="button button--small" data-bind="click: addImage">New Image</button>
 					</div>
 				</header>
 				<div class="gallery content" data-bind="foreach: workOrder().images">
-					<div class="image">
+					<div class="gallery__image">
 						<img data-bind="attr: { src: src }" />
 					</div>
 				</div>
 			</section>
+
+			<!--
+			========================================
+			Land Access
+			========================================
+			-->
 
 			<section id="land-access" class="workorder-land-access" style="display: none">
 				<!-- ko if: isAdmin -->
@@ -896,10 +974,10 @@
 
 	<div class="action">
 		<div>
-			<button class="button button-large button-negative">Archive</button>
+			<button class="button button--negative">Archive</button>
 		</div>
 		<div>
-				<button class="button button-large button-positive" data-bind="click: save">Save</button>
+				<button class="button button--positive" data-bind="click: save">Save</button>
 		</div>
 	</div>
 

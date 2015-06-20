@@ -2,7 +2,7 @@
  * Modernizr AMD Wrapper
  */
 
-define('modernizr', function () {
+define(function () {
 
 	'use strict';
 

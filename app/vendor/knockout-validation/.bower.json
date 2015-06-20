@@ -9,5 +9,6 @@
     "commit": "24f72cec4d6b68e3ce35a05372a972e9ebf3d8be"
   },
   "_source": "git@github.com:Knockout-Contrib/Knockout-Validation.git",
-  "_target": "*"
+  "_target": "*",
+  "_originalSource": "git@github.com:Knockout-Contrib/Knockout-Validation.git"
 }

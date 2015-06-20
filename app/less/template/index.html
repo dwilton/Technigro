@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+
+	<title>Living Styleguide</title>
+	<meta name="description" content="">
+	<meta name="generator" content="kss-node" />
+
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="stylesheet" href="public/kss.css">
+	<link rel="stylesheet" href="../app/css/style.css" />
+	<link rel="stylesheet" href="public/style.css">
+
+</head>
+<body>
+
+	<div id="kss-wrapper">
+		<div id="kss-nav">
+			<header id="kss-header">
+				<hgroup><h1>Styleguide</h1></hgroup>
+			</header>
+			<aside>
+				<nav><ul>
+					<li><a href="index.html">Overview</a></li>
+					{{#eachRoot}}
+						<li><a href="section-{{reference}}.html">{{header}}</a></li>
+					{{/eachRoot}}
+				</ul></nav>
+			</aside>
+		</div>
+		<div role="main" id="kss-main">
+			<article id="kss-content">
+
+				{{#if overview}}
+					{{html overview}}
+				{{else}}
+
+					{{!
+						Find each section, in order.
+						If there's no markup or modifiers supplied, use a Markdown-only
+						layout instead.
+
+						The "root" element comes first in this loop, and can be detected using
+						the "#whenDepth 1" block as seen below.
+					}}
+
+					{{#eachSection rootNumber}}
+						{{#whenDepth 1}}
+							<h1 class="kss-title">{{ header }}</h1>
+						{{else}}
+						 <section class="kss-depth-{{ refDepth }}">
+							<h1 class="kss-title"><span class="kss-ref">{{ reference }}</span> - {{ header }}</h1>
+						{{/whenDepth}}
+							{{#ifAny markup modifiers}}
+									<blockquote class="kss-box">{{html description}}</blockquote>
+									<table class="kss-mod-list">
+										<tr class="kss-mod-desc-group">
+											<td class="kss-mod-desc"><h2>Default styling</h2></td>
+											<td class="kss-mod-name"></td>
+										</tr>
+										<tr class="kss-mod-example">
+											<td colspan="2">{{modifierMarkup}}</td>
+										</tr>
+									{{#eachModifier}}
+										<tr class="kss-mod-desc-group">
+											<td class="kss-mod-desc"><h2>{{html description}}</h2></td>
+											<td class="kss-mod-name"><p>{{name}}</p></td>
+										</tr>
+										<tr class="kss-mod-example">
+											<td colspan="2">{{modifierMarkup}}</td>
+										</tr>
+									{{/eachModifier}}
+									</table>
+									<div class="kss-markup">
+										<pre class="prettyprint lang-html">{{markup}}</pre>
+									</div>
+							{{else}}
+									{{#if description}}
+										{{html description}}
+									{{/if}}
+							{{/ifAny}}
+						{{#whenDepth 1}} {{else}}
+							</section>
+						{{/whenDepth}}
+					{{/eachSection}}
+				{{/if}}
+			</article>
+		</div>
+
+		<!-- SCRIPTS -->
+		<script src="public/kss.js"></script>
+		<script src="public/prettify.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script>
+			$(document).ready(function(){
+
+				var sidebarAdjust = function() {
+					if ($(window).width() <= 768) {
+						$('#kss-main, #kss-nav').height('auto');
+					}
+				};
+
+				$(window).resize(sidebarAdjust);
+				sidebarAdjust();
+
+				// Ensure code blocks are highlighted properly...
+				$('pre>code').addClass('prettyprint');
+				prettyPrint();
+
+			});
+		</script>
+
+	</div>
+</body>
+</html>

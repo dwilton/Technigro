@@ -1,4 +1,4 @@
-define(['jquery'], function ($) {
+define(['jquery', 'api'], function ($, api) {
 
 	'use strict';
 
@@ -13,7 +13,7 @@ define(['jquery'], function ($) {
 		 * @param  {Function} callback
 		 */
 		var getDocumentList = function (callback) {
-			$.getJSON('/api/documentRepo/')
+			$.getJSON(api + 'documentRepo/')
 				.done(function (data) {
 					callback(data.result);
 				});
@@ -25,7 +25,7 @@ define(['jquery'], function ($) {
 		 * @param  {Function} callback
 		 */
 		var getDocument = function (data, callback) {
-			$.getJSON('/api/documentRepo/' + data.id)
+			$.getJSON(api + 'documentRepo/' + data.id)
 				.done(function (data) {
 					callback(data.result);
 				});

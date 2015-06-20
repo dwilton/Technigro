@@ -54,7 +54,7 @@ define([
 					content(mainCom.name);
 
 					// Init all active components
-					p.publish('component.initAll');
+					p.publish('components.init');
 
 					// Trigger the current route
 					p.publish('route', window.location.hash);

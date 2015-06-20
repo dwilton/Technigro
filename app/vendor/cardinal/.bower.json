@@ -1,13 +1,27 @@
 {
   "name": "cardinal",
-  "homepage": "https://github.com/git@github.com:cbracco/cardinal",
-  "version": "0.3.7",
-  "_release": "0.3.7",
+  "version": "2.4.0",
+  "homepage": "https://github.com/cbracco/cardinal",
+  "authors": [
+    "Chris Bracco"
+  ],
+  "description": "Cardinal is a small 'mobile first' CSS framework for front-end developers who build responsive web applications.",
+  "main": "css/main.css",
+  "keywords": [
+    "responsive",
+    "css",
+    "less",
+    "mobile first",
+    "css framework"
+  ],
+  "license": "MIT",
+  "_release": "2.4.0",
   "_resolution": {
     "type": "version",
-    "tag": "0.3.7",
-    "commit": "9bfee630b05193d36a5c40c8f7d26b79e70e7976"
+    "tag": "2.4.0",
+    "commit": "819f55c8fed1d6bcfd0c2692db2c68b02b5cbef2"
   },
-  "_source": "git@github.com:cbracco/cardinal.git",
-  "_target": "*"
+  "_source": "git://github.com/cbracco/cardinal.git",
+  "_target": "*",
+  "_originalSource": "cardinal"
 }

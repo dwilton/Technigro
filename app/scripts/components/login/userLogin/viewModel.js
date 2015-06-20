@@ -21,11 +21,13 @@ define([
 		var isLoading = ko.observable(false);
 		var isFailed = ko.observable(false);
 
-		// Computed Observables
-		var animation = ko.computed(function () {
+		// Subscribed Observables
+		isFailed.subscribe(function () {
 
-			// Publish 'login' animation event
-			p.publish('login.animation', isFailed() ? 'shake' : '');
+			// Publish 'login.shake' event if login failed
+			if (isFailed()) {
+				p.publish('login.shake');
+			}
 
 		});
 
@@ -33,13 +35,10 @@ define([
 		 * Refresh ViewModel
 		 */
 		var refresh = function () {
-
-			// Reset observables
 			username('');
 			password('');
 			isLoading(false);
 			isFailed(false);
-
 		};
 
 		/**

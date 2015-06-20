@@ -22,10 +22,12 @@ define([
 		var isSuccess = ko.observable(false);
 
 		// Subscribed Observables
-		var animation = ko.computed(function () {
+		isFailed.subscribe(function () {
 
-			// Publish 'login' animation event
-			p.publish('login.animation', isFailed() ? 'shake' : '');
+			// Publish 'login.shake' event recover login failed
+			if (isFailed()) {
+				p.publish('login.shake');
+			}
 
 		});
 
@@ -33,12 +35,9 @@ define([
 		 * Refresh ViewModel
 		 */
 		var refresh = function () {
-
-			// Reset observables
 			email('');
 			isFailed(false);
 			isSuccess(false);
-
 		};
 
 		/**
@@ -59,14 +58,14 @@ define([
 
 		/**
 		 * Recover Login Result
-		 * @param  {Boolean} validLogin
+		 * @param  {Boolean} login
 		 */
-		var recoverResult = function (validLogin) {
+		var recoverResult = function (login) {
 
 			// Hide loading indicator
 			isLoading(false);
 
-			if (validLogin) {
+			if (login) {
 
 				// Show success message
 				isSuccess(true);

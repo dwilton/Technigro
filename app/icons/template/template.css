@@ -19,4 +19,4 @@
 	}
 <% } %>
 <% if (iconsStyles) { %>/* Icons */<% for (var glyphIdx = 0; glyphIdx < glyphs.length; glyphIdx++) { %>
-.icon-<%= glyphs[glyphIdx] %>:before { content:"\<%= codepoints[glyphIdx] %>"; }<% } %><% } %>
+.icon--<%= glyphs[glyphIdx] %>:before { content:"\<%= codepoints[glyphIdx] %>"; }<% } %><% } %>

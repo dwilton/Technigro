@@ -1,0 +1,109 @@
+// ==================================================================
+// Datagrid ($datagrid)
+// ==================================================================
+
+
+// Datagrid
+//
+// Datagrids provide scrollable containers for tables
+//
+// Markup:
+// <div class="datagrid">
+// 	<table class="datagrid__fixed-header table">
+// 		<colgroup>
+// 			<col width="20%">
+// 			<col width="80%">
+// 		</colgroup>
+// 		<thead>
+// 			<tr>
+// 				<th>Date</th>
+// 				<th>Client</th>
+// 			</tr>
+// 		</thead>
+// 	</table>
+// 	<div class="datagrid__results scrollable">
+// 		<table class="table table-stripe">
+// 			<colgroup>
+// 				<col width="20%">
+// 				<col width="80%">
+// 			</colgroup>
+// 			<thead>
+// 				<tr>
+// 					<th>Date</th>
+// 					<th>Client</th>
+// 				</tr>
+// 			</thead>
+// 			<tbody>
+// 				<tr>
+// 					<td>20 Sep 2015</td>
+// 					<td>Kanye West</td>
+// 				</tr>
+// 				<tr>
+// 					<td>21 Sep 2015</td>
+// 					<td>JayZ</td>
+// 				</tr>
+// 				<tr>
+// 					<td>22 Sep 2015</td>
+// 					<td>Dr Dre</td>
+// 				</tr>
+// 			</tbody>
+// 		</table>
+// 	</div>
+// </div>
+//
+// Styleguide 4.
+
+.datagrid {
+	border: @datagrid-border;
+	user-select: none;
+	overflow: hidden;
+
+	table {
+		margin: 0;
+		border: 0;
+	}
+
+	tr:hover td,
+	tr.selected td {
+		color: @hover-color;
+		background-color: @hover-background !important;
+		cursor: pointer;
+	}
+
+	th {
+		color: @datagrid-header-color;
+		background-color: @datagrid-header-background;
+	}
+
+	td {
+		color: @datagrid-color;
+		background-color: @datagrid-background;
+	}
+
+	.table th {
+		text-align: left;
+	}
+}
+
+// Fixed header element
+.datagrid__fixed-header {
+	position: relative;
+
+	&:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		width: 100%;
+		height: 2rem;
+		box-shadow: 0 3px 3px -1px rgba(0,0,0,0.2);
+		z-index: 1;
+	}
+}
+
+// Results element
+.datagrid__results thead {
+	display: none;
+}
